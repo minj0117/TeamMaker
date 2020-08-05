@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.MemberDAO-mapper">
+	<!-- 회원가입 -->
+	<insert id="joinMember" parameterType="com.kh.prj.member.vo.MemberVO">	
+		insert into member (id, pw, name, birth, gender, phone, email, free) 
+		values (#{id},#{pw},#{name},#{birth},#{gender},#{phone},#{email},#{free})
+	</insert>
+	
+	<!-- ID조회 -->
+	<select id="listId" resultType="com.kh.prj.member.vo.MemberVO">
+		select id, pw, name,birth,gender,phone,email 
+		from member 
+		where id = #{id} 
+	</select>
+</mapper>
