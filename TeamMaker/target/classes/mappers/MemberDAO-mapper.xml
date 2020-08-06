@@ -13,4 +13,10 @@
 		from member 
 		where id = #{id} 
 	</select>
+	
+	<!-- 회원 리스트 -->
+	<select id="memberList" resultType="com.kh.prj.member.vo.MemberVO">
+		select id, name, birth, gender, phone, email, free
+		from member
+	</select>
 </mapper>

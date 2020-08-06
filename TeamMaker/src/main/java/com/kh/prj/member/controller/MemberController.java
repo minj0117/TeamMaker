@@ -1,5 +1,7 @@
 package com.kh.prj.member.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -32,5 +34,12 @@ public class MemberController {
 		}else {
 			return "err_page";
 		}
+	}
+	@GetMapping("/list")
+	public String memberList(Model model) {
+		List<MemberVO> list = memberSVC.memberList();
+		logger.info("데이터 : " + list);
+		model.addAttribute("list", list);
+		return "member/list";
 	}
 }

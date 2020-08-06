@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>성공</h1>
-	<h2>${sessionScope.member.name}님 접속</h2>
-	<a href="/prj/logout">로그아웃</a>
-	<a href="/prj/test">세션 확인</a>
+	<h1>로그인 한사람 정보 표시</h1>
+	<hr>
+	<h5>${sessionScope.member.name}</h5>
+	<h5>${sessionScope.member.id}</h5>
+	<h5>${sessionScope.member.birth}</h5>
+	<h5>${sessionScope.member.free}</h5>
 </body>
 </html>

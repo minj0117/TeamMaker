@@ -1,5 +1,7 @@
 package com.kh.prj.member.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,5 +24,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO listId(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mappers.MemberDAO-mapper.listId",id);
+	}
+	
+	@Override
+	public List<MemberVO> memberList() {
+		return sqlSession.selectList("mappers.MemberDAO-mapper.memberList");
 	}
 }

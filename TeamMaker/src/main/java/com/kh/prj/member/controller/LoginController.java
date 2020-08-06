@@ -1,5 +1,7 @@
 package com.kh.prj.member.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -45,4 +47,11 @@ public class LoginController {
 		session.invalidate();
 		return "member/success";
 	}
+	
+	//테스트
+	@GetMapping("/test")
+	public String test(HttpSession session, Model model) {
+		return "member/test";
+	}
+	
 }

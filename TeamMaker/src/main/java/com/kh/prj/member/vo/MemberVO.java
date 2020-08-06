@@ -78,4 +78,11 @@ public class MemberVO {
 	public void setFree(String free) {
 		this.free = free;
 	}
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", birth=" + birth + ", gender=" + gender
+				+ ", phone=" + phone + ", email=" + email + ", cdate=" + cdate + ", dancntnumber=" + dancntnumber
+				+ ", free=" + free + "]";
+	}
+	
 }

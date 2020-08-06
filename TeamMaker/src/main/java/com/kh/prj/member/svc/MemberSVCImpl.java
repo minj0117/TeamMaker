@@ -1,5 +1,7 @@
 package com.kh.prj.member.svc;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,5 +26,10 @@ public class MemberSVCImpl implements MemberSVC {
 		MemberVO memberVO = null;
 		memberVO = memberDAO.listId(id);
 		return memberVO;
+	}
+	@Override
+	public List<MemberVO> memberList() {
+		// TODO Auto-generated method stub
+		return memberDAO.memberList();
 	}
 }
