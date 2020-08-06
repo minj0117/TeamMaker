@@ -29,7 +29,7 @@
 			<td>${row.phone }</td>
 			<td>${row.email }</td>
 			<td>${row.free }</td>
-		</tr>
+		</tr> 
 		</c:forEach>
 	</table>
 </body>

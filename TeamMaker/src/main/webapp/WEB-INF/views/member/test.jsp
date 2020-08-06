@@ -11,6 +11,7 @@
 	<hr>
 	<h5>${sessionScope.member.name}</h5>
 	<h5>${sessionScope.member.id}</h5>
+	<h5>${sessionScope.member.cdate}</h5>
 	<h5>${sessionScope.member.birth}</h5>
 	<h5>${sessionScope.member.free}</h5>
 </body>

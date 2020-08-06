@@ -9,7 +9,7 @@
 	
 	<!-- ID조회 -->
 	<select id="listId" resultType="com.kh.prj.member.vo.MemberVO">
-		select id, pw, name,birth,gender,phone,email 
+		select id, pw, name,birth,gender,phone,email, free,cdate 
 		from member 
 		where id = #{id} 
 	</select>
@@ -19,4 +19,16 @@
 		select id, name, birth, gender, phone, email, free
 		from member
 	</select>
+	
+	<!-- 회원 수정 -->
+	<update id="modifyMember" parameterType="com.kh.prj.member.vo.MemberVO">
+		update member 
+    	   set pw = #{pw},
+    	   	   phone = #{phone}, 
+        	   email = #{email},
+        	   free = #{free}
+    	 where id = #{id}
+    	   and pw = #{pw}
+	</update>
+	
 </mapper>

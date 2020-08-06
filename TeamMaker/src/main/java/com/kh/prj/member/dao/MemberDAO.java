@@ -19,5 +19,16 @@ public interface MemberDAO {
 	 */
 	public MemberVO listId(String id);
 	
+	/**
+	 * 회원 조회
+	 * @return
+	 */
 	public List<MemberVO> memberList();
+	
+	/**
+	 * 회원 수정 
+	 * @param memberVO
+	 * @return
+	 */
+	public int modifyMember(MemberVO memberVO);
 }

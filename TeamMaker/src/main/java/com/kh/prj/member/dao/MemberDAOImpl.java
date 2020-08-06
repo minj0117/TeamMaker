@@ -13,21 +13,37 @@ import com.kh.prj.member.vo.MemberVO;
 public class MemberDAOImpl implements MemberDAO {
 	@Inject
 	private SqlSession sqlSession;
+	
+	/**
+	 * 회원가입
+	 */
 	@Override
-	public int joinMember(MemberVO memberVO) {
-		
+	public int joinMember(MemberVO memberVO) {	
 		return sqlSession.insert("mappers.MemberDAO-mapper.joinMember",memberVO);
 	}
 	
-	//회원 id조회
+	/**
+	 * 회원 id조회
+	 */
 	@Override
 	public MemberVO listId(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mappers.MemberDAO-mapper.listId",id);
 	}
 	
+	/**
+	 * 회원 리스트 조회
+	 */
 	@Override
 	public List<MemberVO> memberList() {
 		return sqlSession.selectList("mappers.MemberDAO-mapper.memberList");
+	}
+	
+	/**
+	 * 회원 수정
+	 */
+	@Override
+	public int modifyMember(MemberVO memberVO) {
+		return sqlSession.update("mappers.MemberDAO-mapper.modifyMember",memberVO);
 	}
 }

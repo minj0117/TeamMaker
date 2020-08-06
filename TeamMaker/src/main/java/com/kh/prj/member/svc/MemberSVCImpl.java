@@ -14,22 +14,44 @@ public class MemberSVCImpl implements MemberSVC {
 	@Inject
 	@Qualifier("memberDAOImpl")
 	MemberDAO memberDAO;
+
 	
+	/*
+	 * 회원가입
+	 */
 	@Override
 	public int joinMember(MemberVO memberVO) {
 		int result = 0;
 		result = memberDAO.joinMember(memberVO);
 		return result;
 	}
+	
+	/**
+	 * 회원 id조회
+	 */
 	@Override
 	public MemberVO listId(String id) {
 		MemberVO memberVO = null;
 		memberVO = memberDAO.listId(id);
 		return memberVO;
 	}
+	
+	/**
+	 * 회원 리스트 조회
+	 */
 	@Override
 	public List<MemberVO> memberList() {
 		// TODO Auto-generated method stub
 		return memberDAO.memberList();
+	}
+	
+	/**
+	 * 회원 수정
+	 */
+	@Override
+	public int modifyMember(MemberVO memberVO) {
+		int result = 0;
+		result = memberDAO.modifyMember(memberVO);
+		return result;
 	}
 }
