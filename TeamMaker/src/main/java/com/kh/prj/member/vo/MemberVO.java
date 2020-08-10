@@ -2,9 +2,6 @@ package com.kh.prj.member.vo;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
 	private String id;					//USER_ID	VARCHAR2(40 BYTE)	No		1	아이디

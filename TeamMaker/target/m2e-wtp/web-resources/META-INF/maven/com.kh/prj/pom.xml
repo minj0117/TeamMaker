@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
-		<java-version>1.6</java-version>
+		<java-version>1.8</java-version>
 		<org.springframework-version>5.2.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.9.5</org.aspectj-version>
 		<org.slf4j-version>1.7.30</org.slf4j-version>
@@ -118,6 +118,7 @@
 			<scope>test</scope>
 		</dependency>
 
+
 		<!-- json포맷을 java객체로 변환 or java객체를 json포맷으로 변환 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -163,8 +164,6 @@
 		</dependency>
 
 
-
-
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -172,6 +171,31 @@
 			<version>1.18.12</version>
 			<scope>provided</scope>
 		</dependency>
+
+
+		<!-- 스프링 테스트 시작 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>5.2.7.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- 스프링 테스트 종료 -->
+
+		<!-- junit 단위 테스트 시작 -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.6.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.6.2</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- junit 종료 -->
 
 
 	</dependencies>
@@ -196,8 +220,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>

@@ -2,6 +2,8 @@ package com.kh.prj.member.dao;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import com.kh.prj.member.vo.MemberVO;
 
 public interface MemberDAO {
@@ -31,4 +33,6 @@ public interface MemberDAO {
 	 * @return
 	 */
 	public int modifyMember(MemberVO memberVO);
+	
+	public String selectOverlappedID(String id) throws DataAccessException;
 }

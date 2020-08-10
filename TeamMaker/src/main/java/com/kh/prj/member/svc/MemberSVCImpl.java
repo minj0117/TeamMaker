@@ -54,4 +54,9 @@ public class MemberSVCImpl implements MemberSVC {
 		result = memberDAO.modifyMember(memberVO);
 		return result;
 	}
+	
+	@Override
+	public String overlapped(String id) throws Exception {
+		return memberDAO.selectOverlappedID(id);
+	}
 }

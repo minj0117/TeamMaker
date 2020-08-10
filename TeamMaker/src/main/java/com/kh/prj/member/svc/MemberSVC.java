@@ -31,4 +31,6 @@ public interface MemberSVC {
 	 * @return
 	 */
 	public int modifyMember(MemberVO memberVO);
+	
+	public String overlapped(String id) throws Exception;
 }

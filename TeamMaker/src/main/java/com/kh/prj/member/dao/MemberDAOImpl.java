@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.kh.prj.member.vo.MemberVO;
@@ -45,5 +46,10 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int modifyMember(MemberVO memberVO) {
 		return sqlSession.update("mappers.MemberDAO-mapper.modifyMember",memberVO);
+	}
+	
+	@Override
+	public String selectOverlappedID(String id) throws DataAccessException {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.idCheck");
 	}
 }
