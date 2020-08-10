@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style type="text/css">
+ *{
+  font-family: 맑은고딕, 돋음;
+  color:black;
+ }
+ 
+ form{
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+ }
+ fieldset{
+  width: 90%;
+  border: none;
+  padding: 0;
+  margin: 0 auto;
+  border-bottom: 2px solid #eee;
+ }
+ legend{
+  font-weight: bold;
+  font-size: 1.5em;
+  color: ba;
+  padding: 10px 0;
+ }
+ span.notice{
+  position: absolute;
+  top: 1.5em;
+  right: 3em;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: black;
+ }
+ strong{
+  color: black;
+ }
+ p{
+  border: none;
+  border-bottom: 1px solid #eee;
+  padding: 7px 0;
+  margin: 0;
+ }
+ .label{
+  font-size: 0.9em;
+  width: 20%;
+  float: left;
+  text-align: right;
+  padding-right: 10px;
+ }
+ label{
+  font-size: 0.9em;
+ }
+ .firstP{
+  border-top: 2px solid #eee;
+ }
+ .submitP{
+  text-align: center;
+ }
+ .submitP > input[type=submit]{
+  padding: 2px 10px;
+  font-weight: bold;
+  color: black;
+ }
+ input[type=text], input[type=password]{
+  width: 35%;
+  height:1.1em;
+  font-size: 0.9em;
+  border: 1px solid #eee;
+  
+ }
+ textarea{
+  width: 70%;
+  border: 1px solid #eee;
+  
+ }
+</style>
+</head>
+<body>
+ <form method="post" action="a.jsp" id="frm1">
+  <fieldset>
+   
+   <span class="notice">*필수작성</span>
+   <p class="firstP">
+    <label for="name" class="label"><strong>*이름</strong></label>
+    <input type="text" id="name" />
+   </p>
+   <p>
+    <label for="userid" class="label"><strong>*아이디</strong></label>
+    <input type="text" id="userid" /><input type="button" value="중복확인" >
+   </p>
+   <p>
+    <label for="pwd" class="label"><strong>*비밀번호</strong></label>
+    <input type="password" id="pwd" />
+   </p>
+   <p>
+    <label for="pwd" class="label"><strong>*비밀번호확인</strong></label>
+    <input type="password" id="pwd" />
+   </p>
+   <p>
+    <label for="email" class="label">*이메일</label>
+    <input type="text" id="email" />@<input type="text" id="email" /><select name="mail">
+      <option value="직접입력">직접입력</option>
+      <option value="naver">naver.com</option>
+      <option value="daum">hanmail.net</option>
+      <option value="google">google.com</option>
+      <option value="korea">korea.or.kr</option>        
+     </select>
+ 
+  </p>
+   <p class="firstP">
+    <label for="birth" class="label"><strong>*생년월일</strong></label>
+    <input type="text" id="birth" />
+   </p>
+   <p class="firstP">
+    <label for="phone" class="label"><strong>*휴대폰번호</strong></label>
+    <input type="text" id="phone" />
+   </p>
+   <p>
+    <span class="label">*성별</span>
+     <label><input type="radio" name="gender" value="1">
+      남자
+     </label>
+     <label><input type="radio" name="gender" value="2">
+      여자
+     </label>
+    </p>
+    <p>
+     <span class="label">자기소개서</span>
+     <textarea rows="15" cols="10" id="intro"></textarea>
+    </p>
+    <p class="submitP">
+     <input type="submit" value="가입하기" /><input type="reset" value="취소" />
+    </p>
+  </fieldset>
+ </form>
+</body>
+</html>
