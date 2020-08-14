@@ -119,7 +119,7 @@
 			return;
 		}
 		let genderlist = Array.from(gender);
-		if(genderlist[0].checked || genderlist[1].checked != true){
+		if(genderlist[0].checked != true && genderlist[1].checked != true){
 			alert('성별을 입력하세요');
 			genderlist[0].select();
 			return;
@@ -133,15 +133,48 @@
 		joinForm.method="post";
 		joinForm.submit();
 	}
+
+</script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function fn_idchk(){
+		var idCheck = 0;
+		var inputed = $('#id').val();
+		console.log(inputed);
+		$.ajax({
+			data : inputed,
+			url : "http://localhost:8090/prj/member/idCheck",
+			type : "post",
+			dataType : "JSON",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				//var result = JSON.parse(data);
+				if(data.check > 0){
+					$('#message').text("이미 사용중인 아이디 입니다.");
+					$('#message').css("color","red");
+					$('#message').css("font-weight","bold");
+				}else{
+					$('#message').text("사용할 수 있는 ID입니다.");
+					$('#message').css("color","green");	
+					$('#message').css("font-weight","bold");				
+				}
+			},
+			error : function(data,textStatus){
+				alert("에러가 발생했습니다.");
+			}
+		})
+	}
 </script>
 </head>
 <body>
+	
  <form method="post" action="/prj/member/join" id="joinForm" name="joinForm">
   <fieldset>
    <span class="notice">*필수작성</span>
    <p class="firstP">
     <label for="id" class="label"><strong>*아이디</strong></label>
-    <input type="text" id="id" name="id" /><input type="button" value="중복확인" >
+    <input type="text" id="id" name="id" /><input type="button" id="chk" onClick="fn_idchk()" value="중복확인" >
+    <div id="message"></div>
    </p>
    <p>
     <label for="pw" class="label"><strong>*비밀번호</strong></label>
@@ -161,8 +194,8 @@
    </p>
    <p>
     <label for="gender" class="label"><strong>*성별</strong></label>
-     <label><input type="radio" id="gender" name="gender" value="여">여자</label>
      <label><input type="radio" id="gender" name="gender" value="남">남자</label>
+     <label><input type="radio" id="gender" name="gender" value="여">여자</label>
     </p>
    <p class="firstP">
     <label for="phone" class="label"><strong>*휴대폰번호</strong></label>

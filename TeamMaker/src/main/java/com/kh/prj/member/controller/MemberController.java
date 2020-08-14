@@ -1,22 +1,24 @@
 package com.kh.prj.member.controller;
 
+import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.member.svc.MemberSVC;
 import com.kh.prj.member.vo.MemberVO;
@@ -27,6 +29,8 @@ public class MemberController {
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Inject MemberSVC memberSVC;
+	@Inject
+	private SqlSession sqlSession;
 	
 	/*===================== 회원 등록 ===========================*/
 	/**
@@ -98,13 +102,77 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/overlapped")
-	public ResponseEntity overlapped(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ResponseEntity resEntity = null;
-		System.out.println("overlapped 호출");
-		String result = memberSVC.overlapped(id);
-		resEntity = new ResponseEntity(result, HttpStatus.OK);
-		return resEntity;
+	/**
+	 * 아이디 중복체크
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST, produces = "application/json")
+	public Map<Object, Object> idCheck(@RequestBody String id) throws Exception{
+		Map<Object,Object> map = new HashMap<Object,Object>();
+		int result = 0;
+		result = memberSVC.idCheck(id);
+		System.out.println("controller : " + result );
+		map.put("check",result);
+		System.out.println("map : " + map);
+		return map;
+	}	
+	
+	/**
+	 * 아이디 찾기 페이지
+	 * @return
+	 */
+	@GetMapping("/findIDForm")
+	public String findIDFrom() {
+		return "member/findIDForm";
 	}
+	
+	/**
+	 * 아이디 찾기 처리
+	 * @param memberVO
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/findid", method = RequestMethod.POST, produces = "application/json" )
+	public String findid(@RequestBody MemberVO memberVO ) throws Exception {
+		logger.info(memberVO.toString());
+		String result = memberSVC.findid(memberVO);
+		System.out.println("컨트롤로 : " + result);
+		return result;
+	}
+	
+	/**
+	 * 비밀번호 찾기 페이지
+	 * @return
+	 */
+	@GetMapping("/findPWForm")
+	public String findPWFrom() {
+		return "member/findPWForm";
+	}
+	
+	/**
+	 * 비밀번호 찾기 처리
+	 * @param memberVO
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/findpw", method = RequestMethod.POST, produces = "application/json" )
+	public String findpw(@RequestBody MemberVO memberVO ) throws Exception {
+		logger.info(memberVO.toString());
+		String result = memberSVC.findpw(memberVO);
+		System.out.println("컨트롤로 : " + result);
+		return result;
+	}
+	
+	@PostMapping("/dancnt")
+	public String dancnt(MemberVO memberVO, Model model) {
+		int result = memberSVC.dancnt(memberVO);
+	}
+	
+	
 	
 }

@@ -34,5 +34,29 @@ public interface MemberDAO {
 	 */
 	public int modifyMember(MemberVO memberVO);
 	
-	public String selectOverlappedID(String id) throws DataAccessException;
+	/**
+	 * 아이디 중복 체크
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public int idCheck(String id) throws Exception;
+	
+	/**
+	 * 아이디 찾기
+	 * @param memberVO
+	 * @return
+	 * @throws Exception
+	 */
+	public String findid(MemberVO memberVO) throws Exception;
+	
+	/**
+	 * 비밀번호 찾기
+	 * @param memberVO
+	 * @return
+	 * @throws Exception
+	 */
+	public String findpw(MemberVO memberVO) throws Exception;
+	
+	public int dancnt(MemberVO memberVO);
 }

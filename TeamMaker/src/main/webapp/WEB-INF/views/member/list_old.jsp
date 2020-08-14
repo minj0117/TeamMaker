@@ -9,15 +9,6 @@
 </head>
 <body>
 	<h1>회원 목록</h1>
-	${sessionScope.member.id}
-	<%
-		String id = (String) session.getAttribute("id");
-		//String id = (String) session.getAttribute("id")
-	%>
-		<h1><%=id %></h1>
-	<%
-		if(id != null && id.equals("admin")){
-	%>	
 	<table border="1" width="700">
 		<tr>
 			<th>아이디</th>
@@ -40,12 +31,5 @@
 		</tr> 
 		</c:forEach>
 	</table>
-	<% 
-		}else{
-	%>
-		<h1>권한이 없습니다.</h1>
-	<%
-		}
-	%>
 </body>
 </html>
