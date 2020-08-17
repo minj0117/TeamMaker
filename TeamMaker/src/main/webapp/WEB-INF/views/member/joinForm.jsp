@@ -40,7 +40,7 @@
 		성별 : <input type="radio" name="gender" value="남">남
 			 <input type="radio" name="gender" value="여">여<br>
 		전화번호 : <input type="text" id="phone" name="phone"><br>
-		이메일 : <input type="text" id="email" name="email"><br>
+		이메일 : <input type="text" id="email" name="email"> <input type="button" value="코드전송"><br>
 		소개 : <textarea rows="10" cols="10" id="free" name="free"></textarea><br>
 		<input type="submit" id="submit" value="가입">
 	</form>

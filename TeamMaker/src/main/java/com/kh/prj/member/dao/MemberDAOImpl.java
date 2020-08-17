@@ -94,9 +94,50 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 	
+	/**
+	 * 신고횟수 추가
+	 */
 	@Override
-	public int dancnt(MemberVO memberVO) {
-		int result = sqlSession.selectOne("mappers.MemberDAO-mapper.dancnt", memberVO.getId());
-		return result;s
+	public int dancnt(String id) {
+		System.out.println("dao id : " + id);
+		/*int result = sqlSession.selectOne("mappers.MemberDAO-mapper.dancnt", id);
+		System.out.println("dao result = " + result);
+		return result;*/
+		int result = sqlSession.update("mappers.MemberDAO-mapper.dancnt",id);
+		System.out.println("dao result = " + result);
+		return result;
+	}
+	/**
+	 * 블랙리스트 횟수 조회
+	 */
+	@Override
+	public int getcnt(String id) {
+		System.out.println("dao id : " + id);
+		int result = sqlSession.selectOne("mappers.MemberDAO-mapper.getcnt",id);
+		System.out.println("dao result = " + result);
+		return result;
+	}
+	
+	/**
+	 * 블랙리스트 추가
+	 */
+	@Override
+	public int addBlackList(String id) {
+		System.out.println("dao add id : " + id);
+	//	int result = sqlSession.insert("mappers.MemberDAO-mapper.addBlackList",id);
+		int result = sqlSession.insert("mappers.MemberDAO-mapper.addBlackList", id);
+		System.out.println("dao add result : " + result);
+		return result;
+	}
+	
+	/**
+	 * 블랙리스트 아이디 존재 여부 확인
+	 */
+	@Override
+	public String checkBlackList(String id) {
+		System.out.println("dao check id : " + id);
+		String result = sqlSession.selectOne("mappers.MemberDAO-mapper.checkBlackList", id);
+		System.out.println("dao check result : " + result);
+		return result;
 	}
 }

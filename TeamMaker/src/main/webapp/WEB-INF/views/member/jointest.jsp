@@ -140,6 +140,13 @@
 	function fn_idchk(){
 		var idCheck = 0;
 		var inputed = $('#id').val();
+		if(inputed == ''){
+			alert("ID를 입력하세요");
+			return;
+		}else if(inputed.length < 5){
+			alert("ID는 5자 이상으로 해주세요");
+			return;
+		}
 		console.log(inputed);
 		$.ajax({
 			data : inputed,
@@ -204,6 +211,7 @@
    <p>
     <label for="email" class="label">*이메일</label>
     <input type="text" id="email" name="email"/>
+    <input type="button" value="코드전송">
   </p>
    <p>
      <span class="label">자기소개서</span>

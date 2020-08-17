@@ -88,9 +88,44 @@ public class MemberSVCImpl implements MemberSVC {
 		return result;
 	}
 
+	/**
+	 * 신고횟수 추가
+	 */
 	@Override
-	public int dancnt(MemberVO memberVO) {
-		int result = memberDAO.dancnt(memberVO);
+	public int dancnt(String id) {
+		System.out.println(id);
+		int result = memberDAO.dancnt(id);
+		System.out.println("svc result = " + result);
+		return result;
+	}
+	/**
+	 * 신고 횟수 가져오기
+	 */
+	@Override
+	public int getcnt(String id) {
+		System.out.println("svc id : " + id);
+		int result = memberDAO.getcnt(id);
+		System.out.println("svc result = " + result);
+		return result;
+	}
+	/**
+	 * 블랙리스트 추가
+	 */
+	@Override
+	public int addBlackList(String id) {
+		System.out.println("svc add id : " + id);
+		int result = memberDAO.addBlackList(id);
+		System.out.println("svc add result : " + result);
+		return result;
+	}
+	/**
+	 * 블랙리스트 아이디 존재 여부 확인
+	 */
+	@Override
+	public String checkBlackList(String id) {
+		System.out.println("svc check id : " + id);
+		String result = memberDAO.checkBlackList(id);
+		System.out.println("svc check result : " + result);
 		return result;
 	}
 }

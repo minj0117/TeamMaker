@@ -26,15 +26,23 @@ public class LoginController {
 	//로그인 처리
 	@PostMapping("/login")
 	public String login(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session, Model model) {
-		MemberVO memberVO = memberSVC.listId(id);
-		if(memberVO == null) {
-			return "err_page";
+		String check = memberSVC.checkBlackList(id);
+		System.out.println("controller check : " + check);
+		//차단아이디 확인
+		if(check != null && check.equals(id)) {
+			return "member/blacklist";
 		}else {
-			if(memberVO.getPw().equals(pw)) {
-				session.setAttribute("member", memberVO);
-				return "member/success";
-			}else {
+			MemberVO memberVO = memberSVC.listId(id);
+			if(memberVO == null) {
 				return "err_page";
+			}else {
+				if(memberVO.getPw().equals(pw)) {
+					session.setAttribute("member", memberVO);
+					session.setAttribute("id",memberVO.getId());
+					return "member/success";
+				}else {
+					return "err_page";
+				}
 			}
 		}
 	}

@@ -41,7 +41,7 @@ function fn_findid(){
 <body>
 	<h1>아이디 찾기</h1>
 	<form action="/prj/member/findid" method="post">
-		아이디 : <input type="text" id="name" name="name"><br>
+		이름 : <input type="text" id="name" name="name"><br>
 		이메일 : <input type="text" id="email" name="email"><br>
 		<div id="message"></div>
 		<input type="button" onClick="fn_findid()" value="아이디 찾기">

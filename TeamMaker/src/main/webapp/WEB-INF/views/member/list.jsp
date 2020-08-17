@@ -27,6 +27,8 @@
 			<th>전화번호</th>
 			<th>이메일</th>
 			<th>자기소개</th>
+			<th>신고받은 횟수</th>
+			<th>신고</th>
 		</tr>
 		<c:forEach var="row" items="${list }">
 		<tr>
@@ -37,6 +39,8 @@
 			<td>${row.phone }</td>
 			<td>${row.email }</td>
 			<td>${row.free }</td>
+			<td>${row.dancntnumber }</td>
+			<td><a href="#" onClick="location.href='http://localhost:8090/prj/member/dancnt?id=${row.id}'">신고</a></td>
 		</tr> 
 		</c:forEach>
 	</table>
@@ -47,5 +51,13 @@
 	<%
 		}
 	%>
+	
+	<!-- <script type="text/javascript">
+		function fn_a(id){
+			action = "/prj/member/dancnt"
+			mthod = "post";
+			submit();
+		}
+	</script>-->
 </body>
 </html>

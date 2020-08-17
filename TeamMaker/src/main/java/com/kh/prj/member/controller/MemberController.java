@@ -39,7 +39,7 @@ public class MemberController {
 	 */
 	@GetMapping("/joinForm")
 	public String joinForm() {
-		return "/member/joinForm";
+		return "/member/jointest";
 	}
 	/**
 	 * 회원가입 처리
@@ -168,11 +168,35 @@ public class MemberController {
 		return result;
 	}
 	
-	@PostMapping("/dancnt")
-	public String dancnt(MemberVO memberVO, Model model) {
-		int result = memberSVC.dancnt(memberVO);
-	}
-	
-	
-	
+	/**
+	 * 신고횟수 추가
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/dancnt")
+	public String dancnt(String id) {
+		System.out.println(id);
+		int result = memberSVC.dancnt(id);
+		System.out.println("controller result = " + result);
+		if(result == 0) {
+			System.out.println("실패");
+			return "err_page";
+		}else {
+			System.out.println("성공");
+			int getcnt = memberSVC.getcnt(id);
+			if(getcnt >= 3) { //신고횟수 3이상이면 블랙리스트 처리
+				System.out.println("여기까지는 들어옴");
+				int result2 = memberSVC.addBlackList(id);
+				System.out.println("result2 : " + result2);
+				if(result2 == 0 ) {
+					System.out.println("블랙리스트 추가 실패");
+					return "err_page";
+				}else {
+					System.out.println("블랙리스트 추가 성공");
+					return "member/success";
+				}
+			}
+			return "member/success";
+		}
+	}	
 }

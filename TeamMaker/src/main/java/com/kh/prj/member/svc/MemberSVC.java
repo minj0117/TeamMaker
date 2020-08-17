@@ -56,6 +56,28 @@ public interface MemberSVC {
 	 */
 	public String findpw(MemberVO memberVO) throws Exception;
 	
-	public int dancnt(MemberVO memberVO);
-	
+	/**
+	 * 신고횟수 추가
+	 * @param id
+	 * @return
+	 */
+	public int dancnt(String id);
+	/**
+	 * 신고 횟수 조회
+	 * @param id
+	 * @return
+	 */
+	public int getcnt(String id);
+	/**
+	 * 블랙리스트 추가
+	 * @param id
+	 * @return
+	 */
+	public int addBlackList(String id);
+	/**
+	 * 블랙리스트 아이디 존재 여부 확인
+	 * @param id
+	 * @return
+	 */
+	public String checkBlackList(String id);
 }
