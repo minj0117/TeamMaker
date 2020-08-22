@@ -19,6 +19,7 @@
 	<a href="/prj/test">세션 확인</a>
 	<a href="/prj/member/modifyForm">회원수정</a>	
 	<a href="/prj/member/list">리스트보기</a>
+	<a href="/prj/member/delMemberForm">회원탈퇴</a>
 	<%		
 		}else{
 	%>

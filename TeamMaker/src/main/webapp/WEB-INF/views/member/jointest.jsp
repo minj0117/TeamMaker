@@ -92,8 +92,9 @@
 		console.log(e.target);
 		let joinForm = document.getElementById('joinForm');
 		let id = document.getElementById('id');
+		//let idcheck = $('#message').val();
 		let pw = document.getElementById('pw');
-		let pwchech = document.getElementById('pwcheck');
+		let pwcheck = document.getElementById('pwcheck');
 		let name = document.getElementById('name');
 		let birth = document.getElementById('birth');
 		let gender = document.querySelectorAll("input[name='gender']");
@@ -101,6 +102,10 @@
 		let email = document.getElementById('email');
 		if(id.value.trim().length == 0){
 			alert('아이디를 입력하세요');
+			return;
+		}if($('#message').val() != '사용할 수 있는 ID입니다.'){
+			console.log($('#message').val());
+			alert('아이디 중복체크를 확인해주세요');
 			return;
 		}if(pw.value.trim().length == 0){
 			alert('패스워드를 입력하세요');
@@ -139,13 +144,15 @@
 <script type="text/javascript">
 	function fn_idchk(){
 		var idCheck = 0;
+		var idPattern = /^[a-zA-Z0-9]{5,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
 		var inputed = $('#id').val();
 		if(inputed == ''){
 			alert("ID를 입력하세요");
 			return;
-		}else if(inputed.length < 5){
-			alert("ID는 5자 이상으로 해주세요");
-			return;
+		}
+		if(idPattern.test(inputed) != true){
+			alert("아이디는 5~12자, 영어와 숫자로만 생성해주세요");
+			return ;
 		}
 		console.log(inputed);
 		$.ajax({
@@ -157,10 +164,12 @@
 			success : function(data){
 				//var result = JSON.parse(data);
 				if(data.check > 0){
+					$('#message').val("이미 사용중인 아이디 입니다.");
 					$('#message').text("이미 사용중인 아이디 입니다.");
 					$('#message').css("color","red");
 					$('#message').css("font-weight","bold");
 				}else{
+					$('#message').val("사용할 수 있는 ID입니다.");
 					$('#message').text("사용할 수 있는 ID입니다.");
 					$('#message').css("color","green");	
 					$('#message').css("font-weight","bold");				
@@ -171,6 +180,8 @@
 			}
 		})
 	}
+	//var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
 </script>
 </head>
 <body>

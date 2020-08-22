@@ -12,7 +12,6 @@
 	${sessionScope.member.id}
 	<%
 		String id = (String) session.getAttribute("id");
-		//String id = (String) session.getAttribute("id")
 	%>
 		<h1><%=id %></h1>
 	<%
@@ -51,13 +50,5 @@
 	<%
 		}
 	%>
-	
-	<!-- <script type="text/javascript">
-		function fn_a(id){
-			action = "/prj/member/dancnt"
-			mthod = "post";
-			submit();
-		}
-	</script>-->
 </body>
 </html>

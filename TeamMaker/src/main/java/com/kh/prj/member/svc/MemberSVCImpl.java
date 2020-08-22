@@ -128,4 +128,11 @@ public class MemberSVCImpl implements MemberSVC {
 		System.out.println("svc check result : " + result);
 		return result;
 	}
+	
+	@Override
+	public int delMember(String id) {
+		System.out.println("svc id : " + id);
+		int result = memberDAO.delMember(id);
+		return result;
+	}
 }

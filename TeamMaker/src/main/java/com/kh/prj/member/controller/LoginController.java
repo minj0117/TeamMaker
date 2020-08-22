@@ -20,7 +20,7 @@ public class LoginController {
 	//로그인 화면
 	@GetMapping("loginForm")
 	public String loginForm() {
-		return "member/loginForm";
+		return "member/signin";
 	}
 	
 	//로그인 처리
@@ -39,7 +39,9 @@ public class LoginController {
 				if(memberVO.getPw().equals(pw)) {
 					session.setAttribute("member", memberVO);
 					session.setAttribute("id",memberVO.getId());
-					return "member/success";
+					//System.out.println("memberVO : " + memberVO);
+					System.out.println("memberVO.getId() : " + memberVO.getId());
+					return "home";
 				}else {
 					return "err_page";
 				}
@@ -51,7 +53,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		//세션 정보 제거
 		session.invalidate();
-		return "member/success";
+		return "home";
 	}
 	
 	//테스트

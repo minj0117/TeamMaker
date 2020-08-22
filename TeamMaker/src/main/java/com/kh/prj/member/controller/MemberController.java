@@ -1,6 +1,5 @@
 package com.kh.prj.member.controller;
 
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.member.svc.MemberSVC;
@@ -39,7 +39,7 @@ public class MemberController {
 	 */
 	@GetMapping("/joinForm")
 	public String joinForm() {
-		return "/member/jointest";
+		return "/member/joinForm";
 	}
 	/**
 	 * 회원가입 처리
@@ -51,7 +51,7 @@ public class MemberController {
 	public String join(MemberVO memberVO, Model model) {
 		int result = memberSVC.joinMember(memberVO);
 		if(result == 1) {
-			return "member/success";
+			return "home";
 		}else {
 			return "err_page";
 		}
@@ -126,7 +126,7 @@ public class MemberController {
 	 */
 	@GetMapping("/findIDForm")
 	public String findIDFrom() {
-		return "member/findIDForm";
+		return "member/findID";
 	}
 	
 	/**
@@ -198,5 +198,31 @@ public class MemberController {
 			}
 			return "member/success";
 		}
-	}	
+	}
+	
+	@GetMapping("delMemberForm")
+	public String delMemberForm() {
+		return "member/delMemberForm";
+	}
+	@PostMapping("delMember")
+	public String delMember(@RequestParam("pw") String pw, Model model ,HttpSession session) {
+		String id = ((MemberVO) session.getAttribute("member")).getId();
+		String originalPw = ((MemberVO) session.getAttribute("member")).getPw();
+		System.out.println("id : " + id);
+		System.out.println("originalPw : " + originalPw);
+		System.out.println("pw : " + pw);
+		if(originalPw.equals(pw)) {
+			System.out.println("여기들어옴");
+			int result = memberSVC.delMember(id);
+			System.out.println("delmember controller result : " + result);
+			if(result == 1) {
+				session.removeAttribute(id);;
+				return "member/success";
+			}else {
+				return "err_page";
+			}
+		}else {
+			return "err_page";
+		}
+	}
 }

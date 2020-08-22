@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.RecruitDAO-mapper">
+	<!-- 글 리스트 조회 -->
+	<select id="listRboard" resultType="com.kh.prj.recruit.vo.RecruitVO">
+		select * from recruit order by rno asc
+	</select>
+	
+	<!-- 게시글 목록 -->
+	<insert id="insertRboard" parameterType="com.kh.prj.recruit.vo.RecruitVO">
+		insert into recruit (rno, id, rtitle, rpw, ronoff, rcategory, rcomment, rregion, rgroup, rstep, rindent )
+		values(recruit_seq.nextval,#{id}, #{rtitle}, #{rpw}, #{ronoff}, #{rcategory}, #{rcomment}, #{rregion}, recruit_seq.currval,0,0)
+	</insert>
+	
+	<!-- 게시글 보기 -->
+	<select id="viewRboard" resultType="com.kh.prj.recruit.vo.RecruitVO">
+		select * from recruit where rno = #{rno}
+	</select>
+	
+	<update id="viewCntPlus" parameterType="com.kh.prj.recruit.vo.RecruitVO">
+		update recruit set rcnt = rcnt + 1 where rno = #{rno}
+	</update>
+	
+</mapper>

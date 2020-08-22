@@ -74,4 +74,9 @@
 	<select id="checkBlackList" parameterType="String" resultType="String">
 		select id from blacklist where id = #{id}
 	</select>
+	
+	<!-- 회원삭제 -->
+	<delete id="delMember" parameterType="String">
+		delete member where id = #{id}
+	</delete>
 </mapper>

@@ -80,4 +80,6 @@ public interface MemberSVC {
 	 * @return
 	 */
 	public String checkBlackList(String id);
+	
+	public int delMember(String id);
 }
