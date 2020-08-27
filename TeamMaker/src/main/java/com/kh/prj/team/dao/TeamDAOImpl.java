@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.prj.apply.vo.ApplyVO;
 import com.kh.prj.team.svc.TeamSVCImpl;
 import com.kh.prj.team.vo.TeamVO;
+import com.kh.prj.team.vo.TeammemberVO;
 
 @Repository
 public class TeamDAOImpl implements TeamDAO {
@@ -39,6 +40,21 @@ public class TeamDAOImpl implements TeamDAO {
 	@Override
 	public List<ApplyVO> myteam(int tno) {
 		return sqlSession.selectList("mappers.TeamDAO-mapper.myteam",tno);
+	}
+	
+	@Override
+	public int addmember(TeammemberVO teammemberVO) {
+		return sqlSession.insert("mappers.TeamDAO-mapper.addmember", teammemberVO);
+	}
+	
+	@Override
+	public List<TeammemberVO> mymember(int tno) {
+		return sqlSession.selectList("mappers.TeamDAO-mapper.mymember",tno);
+	}
+	
+	@Override
+	public int delapply(int tno) {
+		return sqlSession.delete("mappers.TeamDAO-mapper.delapply",tno);
 	}
 	
 }

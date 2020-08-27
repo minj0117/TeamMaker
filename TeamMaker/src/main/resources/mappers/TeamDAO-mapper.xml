@@ -19,4 +19,21 @@
 	<select id="myteam" resultType="com.kh.prj.apply.vo.ApplyVO">
 		select applyid from applylist where tno = #{tno}
 	</select>
+	
+	<insert id="addmember" parameterType="com.kh.prj.team.vo.TeammemberVO">
+		insert into memberteam (no,tno,userid) 
+		values( memberteam_seq.nextval,#{tno},#{userid} )
+	</insert>
+	
+	<select id="mymember" resultType="com.kh.prj.team.vo.TeammemberVO">
+		select t1.tno, t1.owner , t1.title , t2.userid 
+		from teamlist t1, memberteam t2 
+		where t1.tno = t2.tno and t1.tno = #{tno}
+	</select>
+	
+	<!-- 팀원 추가될 시 지원목록에서 삭제 -->
+	<delete id="delapply" parameterType="int">
+		delete from applylist t1 
+		where t1.applyid in ( select t2.userid from memberteam t2 where t2.tno = ${tno})
+	</delete>
 </mapper>

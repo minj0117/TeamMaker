@@ -37,11 +37,21 @@ public class RecruitController {
 		return "recruit/rlist";
 	}
 	
+	/**
+	 * 임시 모집글
+	 * @return
+	 */
 	@GetMapping("/testForm")
 	public String RecruitForm() {
 		return "recruit/testForm";
 	}
 	
+	/**
+	 * 모집글 등록
+	 * @param recruitVO
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/insertR")
 	public String insertR(RecruitVO recruitVO, Model model) {
 		int result = recruitSVC.insertR(recruitVO);
@@ -62,6 +72,12 @@ public class RecruitController {
 		}
 	}
 	
+	/**
+	 * 모집글 상세 조회
+	 * @param recruitVO
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/rview/{rno}")
 	public String rview(RecruitVO recruitVO, Model model) {
 		recruitVO = recruitSVC.viewR(recruitVO.getRno());
@@ -75,6 +91,7 @@ public class RecruitController {
 			return "err_page";
 		}
 	}
+	
 	
 	@RequestMapping("/apply")
 	public String apply(String id) {

@@ -19,21 +19,17 @@
 	%>	
 	<table border="1" width="700">
 		<tr>
-			<th>번호</th>
+			<th>팀번호</th>
 			<th>팀장</th>
-			<th>팀이름</th>
-			<th>팀소개</th>
-			<th>팀원보기</th>
-			<th>기타</th>
+			<th>팀명</th>
+			<th>팀원</th>
 		</tr>
 		<c:forEach var="row" items="${list }">
 		<tr>
 			<td>${row.tno }</td>
 			<td>${row.owner }</td>
 			<td>${row.title }</td>
-			<td>${row.acomment }</td>
-			<td><a href="${contextPath }/prj/mymember/${row.tno }?tno=${row.tno}">팀원 보기</a>
-			<td><a href="${contextPath }/prj/myteam/${row.tno }?tno=${row.tno}&owner=${row.owner}&title=${row.title}">지원자 보기</a>
+			<td>${row.userid }</td>
 		</tr> 
 		</c:forEach>
 	</table>

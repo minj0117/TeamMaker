@@ -19,6 +19,11 @@ public class ApplyController {
 	@Inject
 	ApplySVC applySVC;
 	
+	/**
+	 * 팀에 지원하기
+	 * @param applyVO
+	 * @return
+	 */
 	@GetMapping("/addapply")
 	public String addapply(ApplyVO applyVO) {
 		logger.info("tno : " + applyVO.getTno() );
