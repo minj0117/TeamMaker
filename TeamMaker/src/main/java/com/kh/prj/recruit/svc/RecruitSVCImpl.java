@@ -44,4 +44,9 @@ public class RecruitSVCImpl implements RecruitSVC {
 	public int cntR(int rno) {
 		return recruitDAO.cntR(rno);
 	}
+	
+	@Override
+	public int addList(RecruitVO recruitVO) {
+		return recruitDAO.addTeamList(recruitVO);
+	}
 }

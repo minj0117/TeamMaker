@@ -20,6 +20,7 @@ function writeFn(e){
 	let rpw = document.getElementById('rpw');
 	let rtitle = document.getElementById('rtitle');
 	let ronoff = document.querySelectorAll("input[name='ronoff']");
+	let teamname = document.getElementById('teamname');
 	//let rcategory = document.querySelectorAll("rcategory");
 	if(rpw.value.trim().length == 0){
 		alert('비밀번호를 입력하세요');
@@ -31,6 +32,9 @@ function writeFn(e){
 		return;
 	}if(rtitle.value.trim().length == 0){
 		alert('제목을 입력하세요');
+		return;
+	}if(teamname.value.trim().length == 0){
+		alert('팀이름을 작성해주세요');
 		return;
 	}
 	/*if(rcategory.value.trim() != pwcheck.value.trim()){
@@ -55,6 +59,7 @@ function writeFn(e){
 		<input type="radio" name="ronoff" value="on">ON
 		<input type="radio" name="ronoff" value="off">OFF<br>
 		제목 : <input type="text" name="rtitle" id="rtitle"><br>
+		팀이름 : <input type="text" name="teamname" id="teamname"><br>
 		카테고리 : 
 		<select name="rcategory" id="rcategory">
     		<option value="" selected="selected">카테고리</option>
@@ -64,6 +69,8 @@ function writeFn(e){
 		</select><br>
 		내용 : <textarea rows="20" cols="20" id="rcomment" name="rcomment"></textarea><br>
 		지역 : <input type="text" name="rregion" id="rregion"><br>
+		최대지원가능수 : <input type="text" id="maxApply" name="maxApply" placeholder="최대10명"><br>
+		모집인원 : <input type="text" id="recruitcnt" name="recruitcnt" placeholder="최대10명"><br>
 		<input type="submit" id="writeBtn" name="writeBtn" value="등록">
 	</form>
 </body>

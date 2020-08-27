@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.TeamDAO-mapper">
+
+	<insert id="maketeam" parameterType="com.kh.prj.team.vo.TeamVO">
+		insert into teamlist (tno, owner, title, acomment)
+		values(teamlist_seq.nextval, #{owner}, #{title}, #{acomment})
+	</insert>
 	
+	<select id="teamlist" resultType="com.kh.prj.team.vo.TeamVO">
+		select tno,owner,title,acomment from teamlist order by tno asc
+	</select>
+	
+	<select id="mylist" resultType="com.kh.prj.team.vo.TeamVO">
+		select tno, owner, title, acomment from teamlist where owner = #{id} order by tno asc 
+	</select>
+	
+	<!-- 내팀 지원자 보기 -->
+	<select id="myteam" resultType="com.kh.prj.apply.vo.ApplyVO">
+		select applyid from applylist where tno = #{tno}
+	</select>
 </mapper>

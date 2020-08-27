@@ -37,4 +37,8 @@ public class RecruitDAOImpl implements RecruitDAO {
 	public int cntR(int rno) {
 		return sqlSession.update("mappers.RecruitDAO-mapper.viewCntPlus",rno);
 	}
+	@Override
+	public int addTeamList(RecruitVO recruitVO) {
+		return sqlSession.insert("mappers.RecruitDAO-mapper.insertTeamlist", recruitVO);
+	}
 }

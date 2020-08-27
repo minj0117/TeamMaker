@@ -13,4 +13,6 @@ public interface RecruitDAO {
 	public RecruitVO viewR(int rno);
 	
 	public int cntR(int rno);
+	
+	public int addTeamList(RecruitVO recruitVO);
 }

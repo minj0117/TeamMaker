@@ -12,4 +12,6 @@ public interface RecruitSVC {
 	public RecruitVO viewR(int rno);
 	
 	public int cntR(int rno);
+	
+	public int addList(RecruitVO recruitVO);
 }

@@ -41,7 +41,8 @@ public class LoginController {
 					session.setAttribute("id",memberVO.getId());
 					//System.out.println("memberVO : " + memberVO);
 					System.out.println("memberVO.getId() : " + memberVO.getId());
-					return "home";
+					//return "home";
+					return "member/success";
 				}else {
 					return "err_page";
 				}

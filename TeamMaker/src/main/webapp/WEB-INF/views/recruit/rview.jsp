@@ -7,6 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	window.addEventListener("load",init);
+	function init(){
+		let applyBtn = document.getElementById('applyBtn');
+		joinBtn.addEventListener("click", applyFn);
+	}
+	function applyfn(){
+		
+	}
+</script>
 <body>
 	<table border="1" width="700">
 		<tr>
@@ -24,6 +34,5 @@
 			<td>${recruitVO.rcnt }</td>
 		</tr> 
 	</table>
-	<input type="button" id="applyBtn" name="applyBtn" value="지원하기">
 </body>
 </html>

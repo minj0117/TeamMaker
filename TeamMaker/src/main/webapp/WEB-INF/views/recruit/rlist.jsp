@@ -20,7 +20,7 @@
 		<tr>
 			<td>${row.rno }</td>
 			<td>${row.id }</td>
-			<td><a href="#" onClick="location.href='http://localhost:8090/prj/rcomment?rno=${row.rno}'">${row.rtitle }</a></td>
+			<td><a href="#" onClick="location.href='http://localhost:8090/prj/rview/${row.rno}'">${row.rtitle }</a></td>
 			<td>${row.rcnt }</td>
 			<td>${row.rcategory }</td>
 		</tr> 

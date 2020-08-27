@@ -47,9 +47,16 @@ public class RecruitController {
 		int result = recruitSVC.insertR(recruitVO);
 		logger.info("result : " + result);
 		List<RecruitVO> rlist = recruitSVC.selectBoardList(recruitVO);
+		logger.info(" : "+recruitVO);
 		model.addAttribute("rlist",rlist);
 		if(result == 1) {
-			return "recruit/rlist";
+			//return "recruit/rlist";
+			int result2 = recruitSVC.addList(recruitVO);
+			if(result2 == 1) {
+				return "recruit/rlist";
+			}else{
+				return "ree_page";
+			}
 		}else {
 			return "err_page";
 		}
@@ -67,6 +74,12 @@ public class RecruitController {
 		}else {
 			return "err_page";
 		}
+	}
+	
+	@RequestMapping("/apply")
+	public String apply(String id) {
+		
+		return null;
 	}
 	
 }

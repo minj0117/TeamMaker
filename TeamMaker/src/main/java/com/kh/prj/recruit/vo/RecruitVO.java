@@ -17,6 +17,8 @@ public class RecruitVO {
 	private int rgroup;			//RGROUP	NUMBER(4,0)	Yes		12	"N번글에 관련된 모든 게시글"
 	private int rstep;			//RSTEP	NUMBER(4,0)	Yes		13	원 게시글에서 얼마나 떨어진 글인지
 	private int rindent;		//RINDENT	NUMBER(4,0)	Yes		14	몇번째 들여쓰기한 게시글
+	private String teamname;
+	
 	public int getRno() {
 		return rno;
 	}
@@ -100,6 +102,12 @@ public class RecruitVO {
 	}
 	public void setRindent(int rindent) {
 		this.rindent = rindent;
+	}
+	public String getTeamname() {
+		return teamname;
+	}
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
 	}
 	
 	
