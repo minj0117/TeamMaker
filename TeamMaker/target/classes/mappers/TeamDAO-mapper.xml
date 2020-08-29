@@ -41,4 +41,13 @@
 		delete from applylist t1 
 		where t1.tno = #{tno} and t1.applyid in ( select t2.userid from memberteam t2 where t2.tno = ${tno})
 	</delete>
+	
+	<!-- 팀원인지 확인 -->
+	<select id="checkmember" resultType="com.kh.prj.team.vo.TeammemberVO">
+		select userid from memberteam where tno = #{tno} and userid = #{userid}
+	</select>
+	<!-- owner 체크 -->
+	<select id="checkowner" parameterType="int" resultType="String">
+		select owner from teamlist where tno = #{tno}
+	</select>
 </mapper>

@@ -36,5 +36,8 @@ public class TeammemberVO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	
+	@Override
+	public String toString() {
+		return no + "," + tno + "," + title + "," + owner + "," + userid;
+	}
 }

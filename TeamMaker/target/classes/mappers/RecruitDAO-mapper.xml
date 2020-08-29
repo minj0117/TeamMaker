@@ -6,7 +6,7 @@
 		select * from recruit order by rno asc
 	</select>
 	
-	<!-- 게시글 목록 -->
+	<!-- 게시글 작성 -->
 	<insert id="insertRboard" parameterType="com.kh.prj.recruit.vo.RecruitVO">
 		insert into recruit (rno, id, rtitle, rpw, ronoff, rcategory, rcomment, rregion, rgroup, rstep, rindent )
 		values(recruit_seq.nextval,#{id}, #{rtitle}, #{rpw}, #{ronoff}, #{rcategory}, #{rcomment}, #{rregion}, recruit_seq.currval,0,0)
@@ -17,6 +17,7 @@
 		select * from recruit where rno = #{rno}
 	</select>
 	
+	<!-- 조회수 증가 -->
 	<update id="viewCntPlus" parameterType="com.kh.prj.recruit.vo.RecruitVO">
 		update recruit set rcnt = rcnt + 1 where rno = #{rno}
 	</update>
