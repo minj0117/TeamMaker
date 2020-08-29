@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.TeamboardDAO-mapper">
+	
+	<!-- 원글 작성 -->
+	<insert id="writeboard" parameterType="com.kh.prj.teamboard.vo.TeamboardVO">
+		insert into teamboard 
+		(bno,btitle,bcontent,bwriter,groupno,grouprd,indent,tno) values
+		(teamboard_bno.nextval,#{btitle},#{bcontent},#{bwriter},teamboard_groupno.nextval,0,0,#{tno});
+	</insert>
+</mapper>

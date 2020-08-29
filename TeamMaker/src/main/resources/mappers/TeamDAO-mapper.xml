@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.TeamDAO-mapper">
-
+	
+	<!-- 팀 생성 -->
 	<insert id="maketeam" parameterType="com.kh.prj.team.vo.TeamVO">
 		insert into teamlist (tno, owner, title, acomment)
 		values(teamlist_seq.nextval, #{owner}, #{title}, #{acomment})
 	</insert>
 	
+	<!-- 모든 팀 리스트 -->
 	<select id="teamlist" resultType="com.kh.prj.team.vo.TeamVO">
 		select tno,owner,title,acomment from teamlist order by tno asc
 	</select>
 	
+	<!-- 내가 만든 팀보기 -->
 	<select id="mylist" resultType="com.kh.prj.team.vo.TeamVO">
 		select tno, owner, title, acomment from teamlist where owner = #{id} order by tno asc 
 	</select>
@@ -20,11 +23,13 @@
 		select applyid from applylist where tno = #{tno}
 	</select>
 	
+	<!-- 팀원 추가 -->
 	<insert id="addmember" parameterType="com.kh.prj.team.vo.TeammemberVO">
 		insert into memberteam (no,tno,userid) 
 		values( memberteam_seq.nextval,#{tno},#{userid} )
 	</insert>
 	
+	<!-- 내팀원 보기 -->
 	<select id="mymember" resultType="com.kh.prj.team.vo.TeammemberVO">
 		select t1.tno, t1.owner , t1.title , t2.userid 
 		from teamlist t1, memberteam t2 
@@ -34,6 +39,6 @@
 	<!-- 팀원 추가될 시 지원목록에서 삭제 -->
 	<delete id="delapply" parameterType="int">
 		delete from applylist t1 
-		where t1.applyid in ( select t2.userid from memberteam t2 where t2.tno = ${tno})
+		where t1.tno = #{tno} and t1.applyid in ( select t2.userid from memberteam t2 where t2.tno = ${tno})
 	</delete>
 </mapper>
