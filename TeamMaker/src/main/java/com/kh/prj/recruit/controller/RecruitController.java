@@ -30,10 +30,8 @@ public class RecruitController {
 	 */
 	@RequestMapping("/rlist")
 	public String RecruitList(@ModelAttribute("recruitVO") RecruitVO recruitVO, Model model) {
-		logger.info("rlist 들어감");
 		List<RecruitVO> rlist = recruitSVC.selectBoardList(recruitVO);
 		model.addAttribute("rlist",rlist);
-		logger.info("리턴 직전");
 		return "recruit/rlist";
 	}
 	
@@ -60,7 +58,6 @@ public class RecruitController {
 		logger.info(" : "+recruitVO);
 		model.addAttribute("rlist",rlist);
 		if(result == 1) {
-			//return "recruit/rlist";
 			int result2 = recruitSVC.addList(recruitVO);
 			if(result2 == 1) {
 				return "recruit/rlist";
@@ -84,8 +81,6 @@ public class RecruitController {
 		if(recruitVO != null) {
 			recruitSVC.cntR(recruitVO.getRno());
 			model.addAttribute("recruitVO", recruitVO);
-			System.out.println("컨트롤러 VO : "+ recruitVO);
-			System.out.println("컨트롤러 VO(comment) : "+ recruitVO.getRcomment());
 			return "recruit/rview";
 		}else {
 			return "err_page";

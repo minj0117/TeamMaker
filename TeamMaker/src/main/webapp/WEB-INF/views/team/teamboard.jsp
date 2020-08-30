@@ -33,6 +33,10 @@
 		</tr> 
 		</c:forEach>
 	</table>
+	<form action="${contextPath }/prj/tboard/writeForm.do" method="post">
+		<input type="hidden" name="tno" value="${tno}" />
+		<input type="submit" value="글쓰기" />
+	</form>
 
 	<% 
 		}else{

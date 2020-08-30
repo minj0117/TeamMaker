@@ -55,6 +55,6 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	 */
 	@Override
 	public int write(TeamboardVO teamboardVO) {
-		return sqlSession.insert("mappers.MemberDAO-mapper.findId",teamboardVO);
+		return sqlSession.insert("mappers.TeamboardDAO-mapper.write",teamboardVO);
 	}
 }

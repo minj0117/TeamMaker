@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -48,6 +49,7 @@ public class TeamboardController {
 				teamboardVO = new TeamboardVO();
 				List<TeamboardVO> list = teamboardSVC.tboardlist(tno);
 				model.addAttribute("list",list);
+				model.addAttribute("tno",tno);
 				return "team/teamboard";
 			} else {
 				return "err_page";
@@ -55,9 +57,9 @@ public class TeamboardController {
 		} else {
 			teamboardVO = new TeamboardVO();
 			teamboardVO.setTno(tno);
-			List<TeamboardVO> list = new ArrayList<TeamboardVO>();
-			list = teamboardSVC.tboardlist(tno);
+			List<TeamboardVO> list = teamboardSVC.tboardlist(tno);
 			model.addAttribute("list",list);
+			model.addAttribute("tno",tno);
 			return "team/teamboard";
 		}
 	}
@@ -65,7 +67,6 @@ public class TeamboardController {
 	@GetMapping("/tboarddetail/{bno}")
 	public String tboarddetail(TeamboardVO teamboardVO , Model model) {
 		int bno = teamboardVO.getBno();
-		logger.info("bno : " + bno);
 		teamboardVO = teamboardSVC.tboarddetail(teamboardVO.getBno());
 		if(teamboardVO != null) {
 			model.addAttribute("teamboardVO",teamboardVO);
@@ -76,8 +77,10 @@ public class TeamboardController {
 		}
 	}
 
-	@RequestMapping("writeForm.do")
-	public String write() {
+	@RequestMapping("/writeForm.do")
+	public String write(HttpServletRequest request, Model model) {
+		int tno = Integer.parseInt(request.getParameter("tno"));
+		model.addAttribute("tno",tno);
 		return "team/teamboardForm";
 	}
 
@@ -87,14 +90,18 @@ public class TeamboardController {
 	 * @param teamboardVO
 	 * @param session
 	 */
-	// btitle,bcontent,bwriter,tno
-	@PostMapping("write.do")
-	public String write(@ModelAttribute TeamboardVO teamboardVO, HttpSession session) {
+	@PostMapping("/write.do")
+	public String write(TeamboardVO teamboardVO, HttpSession session, HttpServletRequest request) {
+		logger.info("들어옴");
 		String bwriter = (String) session.getAttribute("id");
-		logger.info("btitle : " + teamboardVO.getBtitle());
-		logger.info("btitle : " + teamboardVO.getBcontent());
-		logger.info("btitle : " + teamboardVO.getBwriter());
-		logger.info("btitle : " + teamboardVO.getTno());
-		return null;
+		int tno = Integer.parseInt(request.getParameter("tno"));
+		teamboardVO.setTno(tno);
+		int result = teamboardSVC.write(teamboardVO);
+		if(result != 0) {
+			return "member/success"; // 여기 게시글 등록 후 게시글 목록 나오게 수정해야함( 팀게시판이라 특별 조치 필요 )
+		}else {
+			return "err_page";
+		}
 	}
+	
 }
