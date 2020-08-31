@@ -24,6 +24,10 @@ public interface TeamDAO {
 	 * @return
 	 */
 	public List<TeamVO> myList(String id);
+	
+	public List<TeammemberVO> affiliationTno(String userid);
+	public List<TeamVO> sosok(int tno);
+	
 	/**
 	 * 내팀 지원자 보기
 	 * @param tno

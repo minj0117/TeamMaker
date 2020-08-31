@@ -11,7 +11,7 @@ public interface TeamboardSVC {
 	 * @param teammemberVO
 	 * @return
 	 */
-	public String checkmember(TeammemberVO teammemberVO);
+	public TeammemberVO checkmember(TeammemberVO teammemberVO);
 	/**
 	 * 팀장 확인
 	 * @param tno

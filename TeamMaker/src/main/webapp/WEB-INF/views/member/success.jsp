@@ -43,7 +43,8 @@
 	<a href="/prj/teamForm">팀만들기</a>
 	<!-- <a href="#" onClick="fn_idsend()">내팀 보기</a> 
 	<input type="button" onClick="fn_idsend()" value="내팀보기"> -->
-	<a href="#" onClick="location.href='http://localhost:8090/prj/mylist/${sessionScope.member.id}?owner=${sessionScope.member.id }'">내팀 보기</a>
+	<a href="#" onClick="location.href='http://localhost:8090/prj/mylist/${sessionScope.member.id}?owner=${sessionScope.member.id }'">내가 만든 팀</a>
+	<a href="#" onClick="location.href='http://localhost:8090/prj/affiliation/${sessionScope.member.id}?userid=${sessionScope.member.id }'">내가 소속된 팀 </a>
 	<!-- /mylist/{id} -->
 	<%		
 		}else{

@@ -6,7 +6,7 @@ import com.kh.prj.team.vo.TeammemberVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 public interface TeamboardDAO {
-	public String checkmember(TeammemberVO teammemberVO);
+	public TeammemberVO checkmember(TeammemberVO teammemberVO);
 	public String checkowner(int tno);
 	public List<TeamboardVO> tboardlist(int tno);
 	public TeamboardVO tboarddetail(int bno);

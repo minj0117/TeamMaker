@@ -21,8 +21,6 @@ public class TeamSVCImpl implements TeamSVC {
 	@Inject
 	@Qualifier("teamDAOImpl")
 	TeamDAO teamDAO;
-	
-	
 
 	@Override
 	public int makeTeam(TeamVO teamVO) {
@@ -38,6 +36,17 @@ public class TeamSVCImpl implements TeamSVC {
 	public List<TeamVO> myList(String id) {
 		return teamDAO.myList(id);
 	}
+	
+	@Override
+	public List<TeammemberVO> affiliationTno(String userid) {
+		return teamDAO.affiliationTno(userid);
+	}
+
+	@Override
+	public List<TeamVO> sosok(int tno) {
+		System.out.println("svc 들어옴");
+		return teamDAO.sosok(tno);
+	}	
 	
 	@Override
 	public List<ApplyVO> myteam(int tno) {

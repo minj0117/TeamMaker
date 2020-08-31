@@ -75,14 +75,28 @@ public class TeamController {
 	// = "application/json" )
 	@GetMapping("/mylist/{id}")
 	public String memberList(TeamVO teamVO, Model model) {
-		logger.info("id : " + teamVO.getOwner());
-		logger.info("id : " + teamVO.getTno());
-		logger.info("id : " + teamVO.getTitle());
 		String id = teamVO.getOwner();
 		List<TeamVO> list = teamSVC.myList(id);
 		model.addAttribute("list", list);
 		System.out.println("list : " + list.toString());
 		return "team/myteam";
+	}
+	
+	@GetMapping("/affiliation/{id}")
+	public String myteam(TeammemberVO teammemberVO, Model model) {
+		String userid = teammemberVO.getUserid();
+		List<TeammemberVO> list = teamSVC.affiliationTno(userid);
+		//logger.info("list : " + list.get(0).getTno());
+		List<TeamVO> list2 = null;
+		//for(TeammemberVO i : list) {
+		for(int i=0; i<list.size(); i++) {
+			int tno = list.get(i).getTno();
+			list2 = teamSVC.sosok(tno);
+			System.out.println("acomment : " + list2.get(i).getAcomment());
+			System.out.println("acomment : " + list2.get(i).getTitle());
+		}	
+		model.addAttribute("list", list2);
+		return "team/sosok";
 	}
 
 	/**

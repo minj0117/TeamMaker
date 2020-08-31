@@ -13,9 +13,19 @@
 		select tno,owner,title,acomment from teamlist order by tno asc
 	</select>
 	
-	<!-- 내가 만든 팀보기 -->
+	<!-- 내가 만든팀 보기 -->
 	<select id="mylist" resultType="com.kh.prj.team.vo.TeamVO">
 		select tno, owner, title, acomment from teamlist where owner = #{id} order by tno asc 
+	</select>
+	
+	<!-- 소속팀 보기 (tno) 가져오기 -->
+	<select id="affiliationTno" resultType="com.kh.prj.team.vo.TeammemberVO">
+		select tno from memberteam where userid = #{userid} order by tno asc 
+	</select>
+	
+	<!-- 소속팀 보기 -->
+	<select id="sosok" resultType="com.kh.prj.team.vo.TeamVO">
+		select tno, owner, title, acomment from teamlist where tno = #{tno}
 	</select>
 	
 	<!-- 내팀 지원자 보기 -->

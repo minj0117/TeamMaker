@@ -16,7 +16,8 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public String checkmember(TeammemberVO teammemberVO) {
+	public TeammemberVO checkmember(TeammemberVO teammemberVO) {
+		System.out.println("dao teammemberVO : " + teammemberVO.toString());
 		return sqlSession.selectOne("mappers.TeamDAO-mapper.checkmember", teammemberVO);
 	}
 	

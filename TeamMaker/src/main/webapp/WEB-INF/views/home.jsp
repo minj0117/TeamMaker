@@ -32,48 +32,8 @@
     <script defer src="http://localhost:8090/prj/js/main.js"></script>
   </head>
   <body>
-    <!-- uppermost -->
-    <div class="uppermost">
-      <div class="container">
-        <!-- logo -->
-        <div class="logo">
-          <a href="/prj"><i class="fab fa-slack"></i></a>
-          <div>TEAM MAKER</div>
-        </div>
-
-        <!-- navbar -->
-        <ul class="navbar_upper">
-          <li><a href="#">팀원 모집</a></li>
-          <li><a href="#">공모전</a></li>
-          <li><a href="#">대외활동</a></li>
-          <li><a href="#">커뮤니티</a></li>
-        </ul>
-		
-		<c:if test="${empty sessionScope.member}">
-        <!-- 로그인 -->
-        <ul class="uplog_upper">
-          <li><a href="/prj/loginForm" class="uplog">로그인</a></li>
-          <li><span> | </span></li>
-          <li><a href="#" class="uplog">회원가입</a></li>
-        </ul>
-		</c:if>
-		<c:if test="${!empty sessionScope.member }">
-		<!-- 로그인 -->
-        <ul class="uplog_upper">
-          <li><a href="/prj/testForm" class="uplog">${sessionScope.member.name }님</a></li>
-          <li><span> | </span></li>
-          <li><a href="/prj/logout" class="uplog">로그아웃</a></li>
-        </ul>
-        </c:if>
-		
-		
-        <!-- 토글 버튼 -->
-        <a href="#" class="toggleBtn">
-          <i class="fas fa-bars"></i>
-        </a>
-      </div>
-    </div>
-
+   	<!-- uppermost -->
+    <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
     <!-- header -->
     <header>
       <div class="container">

@@ -39,6 +39,9 @@ function fn_findpw(){
 }
 </script>
 <body>
+	<!-- uppermost -->
+    <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
+	
 	<h1>비밀번호 찾기</h1>
 	<form action="/prj/member/findid" method="post">
 		아이디 : <input type="text" id="id" name="id"><br>

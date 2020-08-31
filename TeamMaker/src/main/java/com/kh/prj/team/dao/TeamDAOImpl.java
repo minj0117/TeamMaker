@@ -38,6 +38,16 @@ public class TeamDAOImpl implements TeamDAO {
 	}
 	
 	@Override
+	public List<TeammemberVO> affiliationTno(String userid) {
+		return sqlSession.selectList("mappers.TeamDAO-mapper.affiliationTno",userid);
+	}
+	
+	@Override
+	public List<TeamVO> sosok(int tno) {
+		return sqlSession.selectList("mappers.TeamDAO-mapper.sosok",tno);
+	}
+	
+	@Override
 	public List<ApplyVO> myteam(int tno) {
 		return sqlSession.selectList("mappers.TeamDAO-mapper.myteam",tno);
 	}

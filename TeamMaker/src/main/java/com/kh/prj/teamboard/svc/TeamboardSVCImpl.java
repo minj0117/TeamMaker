@@ -18,8 +18,8 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	TeamboardDAO teamboardDAO;
 	
 	@Override
-	public String checkmember(TeammemberVO teammemberVO) {
-		System.out.println(teammemberVO.toString());
+	public TeammemberVO checkmember(TeammemberVO teammemberVO) {
+		System.out.println(" svc : " + teammemberVO.toString());
 		return teamboardDAO.checkmember(teammemberVO);
 	}
 	

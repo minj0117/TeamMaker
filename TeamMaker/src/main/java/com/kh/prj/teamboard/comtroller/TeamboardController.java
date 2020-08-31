@@ -1,6 +1,5 @@
 package com.kh.prj.teamboard.comtroller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,11 +38,10 @@ public class TeamboardController {
 		String id = (String) session.getAttribute("id");
 		int tno = teammemberVO.getTno();
 		teammemberVO.setUserid(id);
-		String result = teamboardSVC.checkmember(teammemberVO);
-		if (result == null) {
+		teammemberVO.setTno(tno);
+		teammemberVO = teamboardSVC.checkmember(teammemberVO);
+		if (teammemberVO == null) {
 			String result2 = teamboardSVC.checkowner(tno);
-			logger.info("result2 : " + result2);
-			logger.info("id : " + id);
 			if (result2.equals(id)) {
 				teamboardVO = new TeamboardVO();
 				List<TeamboardVO> list = teamboardSVC.tboardlist(tno);
