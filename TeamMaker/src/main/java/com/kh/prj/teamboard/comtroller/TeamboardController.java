@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.prj.team.vo.TeammemberVO;
 import com.kh.prj.teamboard.svc.TeamboardSVC;
+import com.kh.prj.teamboard.vo.TeamboardReplyVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 @Controller
@@ -62,11 +63,15 @@ public class TeamboardController {
 	}
 	
 	@GetMapping("/tboarddetail/{bno}")
-	public String tboarddetail(TeamboardVO teamboardVO , Model model) {
+	public String tboarddetail(TeamboardVO teamboardVO ,TeamboardReplyVO teamboardReplyVO , Model model) {
 		int bno = teamboardVO.getBno();
 		teamboardVO = teamboardSVC.tboarddetail(teamboardVO.getBno());
 		if(teamboardVO != null) {
+			teamboardVO.setBno(bno);
+			List<TeamboardReplyVO> list =  teamboardSVC.showreply(bno);
+			System.out.println("bno : " + teamboardVO.getBno());
 			model.addAttribute("teamboardVO",teamboardVO);
+			model.addAttribute("reply",list);
 			teamboardSVC.tboardcnt(bno);
 			return "team/rview";
 		}else {

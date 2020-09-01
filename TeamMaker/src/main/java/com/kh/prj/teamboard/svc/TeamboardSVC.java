@@ -3,6 +3,7 @@ package com.kh.prj.teamboard.svc;
 import java.util.List;
 
 import com.kh.prj.team.vo.TeammemberVO;
+import com.kh.prj.teamboard.vo.TeamboardReplyVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 public interface TeamboardSVC {
@@ -39,5 +40,12 @@ public interface TeamboardSVC {
 	
 	
 	public int write(TeamboardVO teamboardVO);
+	
+	
+	
+	
+	
+	public List<TeamboardReplyVO> showreply(int bno);
+	public int writeReply(TeamboardReplyVO teamboardReplyVO);
 	
 }

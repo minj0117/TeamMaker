@@ -27,16 +27,20 @@
 	<!-- foreach 추가해야함 -->
 	<table border="1" width="700">
 		<tr>
-			<th>내용</th>
 			<th>작성자</th>
+			<th>내용</th>
 		</tr>
+		<c:forEach var="row" items="${reply }">
 		<tr>
-			<td>1</td>
-			<td>2</td>
-		</tr>
+			<td>${row.rwriter }</td>
+			<td>${row.rcontent }</td>
+		</tr> 
+		</c:forEach>
 	</table>
-	<form action="">
-		답글 : <textarea rows="10" cols="10"></textarea>
+	<form action="${contextPath }/prj/writeReply" method="post">
+		답글 : <textarea rows="10" cols="10" id="rcontent" name="rcontent"></textarea>
+		<input type="hidden" name="rwriter" value="${sessionScope.member.id }" />
+		<input type="hidden" name="bno" value="${teamboardVO.bno }" />
 		<input type="submit" value="작성">
 	</form>
 </body>

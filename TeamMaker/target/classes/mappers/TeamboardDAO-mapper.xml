@@ -22,5 +22,14 @@
 		(teamboard_bno.nextval,#{btitle},#{bcontent},#{bwriter},teamboard_groupno.nextval,0,0,#{tno})
 	</insert>
 	
+	<!-- 댓글 조회-->
+	<select id="showreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
+		select rwriter, rcontent,rcdate from tboardreply where bno = #{bno} order by rno asc
+	</select>
+	
+	<insert id="writeReply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
+		insert into tboardreply (rno,bno,rwriter,rcontent) 
+		values (tboardreply_seq.nextval,#{bno},#{rwriter},#{rcontent})
+	</insert>
 	
 </mapper>

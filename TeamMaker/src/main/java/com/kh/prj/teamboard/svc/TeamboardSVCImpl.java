@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.prj.team.vo.TeammemberVO;
 import com.kh.prj.teamboard.dao.TeamboardDAO;
+import com.kh.prj.teamboard.vo.TeamboardReplyVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 @Repository
@@ -48,5 +49,16 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	@Override
 	public int write(TeamboardVO teamboardVO) {
 		return teamboardDAO.write(teamboardVO);
+	}
+	
+	
+	
+	@Override
+	public List<TeamboardReplyVO> showreply(int bno) {
+		return teamboardDAO.showreply(bno);
+	}
+	@Override
+	public int writeReply(TeamboardReplyVO teamboardReplyVO) {
+		return teamboardDAO.writeReply(teamboardReplyVO);
 	}
 }

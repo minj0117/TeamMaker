@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.kh.prj.team.vo.TeammemberVO;
+import com.kh.prj.teamboard.vo.TeamboardReplyVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 @Service
@@ -57,5 +58,21 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	@Override
 	public int write(TeamboardVO teamboardVO) {
 		return sqlSession.insert("mappers.TeamboardDAO-mapper.write",teamboardVO);
+	}
+	
+	
+	
+	
+	@Override
+	public List<TeamboardReplyVO> showreply(int bno) {
+		System.out.println("dao bno : " + bno);
+		List<TeamboardReplyVO> list = sqlSession.selectList("mappers.TeamboardDAO-mapper.showreply", bno);
+		System.out.println("dao list : " + list.toString());
+		return list;
+	}
+	
+	@Override
+	public int writeReply(TeamboardReplyVO teamboardReplyVO) {
+		return sqlSession.insert("mappers.TeamboardDAO-mapper.writeReply", teamboardReplyVO);
 	}
 }
