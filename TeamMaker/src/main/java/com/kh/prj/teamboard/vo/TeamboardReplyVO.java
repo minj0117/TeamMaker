@@ -8,6 +8,8 @@ public class TeamboardReplyVO {
 	private String rwriter;		//RWRITER	VARCHAR2(40 BYTE)	No		3	작성자
 	private String rcontent;	//RCONTENT	VARCHAR2(3000 BYTE)	No		4	댓글내용
 	private Date rcdate;		//RCDATE	TIMESTAMP(6)	Yes	systimestamp 	5	작성일
+	private String rpw;			//RPW	VARCHAR2(40 BYTE)	No		6	댓글비밀번호
+	
 	public int getRno() {
 		return rno;
 	}
@@ -37,6 +39,12 @@ public class TeamboardReplyVO {
 	}
 	public void setRcdate(Date rcdate) {
 		this.rcdate = rcdate;
+	}
+	public String getRpw() {
+		return rpw;
+	}
+	public void setRpw(String rpw) {
+		this.rpw = rpw;
 	}
 	
 	

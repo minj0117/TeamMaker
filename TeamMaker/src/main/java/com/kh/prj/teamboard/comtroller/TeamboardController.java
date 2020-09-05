@@ -84,6 +84,7 @@ public class TeamboardController {
 		int tno = Integer.parseInt(request.getParameter("tno"));
 		model.addAttribute("tno",tno);
 		return "team/teamboardForm";
+		
 	}
 
 	/**
@@ -100,7 +101,7 @@ public class TeamboardController {
 		teamboardVO.setTno(tno);
 		int result = teamboardSVC.write(teamboardVO);
 		if(result != 0) {
-			return "member/success"; // 여기 게시글 등록 후 게시글 목록 나오게 수정해야함( 팀게시판이라 특별 조치 필요 )
+			return "redirect:/tboard/tboardlist/"+tno; // 여기 게시글 등록 후 게시글 목록 나오게 수정해야함( 팀게시판이라 특별 조치 필요 )
 		}else {
 			return "err_page";
 		}

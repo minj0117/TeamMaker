@@ -47,5 +47,6 @@ public interface TeamboardSVC {
 	
 	public List<TeamboardReplyVO> showreply(int bno);
 	public int writeReply(TeamboardReplyVO teamboardReplyVO);
+	public int modifyReply(TeamboardReplyVO teamboardReplyVO);
 	
 }

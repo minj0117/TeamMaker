@@ -37,30 +37,13 @@
     <script defer src="http://localhost:8090/prj/js/member/signin.js"></script>
   </head>
   <body>
-    <!-- uppermost -->
+     <!-- uppermost -->
     <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
-
     <!-- header -->
-    <header>
-      <div class="container">
-        <div>
-          <a href="#"><img src="http://localhost:8090/prj/img/banner.jpg" alt="" /></a>
-        </div>
-      </div>
-    </header>
-
+    <%@ include file="/WEB-INF/views/include/header.jsp" %>
+    
     <!-- nav -->
-    <nav>
-      <div class="container">
-        <ul class="navbar">
-          <li><a href="">팀원 모집</a></li>
-          <li><a href="">공모전</a></li>
-          <li><a href="">대외활동</a></li>
-          <li><a href="">커뮤니티</a></li>
-        </ul>
-      </div>
-    </nav>
-
+    <%@ include file="/WEB-INF/views/include/nav.jsp" %>
     <!-- main -->
     <main>
       <div class="container">

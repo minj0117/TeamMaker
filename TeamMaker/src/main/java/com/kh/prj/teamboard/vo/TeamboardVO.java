@@ -13,6 +13,7 @@ public class TeamboardVO {
 	private int grouprd;		//GROUDRD	NUMBER	No		8	그룹 내 순서
 	private int indent;			//INDENT	NUMBER	No		9	들여쓰기
 	private int tno;			//TNO	NUMBER	Yes		10	팀번호
+	private String bpw;			//BPW	VARCHAR2(20 BYTE)	No		11	글비밀번호
 	
 	
 	public int getBno() {
@@ -74,6 +75,12 @@ public class TeamboardVO {
 	}
 	public void setTno(int tno) {
 		this.tno = tno;
+	}
+	public String getBpw() {
+		return bpw;
+	}
+	public void setBpw(String bpw) {
+		this.bpw = bpw;
 	}
 	
 	

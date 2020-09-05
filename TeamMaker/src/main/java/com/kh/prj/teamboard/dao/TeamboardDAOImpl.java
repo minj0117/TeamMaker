@@ -18,15 +18,12 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	
 	@Override
 	public TeammemberVO checkmember(TeammemberVO teammemberVO) {
-		System.out.println("dao teammemberVO : " + teammemberVO.toString());
 		return sqlSession.selectOne("mappers.TeamDAO-mapper.checkmember", teammemberVO);
 	}
 	
 	@Override
 	public String checkowner(int tno) {
-		//System.out.println(teammemberVO.getTno() + teammemberVO.getUserid());
 		String result = sqlSession.selectOne("mappers.TeamDAO-mapper.checkowner", tno);
-		System.out.println("result : " + result);
 		return result;
 	}
 	/**
@@ -34,7 +31,6 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	 */
 	@Override
 	public List<TeamboardVO> tboardlist(int tno) {
-		System.out.println("들어옴");
 		return sqlSession.selectList("mappers.TeamboardDAO-mapper.tboardlist", tno);
 		
 	}
@@ -65,14 +61,17 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	
 	@Override
 	public List<TeamboardReplyVO> showreply(int bno) {
-		System.out.println("dao bno : " + bno);
 		List<TeamboardReplyVO> list = sqlSession.selectList("mappers.TeamboardDAO-mapper.showreply", bno);
-		System.out.println("dao list : " + list.toString());
 		return list;
 	}
 	
 	@Override
 	public int writeReply(TeamboardReplyVO teamboardReplyVO) {
 		return sqlSession.insert("mappers.TeamboardDAO-mapper.writeReply", teamboardReplyVO);
+	}
+	
+	@Override
+	public int modifyReply(TeamboardReplyVO teamboardReplyVO) {
+		return sqlSession.update("mappers.TeamboardDAO-mapper.modifyReply", teamboardReplyVO);
 	}
 }

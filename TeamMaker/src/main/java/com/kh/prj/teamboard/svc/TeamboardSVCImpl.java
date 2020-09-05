@@ -61,4 +61,8 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	public int writeReply(TeamboardReplyVO teamboardReplyVO) {
 		return teamboardDAO.writeReply(teamboardReplyVO);
 	}
+	@Override
+	public int modifyReply(TeamboardReplyVO teamboardReplyVO) {
+		return teamboardDAO.modifyReply(teamboardReplyVO);
+	}
 }

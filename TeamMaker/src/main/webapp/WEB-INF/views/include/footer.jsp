@@ -18,7 +18,7 @@
        <!-- footer_menu2 -->
        <div class="footer_menu2">
          <div class="left">
-           <a href="#"><img src="./map.png" alt="" /></a>
+           <a href="#"><img src="${contextPath }/prj/img//map.png" alt="" /></a>
          </div>
 
          <div class="right">

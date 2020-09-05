@@ -3,13 +3,20 @@
   --text-color: #263343;
   --accent-color: #d49466;
   --border-color: lightgray;
-  /* --purple-color: #d1c4e9; */
+  --whitesmoke-color: #f0f4f5;
+  --white-color: #fdffff;
+  --linen-color: linen;
+}
+
+.container {
+  all: initial;
 }
 
 * {
   /* outline: 1px dotted red; */
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   background-color: #fdffff;
@@ -17,12 +24,13 @@ body {
 }
 
 a {
-  text-decoration: none;
   color: var(--text-color);
+  text-decoration: none;
 }
 
 ul > li {
   list-style: none;
+  font-family: "Gamja Flower";
 }
 
 /* uppermost */
@@ -39,8 +47,12 @@ ul > li {
   flex-direction: row;
   font-size: 28px;
   color: var(--text-color);
-  width: 1005;
   font-family: "Kalam";
+}
+
+.uppermost .logo a {
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 .uppermost .logo i {
@@ -62,18 +74,53 @@ ul > li {
 }
 
 .uppermost .navbar_upper a:hover {
-  color: #f0f4f5;
-  background-color: var(--purple-color);
+  color: var(--white-color);
+  /* text-decoration: none; */
 }
+
+/* navbar_upper : comm_menu */
+.uppermost .navbar_upper li > .comm_menu > li:nth-child(1) {
+  margin-top: 8px;
+  padding: 10px 20px 8px 20px;
+}
+.uppermost .navbar_upper li > .comm_menu > li:nth-child(2) {
+  margin-bottom: 8px;
+  padding: 8px 20px 10px 20px;
+}
+
+.uppermost .navbar_upper li:hover .comm_menu {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0px;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  font-size: 20px;
+  position: absolute;
+  z-index: 100;
+}
+
+.uppermost .navbar_upper li:hover .comm_menu a {
+  color: var(--text-color);
+}
+
+.uppermost .navbar_upper .comm_menu {
+  display: none;
+}
+
 .uppermost .uplog_upper {
   display: flex;
   color: var(--text-color);
-  font-size: 1.2em;
+  font-size: 20px;
   padding-left: 0px;
 }
 
 .uppermost .uplog_upper > li {
   margin: 0px 5px;
+}
+
+.uppermost .uplog_upper li a:hover {
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 .uppermost .toggleBtn {
@@ -89,39 +136,31 @@ header {
   background-color: var(--background-color);
 }
 
-header img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+header .container .slide {
   width: 75%;
-  height: 450px;
+  margin: 0 auto;
+}
+
+header img {
+  height: 550px;
   margin: 0px auto;
   vertical-align: bottom;
 }
 
 /* nav */
-nav ul {
-  list-style: none;
-  padding-left: 0px;
-  display: flex;
-  justify-content: space-evenly;
+nav .navbar {
   background-color: var(--background-color);
-  margin: 0;
-  padding: 10px 0px;
-}
-
-nav ul > li {
-  padding: 20px 0px;
+  padding: 30px;
 }
 
 nav ul > li > a {
-  padding: 10px;
-  color: var(--text-color);
-  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 1.1em;
 }
 
 nav ul > li > a:hover {
   color: #f0f4f5;
+  text-decoration: none;
 }
 
 /* main */
@@ -189,6 +228,9 @@ main {
 }
 
 /* footer */
+footer .container {
+  font-family: "Gamja Flower";
+}
 /* footer : footer_menu1 */
 .footer_menu1 > ul {
   list-style: none;
@@ -197,7 +239,7 @@ main {
   flex-direction: row;
   justify-content: space-evenly;
   background-color: var(--background-color);
-  font-size: 1.2em;
+  font-size: 20px;
 }
 
 .footer_menu1 > ul > li {
@@ -293,11 +335,13 @@ main {
   }
 
   /* header */
-  header img {
+
+  header .container .slide {
     width: 100%;
+  }
+
+  header img {
     height: 200px;
-    vertical-align: bottom;
-    background-color: var(--background-color);
     padding-bottom: 30px;
   }
 
@@ -305,6 +349,10 @@ main {
   main {
     width: 100%;
     margin: 100px 0px;
+  }
+
+  main .container .content {
+    margin: 0 5px;
   }
 
   .container .content form .item {
@@ -359,15 +407,11 @@ main {
   }
 
   header img {
-    height: 250px;
+    height: 300px;
   }
 
-  main .container {
-    display: flex;
-    flex-direction: column;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    grid-gap: 30px;
+  main {
+    font-size: 15px;
   }
 
   nav .navbar > li {
@@ -382,6 +426,10 @@ main {
     padding-bottom: 40px;
   }
 
+  header > div.container {
+    width: 50%;
+    background-color: blue;
+  }
   /* nav */
   nav li {
     display: none;

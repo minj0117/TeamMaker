@@ -5,7 +5,7 @@
 <header>
   <div class="container">
     <div>
-      <a href="#"><img src="./banner.jpg" alt="" /></a>
+      <a href="#"><img src="http://localhost:8090/prj/img/banner.jpg" alt="" /></a>
     </div>
   </div>
 </header>
