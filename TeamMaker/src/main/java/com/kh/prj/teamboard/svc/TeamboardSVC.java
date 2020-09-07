@@ -38,9 +38,14 @@ public interface TeamboardSVC {
 	 */
 	public int tboardcnt(int bno);
 	
-	
+	/**
+	 * 게시글 작성
+	 * @param teamboardVO
+	 * @return
+	 */
 	public int write(TeamboardVO teamboardVO);
 	
+	public int delete(int bno);
 	
 	
 	
@@ -48,5 +53,6 @@ public interface TeamboardSVC {
 	public List<TeamboardReplyVO> showreply(int bno);
 	public int writeReply(TeamboardReplyVO teamboardReplyVO);
 	public int modifyReply(TeamboardReplyVO teamboardReplyVO);
+	public int deleteReply(int rno);
 	
 }

@@ -50,6 +50,10 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	public int write(TeamboardVO teamboardVO) {
 		return teamboardDAO.write(teamboardVO);
 	}
+	@Override
+	public int delete(int bno) {
+		return teamboardDAO.delete(bno);
+	}
 	
 	
 	
@@ -64,5 +68,9 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	@Override
 	public int modifyReply(TeamboardReplyVO teamboardReplyVO) {
 		return teamboardDAO.modifyReply(teamboardReplyVO);
+	}
+	@Override
+	public int deleteReply(int rno) {
+		return teamboardDAO.deleteReply(rno);
 	}
 }

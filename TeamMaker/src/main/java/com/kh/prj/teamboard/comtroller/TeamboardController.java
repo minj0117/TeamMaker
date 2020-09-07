@@ -1,5 +1,6 @@
 package com.kh.prj.teamboard.comtroller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.team.vo.TeammemberVO;
 import com.kh.prj.teamboard.svc.TeamboardSVC;
@@ -101,10 +105,30 @@ public class TeamboardController {
 		teamboardVO.setTno(tno);
 		int result = teamboardSVC.write(teamboardVO);
 		if(result != 0) {
-			return "redirect:/tboard/tboardlist/"+tno; // 여기 게시글 등록 후 게시글 목록 나오게 수정해야함( 팀게시판이라 특별 조치 필요 )
+			return "redirect:/tboard/tboardlist/"+tno;
 		}else {
 			return "err_page";
 		}
 	}
 	
+	/**
+	 * 게시글 삭제
+	 * @param num
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST, produces = "application/json")
+	public int delete(@RequestBody HashMap<String, String> num) throws Exception{
+		int bno = Integer.parseInt(num.get("bno"));
+		int result = teamboardSVC.delete(bno);
+		return result;
+	}
+	
+	@RequestMapping("/modForm.do")
+	public String modForm(HttpServletRequest request, Model model) {
+		model.addAttribute("request",request);
+		return "team/modForm";
+		
+	}
 }

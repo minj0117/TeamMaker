@@ -13,9 +13,11 @@ public interface TeamboardDAO {
 	public TeamboardVO tboarddetail(int bno);
 	public int tboardcnt(int bno);
 	public int write(TeamboardVO teamboardVO);
+	public int delete(int bno);
 	
 	
 	public List<TeamboardReplyVO> showreply(int bno);
 	public int writeReply(TeamboardReplyVO teamboardReplyVO);
 	public int modifyReply(TeamboardReplyVO teamboardReplyVO);
+	public int deleteReply(int rno);
 }

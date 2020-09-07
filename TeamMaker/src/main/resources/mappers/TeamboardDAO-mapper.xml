@@ -8,7 +8,7 @@
 	
 	<!-- 게시글 상제 조회 -->
 	<select id="tboarddetail" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardVO">
-		select btitle , bwriter , bcontent , cnt from teamboard where bno = #{bno}
+		select bno,bpw, btitle , bwriter , bcontent , cnt from teamboard where bno = #{bno}
 	</select>
 	
 	<!-- 조회수 증가 -->
@@ -22,9 +22,14 @@
 		(teamboard_bno.nextval,#{btitle},#{bcontent},#{bwriter},teamboard_groupno.nextval,0,0,#{tno},#{bpw})
 	</insert>
 	
+	<!-- 원글 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete teamboard where bno = ${bno}
+	</delete>
+	
 	<!-- 댓글 조회-->
 	<select id="showreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		select rwriter, rcontent,rcdate from tboardreply where bno = #{bno} order by rno asc
+		select rno,rwriter, rcontent,rcdate,rpw from tboardreply where bno = #{bno} order by rno asc
 	</select>
 	
 	<!-- 댓글 작성 -->
@@ -36,4 +41,9 @@
 	<update id="modifyReply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
 		update tboardreply set rcontent = #{rcontent} where rno = #{rno};
 	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		delete tboardreply where rno = #{rno}
+	</delete>
 </mapper>
