@@ -8,14 +8,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.teamboard.svc.TeamboardSVC;
 import com.kh.prj.teamboard.vo.TeamboardReplyVO;
+import com.kh.prj.teamboard.vo.TeamboardVO;
 
 @Controller
 public class TeamboardReplyController {
@@ -38,11 +41,6 @@ public class TeamboardReplyController {
 			return "err_page";
 		}
 	}
-	@ResponseBody
-	@RequestMapping(value = "/modifyReply", method = RequestMethod.POST, produces = "application/json")
-	public String modifyReply(@RequestBody String recontent,TeamboardReplyVO teamboardReplyVO, Model model) {
-		return "null";
-	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/deleteReply", method = RequestMethod.POST, produces = "application/json")
@@ -53,8 +51,42 @@ public class TeamboardReplyController {
 		return result;
 	}
 	
-	@RequestMapping("/modForm")
-	public String modForm() {
+	
+	@GetMapping("/replymodForm.do")
+	public String modForm(@RequestParam("rno") int rno, Model model) {
+		TeamboardReplyVO teamboardReplyVO = teamboardSVC.detailReply(rno);
+		model.addAttribute("view",teamboardReplyVO);
 		return "team/replymod";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/replymod", method = RequestMethod.POST, produces = "application/json")
+	public int modForm(@RequestBody HashMap<String, String> info) throws Exception {
+		logger.info("rno : " + info.get("rno"));
+		logger.info("rcontent : " + info.get("rcontent"));
+		TeamboardReplyVO teamboardReplyVO = new TeamboardReplyVO();
+		teamboardReplyVO.setRno(Integer.parseInt(info.get("rno")));
+		teamboardReplyVO.setRcontent(info.get("rcontent"));
+		int result = teamboardSVC.modifyReply(teamboardReplyVO);
+		return result;
+	}
+	
+	@GetMapping("rereplyForm.do")
+	public String rereplyForm(@RequestParam("rno") int rno, Model model) {
+		model.addAttribute("rno",rno);
+		return "team/rereplyForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/rereply", method = RequestMethod.POST, produces = "application/json")
+	public int rereply(@RequestBody HashMap<String, String> info) throws Exception {
+		logger.info("rno : " + info.get("rno"));
+		logger.info("rcontent : " + info.get("rcontent"));
+		TeamboardReplyVO teamboardReplyVO = new TeamboardReplyVO();
+		teamboardReplyVO.setRwriter(info.get("rwriter"));
+		teamboardReplyVO.setRno(Integer.parseInt(info.get("rno")));
+		teamboardReplyVO.setRcontent(info.get("rcontent"));
+		int result = teamboardSVC.modifyReply(teamboardReplyVO);
+		return result;
 	}
 }

@@ -62,6 +62,13 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	public int delete(int bno) {
 		return sqlSession.delete("mappers.TeamboardDAO-mapper.delete",bno);
 	}
+	/**
+	 * 게시글 수정
+	 */
+	@Override
+	public int modify(TeamboardVO teamboardVO) {
+		return sqlSession.update("mappers.TeamboardDAO-mapper.modify",teamboardVO);
+	}
 	
 	
 	
@@ -84,5 +91,9 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	@Override
 	public int deleteReply(int rno) {
 		return sqlSession.delete("mappers.TeamboardDAO-mapper.deleteReply", rno);
+	}
+	@Override
+	public TeamboardReplyVO detailReply(int rno) {
+		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.detailreply", rno);
 	}
 }

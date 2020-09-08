@@ -21,6 +21,7 @@
 				dataType : "text",
 				contentType : "application/json; charset=UTF-8",
 				success : function(data){
+					
 					if(data == 1){
 						alert("게시글을 삭제했습니다.");
 						location.href="http://localhost:8090/prj";
@@ -67,21 +68,44 @@
 		}
 	}
 
+	//원글 수정
+	function fn_originalMod(bno,bpw){
+		let bpwcheck = prompt("비밀번호를 입력하세요");
+		if(bpwcheck == bpw){
+			(function(){
+				var popUrl = "http://localhost:8090/prj/tboard/modForm.do?bno=${teamboardVO.bno}";
+				var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+				window.open(popUrl,"",popOption);
+				location.reload();
+			})();
+		}else{
+				console.log("틀림");
+		}
+	}
+	
 	//댓글 수정
 	function fn_mod(rno,rpw){
 		let rpwcheck = prompt("비밀번호를 입력하세요");
 		if(rpwcheck == rpw){
-			console.log("맞음");
 			(function(){
-				var popUrl = "http://localhost:8090/prj/modForm";	//팝업창에 출력될 페이지 URL
+				var popUrl = "http://localhost:8090/prj/replymodForm.do?rno="+rno;	//팝업창에 출력될 페이지 URL
 				var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-					window.open(popUrl,"",popOption);
-				//console.log(document.getElementById('content').innerText.)
+				window.open(popUrl,"",popOption);
 			})();
 		}else{
 			console.log("틀림");
 		}
-		
+		location.reload();
+	}
+
+	//대댓글
+	function fn_rereply(rno){
+		console.log(rno);
+		(function(){
+			var popUrl = "http://localhost:8090/prj/rereplyForm.do?rno="+rno;	//팝업창에 출력될 페이지 URL
+			var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+			window.open(popUrl,"",popOption);
+		})();
 	}
 </script>
 <body>
@@ -104,7 +128,8 @@
 			<td>${teamboardVO.cnt }</td>
 			<c:if test="${teamboardVO.bwriter eq id }">
 			<td>
-				<input type="button" value="수정">
+				<!-- <a href="${contextPath }/prj/tboard/modForm.do?bno=${teamboardVO.bno}">수정</a> -->
+				<input type="button" onClick="fn_originalMod('${teamboardVO.bno}','${teamboardVO.bpw }')" value="수정">
 				<input type="button" onClick="fn_originalDel('${teamboardVO.bno}','${teamboardVO.bpw }')" value="삭제">				
 			</td>
 			</c:if>
@@ -121,13 +146,14 @@
 			<tr>
 				<td>${row.rwriter }</td>
 				<td id="content">${row.rcontent }</td>
-				<td><a href="#">답글</a> <c:choose>
+				<td><input type="button" onClick="fn_rereply('${row.rno}')" value="답글"> 
+				<c:choose>
 						<c:when test="${row.rwriter eq id}">
 							<input type="button" onClick="fn_del('${row.rno}','${row.rpw }')" value="삭제">
 							<input type="button" onClick="fn_mod('${row.rno}','${row.rpw }')" value="수정">
-			</tr>
-			</c:when>
+				</c:when>
 			</c:choose>
+			</tr>
 		</c:forEach>
 	</table>
 	<form action="${contextPath }/prj/writeReply" method="post">

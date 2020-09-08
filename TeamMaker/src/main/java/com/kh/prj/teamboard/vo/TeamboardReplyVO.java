@@ -9,6 +9,8 @@ public class TeamboardReplyVO {
 	private String rcontent;	//RCONTENT	VARCHAR2(3000 BYTE)	No		4	댓글내용
 	private Date rcdate;		//RCDATE	TIMESTAMP(6)	Yes	systimestamp 	5	작성일
 	private String rpw;			//RPW	VARCHAR2(40 BYTE)	No		6	댓글비밀번호
+	private int rgroup;			//RGROUP	VARCHAR2(20 BYTE)	Yes		7	그룹
+	private int rlevel;			//RLEVEL	VARCHAR2(20 BYTE)	Yes	0 	8	레벨
 	
 	public int getRno() {
 		return rno;
@@ -45,6 +47,18 @@ public class TeamboardReplyVO {
 	}
 	public void setRpw(String rpw) {
 		this.rpw = rpw;
+	}
+	public int getRgroup() {
+		return rgroup;
+	}
+	public void setRgroup(int rgroup) {
+		this.rgroup = rgroup;
+	}
+	public int getRlevel() {
+		return rlevel;
+	}
+	public void setRlevel(int rlevel) {
+		this.rlevel = rlevel;
 	}
 	
 	

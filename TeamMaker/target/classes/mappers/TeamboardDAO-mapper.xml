@@ -27,23 +27,38 @@
 		delete teamboard where bno = ${bno}
 	</delete>
 	
+	<!-- 원글 수정 -->
+	<update id="modify" parameterType="com.kh.prj.teamboard.vo.TeamboardVO" >
+		update teamboard set btitle = #{btitle} , bcontent = #{bcontent} where bno = #{bno}
+	</update>
+	
 	<!-- 댓글 조회-->
 	<select id="showreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		select rno,rwriter, rcontent,rcdate,rpw from tboardreply where bno = #{bno} order by rno asc
+		select rno,bno,rwriter, rcontent,rcdate,rpw,rgroup,rlevel from tboardreply where bno = #{bno} order by rno asc
+	</select>
+	<!-- 특정 댓글 가져오기 -->
+	<select id="detailreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
+		select rno, rwriter, rcontent, rpw from tboardreply where rno = #{rno}
 	</select>
 	
 	<!-- 댓글 작성 -->
 	<insert id="writeReply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		insert into tboardreply (rno,bno,rwriter,rcontent,rpw) 
-		values (tboardreply_seq.nextval,#{bno},#{rwriter},#{rcontent},#{rpw})
+		insert into tboardreply (rno,bno,rwriter,rcontent,rpw,rgroup) 
+		values (tboardreply_seq.nextval,#{bno},#{rwriter},#{rcontent},#{rpw},rgroup_seq.nextval)
 	</insert>
 	
 	<update id="modifyReply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		update tboardreply set rcontent = #{rcontent} where rno = #{rno};
+		update tboardreply set rcontent = #{rcontent} where rno = #{rno}
 	</update>
 	
 	<!-- 댓글 삭제 -->
 	<delete id="deleteReply" parameterType="int">
 		delete tboardreply where rno = #{rno}
 	</delete>
+	
+	<!-- 대댓글 -->
+	<insert id="rereply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
+		insert into tboardreply (rno,bno,rwriter,rcontent,rpw,rgroup,rlevel)
+		values (tboardreply_seq.nextval,#{bno},#{rwriter},#rcontent},#{rpw},#{rno},#{rlevel+1})
+	</insert>
 </mapper>

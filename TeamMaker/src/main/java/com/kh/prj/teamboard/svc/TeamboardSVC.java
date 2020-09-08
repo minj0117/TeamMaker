@@ -46,6 +46,7 @@ public interface TeamboardSVC {
 	public int write(TeamboardVO teamboardVO);
 	
 	public int delete(int bno);
+	public int modify(TeamboardVO teamboardVO);
 	
 	
 	
@@ -54,5 +55,6 @@ public interface TeamboardSVC {
 	public int writeReply(TeamboardReplyVO teamboardReplyVO);
 	public int modifyReply(TeamboardReplyVO teamboardReplyVO);
 	public int deleteReply(int rno);
+	public TeamboardReplyVO detailReply(int rno);
 	
 }

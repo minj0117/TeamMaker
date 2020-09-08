@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.team.vo.TeammemberVO;
@@ -125,10 +126,35 @@ public class TeamboardController {
 		return result;
 	}
 	
-	@RequestMapping("/modForm.do")
-	public String modForm(HttpServletRequest request, Model model) {
-		model.addAttribute("request",request);
+	/**
+	 * 게시글 수정 폼
+	 * @param bno
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/modForm.do")
+	public String modForm(@RequestParam("bno") int bno, Model model) {
+		TeamboardVO teamboardVO = teamboardSVC.tboarddetail(bno);
+		model.addAttribute("view",teamboardVO);
 		return "team/modForm";
-		
+	}
+	/**
+	 * 게시글 수정 처리
+	 * @param info
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.POST, produces = "application/json")
+	public int modify(@RequestBody HashMap<String, String> info) throws Exception {
+		int bno = Integer.parseInt(info.get("bno"));
+		String btitle = info.get("btitle");
+		String bcontent = info.get("bcontent");
+		TeamboardVO teamboardVO = new TeamboardVO();
+		teamboardVO.setBno(bno);
+		teamboardVO.setBtitle(btitle);
+		teamboardVO.setBcontent(bcontent);
+		int result = teamboardSVC.modify(teamboardVO);
+		return result;
 	}
 }
