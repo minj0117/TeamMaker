@@ -96,4 +96,12 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	public TeamboardReplyVO detailReply(int rno) {
 		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.detailreply", rno);
 	}
+	@Override
+	public int rereply(TeamboardReplyVO teamboardReplyVO) {
+		return sqlSession.insert("mappers.TeamboardDAO-mapper.rereply",teamboardReplyVO);
+	}
+	@Override
+	public List<TeamboardReplyVO> showrereply(int rgroup) {
+		return sqlSession.selectList("mappers.TeamboardDAO-mapper.showrereply",rgroup);
+	}
 }

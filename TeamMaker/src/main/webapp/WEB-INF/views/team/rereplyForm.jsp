@@ -17,10 +17,13 @@
 	function writeFn(e){
 		console.log("들어옴"+e);
  		e.preventDefault();
- 		const rwriter = document.querySelector('#bwriter').value;
- 		const rno = document.querySelector('input[type="hidden"]').value;
+ 		const rwriter = document.querySelector('#rwriter').value;
+ 		const bno = document.getElementById('bno').value;
+ 		const rlevel = document.getElementById('rlevel').value
  		const rcontent =document.querySelector('#rcontent').value;
-		const Info = JSON.stringify({bwriter:bwriter, rno:rno, rcontent:rcontent});
+ 		const rpw = document.getElementById('rpw').value;
+ 		const rgroup = document.getElementById('rgroup').value;
+		const Info = JSON.stringify({rwriter:rwriter, rpw:rpw ,bno:bno, rlevel:rlevel ,rcontent:rcontent, rgroup:rgroup});
 		$.ajax({
 			data : Info,
 			url : "http://localhost:8090/prj/rereply",
@@ -44,9 +47,13 @@
 </script>
 <body>
 	<form action="/prj/tboard/modify" id="writeForm" name="writrForm" method="post">
-		작성자 : <input type="text" id="bwriter" name="bwriter" value="${sessionScope.member.id}" readonly="readonly"><br>
+		작성자 : <input type="text" id="rwriter" name="rwriter" value="${sessionScope.member.id}" readonly="readonly"><br>
 		내용 : <textarea rows="10" cols="10" id="rcontent" name="rcontent"></textarea><br>
-		<input type="hidden" name="rno" value="${view.rno }"	/>
+		비밀번호 : <input type="password" id="rpw" name="rpw"><br>		
+		<input type="hidden" id=rno name="rno" value="${view.rno }"	/>
+		<input type="hidden" id=bno name="bno" value="${view.bno }"	/>
+		<input type="hidden" id=rlevel name="rlevel" value="${view.rlevel }"	/>
+		<input type="hidden" id=rgroup name="rgroup" value="${view.rgroup }"	/>
 		<input type="button" id="writeBtn" value="등록!">
 	</form>
 </body>

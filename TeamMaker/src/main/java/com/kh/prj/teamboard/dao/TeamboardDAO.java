@@ -25,4 +25,6 @@ public interface TeamboardDAO {
 	 * 특정 댓글 가져오기
 	 */
 	public TeamboardReplyVO detailReply(int rno);
+	public int rereply(TeamboardReplyVO teamboardReplyVO);
+	public List<TeamboardReplyVO> showrereply(int rgroup);
 }

@@ -81,4 +81,18 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	public TeamboardReplyVO detailReply(int rno) {
 		return teamboardDAO.detailReply(rno);
 	}
+	/**
+	 * 대댓글 작성
+	 */
+	@Override
+	public int rereply(TeamboardReplyVO teamboardReplyVO) {
+		return teamboardDAO.rereply(teamboardReplyVO);
+	}
+	/**
+	 * 대댓글 조회
+	 */
+	@Override
+	public List<TeamboardReplyVO> showrereply(int rgroup) {
+		return teamboardDAO.showrereply(rgroup);
+	}
 }

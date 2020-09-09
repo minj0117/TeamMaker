@@ -62,8 +62,6 @@ public class TeamboardReplyController {
 	@ResponseBody
 	@RequestMapping(value = "/replymod", method = RequestMethod.POST, produces = "application/json")
 	public int modForm(@RequestBody HashMap<String, String> info) throws Exception {
-		logger.info("rno : " + info.get("rno"));
-		logger.info("rcontent : " + info.get("rcontent"));
 		TeamboardReplyVO teamboardReplyVO = new TeamboardReplyVO();
 		teamboardReplyVO.setRno(Integer.parseInt(info.get("rno")));
 		teamboardReplyVO.setRcontent(info.get("rcontent"));
@@ -73,20 +71,24 @@ public class TeamboardReplyController {
 	
 	@GetMapping("rereplyForm.do")
 	public String rereplyForm(@RequestParam("rno") int rno, Model model) {
-		model.addAttribute("rno",rno);
+		TeamboardReplyVO teamboardReplyVO = teamboardSVC.detailReply(rno);
+		model.addAttribute("view",teamboardReplyVO);
 		return "team/rereplyForm";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/rereply", method = RequestMethod.POST, produces = "application/json")
 	public int rereply(@RequestBody HashMap<String, String> info) throws Exception {
-		logger.info("rno : " + info.get("rno"));
-		logger.info("rcontent : " + info.get("rcontent"));
 		TeamboardReplyVO teamboardReplyVO = new TeamboardReplyVO();
 		teamboardReplyVO.setRwriter(info.get("rwriter"));
-		teamboardReplyVO.setRno(Integer.parseInt(info.get("rno")));
-		teamboardReplyVO.setRcontent(info.get("rcontent"));
-		int result = teamboardSVC.modifyReply(teamboardReplyVO);
+		teamboardReplyVO.setRcontent("	Re : " + info.get("rcontent"));
+		teamboardReplyVO.setRlevel(Integer.parseInt(info.get("rlevel"))+1);
+		teamboardReplyVO.setRpw(info.get("rpw"));
+		teamboardReplyVO.setBno(Integer.parseInt(info.get("bno")));
+		teamboardReplyVO.setRgroup(Integer.parseInt(info.get("rgroup")));
+		int result = teamboardSVC.rereply(teamboardReplyVO);
 		return result;
 	}
+	
+	//대댓글
 }

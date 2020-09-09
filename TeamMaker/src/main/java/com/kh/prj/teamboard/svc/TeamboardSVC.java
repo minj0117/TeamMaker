@@ -56,5 +56,7 @@ public interface TeamboardSVC {
 	public int modifyReply(TeamboardReplyVO teamboardReplyVO);
 	public int deleteReply(int rno);
 	public TeamboardReplyVO detailReply(int rno);
+	public int rereply(TeamboardReplyVO teamboardReplyVO);
+	public List<TeamboardReplyVO> showrereply(int rgroup);
 	
 }

@@ -73,10 +73,14 @@ public class TeamboardController {
 		teamboardVO = teamboardSVC.tboarddetail(teamboardVO.getBno());
 		if(teamboardVO != null) {
 			teamboardVO.setBno(bno);
-			List<TeamboardReplyVO> list =  teamboardSVC.showreply(bno);
-			System.out.println("bno : " + teamboardVO.getBno());
+			List<TeamboardReplyVO> list =  teamboardSVC.showreply(bno); //댓글리스트
+			int rgroup = list.get(0).getRgroup();
+			logger.info("rgroup : " + rgroup);
+			List<TeamboardReplyVO> relist = teamboardSVC.showrereply(rgroup);
+			//System.out.println("bno : " + teamboardVO.getBno());
 			model.addAttribute("teamboardVO",teamboardVO);
 			model.addAttribute("reply",list);
+			model.addAttribute("rereply", relist);
 			teamboardSVC.tboardcnt(bno);
 			return "team/rview";
 		}else {

@@ -34,11 +34,11 @@
 	
 	<!-- 댓글 조회-->
 	<select id="showreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		select rno,bno,rwriter, rcontent,rcdate,rpw,rgroup,rlevel from tboardreply where bno = #{bno} order by rno asc
+		select rno,bno,rwriter, rcontent,rcdate,rpw,rgroup,rlevel from tboardreply where bno = #{bno} and rlevel = 0 order by rno asc
 	</select>
 	<!-- 특정 댓글 가져오기 -->
 	<select id="detailreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		select rno, rwriter, rcontent, rpw from tboardreply where rno = #{rno}
+		select bno,rno, rwriter,rgroup,  rcontent, rpw from tboardreply where rno = #{rno}
 	</select>
 	
 	<!-- 댓글 작성 -->
@@ -59,6 +59,10 @@
 	<!-- 대댓글 -->
 	<insert id="rereply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
 		insert into tboardreply (rno,bno,rwriter,rcontent,rpw,rgroup,rlevel)
-		values (tboardreply_seq.nextval,#{bno},#{rwriter},#rcontent},#{rpw},#{rno},#{rlevel+1})
+		values (tboardreply_seq.nextval,#{bno},#{rwriter},#{rcontent},#{rpw},#{rgroup},#{rlevel})
 	</insert>
+	<!-- 대댓글 조회 -->
+	<select id="showrereply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
+		select rno,bno,rwriter, rcontent,rcdate,rpw,rgroup,rlevel from tboardreply where rlevel != 0 and rgroup = #{rgroup} order by rno asc
+	</select>
 </mapper>
