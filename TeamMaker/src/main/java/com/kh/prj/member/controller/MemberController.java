@@ -39,7 +39,7 @@ public class MemberController {
 	 */
 	@GetMapping("/joinForm")
 	public String joinForm() {
-		return "/member/joinForm";
+		return "/member/signup";
 	}
 	/**
 	 * 회원가입 처리
@@ -224,5 +224,10 @@ public class MemberController {
 		}else {
 			return "err_page";
 		}
+	}
+	
+	@RequestMapping("mypage")
+	public String mypage() {
+		return "member/mypage";
 	}
 }

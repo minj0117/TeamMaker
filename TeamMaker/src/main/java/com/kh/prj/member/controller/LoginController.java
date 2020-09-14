@@ -40,7 +40,7 @@ public class LoginController {
 					session.setAttribute("member", memberVO);
 					session.setAttribute("id",memberVO.getId());
 					//System.out.println("memberVO : " + memberVO);
-					System.out.println("memberVO.getId() : " + memberVO.getId());
+					System.out.println("세션 : " + session.getAttribute("member"));
 					//return "home";
 					return "member/success";
 				}else {
@@ -52,7 +52,7 @@ public class LoginController {
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		//세션 정보 제거
+		//세션 정보 제거ss
 		session.invalidate();
 		return "home";
 	}

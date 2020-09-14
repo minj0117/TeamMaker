@@ -172,12 +172,12 @@
 					<td>${rows.rcontent }</td>
 				</c:forEach> -->
 			</tr>
-			<c:forEach var="rows" items="${rereply }">
+			<!--<c:forEach var="rows" items="${rereply }"> -->
 				<tr>
 					<td>${rows.rwriter }</td>
 					<td>${rows.rcontent }</td>
 					</tr>
-				</c:forEach>
+				<!--</c:forEach> -->
 		</c:forEach>
 	</table>
 	<form action="${contextPath }/prj/writeReply" method="post">
