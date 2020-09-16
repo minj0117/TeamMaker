@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.recruit.dao.RecruitDAO;
 import com.kh.prj.recruit.vo.RecruitVO;
 
@@ -22,10 +23,15 @@ public class RecruitSVCImpl implements RecruitSVC {
 		return recruitDAO.recruitList();
 	}*/
 	@Override
-	public List<RecruitVO> selectBoardList(RecruitVO recruitVO) {
+	public List<RecruitVO> selectBoardList(PagingCriteria paging) {
 		List<RecruitVO> list = null;
-		list = recruitDAO.selectBoardList(recruitVO);
+		list = recruitDAO.selectBoardList(paging);
 		return list;
+	}
+	
+	@Override
+	public List<RecruitVO> BoardList(RecruitVO recruitVO) {
+		return recruitDAO.BoardList(recruitVO);
 	}
 	
 	@Override
@@ -48,5 +54,10 @@ public class RecruitSVCImpl implements RecruitSVC {
 	@Override
 	public int addList(RecruitVO recruitVO) {
 		return recruitDAO.addTeamList(recruitVO);
+	}
+	
+	@Override
+	public int totalCnt() {
+		return recruitDAO.totalCnt();
 	}
 }

@@ -1,0 +1,568 @@
+:root {
+  --background-color: #ffcdd2;
+  --text-color: #263343;
+  --accent-color: #d49466;
+  --border-color: lightgray;
+  --whitesmoke-color: #f0f4f5;
+  --white-color: #fdffff;
+  --linen-color: linen;
+}
+
+.container {
+  all: initial;
+}
+
+* {
+  /* outline: 1px dotted red; */
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #fdffff;
+  font-family: "Gamja Flower";
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+ul > li {
+  list-style: none;
+  font-family: "Gamja Flower";
+}
+
+/* uppermost */
+.uppermost .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px;
+  background-color: var(--background-color);
+}
+
+.uppermost .logo {
+  display: flex;
+  flex-direction: row;
+  font-size: 28px;
+  color: var(--text-color);
+  font-family: "Kalam";
+}
+
+.uppermost .logo a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.uppermost .logo i {
+  color: var(--accent-color);
+  padding-right: 5px;
+}
+
+.uppermost .navbar_upper {
+  width: 50%;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.uppermost .navbar_upper > li {
+  list-style: none;
+  font-size: 1.5em;
+}
+
+.uppermost .navbar_upper a:hover {
+  color: var(--white-color);
+  /* text-decoration: none; */
+}
+
+/* navbar_upper : comm_menu */
+.uppermost .navbar_upper li > .comm_menu > li:nth-child(1) {
+  margin-top: 8px;
+  padding: 10px 20px 8px 20px;
+}
+.uppermost .navbar_upper li > .comm_menu > li:nth-child(2) {
+  margin-bottom: 8px;
+  padding: 8px 20px 10px 20px;
+}
+
+.uppermost .navbar_upper li:hover .comm_menu {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0px;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  font-size: 20px;
+  position: absolute;
+  z-index: 100;
+}
+
+.uppermost .navbar_upper li:hover .comm_menu a {
+  color: var(--text-color);
+}
+
+.uppermost .navbar_upper .comm_menu {
+  display: none;
+}
+
+.uppermost .uplog_upper {
+  display: flex;
+  color: var(--text-color);
+  font-size: 20px;
+  padding-left: 0px;
+}
+
+.uppermost .uplog_upper > li {
+  margin: 0px 5px;
+}
+
+.uppermost .uplog_upper li a:hover {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.uppermost .toggleBtn {
+  display: none;
+  position: absolute;
+  right: 15px;
+  font-size: 25px;
+  color: var(--accent-color);
+}
+
+/* header */
+header {
+  background-color: var(--background-color);
+}
+
+header .container .slide {
+  width: 75%;
+  margin: 0 auto;
+}
+
+header img {
+  height: 550px;
+  margin: 0px auto;
+  vertical-align: bottom;
+}
+
+/* nav */
+nav .navbar {
+  background-color: var(--background-color);
+  padding: 30px;
+}
+
+nav ul > li > a {
+  padding: 10px 20px;
+  font-size: 1.1em;
+}
+
+nav ul > li > a:hover {
+  color: #f0f4f5;
+  text-decoration: none;
+}
+
+/* main */
+main {
+  width: 65%;
+  margin: 200px auto;
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main #writeForm > ul > li {
+  margin: 20px auto;
+}
+
+main #writeForm {
+  font-family: "Sunflower";
+  font-size: 1.1em;
+}
+
+main legend {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+main #writeForm .catePart {
+  display: flex;
+}
+
+main #writeForm .catePart li:nth-child(1) {
+  flex-basis: 60%;
+}
+
+main #writeForm .catePart .writePWC {
+  flex-basis: 40%;
+}
+
+main #writeForm .catePart .writePWC label {
+  text-align: right;
+  padding-right: 5px;
+  font-size: 0.8em;
+}
+
+main .catePart .writePWC {
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  align-items: center;
+  font-family: "Sunflower";
+}
+
+main select {
+  width: 100%;
+  height: 45px;
+  font-family: "Sunflower";
+  padding-left: 8px;
+  padding-right: 8px;
+  letter-spacing: 0.1em;
+  font-size: 0.8em;
+}
+
+main input {
+  width: 100%;
+  height: 45px;
+  font-family: "Sunflower";
+  padding-left: 8px;
+  padding-right: 8px;
+  letter-spacing: 0.1em;
+  font-size: 0.8em;
+}
+
+/* 유형 - 라디오 버튼 */
+main #writeForm .radioButton {
+  font-family: "Sunflower";
+  display: flex;
+  font-size: 0.8em;
+}
+
+main #writeForm .radioButton div {
+  padding-right: 30px;
+}
+
+main #writeForm .radioButton ul {
+  display: flex;
+}
+
+main #writeForm .radioButton ul li {
+  display: flex;
+  align-items: center;
+}
+
+main input[type="radio"] {
+  width: 50%;
+  height: 15px;
+  margin-bottom: 10px;
+}
+
+main #writeForm .radioButton ul li label {
+  width: 100px;
+  font-family: "Sunflower";
+}
+
+/* 지역 - 체크박스 */
+main .container .content .wrapper-area {
+  display: none;
+}
+
+main .wrapper-area .area.title {
+  padding-right: 30px;
+  font-family: "Sunflower";
+  font-size: 0.8em;
+}
+
+main .wrapper-area {
+  display: flex;
+}
+
+main .wrapper-area ul {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+main .wrapper-area ul li {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+main input[type="checkbox"] {
+  width: 50%;
+  height: 15px;
+  margin-bottom: 10px;
+}
+
+main .wrapper-area label {
+  width: 100px;
+  font-family: "Sunflower";
+  font-size: 0.8em;
+}
+
+main li textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  vertical-align: bottom;
+  font-family: "Sunflower";
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  padding: 50px 20px;
+}
+
+main .attached button {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  outline: none;
+  font-family: "Sunflower";
+  font-size: 0.8em;
+  padding: 8px 10px;
+  margin-right: 5px;
+}
+
+main .attached .msg {
+  font-family: "Sunflower";
+  font-size: 0.8em;
+  margin: 20px;
+}
+
+main .btnGrp {
+  text-align: right;
+  border-top: 1px solid var(--border-color);
+}
+
+main .btnGrp button {
+  background-color: var(--background-color);
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-family: "Sunflower";
+  font-size: 0.8em;
+  padding: 10px 20px;
+  margin-top: 15px;
+}
+
+/* footer */
+footer .container {
+  font-family: "Gamja Flower";
+}
+/* footer : footer_menu1 */
+.footer_menu1 > ul {
+  list-style: none;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: var(--background-color);
+  font-size: 20px;
+}
+
+.footer_menu1 > ul > li {
+  padding: 20px 0px;
+}
+
+.footer_menu1 > ul > li > a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.footer_menu1 > ul > li > #policy {
+  color: var(--accent-color);
+}
+
+/* footer : footer_menu2 */
+.footer_menu2 {
+  width: 80%;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+}
+
+.footer_menu2 img {
+  width: 100%;
+  max-width: 300px;
+  vertical-align: bottom;
+}
+
+.footer_menu2 .left {
+  margin: 0px auto;
+}
+
+.right .right_up,
+.right .right_down {
+  padding: 10px;
+}
+
+/*  */
+/*  */
+/* 모바일 */
+@media screen and (max-width: 320px) {
+  /* uppermost */
+  .uppermost .container {
+    padding-top: 40px;
+    padding-bottom: 0px;
+  }
+
+  .uppermost .logo {
+    font-size: 25px;
+    justify-content: flex-start;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog,
+  .uppermost span,
+  nav .navbar {
+    display: none;
+  }
+
+  /* 토글 버튼 적용 시 */
+  .uppermost > .container {
+    flex-direction: column;
+  }
+
+  .uppermost .navbar_upper > li > a {
+    font-size: 20px;
+  }
+
+  .uppermost .navbar_upper > li {
+    margin: 10px;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog_upper {
+    text-align: center;
+  }
+
+  .uppermost .navbar_upper {
+    border-bottom: 1px solid var(--accent-color);
+  }
+
+  .uppermost .toggleBtn {
+    display: block;
+  }
+
+  .navbar_upper.active,
+  .uplog.active {
+    display: grid;
+  }
+
+  /* header */
+  header .container .slide {
+    width: 100%;
+  }
+
+  header img {
+    height: 200px;
+    padding-bottom: 30px;
+  }
+
+  /* main */
+  main {
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  main #writeForm > ul > li {
+    margin: 15px auto;
+  }
+
+  main #writeForm {
+    margin: 0 5px;
+  }
+
+  main #writeForm .catePart {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main #writeForm .catePart li:nth-child(1) {
+    margin-bottom: 15px;
+  }
+
+  main #writeForm .catePart .writePWC label {
+    text-align: left;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    word-spacing: 0.3em;
+  }
+
+  main .wrapper-area ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* footer */
+  .footer_menu1 > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .footer_menu1 > ul > li {
+    padding: 10px 0px;
+  }
+
+  .footer_menu2 img {
+    width: 100%;
+    width: 200px;
+    vertical-align: bottom;
+    padding: 5px auto;
+  }
+
+  .footer_menu2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .footer_menu2 .right_up > div:nth-child(2),
+  .footer_menu2 .right_up > div:nth-child(3),
+  .footer_menu2 .right_down > div:nth-child(1) {
+    display: none;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .uppermost .navbar_upper {
+    display: none;
+  }
+
+  header img {
+    height: 300px;
+  }
+
+  nav .navbar > li {
+    font-size: 20px;
+  }
+
+  main {
+    width: 90%;
+    margin: 130px auto;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+  /* header */
+  header img {
+    padding-bottom: 40px;
+  }
+
+  /* nav */
+  nav li {
+    display: none;
+  }
+
+  nav .navbar {
+    display: none;
+  }
+}

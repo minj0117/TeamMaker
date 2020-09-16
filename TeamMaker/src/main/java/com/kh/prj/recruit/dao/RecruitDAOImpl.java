@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.recruit.vo.RecruitVO;
 
 @Repository
@@ -19,8 +20,14 @@ public class RecruitDAOImpl implements RecruitDAO {
 		return sqlSession.selectList("mappers.RecruitDAO-mapper.listRboard");
 	}*/
 	@Override
-	public List<RecruitVO> selectBoardList(RecruitVO recruitVO) {
-		return sqlSession.selectList("mappers.RecruitDAO-mapper.listRboard");
+	public List<RecruitVO> selectBoardList(PagingCriteria paging) {
+		System.out.println("paging : " + paging);
+		return sqlSession.selectList("mappers.RecruitDAO-mapper.listRboard",paging);
+	}
+	
+	@Override
+	public List<RecruitVO> BoardList(RecruitVO recruitVO) {
+		return sqlSession.selectList("mappers.RecruitDAO-mapper.list",recruitVO);
 	}
 	
 	@Override
@@ -41,4 +48,11 @@ public class RecruitDAOImpl implements RecruitDAO {
 	public int addTeamList(RecruitVO recruitVO) {
 		return sqlSession.insert("mappers.RecruitDAO-mapper.insertTeamlist", recruitVO);
 	}
+	
+	@Override
+	public int totalCnt() {
+		return sqlSession.selectOne("mappers.RecruitDAO-mapper.getTotalCnt");
+	}
+	
+	
 }

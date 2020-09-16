@@ -199,7 +199,7 @@
 				}else{
 					$('#message').val("사용할 수 있는 ID입니다.");
 					$('#message').text("사용할 수 있는 ID입니다.");
-					$('#message').css("color","green");	
+					$('#message').css("color","green");	f
 					$('#message').css("font-weight","bold");				
 				}
 			},

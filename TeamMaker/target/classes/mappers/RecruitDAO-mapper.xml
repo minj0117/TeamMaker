@@ -3,8 +3,21 @@
 <mapper namespace="mappers.RecruitDAO-mapper">
 	<!-- 글 리스트 조회 -->
 	<select id="listRboard" resultType="com.kh.prj.recruit.vo.RecruitVO">
-		select * from recruit order by rno asc
+		<!-- select * from recruit order by rno desc -->
+		<![CDATA[
+		SELECT rno,id,rtitle,rcdate,rcnt
+			FROM	(SELECT /*+INDEX_DESC(recruit recruit_pk) */
+						rownum rn, rno, rtitle, id, rcdate, rcnt 
+					from recruit where rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum}-1) * #{amount}
+			ORDER BY rno DESC
+		]]>
 	</select>
+	
+	<select id="list" resultType="com.kh.prj.recruit.vo.RecruitVO">
+		select * from recruit order by rno desc
+	</select>
+	
 	
 	<!-- 게시글 작성 -->
 	<insert id="insertRboard" parameterType="com.kh.prj.recruit.vo.RecruitVO">
@@ -21,5 +34,9 @@
 	<update id="viewCntPlus" parameterType="com.kh.prj.recruit.vo.RecruitVO">
 		update recruit set rcnt = rcnt + 1 where rno = #{rno}
 	</update>
+	
+	<select id="getTotalCnt" resultType="int">
+		select count(*) from recruit
+	</select>
 	
 </mapper>
