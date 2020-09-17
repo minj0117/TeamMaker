@@ -38,8 +38,8 @@ public class TeamSVCImpl implements TeamSVC {
 	}
 	
 	@Override
-	public List<TeammemberVO> affiliationTno(String userid) {
-		return teamDAO.affiliationTno(userid);
+	public List<TeammemberVO> affiliationTno(String id) {
+		return teamDAO.affiliationTno(id);
 	}
 
 	@Override

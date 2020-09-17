@@ -18,6 +18,7 @@ public class RecruitVO {
 	private int rstep;			//RSTEP	NUMBER(4,0)	Yes		13	원 게시글에서 얼마나 떨어진 글인지
 	private int rindent;		//RINDENT	NUMBER(4,0)	Yes		14	몇번째 들여쓰기한 게시글
 	private String teamname;
+	private int tno;
 	
 	public int getRno() {
 		return rno;
@@ -108,6 +109,12 @@ public class RecruitVO {
 	}
 	public void setTeamname(String teamname) {
 		this.teamname = teamname;
+	}
+	public int getTno() {
+		return tno;
+	}
+	public void setTno(int tno) {
+		this.tno = tno;
 	}
 	
 	

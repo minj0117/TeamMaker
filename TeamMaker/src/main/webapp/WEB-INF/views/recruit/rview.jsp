@@ -104,7 +104,7 @@
 					</c:when>
 					<c:when test="${recruitVO.id ne id }">
 						<div class="article_btns">
-							<button onClick="location.href='http://localhost:8090/prj/addapply?applyid=<%=id%>&tno=${row.tno }'" class="applyBtn">신청</button>
+							<a href="#" onClick="location.href='http://localhost:8090/prj/addapply?applyid=<%=id%>&tno=${recruitVO.tno }'" class="applyBtn" >신청</a>
 						</div>
 					</c:when>
 				</c:choose>

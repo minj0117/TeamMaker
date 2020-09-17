@@ -92,7 +92,7 @@ public class RecruitController {
 	 * @return
 	 */
 	@GetMapping("/rview/{rno}")
-	public String rview(RecruitVO recruitVO, Model model) {
+	public String rview(RecruitVO recruitVO, TeamVO teamVO, Model model) {
 		recruitVO = recruitSVC.viewR(recruitVO.getRno());
 		if(recruitVO != null) {
 			recruitSVC.cntR(recruitVO.getRno());

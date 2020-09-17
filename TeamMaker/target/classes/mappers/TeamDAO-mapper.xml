@@ -20,7 +20,7 @@
 	
 	<!-- 소속팀 보기 (tno) 가져오기 -->
 	<select id="affiliationTno" resultType="com.kh.prj.team.vo.TeammemberVO">
-		select tno from memberteam where userid = #{userid} order by tno asc 
+		select tno from memberteam where userid = #{id} order by tno asc 
 	</select>
 	
 	<!-- 소속팀 보기 -->

@@ -68,19 +68,11 @@
         <div class="team_matching">
           <div id="matching_title">팀원 모집</div>
           <div class="matching_wrapper">
+          <c:forEach var="row" items="${rank }">
             <div>
-              <marquee behavior="" direction=""><a href="#"
-                >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex
-                commodi consequuntur placeat fuga perspiciatis atque architecto
-                quibusdam ad, maiores ipsa velit assumenda vel soluta,
-                dignissimos rem rerum minus numquam. Possimus?</a
-              ></marquee>
-            </div>
-            <div><a href="#">2</a></div>
-            <div><a href="#">3</a></div>
-            <div><a href="#">4</a></div>
-            <div><a href="#">5</a></div>
-            <div><a href="#">6</a></div>
+                <a href="${contextPath }/prj/rview/${row.rno}">${row.rtitle }</a>
+            </div>          	
+          </c:forEach>
           </div>
         </div>
 

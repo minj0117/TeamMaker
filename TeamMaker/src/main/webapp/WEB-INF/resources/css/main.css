@@ -75,7 +75,7 @@ ul > li {
 
 .uppermost .navbar_upper a:hover {
   color: var(--white-color);
-  /* text-decoration: none; */
+  text-decoration: none;
 }
 
 /* navbar_upper : comm_menu */
@@ -192,7 +192,8 @@ main .container {
 #dae_title,
 #arti_title {
   padding: 10px;
-  border-bottom: 1px solid var(--border-color);
+  background-color: var(--linen-color);
+  border-radius: 5px;
 }
 
 /* main : team_matching */
@@ -418,7 +419,6 @@ footer .container {
   }
 
   /* header */
-
   header .container .slide {
     width: 100%;
   }
@@ -460,7 +460,6 @@ footer .container {
   }
 
   /* main : gong & dae */
-
   .gong_wrapper,
   .dae_wrapper {
     grid-template-columns: 1fr;
@@ -559,10 +558,6 @@ footer .container {
     padding-bottom: 40px;
   }
 
-  header > div.container {
-    width: 50%;
-    background-color: blue;
-  }
   /* nav */
   nav li {
     display: none;

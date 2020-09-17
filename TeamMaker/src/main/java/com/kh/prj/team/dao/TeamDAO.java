@@ -25,7 +25,7 @@ public interface TeamDAO {
 	 */
 	public List<TeamVO> myList(String id);
 	
-	public List<TeammemberVO> affiliationTno(String userid);
+	public List<TeammemberVO> affiliationTno(String id);
 	public List<TeamVO> sosok(int tno);
 	
 	/**

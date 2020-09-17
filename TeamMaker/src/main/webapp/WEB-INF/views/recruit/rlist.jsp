@@ -40,6 +40,31 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
 	rel="stylesheet" />
+<style type="text/css">
+/* main : 페이징 */
+main .paging {
+  padding-left: 0px;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+}
+
+main .paging li {
+  padding: 3px 8px;
+  border: 1px solid var(--border-color);
+  font-family: "Sunflower";
+}
+
+main .paging li a {
+  font-family: "Sunflower";
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+main .paging li:hover {
+  background-color: var(--linen-color);
+}
+</style>
 </head>
 <body>
 	<!-- uppermost -->

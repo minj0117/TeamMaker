@@ -14,5 +14,11 @@
 		values( applylist_seq.nextval,#{tno},#{applyid} )
 	</insert>
 	
-	
+	<select id="mypageapplylist" parameterType="String" resultType="com.kh.prj.apply.vo.MyApplyVO">
+		<![CDATA[
+		select rownum, a.ano, a.tno, a.applyid, a.title
+		from (select t1.ano, t1.tno, t1.applyid, t2.title from applylist t1, teamlist t2 where t1.tno = t2.tno order by ano desc) A 
+		where applyid=#{id} and  rownum < 3
+		]]>
+	</select>
 </mapper>

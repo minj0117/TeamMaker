@@ -78,7 +78,7 @@
                 <ul>
                   <li><a href="#">1:1 문의 내역</a></li>
                   <li><a href="#">나의 신청 내역</a></li>
-                  <li><a href="#">팀 게시판</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
               <ul>
@@ -102,20 +102,12 @@
                 </div>
                 <div class="section1_con">
                   <!-- con1 -->
-                  <div class="rtitle">
-                    <a href="#"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Vel suscipit aspernatur veniam officiis perferendis earum
-                      iure tempore totam dolore praesentium.</a
-                    >
-                  </div>
-                  <div class="rdate">2020.08.09</div>
-                  <!-- con2 -->
-                  <div class="rtitle"><a href="#">제목</a></div>
-                  <div class="rdate">2020.08.09</div>
-                  <!-- con3 -->
-                  <div class="rtitle"><a href="#">제목</a></div>
-                  <div class="rdate">2020.08.09</div>
+                  
+                  <c:forEach var="row" items="${rlist }">
+                  <div class="rtitle"><a href="#">${row.rtitle }</a></div>
+                  <div class="rdate">${row.rcdate }</div>
+                  </c:forEach>
+                  
                 </div>
               </div>
               <!-- section2 -->
@@ -126,20 +118,11 @@
                 </div>
                 <div class="section2_con">
                   <!-- con1 -->
+                  <c:forEach var="row" items="${alist }">
                   <div class="rtitle">
-                    <a href="#"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Vel suscipit aspernatur veniam officiis perferendis earum
-                      iure tempore totam dolore praesentium.</a
-                    >
+                    <a href="#">${row.title }</a>
                   </div>
-                  <div class="rdate">2020.08.09</div>
-                  <!-- con2 -->
-                  <div class="rtitle"><a href="#">제목</a></div>
-                  <div class="rdate">2020.08.09</div>
-                  <!-- con3 -->
-                  <div class="rtitle"><a href="#">제목</a></div>
-                  <div class="rdate">2020.08.09</div>
+                  </c:forEach>
                 </div>
               </div>
               <!-- section3 -->

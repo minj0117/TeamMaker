@@ -60,4 +60,14 @@ public class RecruitSVCImpl implements RecruitSVC {
 	public int totalCnt() {
 		return recruitDAO.totalCnt();
 	}
+	
+	@Override
+	public List<RecruitVO> rank() {
+		return recruitDAO.rank();
+	}
+	
+	@Override
+	public List<RecruitVO> mypagerecruit(String id) {
+		return recruitDAO.mypagerecruit(id);
+	}
 }

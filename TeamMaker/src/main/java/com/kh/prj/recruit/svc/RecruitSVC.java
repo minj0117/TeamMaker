@@ -19,4 +19,8 @@ public interface RecruitSVC {
 	
 	//글 갯수
 	public int totalCnt();
+	//랭킹
+	public List<RecruitVO> rank();
+	
+	public List<RecruitVO> mypagerecruit(String id);
 }

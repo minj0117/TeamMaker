@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,16 +72,37 @@ public class TeamController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/mylist/{id}")
-	public String memberList(TeamVO teamVO, Model model) {
+	/*@GetMapping("/mylist/{id}")
+	public String memberList(TeamVO teamVO,TeammemberVO teammemberVO, Model model) {
 		String id = teamVO.getOwner();
 		List<TeamVO> list = teamSVC.myList(id);
 		model.addAttribute("list", list);
 		System.out.println("list : " + list.toString());
 		return "team/myteam";
+	}*/
+	@GetMapping("/mylist")
+	public String memberList(TeamVO teamVO,TeammemberVO teammemberVO, Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		List<TeamVO> list = teamSVC.myList(id);
+		List<TeammemberVO> slist = teamSVC.affiliationTno(id);
+		List<TeamVO> list2 = null;
+		for(int i=0; i<slist.size(); i++) {
+			int tno = slist.get(i).getTno();
+			list2 = teamSVC.sosok(tno);
+		}	
+		model.addAttribute("list2", list2); //속한팀
+		model.addAttribute("list", list); //만든팀
+		System.out.println("list : " + list.toString());
+		return "team/myteam";
 	}
 	
-	@GetMapping("/affiliation/{id}")
+	/**
+	 * 소속팀 보기
+	 * @param teammemberVO
+	 * @param model
+	 * @return
+	 */
+	/*@GetMapping("/affiliation/{id}")
 	public String myteam(TeammemberVO teammemberVO, Model model) {
 		String userid = teammemberVO.getUserid();
 		List<TeammemberVO> list = teamSVC.affiliationTno(userid);
@@ -92,7 +114,7 @@ public class TeamController {
 		model.addAttribute("list", list2);
 		return "team/sosok";
 	}
-
+	*/
 	/**
 	 * 내팀 지원자 보기
 	 */

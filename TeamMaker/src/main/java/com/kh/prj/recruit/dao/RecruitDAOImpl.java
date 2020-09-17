@@ -54,5 +54,14 @@ public class RecruitDAOImpl implements RecruitDAO {
 		return sqlSession.selectOne("mappers.RecruitDAO-mapper.getTotalCnt");
 	}
 	
+	@Override
+	public List<RecruitVO> rank() {
+		return sqlSession.selectList("mappers.RecruitDAO-mapper.rank");
+	}
+	
+	@Override
+	public List<RecruitVO> mypagerecruit(String id) {
+		return sqlSession.selectList("mappers.RecruitDAO-mapper.mypagerecruit",id);
+	}
 	
 }

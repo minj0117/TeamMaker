@@ -5,9 +5,9 @@
 	<select id="listRboard" resultType="com.kh.prj.recruit.vo.RecruitVO">
 		<!-- select * from recruit order by rno desc -->
 		<![CDATA[
-		SELECT rno,id,rtitle,rcdate,rcnt
+		SELECT rno,id,rtitle,rcdate,rcnt,tno
 			FROM	(SELECT /*+INDEX_DESC(recruit recruit_pk) */
-						rownum rn, rno, rtitle, id, rcdate, rcnt 
+						rownum rn, rno, rtitle, id, rcdate, rcnt,tno
 					from recruit where rownum <= #{pageNum} * #{amount})
 			where rn > (#{pageNum}-1) * #{amount}
 			ORDER BY rno DESC
@@ -21,8 +21,8 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="insertRboard" parameterType="com.kh.prj.recruit.vo.RecruitVO">
-		insert into recruit (rno, id, rtitle, rpw, ronoff, rcategory, rcomment, rregion, rgroup, rstep, rindent )
-		values(recruit_seq.nextval,#{id}, #{rtitle}, #{rpw}, #{ronoff}, #{rcategory}, #{rcomment}, #{rregion}, recruit_seq.currval,0,0)
+		insert into recruit (rno, id, rtitle, rpw, ronoff, rcategory, rcomment, rregion, rgroup, rstep, rindent,tno )
+		values(recruit_seq.nextval,#{id}, #{rtitle}, #{rpw}, #{ronoff}, #{rcategory}, #{rcomment}, #{rregion}, recruit_seq.currval,0,0,#{tno})
 	</insert>
 	
 	<!-- 게시글 보기 -->
@@ -37,6 +37,22 @@
 	
 	<select id="getTotalCnt" resultType="int">
 		select count(*) from recruit
+	</select>
+	
+	<!-- 순위조회 -->
+	<select id="rank" resultType="com.kh.prj.recruit.vo.RecruitVO">
+		<![CDATA[
+		select rownum, a.rno,a.id,a.rtitle,a.rcnt from ( select rno, id, rtitle,rcnt from recruit order by rcnt desc) A where rownum < 7
+		]]>
+	</select>
+	
+	<!-- 내가쓴글 마이페이지 3개 노출 -->
+	<select id="mypagerecruit" parameterType="String" resultType="com.kh.prj.recruit.vo.RecruitVO">
+		<![CDATA[
+		select rownum, a.rno,a.id,a.rtitle,a.rpw,a.rcomment,a.rcnt,a.rcdate,a.rregion, a.rappcnt,tno 
+    	from (select rno,id,rtitle,rpw,rcomment,rcnt,rcdate,rregion,rappcnt,tno from recruit order by rcdate desc) A
+    	where id=#{id} and rownum < 4
+    	]]>
 	</select>
 	
 </mapper>

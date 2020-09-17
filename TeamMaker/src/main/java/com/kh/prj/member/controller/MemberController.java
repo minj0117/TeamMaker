@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.prj.apply.svc.ApplySVC;
+import com.kh.prj.apply.vo.MyApplyVO;
 import com.kh.prj.member.svc.MemberSVC;
 import com.kh.prj.member.vo.MemberVO;
+import com.kh.prj.recruit.svc.RecruitSVC;
+import com.kh.prj.recruit.vo.RecruitVO;
 
 @Controller
 @RequestMapping("/member")
@@ -29,6 +33,8 @@ public class MemberController {
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Inject MemberSVC memberSVC;
+	@Inject RecruitSVC recruitSVC;
+	@Inject ApplySVC applySVC;
 	@Inject
 	private SqlSession sqlSession;
 	
@@ -227,7 +233,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping("mypage")
-	public String mypage() {
+	public String mypage(HttpSession session, Model model) {
+		String id = ((MemberVO) session.getAttribute("member")).getId();
+		List<RecruitVO> rlist = recruitSVC.mypagerecruit(id);
+		List<MyApplyVO> alist = applySVC.mypageapplylist(id);
+		model.addAttribute("rlist",rlist);
+		model.addAttribute("alist",alist);
 		return "member/mypage";
 	}
 }
