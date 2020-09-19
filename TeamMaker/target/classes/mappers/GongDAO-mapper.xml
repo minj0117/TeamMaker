@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.GongDAO-mapper">
+
+
+<!-- 게시글 작성 -->
+<insert id="insertGong" parameterType="com.kh.prj.gong.vo.GongVO">
+   <![CDATA[
+      insert into gong(
+         GNO,
+         WRITER,
+         CATEGORY,
+         TITLE,
+         APPLYSTART,
+         APPLYEND,
+         STARTDAY,
+         HOST,
+         WAY,
+         HOMEPAGE,
+         G_COMMENT,
+         PIC,
+         APPLYMONEY,
+         AWARD
+         )
+      values (
+         gong_seq.nextval,
+         #{writer},
+         #{category},
+         #{title},
+         #{applystart},
+         #{applyend},
+         #{startday},
+         #{host},
+         #{way},
+         #{homepage},
+         #{g_comment},
+         #{pic},
+         #{applymoney},
+         #{award}
+         )   
+   ]]>
+</insert>
+
+<select id="glist"
+            resultType="com.kh.prj.gong.vo.GongVO">
+   <![CDATA[
+      select GNO,
+                WRITER,
+                CATEGORY,
+                CDATE,
+                TITLE,
+                APPLYSTART,
+                APPLYEND,
+                STARTDAY,
+                HOST,
+               WAY,
+                HOMEPAGE,
+                G_COMMENT,
+                CNT,
+                PIC,
+                APPLYMONEY,
+                AWARD
+        from gong
+     order by cdate desc           
+   ]]>
+</select>
+
+<select id="gview"
+            resultType="com.kh.prj.gong.vo.GongVO">
+   <![CDATA[
+   select     GNO,
+                WRITER,
+                CATEGORY,
+                CDATE,
+                TITLE,
+                APPLYSTART,
+                APPLYEND,
+                STARTDAY,
+                HOST,
+               WAY,
+                HOMEPAGE,
+                G_COMMENT,
+                CNT,
+                PIC,
+                APPLYMONEY,
+                AWARD
+        from gong      
+       where gno = #{gno}      
+      ]]>
+</select>
+
+
+<update id="gongMod"
+            parameterType="com.kh.prj.gong.vo.GongVO">
+   <![CDATA[            
+   update gong
+      set CATEGORY = #{category},
+             TITLE = #{title},
+             APPLYSTART = #{applystart},
+             APPLYEND = #{applyend},
+             STARTDAY = #{startday},
+             HOST = #{host},
+             WAY = #{way},
+             HOMEPAGE = #{homepage},
+             G_COMMENT = #{g_comment},
+             PIC = #{pic},
+             APPLYMONEY = #{applymoney},
+             AWARD = #{award}
+    where gno = #{gno}          
+               
+               
+            ]]>   
+</update>
+
+
+<delete id="del" parameterType="int">
+   <![CDATA[
+      delete gong where gno = #{gno}      
+   ]]>      
+</delete>
+
+</mapper>

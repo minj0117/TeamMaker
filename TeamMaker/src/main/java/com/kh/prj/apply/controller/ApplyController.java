@@ -26,7 +26,6 @@ public class ApplyController {
 	 */
 	@GetMapping("/addapply")
 	public String addapply(ApplyVO applyVO) {
-		System.out.println("들어옴");
 		int result = applySVC.check(applyVO);
 		if(result == 0) {
 			int result2 = applySVC.addlist(applyVO);

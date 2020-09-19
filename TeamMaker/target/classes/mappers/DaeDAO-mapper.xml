@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.DaeDAO-mapper">
+	<insert id="insertDae" parameterType="com.kh.prj.dae.vo.DaeVO">
+		<![CDATA[
+			insert into dae (
+				DNO,
+				WRITER,
+				CATEGORY,
+				TITLE,
+				APPLYSTART,
+				APPLYEND,
+				STARTDAY,
+				HOST,
+				WAY,
+				APPLYMONEY,
+				AWARD,
+				HOMEPAGE,
+				D_COMMENT,
+				PIC)
+				values
+				(
+				dae_seq.nextval,
+				#{writer},
+				#{category},
+				#{title},
+				#{applystart},
+				#{applyend},
+				#{startday},
+				#{host},
+				#{way},
+				#{applymoney},
+				#{award},
+				#{homepage},
+				#{d_comment},
+				#{pic})
+		]]>
+	</insert>
+	<select id="dlist" resultType="com.kh.prj.dae.vo.DaeVO">
+		<![CDATA[
+			select dno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,d_comment,cnt,pic,applymoney,award 
+			from dae order by cdate desc
+		]]>
+	</select>
+	<select id="dview" resultType="com.kh.prj.dae.vo.DaeVO">
+		<![CDATA[
+			select dno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,d_comment,cnt,pic,applymoney,award 
+			from dae
+			where dno = #{dno}
+		]]>
+	</select>
+	
+	<update id="daeMod" parameterType="com.kh.prj.dae.vo.DaeVO">
+		<![CDATA[
+			update dae
+			set	category = #{category},
+				title = #{title},
+				applystart = #{applystart},
+				applyend = #{applyend},
+				startday = #{startday},
+				host = #{host},
+				way = #{way},
+				homepage = #{homepage},
+				d_comment = #{d_comment},
+				pic = #{pic},
+				applymoney = #{applymoney},
+				award = #{award}
+				where dno = #{dno}
+		]]>
+	</update>
+	
+	<delete id="del" parameterType="int">
+		<![CDATA[
+			delete dae where dno = #{dno}
+		]]>
+	</delete>
+</mapper>

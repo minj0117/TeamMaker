@@ -2,7 +2,7 @@ package com.kh.prj.paging;
 
 public class PagingCriteria {
 	private int pageNum=1;	//페이지 번호
-	private int amount=10;	//페이지당 데이터 갯수
+	private int amount=8;	//페이지당 데이터 갯수
 	public int getPageNum() {
 		return pageNum;
 	}

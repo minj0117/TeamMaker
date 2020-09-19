@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.FboardDAO-mapper">
+	<insert id="write" parameterType="com.kh.prj.fboard.vo.FboardVO">
+		insert into fboard
+			(fno,writer,title,f_comment,pw) 
+			values
+			(fboard_seq.nextval,#{writer},#{title},#{f_comment},#{pw})
+	</insert>
+</mapper>

@@ -18,8 +18,8 @@
        <!-- navbar -->
        <ul class="navbar_upper">
          <li><a href="${contextPath }/prj/rlist.do">팀원 모집</a></li>
-         <li><a href="#">공모전</a></li>
-         <li><a href="#">대외활동</a></li>
+         <li><a href="${contextPath }/prj/gong/glist">공모전</a></li>
+         <li><a href="${contextPath }/prj/dae/dlist">대외활동</a></li>
          <li><a href="#">커뮤니티</a></li>
        </ul>
 		<c:if test="${empty sessionScope.member}">
