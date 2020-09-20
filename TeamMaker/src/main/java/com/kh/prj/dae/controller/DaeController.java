@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.dae.svc.DaeSVC;
@@ -127,6 +128,16 @@ public class DaeController {
 	public int del(@RequestBody HashMap<String, String> info,DaeVO daeVO) {
 		int dno = Integer.parseInt(info.get("dno"));
 		return daeSVC.del(dno);
+	}
+	
+	@RequestMapping(value = "/checklist", method = RequestMethod.GET)
+	public String checklist(@RequestParam("d1") List<String> value, Model model){
+		List<DaeVO> list = daeSVC.checklist(value);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i).getTitle().toString());
+		}
+		model.addAttribute("list",list);
+		return "dae/dlist";
 	}
 	
 }

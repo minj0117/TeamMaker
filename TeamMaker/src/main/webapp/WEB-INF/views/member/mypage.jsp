@@ -84,7 +84,7 @@
               <ul>
                 <li class="astitle">나의 정보</li>
                 <ul>
-                  <li><a href="#">회원정보 수정</a></li>
+                  <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
                   <li><a href="#">회원 탈퇴</a></li>
                 </ul>
               </ul>

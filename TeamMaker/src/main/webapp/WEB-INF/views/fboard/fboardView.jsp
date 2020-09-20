@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scalnume=1.0" />
 <title>main</title>
 <!-- bootstrap -->
 <link rel="stylesheet"
@@ -23,9 +24,8 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="http://localhost:8090/prj/css/fboard/fboardForm.css" />
+	href="http://localhost:8090/prj/css/fboard/fboardView.css" />
 <!-- font awesome -->
-<!--  <script type="text/javascript" src="${contextPath }/prj/js/fboard/fboardForm.js" ></script>-->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <!-- 폰트 -->
@@ -65,34 +65,6 @@ main .paging li:hover {
   background-color: var(--linen-color);
 }
 </style>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	function fboardwriteFn(){
-		let writer = document.getElementById('writer').value;
-		let pw = document.getElementById('pw').value;
-		let title = document.getElementById('title').value;
-		let f_comment = document.getElementById('f_comment').value;
-		const Info = JSON.stringify({writer:writer,pw:pw,title:title,f_comment:f_comment});
-		$.ajax({
-			data : Info,
-			url : "${contextPath}/prj/fboard/write",
-			type : "post",
-			dataType : "text",
-			contentType : "application/json; charset=UTF-8",
-			success : function(data){
-				if(data == 1){
-					alert("등록성공");
-					window.location="${contextPath}/prj/fboard/fboardList"
-				}else{
-					alert("등록실패");
-				}
-			},
-			error : function(data){
-				alert("에러발생")
-			}
-		})
-	}
-</script>
 </head>
 <body>
 	<!-- uppermost -->
@@ -101,42 +73,54 @@ main .paging li:hover {
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
+	<!-- main -->
 	  <!-- main -->
     <main>
       <div class="container">
-        <div class="content">
-          <div action="#" id="writeForm">
-            <legend>자유 게시판 글쓰기</legend>
-            <ul>
-              <li>
-                <ul class="catePart">
-                  <li class="writePWC">
-                    <label for="writePW">비밀번호 설정</label>
-                    <input type="password" id="pw" name="pw" />
-                  </li>
-                </ul>
-              </li>
-              <li>
-              	<input type="hidden" id="writer" name="writer" value="${sessionScope.member.id}" readonly="readonly"/>
-                <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요." />
-              </li>
-              <li>
-                <textarea
-                  name="f_comment"
-                  id="f_comment"
-                  placeholder="내용을 입력해 주세요."
-                ></textarea>
-              </li>
-              <li class="btnGrp">
-                <button class="writeBtn" onClick="fboardwriteFn()" >등록</button>
-                <button class="cancelBtn">취소</button>
-              </li>
-            </ul>
+        <form action="" id="commPostView">
+          <!-- 글 내용 -->
+          <div class="commContentBox">
+            <!-- article header 부분 -->
+            <div class="comm_header">
+              <div class="commTitle">
+                <div class="title" id="title">${vo.title }</div>
+                <div class="writerInfo">
+                  <div class="image">
+                    <img src="../img/defaultImg.jpg" alt="" />
+                  </div>
+                  <div class="profile_area">
+                    <div class="profile_info">
+                      <div class="rid" id="writer">${vo.writer }</div>
+                    </div>
+                    <div class="comm_info">
+                      <span class="rdate" id="cdate">${vo.cdate }</span>
+                      <span>조회수</span>
+                      <span class="rcnt">${vo.cnt }</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- article content 부분 -->
+            <div class="comm_content">
+              <div class="comm_content1">
+              	${vo.f_comment }
+              </div>
+            </div>
+            <!-- 신고 버튼 부분 -->
+            <div class="comm_content2">
+              <a href="./reportForm.html" class="report" id="report">신고</a>
+            </div>
+          <!-- comm_btns 부분 -->
+          <div class="comm_btns">
+            <button class="modifyBtn">수정</button>
+            <button class="deleteBtn">삭제</button>
+            <button class="replyBtn">답글</button>
+            <button class="listBtn">목록</button>
           </div>
-        </div>
+        </form>
       </div>
     </main>
-
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>

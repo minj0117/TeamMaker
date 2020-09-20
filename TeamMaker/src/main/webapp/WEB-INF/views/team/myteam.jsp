@@ -108,7 +108,17 @@
 	                <div class="belongTeam1_title"><span>팀 이름</span></div>
                     <ul>
                     	<c:forEach var="row" items="${list }">
-                    		<li>${row.title }</li>
+                    		<li><a href="${contextPath }/prj/tboard/tboardlist/${row.tno}">${row.title }</a></li>
+                    		 <div class="makeTeam1_list3">
+                    <div></div>
+                    <ul>
+                      <li>
+                        <a href=""
+                          >관리<i class="fas fa-chevron-circle-right"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
                     	</c:forEach>
                     </ul>
                   </div>
@@ -122,16 +132,12 @@
                 <div class="belongTeam1_title"><span>팀 이름</span></div>
                 <div class="belongTeam1_list">
                   <div class="belongTeam1_list1">
+                  <div class="belongTeam1_title"><span>팀 이름</span></div>
                     <ul>
                       <c:forEach var="row" items="${list2 }">
                     	<li>${row.title }</li>
                       </c:forEach>
                     </ul>
-                  </div>
-                  <div class="belongTeam1_list2">
-                    <a href="">
-                      팀 게시판<i class="fas fa-chevron-circle-right"></i>
-                    </a>
                   </div>
                 </div>
               </div>

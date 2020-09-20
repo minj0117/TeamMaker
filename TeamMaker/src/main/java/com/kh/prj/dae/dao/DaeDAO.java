@@ -10,4 +10,5 @@ public interface DaeDAO {
 	public DaeVO dview(int dno);
 	public int DaeMod(DaeVO daeVO);
 	public int del(int dno);
+	public List<DaeVO> checklist(List<String> value);
 }

@@ -66,7 +66,20 @@ main .paging li:hover {
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
+function checkbox(){
+	  console.log("들어옴");
+	  var checkedValue = [];
+	  $("input[name='d1']:checked").each(function(index, item){
+			checkedValue.push($(item).val());
+	  });
+	  /*$.get("${contextPath}/prj/dae/checklist",
+	            {val:checkedValue},
+	             function(data){},
+	             "json"
+	   )*/
+	  location.href="${contextPath}/prj/dae/checklist?value=checkedValue";
+	
+}
 </script>
 </head>
 <body>
@@ -78,64 +91,66 @@ main .paging li:hover {
 
 	<!-- main -->
 	<main>
+        <form action="${contextPath }/prj/dae/checklist" method="get">
 		<div class="container">
         <div id="main_title">대외활동</div>
         <div class="menu">
           <ul class="dae_menu">
             <li>
-              <input type="checkbox" name="d1" id="d1" />
+              <input type="checkbox" name="d1" id="d1" value="인턴십" />
               <label for="d1">인턴십</label>
             </li>
             <li>
-              <input type="checkbox" name="d2" id="d2" />
+              <input type="checkbox" name="d1" id="d2" value="교육/멘토링"/>
               <label for="d2">교육/멘토링</label>
             </li>
             <li>
-              <input type="checkbox" name="d3" id="d3" />
+              <input type="checkbox" name="d1" id="d3" value="서포터즈"/>
               <label for="d3">서포터즈</label>
             </li>
             <li>
-              <input type="checkbox" name="d4" id="d4" />
+              <input type="checkbox" name="d1" id="d4" value="해외탐방"/>
               <label for="d4">해외탐방</label>
             </li>
             <li>
-              <input type="checkbox" name="d5" id="d5" />
+              <input type="checkbox" name="d1" id="d5" value="국내봉사"/>
               <label for="d5">국내봉사</label>
             </li>
             <li>
-              <input type="checkbox" name="d6" id="d6" />
+              <input type="checkbox" name="d1" id="d6" value="해외봉사"/>
               <label for="d6">해외봉사</label>
             </li>
             <li>
-              <input type="checkbox" name="d7" id="d1" />
+              <input type="checkbox" name="d1" id="d7" value="강연"/>
               <label for="d1">강연</label>
             </li>
             <li>
-              <input type="checkbox" name="d8" id="d8" />
+              <input type="checkbox" name="d1" id="d8" value="마케터"/>
               <label for="d8">마케터</label>
             </li>
             <li>
-              <input type="checkbox" name="d9" id="d9" />
+              <input type="checkbox" name="d1" id="d9" value="홍보대사"/>
               <label for="d9">홍보대사</label>
             </li>
             <li>
-              <input type="checkbox" name="d10" id="d10" />
+              <input type="checkbox" name="d1" id="d10" value="기자단"/>
               <label for="d10">기자단</label>
             </li>
             <li>
-              <input type="checkbox" name="d11" id="d11" />
+              <input type="checkbox" name="d1" id="d11" value="기타"/>
               <label for="d11">기타</label>
             </li>
           </ul>
           <ul class="menuBtn">
             <li>
-              <button class="findBtn"><i class="fas fa-search"></i>검색</button>
+              <button class="findBtn" onClick="checkbox()"><i class="fas fa-search"></i>검색</button>
               <button class="resetBtn">
                 <i class="fas fa-redo"></i>초기화
               </button>
             </li>
           </ul>
         </div>
+          </form>
 
         <!-- main : 내용 부분 -->
         <div class="content">

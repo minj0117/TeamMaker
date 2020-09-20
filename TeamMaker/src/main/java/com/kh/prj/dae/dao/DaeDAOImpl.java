@@ -38,4 +38,9 @@ public class DaeDAOImpl implements DaeDAO {
 	public int del(int dno) {
 		return sqlSession.delete("mappers.DaeDAO-mapper.del",dno);
 	}
+	
+	@Override
+	public List<DaeVO> checklist(List<String> value) {
+		return sqlSession.selectList("mappers.DaeDAO-mapper.checklist",value);
+	}
 }

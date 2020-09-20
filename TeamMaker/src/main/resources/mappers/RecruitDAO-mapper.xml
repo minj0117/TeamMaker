@@ -5,9 +5,9 @@
 	<select id="listRboard" resultType="com.kh.prj.recruit.vo.RecruitVO">
 		<!-- select * from recruit order by rno desc -->
 		<![CDATA[
-		SELECT rno,id,rtitle,rcdate,rcnt,tno
+		SELECT rno,id,rtitle,rcdate,rcnt,tno,rcategory
 			FROM	(SELECT /*+INDEX_DESC(recruit recruit_pk) */
-						rownum rn, rno, rtitle, id, rcdate, rcnt,tno
+						rownum rn, rno, rtitle, id, rcdate, rcnt,tno,rcategory
 					from recruit where rownum <= #{pageNum} * #{amount})
 			where rn > (#{pageNum}-1) * #{amount}
 			ORDER BY rno DESC

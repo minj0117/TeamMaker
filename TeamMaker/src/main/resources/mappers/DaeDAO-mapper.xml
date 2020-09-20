@@ -74,4 +74,12 @@
 			delete dae where dno = #{dno}
 		]]>
 	</delete>
+	
+	<select id="checklist" resultType="com.kh.prj.dae.vo.DaeVO">
+			select * from dae 
+			where category in
+			<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+				#{item}
+			</foreach>
+	</select>
 </mapper>

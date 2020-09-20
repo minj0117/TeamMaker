@@ -36,4 +36,9 @@ public class DaeSVCImpl implements DaeSVC {
 	public int del(int dno) {
 		return daeDAO.del(dno);
 	}
+	
+	@Override
+	public List<DaeVO> checklist(List<String> value) {
+		return daeDAO.checklist(value);
+	}
 }

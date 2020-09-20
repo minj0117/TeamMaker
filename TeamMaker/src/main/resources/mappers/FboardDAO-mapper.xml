@@ -2,9 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.FboardDAO-mapper">
 	<insert id="write" parameterType="com.kh.prj.fboard.vo.FboardVO">
+		<![CDATA[
 		insert into fboard
 			(fno,writer,title,f_comment,pw) 
 			values
 			(fboard_seq.nextval,#{writer},#{title},#{f_comment},#{pw})
+		]]>
 	</insert>
+	
+	<select id="fboardList" resultType="com.kh.prj.fboard.vo.FboardVO">
+	<![CDATA[
+		SELECT fno,writer,title,f_comment,cdate,cnt,pw,parent
+			FROM	(SELECT /*+INDEX_DESC(fboard fboard_pk) */
+						rownum rn, fno,writer,title,f_comment,cdate,cnt,pw,parent
+					from fboard where rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum}-1) * #{amount} and parent = 0
+			ORDER BY fno DESC
+	]]>
+	</select>
+	
+	<select id="getTotalCnt" resultType="int">
+		select count(*) from fboard
+	</select>
+	
+	
+	<select id="view" resultType="com.kh.prj.fboard.vo.FboardVO">
+	<![CDATA[
+		select fno,writer,title,f_comment,cdate,cnt,pw,parent from fboard where fno = #{fno}
+	]]>	
+	</select>
+	
 </mapper>
