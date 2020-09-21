@@ -84,4 +84,7 @@ public interface MemberDAO {
 	public String checkBlackList(String id);
 	
 	public int delMember(String id);
+	
+	public MemberVO memberCheck(MemberVO memberVO);
+	public int changePw(MemberVO memberVO);
 }

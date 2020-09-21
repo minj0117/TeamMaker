@@ -37,4 +37,9 @@ public class FboardSVCImpl implements FboardSVC {
 	public FboardVO view(int fno) {
 		return fboardDAO.view(fno);
 	}
+	
+	@Override
+	public List<FboardVO> viewReply(int fgroup) {
+		return fboardDAO.viewReply(fgroup);
+	}
 }

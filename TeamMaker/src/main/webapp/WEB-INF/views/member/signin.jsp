@@ -43,6 +43,33 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
 	rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	function fn_loginFn(){
+		let id = document.getElementById('id').value;
+		let pw = document.getElementById('pw').value;
+		const memberInfo = JSON.stringify({id:id,pw:pw});
+		$.ajax({
+			data : memberInfo,
+			url : "http://localhost:8090/prj/login",
+			type : "post",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					alert("로그인 되었습니다.");
+					location.href="http://localhost:8090/prj";
+				}else{
+					alert("회원정보를 다시 확인해주세요.");
+				}
+			},
+			error : function(data){
+				alert("실패");
+			}
+		})
+	}
+</script>
 </head>
 <body>
 	<!-- uppermost -->
@@ -72,7 +99,7 @@
 						<span class="errmsg" id="errmsg_pw"></span>
 					</div>
 					<div class="item">
-						<button id="loginBtn">로그인</button>
+						<input type="button" onClick="fn_loginFn()" id="loginBtn" value="로그인"></button>
 					</div>
 					<div class="item check">
 						<input type="checkbox" name="login_chk" id="login_chk" /> <label

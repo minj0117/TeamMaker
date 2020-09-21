@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.team.vo.TeammemberVO;
 import com.kh.prj.teamboard.svc.TeamboardSVC;
 import com.kh.prj.teamboard.vo.TeamboardReplyVO;
@@ -39,7 +40,7 @@ public class TeamboardController {
 	 * @return
 	 */
 	@GetMapping("/tboardlist/{tno}")
-	public String tboardList(HttpSession session, TeammemberVO teammemberVO, Model model) {
+	public String tboardList(HttpSession session, TeammemberVO teammemberVO,PagingCriteria cri, Model model) {
 		TeamboardVO teamboardVO = null;
 		String id = (String) session.getAttribute("id");
 		int tno = teammemberVO.getTno();

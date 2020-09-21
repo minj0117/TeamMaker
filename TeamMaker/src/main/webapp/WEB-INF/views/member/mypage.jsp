@@ -104,7 +104,7 @@
                   <!-- con1 -->
                   
                   <c:forEach var="row" items="${rlist }">
-                  <div class="rtitle"><a href="#">${row.rtitle }</a></div>
+                  <div class="rtitle"><a href="${contextPath }/prj/rview/${row.rno}">${row.rtitle }</a></div>
                   <div class="rdate">${row.rcdate }</div>
                   </c:forEach>
                   

@@ -11,4 +11,5 @@ public interface FboardDAO {
 	public int totalCnt();
 	public List<FboardVO> fboardList(PagingCriteria paging);
 	public FboardVO view(int fno);
+	public List<FboardVO> viewReply(int fgroup);
 }

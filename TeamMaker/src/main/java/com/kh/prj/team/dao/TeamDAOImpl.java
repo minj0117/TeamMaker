@@ -34,11 +34,13 @@ public class TeamDAOImpl implements TeamDAO {
 	
 	@Override
 	public List<TeamVO> myList(String id) {
+		System.out.println("mylist id : " + id );
 		return sqlSession.selectList("mappers.TeamDAO-mapper.mylist",id);
 	}
 	
 	@Override
 	public List<TeammemberVO> affiliationTno(String id) {
+		System.out.println("affiliation id : " + id );
 		return sqlSession.selectList("mappers.TeamDAO-mapper.affiliationTno",id);
 	}
 	

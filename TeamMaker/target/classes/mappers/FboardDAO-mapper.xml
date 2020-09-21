@@ -4,17 +4,26 @@
 	<insert id="write" parameterType="com.kh.prj.fboard.vo.FboardVO">
 		<![CDATA[
 		insert into fboard
-			(fno,writer,title,f_comment,pw) 
+			(fno,writer,title,f_comment,pw,fgroup) 
 			values
-			(fboard_seq.nextval,#{writer},#{title},#{f_comment},#{pw})
+			(fboard_seq.nextval,#{writer},#{title},#{f_comment},#{pw},fboard_group_seq.nextval)
+		]]>
+	</insert>
+	
+	<insert id="writeReply" parameterType="com.kh.prj.fboard.vo.FboardVO">
+		<![CDATA[
+		insert into fboard 
+			(fno,writer,title,f_comment,pw,parent,fgroup) 
+			values
+			(fboard_seq.nextval,'sktior','답변','답변테스트','123123',#{fno},#{fgroup})
 		]]>
 	</insert>
 	
 	<select id="fboardList" resultType="com.kh.prj.fboard.vo.FboardVO">
 	<![CDATA[
-		SELECT fno,writer,title,f_comment,cdate,cnt,pw,parent
+		SELECT fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup
 			FROM	(SELECT /*+INDEX_DESC(fboard fboard_pk) */
-						rownum rn, fno,writer,title,f_comment,cdate,cnt,pw,parent
+						rownum rn, fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup
 					from fboard where rownum <= #{pageNum} * #{amount})
 			where rn > (#{pageNum}-1) * #{amount} and parent = 0
 			ORDER BY fno DESC
@@ -28,8 +37,23 @@
 	
 	<select id="view" resultType="com.kh.prj.fboard.vo.FboardVO">
 	<![CDATA[
-		select fno,writer,title,f_comment,cdate,cnt,pw,parent from fboard where fno = #{fno}
+		select fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup from fboard where fno = #{fno}
 	]]>	
+	</select>
+	
+	<select id="viewReply" resultType="com.kh.prj.fboard.vo.FboardVO">
+	<![CDATA[
+		select LEVEL, 
+    		fno,parent,fgroup,writer,pw,
+    		LPAD(' ', 4*(LEVEL-1)) || title title,
+    		f_comment,
+    		cdate
+    		from fboard
+    		where fgroup = #{fgroup} and parent > 0
+    		START WITH parent=0
+    		CONNECT BY PRIOR fno=parent
+    		ORDER SIBLINGS BY fno desc
+	]]>
 	</select>
 	
 </mapper>

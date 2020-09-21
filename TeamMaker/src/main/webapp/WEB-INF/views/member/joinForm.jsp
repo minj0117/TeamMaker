@@ -109,49 +109,46 @@
   border: 1px solid #eee;
  }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	window.addEventListener("load",init);
-	function init(){
-		let joinBtn = document.getElementById('joinBtn');
-		joinBtn.addEventListener("click", joinFn);
-	}
 	function joinFn(e){
 		e.preventDefault();
 		console.log(e.target);
-		let joinForm = document.getElementById('joinForm');
-		let id = document.getElementById('id');
+		//let joinForm = document.getElementById('joinForm');
+		let id = document.getElementById('id').value;
 		//let idcheck = $('#message').val();
-		let pw = document.getElementById('pw');
-		let pwcheck = document.getElementById('pwcheck');
-		let name = document.getElementById('name');
-		let birth = document.getElementById('birth');
-		let gender = document.querySelectorAll("input[name='gender']");
-		let phone = document.getElementById('phone');
-		let email = document.getElementById('email');
-		if(id.value.trim().length == 0){
+		let pw = document.getElementById('pw').value;
+		let pwcheck = document.getElementById('pwcheck').value;
+		let name = document.getElementById('name').value;
+		let birth = document.getElementById('birth').value;
+		let genders = document.querySelectorAll("input[name='gender']");
+		let gender = document.querySelector("input[name='gender']:checked").value;
+		let phone = document.getElementById('phone').value;
+		let email = document.getElementById('email').value;
+		if(id.length == 0){
 			alert('아이디를 입력하세요');
 			return;
 		}if($('#message').val() != '사용할 수 있는 ID입니다.'){
 			console.log($('#message').val());
 			alert('아이디 중복체크를 확인해주세요');
 			return;
-		}if(pw.value.trim().length == 0){
+		}if(pw.length == 0){
 			alert('패스워드를 입력하세요');
 			return;
-		}if(pwcheck.value.trim().length == 0){
+		}if(pwcheck.length == 0){
 			alert('패스워드를 입력하세요');
 			return;
-		}if(pw.value.trim() != pwcheck.value.trim()){
+		}if(pw.trim() != pwcheck.trim()){
 			alert("비밀번호가 일치하지 않습니다.");
 			return;
-		}if(name.value.trim().length == 0){
+		}if(name.length == 0){
 			alert('이름을 입력하세요');
 			return;
-		}if(birth.value.trim().length == 0){
+		}if(birth..length == 0){
 			alert('생일을 입력하세요');
 			return;
 		}
-		let genderlist = Array.from(gender);
+		let genderlist = Array.from(genders);
 		if(genderlist[0].checked != true && genderlist[1].checked != true){
 			alert('성별을 입력하세요');
 			genderlist[0].select();
@@ -163,12 +160,35 @@
 			alert('메일 입력하세요');
 			return;
 		}
-		joinForm.method="post";
-		joinForm.submit();
-	}
-
+				const memberInfo = JSON.stringify({id:id,pw:pw,name:name,birth:birth,gender:gender,phone:phone,email:email});
+				$.ajax({
+					data : memberInfo,
+					url : "${contextPath}/prj/member/join",
+					type : "post",
+					dataType : "text",
+					contentType : "application/json; charset=UTF-8",
+					/*success : function(data){
+						console.log(data);
+						if(data == 1){
+							alert("회원가입을 축하드립니다");
+							location.href="${contextPath}/prj/homne";
+						}else{
+							alert("에러");
+						}
+					},
+					error : function(data){
+						alert("실패");
+					}*/
+					success : function(data){
+							alert("회원가입을 축하드립니다");
+							location.href="${contextPath}/prj/homne";
+					},
+					error : function(data){
+						alert("실패");
+					}
+				})
+			}
 </script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function fn_idchk(){
 		var idCheck = 0;
@@ -266,7 +286,7 @@
 
     <!-- main -->
     <main>
-      <form method="post" action="/prj/member/join" id="joinForm" name="joinForm">
+      <form method="post" action="#" id="joinForm" name="joinForm">
   <fieldset>
    <span class="notice">*필수작성</span>
    <p class="firstP">
@@ -309,7 +329,7 @@
      <textarea rows="15" cols="10" id="free" name="free"></textarea>
    </p>
     <p class="submitP">
-     <input id="joinBtn" type="submit" value="가입하기" />
+     <input type="button" id="joinBtn" onClick="joinFn()" value="가입하기 "/>
      <input type="reset" value="리셋" />
     </p>
   </fieldset>

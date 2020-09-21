@@ -149,4 +149,15 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = sqlSession.delete("mappers.MemberDAO-mapper.delMember", id);
 		return result;
 	}
+	
+	@Override
+	public MemberVO memberCheck(MemberVO memberVO) {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.memberCheck",memberVO);
+	}
+	
+	@Override
+	public int changePw(MemberVO memberVO) {
+		System.out.println("dao pw : " + memberVO.getPw());
+		return sqlSession.update("mappers.MemberDAO-mapper.changePw",memberVO);
+	}
 }

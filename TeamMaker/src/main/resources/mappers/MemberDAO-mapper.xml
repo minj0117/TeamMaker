@@ -31,6 +31,12 @@
     	   and pw = #{pw}
 	</update>
 	
+	<select id="memberCheck" parameterType="com.kh.prj.member.vo.MemberVO" resultType="com.kh.prj.member.vo.MemberVO">
+		select *
+		from member 
+		where id = #{id}
+	</select>
+	
 	<!-- 아이디 체크 -->
 	<select id="idCheck" parameterType="String" resultType="int">
 		select count(id)
@@ -47,7 +53,7 @@
 	
 	<!-- 비밀번호 찾기 -->
 	<select id="findPw" parameterType="com.kh.prj.member.vo.MemberVO" resultType="String">
-		select pw 
+		select * 
 		from member 
 		where id = #{id} and email = #{email}
 	</select>
@@ -57,6 +63,10 @@
 		update member 
 		set dancntnumber = dancntnumber + 1 
 		where id = #{id}
+	</update>
+	<!-- 비번 변경 -->
+	<update id="changePw" parameterType="com.kh.prj.member.vo.MemberVO">
+		update member set pw = #{pw} where id = #{id} and email = #{email}
 	</update>
 	
 	<!-- 신고횠수 가져오기 -->

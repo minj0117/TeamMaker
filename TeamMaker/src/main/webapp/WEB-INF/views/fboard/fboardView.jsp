@@ -119,6 +119,13 @@ main .paging li:hover {
             <button class="listBtn">목록</button>
           </div>
         </form>
+        <div>
+        	<c:forEach var="row" items="${list }">
+        		<div><p>${row.title } | ${row.writer }</p></div>
+        	</c:forEach>
+        </div>
+        <textarea rows="5" cols="50" id="f_comment" name="f_comment"></textarea>
+        <input type="button" value="등록">
       </div>
     </main>
 	<!-- footer -->

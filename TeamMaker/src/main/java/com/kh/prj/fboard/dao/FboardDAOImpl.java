@@ -35,5 +35,10 @@ public class FboardDAOImpl implements FboardDAO {
 		return sqlSession.selectOne("mappers.FboardDAO-mapper.view", fno);
 	}
 	
+	@Override
+	public List<FboardVO> viewReply(int fgroup) {
+		System.out.println("fgroup : " + fgroup);
+		return sqlSession.selectList("mappers.FboardDAO-mapper.viewReply",fgroup);
+	}
 	
 }

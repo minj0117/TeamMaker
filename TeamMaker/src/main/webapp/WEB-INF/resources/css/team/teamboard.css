@@ -214,7 +214,8 @@ main aside ul li {
 }
 
 /* section */
-main .container .content section .atitle {
+main section .atitle,
+main section .hiddenTitle {
   display: none;
 }
 
@@ -228,130 +229,107 @@ main section .stitle span {
   color: var(--white-color);
 }
 
-/* 내가 땡땡 팀 공통 */
-main section .makeTeam,
-main section .belongTeam {
-  margin: 40px;
-  border: 1px solid var(--border-color);
+/* section - 문서 부분, 게시판 부분 */
+main section .filePart {
+  border-bottom: 1px solid var(--text-color);
   padding: 40px;
 }
 
-main section .makeTeam {
-  margin-bottom: 80px;
+main section .boardPart {
+  padding: 60px 40px;
 }
 
-main section .makeTeam1,
-main section .belongTeam1 {
-  margin: 50px 10px 0px;
-  border: 1px solid var(--border-color);
+main section .filePart_up,
+main section .boardPart_up {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
-main section .makeTeam .makeTeamTitle,
-main section .belongTeam .belongTeamTitle {
-  font-weight: bold;
-  font-size: 1.2em;
+main section .filePart_up i,
+main section .boardPart_up i {
+  font-size: 20px;
+  padding-right: 7px;
 }
 
-main section .makeTeam1 .makeTeam1_title,
-main section .belongTeam1 .belongTeam1_title {
-  margin: 20px;
-  font-size: 1.1em;
+main section .filePart_up button,
+main section .boardPart_up button {
+  background-color: var(--white-color);
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  padding: 4px 10px;
 }
 
-main section .makeTeam1 .makeTeam1_title span,
-main section .belongTeam1 .belongTeam1_title span {
-  background-color: var(--background-color);
-  padding: 8px 15px;
-  border-radius: 50px;
-}
-
-/* 내가 만든 팀 */
-main section .makeTeam1 .makeTeam1_list {
+main section .filePart_down {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 18% 15%;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+main section .boardPart_down {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+main section .boardPart_down .boardPartTitle {
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0;
+}
+
+main section .boardPart_down .boardPartTitle,
+main section .boardPart_down .boardPartContent {
+  display: grid;
+  grid-template-columns: 1fr 18% 15%;
   text-align: center;
 }
 
-main section .makeTeam1 .makeTeam1_list1 {
-  border-right: 1px solid var(--border-color);
+main section .filePart_down div,
+main section .boardPart_down .boardPartContent div {
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0;
 }
 
-main section .makeTeam1 .makeTeam1_list1 ul {
-  padding-bottom: 0px;
-  margin-bottom: 0;
+main section .filePart_down .file,
+main section .boardPart_down .boardPartContent .rtitle {
+  text-align: left;
+  padding: 12px;
+  word-break: break-all;
 }
 
-main section .makeTeam1_list1 li {
-  padding: 8px 0;
+main section .filePart_down div:nth-last-child(1),
+main section .filePart_down div:nth-last-child(2),
+main section .filePart_down div:nth-last-child(3),
+main section .boardPart_down .boardPartContent div:nth-last-child(1),
+main section .boardPart_down .boardPartContent div:nth-last-child(2),
+main section .boardPart_down .boardPartContent div:nth-last-child(3) {
+  border-bottom: none;
 }
 
-main section .makeTeam1 .makeTeam1_list i {
-  padding-left: 5px;
+/* main : 페이징 */
+main .paging {
+  padding-left: 0px;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  margin-top: 50px;
 }
 
-main section .makeTeam1 .makeTeam1_list {
-  margin: 40px 20px 20px;
-}
-
-main section .makeTeam1 .makeTeam1_list1 div {
-  padding-bottom: 20px;
-}
-
-main section .makeTeam1 .makeTeam1_list1 div span {
+main .paging li {
+  padding: 5px;
   border: 1px solid var(--border-color);
-  border-radius: 5px;
-  padding: 8px 15px;
+  font-family: "Sunflower";
 }
 
-main section .makeTeam1 .makeTeam1_list2 ul {
-  padding-bottom: 0;
-  margin-bottom: 0;
+main .paging li a {
+  font-family: "Sunflower";
+  text-decoration: none;
+  color: var(--text-color);
 }
 
-main section .makeTeam1 .makeTeam1_list2 li {
-  padding: 8px 0px;
-}
-
-/* 내가 속한 팀 */
-main section .belongTeam1 .belongTeam1_list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  text-align: center;
-}
-
-main section .belongTeam1 .belongTeam1_list1 {
-  border-right: 1px solid var(--border-color);
-}
-
-main section .belongTeam1_list1 li {
-  padding: 8px 0;
-}
-
-main section .belongTeam1 .belongTeam1_list i {
-  padding-left: 5px;
-}
-
-main section .belongTeam1 .belongTeam1_list {
-  margin: 40px 20px;
-}
-
-main section .belongTeam1 .belongTeam1_list1 div {
-  padding-bottom: 20px;
-}
-
-main section .belongTeam1 .belongTeam1_list1 div span {
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  padding: 8px 15px;
-}
-
-main section .belongTeam1 .belongTeam1_list ul {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-main section .belongTeam1 .belongTeam1_list2 li {
-  padding: 8px 0px;
+main .paging li:hover {
+  background-color: var(--linen-color);
 }
 
 /* footer */
@@ -481,11 +459,14 @@ footer .container {
   main .container .content aside {
     display: none;
   }
-
   main .container .content section {
     width: 97%;
     float: none;
     margin: auto;
+  }
+
+  main .container .content section form {
+    display: none;
   }
 
   /* section */
@@ -499,20 +480,10 @@ footer .container {
     font-size: 18px;
   }
 
-  /* 내가 땡땡 팀 공통 */
-  main section .makeTeam,
-  main section .belongTeam {
-    margin: 20px 1px;
-    padding: 20px 10px;
-  }
-
-  main section .makeTeam {
-    margin-bottom: 60px;
-  }
-
-  main section .makeTeam1 .makeTeam1_list,
-  main section .belongTeam1 .belongTeam1_list {
-    margin: 40px 0px 20px;
+  main section .hiddenTitle {
+    display: block;
+    margin: 50px 8px;
+    font-size: 1.2em;
   }
 
   /* footer */
@@ -563,14 +534,22 @@ footer .container {
   }
 
   main {
-    width: 90%;
+    width: 92%;
     margin: 150px auto;
   }
 
-  /* 내가 땡땡 팀 공통 */
-  main section .makeTeam,
-  main section .belongTeam {
-    padding: 30px;
+  /* section - 문서 부분, 게시판 부분 */
+  main section {
+    font-size: 14px;
+  }
+
+  main section .filePart {
+    border-bottom: 1px solid var(--text-color);
+    padding: 20px 0px;
+  }
+
+  main section .boardPart {
+    padding: 60px 0px;
   }
 }
 

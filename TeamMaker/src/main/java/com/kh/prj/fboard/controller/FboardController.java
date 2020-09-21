@@ -52,9 +52,12 @@ public class FboardController {
 	}
 	
 	@GetMapping("/fboardView/{fno}")
-	public String dview(@PathVariable("fno") int fno,FboardVO vo ,Model model) {
+	public String dview(@PathVariable("fno") int fno,FboardVO vo,Model model) {
+		List<FboardVO> list = null;
 		System.out.println("dno : " + fno);
 		vo = fboardSVC.view(fno);
+		list = fboardSVC.viewReply(vo.getFgroup());
+		model.addAttribute("list",list);
 		model.addAttribute("vo",vo);
 		return "fboard/fboardView";
 		

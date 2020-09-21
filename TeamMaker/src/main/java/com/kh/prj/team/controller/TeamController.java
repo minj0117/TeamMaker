@@ -83,6 +83,7 @@ public class TeamController {
 	@GetMapping("/mylist")
 	public String memberList(TeamVO teamVO,TeammemberVO teammemberVO, Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
+		System.out.println("controller id : " + id);
 		List<TeamVO> list = teamSVC.myList(id);
 		List<TeammemberVO> slist = teamSVC.affiliationTno(id);
 		List<TeamVO> list2 = null;

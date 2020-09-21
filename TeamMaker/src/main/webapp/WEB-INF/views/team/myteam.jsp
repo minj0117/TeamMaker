@@ -59,8 +59,8 @@
     <%@ include file="/WEB-INF/views/include/nav.jsp" %>
 
     <!-- main -->
-     <main>
-     <div class="container">
+    <main>
+      <div class="container">
         <div class="content">
           <!-- aside -->
           <aside>
@@ -98,30 +98,31 @@
               <i class="fas fa-chevron-right"></i>
               <span>&nbsp;</span>나의 활동
             </div>
-            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
+            <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
             <!-- 내가 만든 팀 -->
             <div class="makeTeam">
               <div class="makeTeamTitle">내가 만든 팀</div>
               <div class="makeTeam1">
+                <div class="makeTeam1_title">
+                  <span>팀 이름</span>
+                </div>
                 <div class="makeTeam1_list">
-                  <div class="makeTeam1_list2">              
-	                <div class="belongTeam1_title"><span>팀 이름</span></div>
+                  <c:forEach var="row" items="${list }">
+                  <div class="makeTeam1_list1">
                     <ul>
-                    	<c:forEach var="row" items="${list }">
-                    		<li><a href="${contextPath }/prj/tboard/tboardlist/${row.tno}">${row.title }</a></li>
-                    		 <div class="makeTeam1_list3">
-                    <div></div>
+                      <li><a href="${contextPath }/prj/tboard/tboardlist/${row.tno}">${row.title }</a></li>
+                    </ul>
+                  </div>
+                  <div class="makeTeam1_list2">
                     <ul>
                       <li>
-                        <a href=""
+                        <a href="${contextPath }/prj/mymember/${row.tno}?tno=${row.tno}"
                           >관리<i class="fas fa-chevron-circle-right"></i
                         ></a>
                       </li>
                     </ul>
                   </div>
-                    	</c:forEach>
-                    </ul>
-                  </div>
+                    </c:forEach>
                 </div>
               </div>
             </div>
@@ -132,11 +133,41 @@
                 <div class="belongTeam1_title"><span>팀 이름</span></div>
                 <div class="belongTeam1_list">
                   <div class="belongTeam1_list1">
-                  <div class="belongTeam1_title"><span>팀 이름</span></div>
                     <ul>
-                      <c:forEach var="row" items="${list2 }">
-                    	<li>${row.title }</li>
-                      </c:forEach>
+                      <li>djblk123</li>
+                      <li>djblk123</li>
+                      <li>djblk123</li>
+                      <li>djblk123</li>
+                      <li>djblk123</li>
+                    </ul>
+                  </div>
+                  <div class="belongTeam1_list2">
+                    <ul>
+                      <li>
+                        <a href=""
+                          >관리<i class="fas fa-chevron-circle-right"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href=""
+                          >관리<i class="fas fa-chevron-circle-right"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href=""
+                          >관리<i class="fas fa-chevron-circle-right"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href=""
+                          >관리<i class="fas fa-chevron-circle-right"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href=""
+                          >관리<i class="fas fa-chevron-circle-right"></i
+                        ></a>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -146,8 +177,7 @@
         </div>
       </div>
       <div class="clearfix"></div>
-     
-     </main>
+    </main>
     
 
     <!-- footer -->

@@ -135,4 +135,14 @@ public class MemberSVCImpl implements MemberSVC {
 		int result = memberDAO.delMember(id);
 		return result;
 	}
+	
+	@Override
+	public MemberVO memberCheck(MemberVO memberVO) {
+		return memberDAO.memberCheck(memberVO);
+	}
+	
+	@Override
+	public int changePw(MemberVO memberVO) {
+		return memberDAO.changePw(memberVO);
+	}
 }

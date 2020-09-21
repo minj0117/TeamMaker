@@ -1,5 +1,7 @@
 package com.kh.prj.member.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +29,7 @@ import com.kh.prj.member.svc.MemberSVC;
 import com.kh.prj.member.vo.MemberVO;
 import com.kh.prj.recruit.svc.RecruitSVC;
 import com.kh.prj.recruit.vo.RecruitVO;
+import com.kh.prj.tmppw.GetRandomPw;
 
 @Controller
 @RequestMapping("/member")
@@ -37,6 +41,8 @@ public class MemberController {
 	@Inject ApplySVC applySVC;
 	@Inject
 	private SqlSession sqlSession;
+	@Inject
+	BCryptPasswordEncoder pwdEncoder;
 	
 	/*===================== 회원 등록 ===========================*/
 	/**
@@ -53,6 +59,7 @@ public class MemberController {
 	 * @param model
 	 * @return
 	 */
+	/*
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model) {
 		int result = memberSVC.joinMember(memberVO);
@@ -61,8 +68,22 @@ public class MemberController {
 		}else {
 			return "err_page";
 		}
+	}*/
+	@ResponseBody
+	@RequestMapping(value = "/join", method = RequestMethod.POST, produces = "application/json")
+	public void join(@RequestParam HashMap<String, String> memberInfo, MemberVO memberVO) throws Exception {
+		memberVO.setId(memberInfo.get("id"));
+		String encrypw = memberInfo.get("pw");
+		String pw = pwdEncoder.encode(encrypw);
+		memberVO.setPw(pw);
+		memberVO.setName(memberInfo.get("name"));
+		java.sql.Date birth = java.sql.Date.valueOf(memberInfo.get("birth"));
+		memberVO.setBirth(birth);
+		memberVO.setGender(memberInfo.get("gender"));
+		memberVO.setPhone(memberInfo.get("phone"));
+		memberVO.setEmail(memberInfo.get("email"));
+		System.out.println(memberVO.toString());
 	}
-	
 
 	/*===================== 회원 조회 ===========================*/
 	/**
@@ -168,10 +189,19 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/findpw", method = RequestMethod.POST, produces = "application/json" )
 	public String findpw(@RequestBody MemberVO memberVO ) throws Exception {
+		String tmppw = null;
 		logger.info(memberVO.toString());
 		String result = memberSVC.findpw(memberVO);
-		System.out.println("컨트롤로 : " + result);
-		return result;
+		if(result != null) {
+			GetRandomPw tmp = new GetRandomPw();
+			tmppw = tmp.getRandomPassword(5);
+		}
+		String encrypw = tmppw;
+		String pw = pwdEncoder.encode(encrypw);
+		System.out.println("pw : " + pw);
+		memberVO.setPw(pw);
+		memberSVC.changePw(memberVO);
+		return tmppw;
 	}
 	
 	/**

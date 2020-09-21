@@ -11,6 +11,8 @@ public class FboardVO {
 	private int cnt;			//CNT	NUMBER	Yes	"0 "	6	추천수
 	private String pw;			//PW	VARCHAR2(40 BYTE)	No		7	비밀번호
 	private int parent;			//PARENT	NUMBER	Yes	"0 "	11	부모글
+	private int fgroup;			//FGROUP	NUMBER	Yes	0 	9	그룹
+	
 	public int getFno() {
 		return fno;
 	}
@@ -58,6 +60,12 @@ public class FboardVO {
 	}
 	public void setParent(int parent) {
 		this.parent = parent;
+	}
+	public int getFgroup() {
+		return fgroup;
+	}
+	public void setFgroup(int fgroup) {
+		this.fgroup = fgroup;
 	}
 	
 	

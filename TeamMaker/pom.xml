@@ -204,7 +204,25 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- junit 종료 -->
+		
+		<!-- spring 시큐리티 시작 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.3.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.3.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.3.4.RELEASE</version>
+		</dependency>
 
+		<!-- spring 시큐리티 끝 -->
 	</dependencies>
 	<build>
 		<plugins>
