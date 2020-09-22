@@ -87,8 +87,8 @@ public class LoginController {
 	public String logout(HttpSession session,Model model) {
 		//세션 정보 제거
 		session.invalidate();
-		List<RecruitVO> list = recruitSVC.rank();
-		model.addAttribute("rank",list);
+		//List<RecruitVO> list = recruitSVC.rank();
+		//model.addAttribute("rank",list);
 		return "home";
 	}
 	

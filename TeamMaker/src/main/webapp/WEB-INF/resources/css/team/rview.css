@@ -189,10 +189,14 @@ main .container .content section {
   float: left;
 }
 
-main .container .content aside a,
-main .container .content section a {
+main .container .content aside a {
   text-decoration: none;
   color: var(--text-color);
+}
+
+main .container .content section a {
+  text-decoration: none;
+  /* color: var(--text-color); */
 }
 
 /* aside */
@@ -229,111 +233,303 @@ main section .stitle span {
   color: var(--white-color);
 }
 
-/* section - 문서 부분, 게시판 부분 */
-main section .filePart {
-  border-bottom: 1px solid var(--text-color);
-  padding: 40px;
+/* section - 글 내용*/
+main form .formTitle {
+  margin: 25px 25px 0px;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
-main section .boardPart {
-  padding: 60px 40px;
-}
-
-main section .filePart_up,
-main section .boardPart_up {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-main section .filePart_up i,
-main section .boardPart_up i {
-  font-size: 20px;
-  padding-right: 7px;
-}
-
-main section .filePart_up button,
-main section .boardPart_up button {
-  background-color: var(--white-color);
-  border: 1px solid var(--text-color);
-  border-radius: 4px;
-  padding: 4px 10px;
-}
-
-main section .filePart_down {
-  display: grid;
-  grid-template-columns: 1fr 18% 15%;
-  text-align: center;
+main .commContentBox {
   border: 1px solid var(--border-color);
-  border-radius: 5px;
+  padding: 35px;
+  margin: 25px;
 }
-
-main section .boardPart_down {
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-main section .boardPart_down .boardPartTitle {
+/* comm_header */
+main .comm_header .commTitle {
   border-bottom: 1px solid var(--border-color);
-  padding: 12px 0;
+  padding-bottom: 20px;
 }
 
-main section .boardPart_down .boardPartTitle,
-main section .boardPart_down .boardPartContent {
+main .comm_header .commTitle .rtitle {
+  font-size: 1.3rem;
+  padding-bottom: 20px;
+}
+
+main .comm_header .commTitle .writerInfo {
+  font-size: 15px;
   display: grid;
-  grid-template-columns: 1fr 18% 15%;
-  text-align: center;
+  grid-template-columns: 50px 1fr;
 }
 
-main section .filePart_down div,
-main section .boardPart_down .boardPartContent div {
-  border-bottom: 1px solid var(--border-color);
-  padding: 12px 0;
+main .comm_header .commTitle .writerInfo .image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: bottom;
 }
 
-main section .filePart_down .file,
-main section .boardPart_down .boardPartContent .rtitle {
-  text-align: left;
-  padding: 12px;
+main .comm_header .commTitle .writerInfo .image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: bottom;
+}
+
+main .comm_header .comm_info span {
+  padding-right: 10px;
+  color: gray;
+}
+
+main .comm_header .comm_info span:nth-child(2) {
+  padding-right: 0;
+}
+
+/* comm_content 부분 */
+main .comm_content .comm_content1 {
+  padding: 30px 20px;
+  height: 100%;
+  min-height: 500px;
+  line-height: 30px;
   word-break: break-all;
 }
 
-main section .filePart_down div:nth-last-child(1),
-main section .filePart_down div:nth-last-child(2),
-main section .filePart_down div:nth-last-child(3),
-main section .boardPart_down .boardPartContent div:nth-last-child(1),
-main section .boardPart_down .boardPartContent div:nth-last-child(2),
-main section .boardPart_down .boardPartContent div:nth-last-child(3) {
-  border-bottom: none;
+main .commContentBox .comm_content2 {
+  text-align: right;
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 0 10px;
 }
 
-main section .reply {
-	display:flex;
+main .commContentBox .comm_content2 a {
+  text-decoration: none;
+  color: red;
+}
+
+main .commContentBox .comm_content2 a:hover {
+  font-weight: bold;
+}
+
+/* 댓글 작성  */
+main .comment,
+main .comments {
+  font-size: 1rem;
+}
+
+main .comment {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  margin: 20px 0;
+}
+
+main .comment .profileImg img,
+main .comments .profileImg img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+main .comment .replybody .rcontent {
+  outline: none;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  margin-top: 10px;
+}
+
+main .comment .replybody .btngrp {
+  text-align: right;
+  margin-top: 10px;
+  display: none;
+}
+
+main .comment .replybody .btngrp button {
+  background-color: var(--white-color);
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  outline: none;
+  padding: 2px 4px;
+  font-size: 1rem;
+}
+
+/* 댓글 목록  */
+main .comments .replybody .rcontent {
+  margin: 5px 0;
+}
+main .comments .parent,
+main .comments .child {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  margin-bottom: 20px;
+}
+
+main .comments .child {
+  margin-left: 70px;
+}
+
+main .comments .btngrp {
+  font-size: 0.8em;
+  color: gray;
+}
+
+main .comments .btngrp .cdate {
+  padding-right: 10px;
+}
+
+main .comments .btngrp a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+}
+
+main .comments .hiddenItem {
+  position: relative;
+}
+
+main .comments .hiddenItem ul {
+  padding-left: 0px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  position: absolute;
+  display: none;
+}
+
+main .comments .hiddenItem ul li {
+  white-space: nowrap;
+  font-family: "Sunflower";
+  font-size: 0.9em;
+  margin: 3px;
+}
+
+main .comments .parent:hover .hiddenItem i.fa-ellipsis-v,
+main .comments .child:hover .hiddenItem i.fa-ellipsis-v {
+  display: block;
+}
+
+main .comments .hiddenItem i.fa-ellipsis-v {
+  color: gray;
+  text-align: center;
+  display: none;
+  margin-bottom: 5px;
+}
+
+main .comments .hiddenItem i.fa-ellipsis-v:hover,
+main .comments .hiddenItem .mybtn-modify,
+main .comments .hiddenItem .mybtn-delete {
+  cursor: pointer;
 }
 
 /* main : 페이징 */
-main .paging {
+main .paging ul {
   padding-left: 0px;
   display: flex;
   justify-content: center;
-  font-size: 14px;
-  margin-top: 50px;
+  font-size: 16px;
+  margin-top: 100px;
 }
 
 main .paging li {
-  padding: 5px;
+  padding: 2px 5px;
   border: 1px solid var(--border-color);
   font-family: "Sunflower";
+  font-size: 0.9em;
 }
 
 main .paging li a {
-  font-family: "Sunflower";
   text-decoration: none;
   color: var(--text-color);
 }
 
 main .paging li:hover {
   background-color: var(--linen-color);
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /* position: absolute; */
+  top: 0px;
+  left: 0px;
+
+  font-family: "Sunflower";
+  font-size: 0.8em;
+}
+
+.modal .modal__header,
+.modal .modal__body,
+.modal .modal__footer {
+  padding: 5px;
+}
+
+.modal__overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__content {
+  background-color: white;
+  line-height: 2em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 10px;
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+}
+
+.hidden {
+  display: none;
+  position: relative;
+}
+
+.modal__content:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.modal__footer {
+  border-top: 1px solid var(--border-color);
+  text-align: right;
+}
+
+.modal__footer .mybtn {
+  all: unset;
+  padding: 0px 4px;
+  border-radius: 4px;
+  margin-top: 8px;
+  font-size: 0.8em;
+}
+
+.modal__footer .mybtn.modal__cancel {
+  border: 1px solid var(--text-color);
+}
+
+.modal__footer .mybtn.modal__delete {
+  border: 1px solid var(--text-color);
+  background-color: var(--text-color);
+  color: white;
+}
+
+/* comm_btns 부분 */
+main .comm_btns {
+  text-align: end;
+  margin-top: 30px;
+  margin-right: 25px;
+}
+
+main .comm_btns button {
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background-color: var(--background-color);
+  padding: 6px 10px;
+  font-size: 16px;
+  font-family: "Sunflower";
+  margin-left: 3px;
 }
 
 /* footer */
@@ -556,7 +752,6 @@ footer .container {
     padding: 60px 0px;
   }
 }
-  
 
 /* Desktop */
 @media screen and (min-width: 769px) {

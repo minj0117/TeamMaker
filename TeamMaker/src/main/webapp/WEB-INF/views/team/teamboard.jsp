@@ -186,7 +186,7 @@
               <div class="boardPart">
                 <div class="boardPart_up">
                   <div><i class="fas fa-chalkboard"></i>게시판</div>
-                  <button class="boardBtn">글쓰기</button>
+                  <input type="button" class="boardBtn" value="글쓰기" onClick="location.href='${contextPath}/prj/tboard/boardForm?tno=${tno }'"></button>
                 </div>
                 <div class="boardPart_down">
                   <div class="boardPartTitle">
@@ -195,12 +195,29 @@
                     <div>작성일</div>
                   </div>
                   <div class="boardPartContent">
+                  <c:if test='${list ne null }'>
                   	<c:forEach var="row" items="${list }">
                     <!-- con1 -->
-                    <div class="rtitle"><a href="">${row.btitle }</a></div>
-                    <div class="id"><a href="">${row.bwriter }</a></div>
-                    <div class="rdate">${row.bcdate }</div>
+                    <c:choose>
+                    <c:when test='${row.level > 1 }'>
+                    <div class="reply">
+                    <c:forEach begin="1" end="${row.level }" step="1">
+                    	<div class="test" style="padding-left:20px"></div>
                     </c:forEach>
+                    	<div class="rtitle"><a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">${row.title }</a></div>
+                    </div>
+                    <!-- <div style="padding-left:40px" class="rtitle"><a href="">${row.title }</a></div> -->
+                    <div class="id"><a href="">${row.writer }</a></div>
+                    <div class="rdate">${row.cdate }</div>
+                    </c:when>
+                    <c:otherwise>
+                    <div class="rtitle"><a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">${row.title }</a></div>
+                    <div class="id"><a href="">${row.writer }</a></div>
+                    <div class="rdate">${row.cdate }</div>
+                    </c:otherwise>
+                    </c:choose>
+                    </c:forEach>
+                   </c:if>
                   </div>
                 </div>
                 <!-- 페이징 -->

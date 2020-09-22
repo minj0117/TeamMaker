@@ -1,68 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.TeamboardDAO-mapper">
-	<!-- 팀 게시글 조회 -->
-	<select id="tboardlist" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardVO">
-		select btitle, bwriter, bcdate ,bno, cnt from teamboard where tno = #{tno} order by bno desc
+	
+	<!-- 팀 게시판 리스트 -->
+	<select id="boardList" resultType="com.kh.prj.teamboard.vo.TeamboardVO">
+		<![CDATA[
+			select LEVEL, 
+   				 bno,cnt,b_comment,writer,parent,
+    			 LPAD(' ', 4*(LEVEL-1)) || title title,
+    			 cdate,
+    			 tno
+    			 from teamboard
+    			 where tno = #{tno}
+    			 START WITH parent=0
+    			 CONNECT BY PRIOR bno=parent
+    			 ORDER SIBLINGS BY bno desc
+		]]>
 	</select>
 	
-	<!-- 게시글 상제 조회 -->
-	<select id="tboarddetail" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardVO">
-		select bno,bpw, btitle , bwriter , bcontent , cnt from teamboard where bno = #{bno}
+	<select id="boardView" resultType="com.kh.prj.teamboard.vo.TeamboardVO">
+		select bno,cnt,title,b_comment,writer,parent,cdate,tno from teamboard where bno = #{bno}
 	</select>
 	
-	<!-- 조회수 증가 -->
-	<update id="tboardcnt" parameterType="int">
-		update teamboard set cnt = cnt + 1 where bno = #{bno}
+	<!-- 원글쓰기 -->
+	<select id="boardWrite" parameterType="com.kh.prj.teamboard.vo.TeamboardVO">
+		insert into teamboard (bno,title,b_comment,writer,tno) 
+		values (teamboard_seq.nextval, #{title},#{b_comment},#{writer},${tno})
+	</select>
+	
+	<select id="boardDelete" parameterType="int">
+		delete teamboard where bno = #{bno}
+	</select>
+	
+	<update id="boardMod" parameterType="com.kh.prj.teamboard.vo.TeamboardVO">
+		update teamboard set title = #{title}, b_comment = #{b_comment} where bno = #{bno}
 	</update>
-	<!-- 원글 작성 -->
-	<insert id="write" parameterType="com.kh.prj.teamboard.vo.TeamboardVO">
-		insert into teamboard 
-		(bno,btitle,bcontent,bwriter,groupno,grouprd,indent,tno,bpw) values
-		(teamboard_bno.nextval,#{btitle},#{bcontent},#{bwriter},teamboard_groupno.nextval,0,0,#{tno},#{bpw})
-	</insert>
-	
-	<!-- 원글 삭제 -->
-	<delete id="delete" parameterType="int">
-		delete teamboard where bno = ${bno}
-	</delete>
-	
-	<!-- 원글 수정 -->
-	<update id="modify" parameterType="com.kh.prj.teamboard.vo.TeamboardVO" >
-		update teamboard set btitle = #{btitle} , bcontent = #{bcontent} where bno = #{bno}
-	</update>
-	
-	<!-- 댓글 조회-->
-	<select id="showreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		select rno,bno,rwriter, rcontent,rcdate,rpw,rgroup,rlevel from tboardreply where bno = #{bno} and rlevel = 0 order by rno asc
-	</select>
-	<!-- 특정 댓글 가져오기 -->
-	<select id="detailreply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		select bno,rno, rwriter,rgroup,  rcontent, rpw from tboardreply where rno = #{rno}
-	</select>
-	
-	<!-- 댓글 작성 -->
-	<insert id="writeReply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		insert into tboardreply (rno,bno,rwriter,rcontent,rpw,rgroup) 
-		values (tboardreply_seq.nextval,#{bno},#{rwriter},#{rcontent},#{rpw},rgroup_seq.nextval)
-	</insert>
-	
-	<update id="modifyReply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		update tboardreply set rcontent = #{rcontent} where rno = #{rno}
-	</update>
-	
-	<!-- 댓글 삭제 -->
-	<delete id="deleteReply" parameterType="int">
-		delete tboardreply where rno = #{rno}
-	</delete>
-	
-	<!-- 대댓글 -->
-	<insert id="rereply" parameterType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		insert into tboardreply (rno,bno,rwriter,rcontent,rpw,rgroup,rlevel)
-		values (tboardreply_seq.nextval,#{bno},#{rwriter},#{rcontent},#{rpw},#{rgroup},#{rlevel})
-	</insert>
-	<!-- 대댓글 조회 -->
-	<select id="showrereply" parameterType="int" resultType="com.kh.prj.teamboard.vo.TeamboardReplyVO">
-		select rno,bno,rwriter, rcontent,rcdate,rpw,rgroup,rlevel from tboardreply where rlevel != 0 and rgroup = #{rgroup} order by rno asc
-	</select>
 </mapper>

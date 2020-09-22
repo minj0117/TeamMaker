@@ -110,7 +110,7 @@
                   <c:forEach var="row" items="${list }">
                   <div class="makeTeam1_list1">
                     <ul>
-                      <li><a href="${contextPath }/prj/tboard/tboardlist/${row.tno}">${row.title }</a></li>
+                      <li><a href="${contextPath }/prj/tboard/boardList?tno=${row.tno}">${row.title }</a></li>
                     </ul>
                   </div>
                   <div class="makeTeam1_list2">

@@ -229,111 +229,43 @@ main section .stitle span {
   color: var(--white-color);
 }
 
-/* section - 문서 부분, 게시판 부분 */
-main section .filePart {
-  border-bottom: 1px solid var(--text-color);
-  padding: 40px;
+main section form {
+  margin: 40px;
+  font-size: 16px;
 }
 
-main section .boardPart {
-  padding: 60px 40px;
+main section form div {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-main section .filePart_up,
-main section .boardPart_up {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+main section form input,
+main section form textarea {
+  width: 100%;
+  margin: 10px 0;
+  word-spacing: 0.2em;
+  padding: 10px;
 }
 
-main section .filePart_up i,
-main section .boardPart_up i {
-  font-size: 20px;
-  padding-right: 7px;
+main section form input {
+  height: 40px;
 }
 
-main section .filePart_up button,
-main section .boardPart_up button {
-  background-color: var(--white-color);
+main section form textarea {
+  height: 100%;
+  min-height: 500px;
+}
+
+main section form .btngrp {
+  text-align: right;
+}
+
+main section form .btngrp button {
   border: 1px solid var(--text-color);
   border-radius: 4px;
-  padding: 4px 10px;
-}
-
-main section .filePart_down {
-  display: grid;
-  grid-template-columns: 1fr 18% 15%;
-  text-align: center;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-main section .boardPart_down {
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-main section .boardPart_down .boardPartTitle {
-  border-bottom: 1px solid var(--border-color);
-  padding: 12px 0;
-}
-
-main section .boardPart_down .boardPartTitle,
-main section .boardPart_down .boardPartContent {
-  display: grid;
-  grid-template-columns: 1fr 18% 15%;
-  text-align: center;
-}
-
-main section .filePart_down div,
-main section .boardPart_down .boardPartContent div {
-  border-bottom: 1px solid var(--border-color);
-  padding: 12px 0;
-}
-
-main section .filePart_down .file,
-main section .boardPart_down .boardPartContent .rtitle {
-  text-align: left;
-  padding: 12px;
-  word-break: break-all;
-}
-
-main section .filePart_down div:nth-last-child(1),
-main section .filePart_down div:nth-last-child(2),
-main section .filePart_down div:nth-last-child(3),
-main section .boardPart_down .boardPartContent div:nth-last-child(1),
-main section .boardPart_down .boardPartContent div:nth-last-child(2),
-main section .boardPart_down .boardPartContent div:nth-last-child(3) {
-  border-bottom: none;
-}
-
-main section .reply {
-	display:flex;
-}
-
-/* main : 페이징 */
-main .paging {
-  padding-left: 0px;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-  margin-top: 50px;
-}
-
-main .paging li {
-  padding: 5px;
-  border: 1px solid var(--border-color);
-  font-family: "Sunflower";
-}
-
-main .paging li a {
-  font-family: "Sunflower";
-  text-decoration: none;
-  color: var(--text-color);
-}
-
-main .paging li:hover {
-  background-color: var(--linen-color);
+  background-color: var(--white-color);
+  padding: 4px 8px;
+  margin-left: 4px;
 }
 
 /* footer */
@@ -556,7 +488,6 @@ footer .container {
     padding: 60px 0px;
   }
 }
-  
 
 /* Desktop */
 @media screen and (min-width: 769px) {

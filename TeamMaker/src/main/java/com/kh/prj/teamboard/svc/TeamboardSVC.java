@@ -7,56 +7,13 @@ import com.kh.prj.teamboard.vo.TeamboardReplyVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 public interface TeamboardSVC {
-	/**
-	 * 팀멤버 확인
-	 * @param teammemberVO
-	 * @return
-	 */
-	public TeammemberVO checkmember(TeammemberVO teammemberVO);
-	/**
-	 * 팀장 확인
-	 * @param tno
-	 * @return
-	 */
-	public String checkowner(int tno);
-	/**
-	 * 팀 게시글 리스트
-	 * @param tno
-	 * @return
-	 */
-	public List<TeamboardVO> tboardlist(int tno);
-	/**
-	 * 게시글 상세조회
-	 * @param bno
-	 * @return
-	 */
-	public TeamboardVO tboarddetail(int bno);
+	public List<TeamboardVO> boardList(int tno);
 	
-	/**
-	 * 조회수 증가
-	 * @return
-	 */
-	public int tboardcnt(int bno);
+	public TeamboardVO boardView(int bno);
 	
-	/**
-	 * 게시글 작성
-	 * @param teamboardVO
-	 * @return
-	 */
-	public int write(TeamboardVO teamboardVO);
+	public int boardWrite(TeamboardVO vo);
 	
-	public int delete(int bno);
-	public int modify(TeamboardVO teamboardVO);
+	public int boardDelete(int bno);
 	
-	
-	
-	
-	public List<TeamboardReplyVO> showreply(int bno);
-	public int writeReply(TeamboardReplyVO teamboardReplyVO);
-	public int modifyReply(TeamboardReplyVO teamboardReplyVO);
-	public int deleteReply(int rno);
-	public TeamboardReplyVO detailReply(int rno);
-	public int rereply(TeamboardReplyVO teamboardReplyVO);
-	public List<TeamboardReplyVO> showrereply(int rgroup);
-	
+	public int boardMod(TeamboardVO vo);
 }
