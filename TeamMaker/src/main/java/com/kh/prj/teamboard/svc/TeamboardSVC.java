@@ -2,6 +2,7 @@ package com.kh.prj.teamboard.svc;
 
 import java.util.List;
 
+import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.teamboard.vo.FileVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
@@ -20,7 +21,7 @@ public interface TeamboardSVC {
 	
 	public int fileupload(FileVO fvo);
 	
-	public List<FileVO> fileList(int tno);
+	public List<FileVO> fileList(PagingCriteria paging);
 	
 	public FileVO fileView(int bno);
 	

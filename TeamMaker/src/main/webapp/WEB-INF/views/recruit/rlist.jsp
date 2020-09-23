@@ -228,7 +228,7 @@ main .paging li:hover {
 							});
 
 							//게시글에 pageNum넘기기
-							$('table a')
+							/*$('table a')
 									.click(
 											function(e) {
 												e.preventDefault();
@@ -239,7 +239,7 @@ main .paging li:hover {
 												$('#pagingFrm').attr("action",
 														"getContent.do");
 												$('#pagingFrm').submit();
-											});
+											});*/
 						});
 	</script>
 </body>

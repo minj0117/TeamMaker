@@ -53,8 +53,8 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	}
 	
 	@Override
-	public List<FileVO> fileList(int tno) {
-		return teamboardDAO.fileList(tno);
+	public List<FileVO> fileList(PagingCriteria paging) {
+		return teamboardDAO.fileList(paging);
 	}
 	
 	@Override

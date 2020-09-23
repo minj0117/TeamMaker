@@ -5,10 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.teamboard.vo.FileVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
@@ -59,8 +58,8 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	}
 	
 	@Override
-	public List<FileVO> fileList(int tno) {
-		return sqlSession.selectList("mappers.TeamboardDAO-mapper.fileList",tno);
+	public List<FileVO> fileList(PagingCriteria paging) {
+		return sqlSession.selectList("mappers.TeamboardDAO-mapper.fileList",paging);
 	}
 	
 	@Override

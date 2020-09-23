@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.prj.paging.PageMaker;
 import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.teamboard.svc.TeamboardSVC;
 import com.kh.prj.teamboard.vo.FileVO;
@@ -42,9 +43,11 @@ public class TeamboardController {
 	 */
 	@GetMapping("/boardList")
 	public String boardList(@RequestParam("tno") int tno,Model model,  PagingCriteria cri){
+		cri.setTno(tno);
 		int total = teamboardSVC.totalCnt(); //첨부파일 토탈
 		List<TeamboardVO> list = teamboardSVC.boardList(tno);
-		List<FileVO> flist = teamboardSVC.fileList(tno);
+		List<FileVO> flist = teamboardSVC.fileList(cri);
+		model.addAttribute("paging",new PageMaker(cri,total));
 		model.addAttribute("list", list);
 		model.addAttribute("flist",flist);
 		model.addAttribute("tno", tno);
