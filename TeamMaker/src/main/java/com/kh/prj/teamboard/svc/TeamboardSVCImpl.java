@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.teamboard.dao.TeamboardDAO;
+import com.kh.prj.teamboard.vo.FileVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 @Repository
@@ -40,5 +41,39 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	@Override
 	public int boardMod(TeamboardVO vo) {
 		return teamboardDAO.boardMod(vo);
+	}
+	
+	@Override
+	public int boardReply(TeamboardVO vo) {
+		return teamboardDAO.boardReply(vo);
+	}
+	@Override
+	public int fileupload(FileVO fvo) {
+		return teamboardDAO.fileupload(fvo);
+	}
+	
+	@Override
+	public List<FileVO> fileList(int tno) {
+		return teamboardDAO.fileList(tno);
+	}
+	
+	@Override
+	public FileVO fileView(int bno) {
+		return teamboardDAO.fileView(bno);
+	}
+	
+	@Override
+	public int fileMod(FileVO fvo) {
+		return teamboardDAO.fileMod(fvo);
+	}
+	
+	@Override
+	public int fileDelete(int bno) {
+		return teamboardDAO.fileDelete(bno);
+	}
+	
+	@Override
+	public int totalCnt() {
+		return teamboardDAO.totalCnt();
 	}
 }

@@ -142,7 +142,7 @@
                 </li>
                 <li class="btngrp">
                   <button class="cancelBtn">취소</button>
-                  <input type="button" onClick="writeFn()" class="submitBtn" value="등록"></button>
+                  <input type="button" onClick="writeFn()" class="submitBtn" value="등록">
                 </li>
               </ul>
               <input type="hidden" id="writer" name="writer" value="${sessionScope.member.id }">

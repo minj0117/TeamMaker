@@ -107,54 +107,16 @@
               <div class="filePart">
                 <div class="filePart_up">
                   <div><i class="far fa-folder-open"></i>문서</div>
-                  <button class="uploadBtn">파일 업로드</button>
+                  <input type="button" class="uploadBtn" onClick="location.href='${contextPath}/prj/tboard/fileuploadForm?tno=${tno }'" value="파일 업로드">
                 </div>
                 <div class="filePart_down">
                   <!-- con1 -->
-                  <div class="file">
-                    <a href=""
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Architecto maior
-                    </a>
-                  </div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
                   <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
-                  <!-- con1 -->
-                  <div class="file"><a href="">파일 관련 제목</a></div>
-                  <div class="id"><a href="">작성자 아이디</a></div>
-                  <div class="rdate">2020.09.10</div>
+                 <c:forEach var="row" items='${flist }'>
+                  <div class="title"><a href="${contextPath }/prj/tboard/fileView?bno=${row.bno}">${row.title }</a></div>
+                  <div class="writer"><a href="">${row.writer }</a></div>
+                  <div class="cdate">${row.cdate }</div>
+                 </c:forEach>
                 </div>
                 <!-- 페이징 -->
                 <ul class="paging">
@@ -186,7 +148,7 @@
               <div class="boardPart">
                 <div class="boardPart_up">
                   <div><i class="fas fa-chalkboard"></i>게시판</div>
-                  <input type="button" class="boardBtn" value="글쓰기" onClick="location.href='${contextPath}/prj/tboard/boardForm?tno=${tno }'"></button>
+                  <input type="button" class="boardBtn" value="글쓰기" onClick="location.href='${contextPath}/prj/tboard/boardForm?tno=${tno }'">
                 </div>
                 <div class="boardPart_down">
                   <div class="boardPartTitle">

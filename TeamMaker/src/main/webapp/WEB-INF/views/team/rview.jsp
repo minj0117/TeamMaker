@@ -76,6 +76,10 @@
 			}
 		})
 	}
+
+	function replyFn(){
+		
+	}
 	
 </script>
 <body>
@@ -162,11 +166,11 @@
               
               <div class="comm_btns">
               <c:if test="${sessionScope.member.id eq vo.writer }">
-                <input type="button" class="modifyBtn" onClick="location.href='${contextPath }/prj/tboard/boardModForm?bno=${vo.bno }'" value="수정"></button>
+                <input type="button" class="modifyBtn" onClick="location.href='${contextPath }/prj/tboard/boardModForm?bno=${vo.bno }'" value="수정">
                 <input type="button" class="deleteBtn" onClick="deleteFn()" value="삭제">
                 </c:if>
-                <button class="replyBtn">답글</button>
-                <input type="button" class="listBtn" onClick="location.href='${contextPath}/prj/tboard/boardList?tno=${vo.tno }'" value="목록"></button>
+                <input type="button" class="replyBtn" onClick="location.href='${contextPath}/prj/tboard/boardReplyForm?bno=${vo.bno }&tno=${vo.tno }'" value="답글">
+                <input type="button" class="listBtn" onClick="location.href='${contextPath}/prj/tboard/boardList?tno=${vo.tno }'" value="목록">
               </div>
             </form>
           </section>

@@ -25,7 +25,7 @@
 	<!-- 원글쓰기 -->
 	<select id="boardWrite" parameterType="com.kh.prj.teamboard.vo.TeamboardVO">
 		insert into teamboard (bno,title,b_comment,writer,tno) 
-		values (teamboard_seq.nextval, #{title},#{b_comment},#{writer},${tno})
+		values (teamboard_seq.nextval, #{title},#{b_comment},#{writer},#{tno})
 	</select>
 	
 	<select id="boardDelete" parameterType="int">
@@ -35,4 +35,37 @@
 	<update id="boardMod" parameterType="com.kh.prj.teamboard.vo.TeamboardVO">
 		update teamboard set title = #{title}, b_comment = #{b_comment} where bno = #{bno}
 	</update>
+	
+	<insert id="boardReply" parameterType="com.kh.prj.teamboard.vo.TeamboardVO">
+		insert into teamboard (bno,title,b_comment,writer,parent,tno) 
+		values (teamboard_seq.nextval, #{title},#{b_comment},#{writer},#{bno},#{tno})
+	</insert>
+	
+	<!--                                     파일 업로드										 -->
+	
+	<insert id="fileupload" parameterType="com.kh.prj.teamboard.vo.FileVO">
+		insert into teamboardfile (fno,name,bno,writer,title,f_comment,tno) 
+		values (teamboardfile_seq.nextval,#{fileName},filebno_seq.nextval,#{writer},#{title},#{f_comment},#{tno})
+	</insert>
+	
+	<select id="fileList" resultType="com.kh.prj.teamboard.vo.FileVO">
+		select fno,name,bno,writer,title,f_comment,cdate,tno from teamboardfile where tno = #{tno} order by cdate desc
+	</select>
+	
+	<select id="fileView" resultType="com.kh.prj.teamboard.vo.FileVO">
+		select fno,name,bno,writer,title,f_comment,cdate,tno from teamboardfile where bno = #{bno}
+	</select>
+	
+	<select id="fileMod" parameterType="com.kh.prj.teamboard.vo.FileVO">
+		update teamboardfile set name=#{fileName}, title=#{title},f_comment=#{f_comment} where bno = #{bno}
+	</select>
+	
+	<delete id="fileDelete" parameterType="int">
+		delete teamboardfile where bno = #{bno}
+	</delete>
+	
+	<select id="getTotalCnt" resultType="int">
+		select count(*) from teamboardfile
+	</select>
+	
 </mapper>
