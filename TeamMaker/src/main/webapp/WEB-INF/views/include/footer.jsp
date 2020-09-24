@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="http://localhost:8090/prj/css/include/main.css" />
 <!-- footer -->
    <footer>
      <div class="container">
        <!-- footer_menu1 -->
        <div class="footer_menu1">
          <ul>
-           <li><a href="#">사이트 소개</a></li>
-           <li><a href="#">광고 안내</a></li>
+           <li><a href="#">사이트 소개</a></li> 
+           <li><a href="#">책임한계와 법적고지</a></li>
            <li><a href="#">이용약관</a></li>
            <li><a href="#" id="policy">개인정보처리방침</a></li>
            <li><a href="#">고객센터</a></li>

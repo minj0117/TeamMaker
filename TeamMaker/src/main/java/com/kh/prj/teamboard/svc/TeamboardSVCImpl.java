@@ -19,8 +19,8 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	TeamboardDAO teamboardDAO;
 	
 	@Override
-	public List<TeamboardVO> boardList(int tno) {
-		return teamboardDAO.boardList(tno);
+	public List<TeamboardVO> boardList(PagingCriteria paging) {
+		return teamboardDAO.boardList(paging);
 	}
 	
 	@Override
@@ -75,5 +75,9 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	@Override
 	public int totalCnt() {
 		return teamboardDAO.totalCnt();
+	}
+	@Override
+	public int totalCntboard() {
+		return teamboardDAO.totalCntboard();
 	}
 }

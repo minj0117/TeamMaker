@@ -3,30 +3,21 @@
 <mapper namespace="mappers.TeamboardDAO-mapper">
 	
 	<!-- 팀 게시판 리스트 -->
-	<select id="boardList" resultType="com.kh.prj.teamboard.vo.TeamboardVO">
-		<!-- <![CDATA[
-			<!--select LEVEL, 
-   				 bno,cnt,b_comment,writer,parent,
-    			 LPAD(' ', 4*(LEVEL-1)) || title title,
-    			 cdate,
-    			 tno
-    			 from teamboard
-    			 where tno = #{tno}
-    			 START WITH parent=0
-    			 CONNECT BY PRIOR bno=parent
-    			 ORDER SIBLINGS BY bno desc
-		]]> -->
-		<![CDATA[
-			select bno,cnt,title,b_comment,writer,parent,cdate,tno from ( 
-        		select rownum as rnum, data.* from (   
-            		select level,bno,cnt,title,b_comment,writer,parent,cdate,tno 
-            		from teamboard
-            		where tno = 5
-            		START WITH parent = 0
-            		CONNECT BY PRIOR bno = parent
-            		ORDER SIBLINGS BY bno desc)
-            	data)
-            where rnum >= 1 and rnum < 11;
+	<select id="boardList" parameterType="com.kh.prj.paging.PagingCriteria" resultType="com.kh.prj.teamboard.vo.TeamboardVO">
+		<![CDATA[                   
+            SELECT  level,bno,cnt,title,b_comment,writer,parent,cdate,tno
+			FROM	(SELECT /*+INDEX_DESC(teamboard teamboard_pk) */
+						rownum rn,  bno,cnt,title,
+                        b_comment,writer,parent,cdate,tno
+                        from teamboard t2 where rownum <= #{pageNum} * #{amount} and tno = #{tno}
+                        START WITH parent=0
+                        CONNECT BY PRIOR bno=parent
+                        ORDER SIBLINGS BY bno desc
+                    )
+                    where rn > (${pageNum}-1) * #{amount}
+                    START WITH parent=0
+                    CONNECT BY PRIOR bno=parent
+                    ORDER SIBLINGS BY bno desc
 		]]>
 	</select>
 	
@@ -82,9 +73,13 @@
 	<delete id="fileDelete" parameterType="int">
 		delete teamboardfile where bno = #{bno}
 	</delete>
-	
+	<!-- 파일 업로드 총 갯수 -->
 	<select id="getTotalCnt" resultType="int">
 		select count(*) from teamboardfile
+	</select>
+	<!-- 게시판 총 갯수 -->
+	<select id="getTotalBoardCnt" resultType="int">
+		select count(*) from teamboard
 	</select>
 	
 </mapper>

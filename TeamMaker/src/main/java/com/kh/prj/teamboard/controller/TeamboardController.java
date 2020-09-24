@@ -45,13 +45,21 @@ public class TeamboardController {
 	public String boardList(@RequestParam("tno") int tno,Model model,  PagingCriteria cri){
 		cri.setTno(tno);
 		int total = teamboardSVC.totalCnt(); //첨부파일 토탈
-		List<TeamboardVO> list = teamboardSVC.boardList(tno);
 		List<FileVO> flist = teamboardSVC.fileList(cri);
 		model.addAttribute("paging",new PageMaker(cri,total));
-		model.addAttribute("list", list);
 		model.addAttribute("flist",flist);
 		model.addAttribute("tno", tno);
 		return "team/teamboard";
+	}
+	@GetMapping("/talkList")
+	public String talkList(@RequestParam("tno") int tno, Model model, PagingCriteria cri) {
+		cri.setTno(tno);
+		int total = teamboardSVC.totalCntboard();
+		List<TeamboardVO> list = teamboardSVC.boardList(cri);
+		model.addAttribute("paging",new PageMaker(cri,total));
+		model.addAttribute("list", list);
+		model.addAttribute("tno", tno);
+		return "team/teamboardList";
 	}
 	/**
 	 * 글 상세보기

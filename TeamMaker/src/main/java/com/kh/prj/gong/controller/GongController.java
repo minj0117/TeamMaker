@@ -1,23 +1,30 @@
 package com.kh.prj.gong.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.prj.gong.svc.GongSVC;
 import com.kh.prj.gong.vo.GongVO;
+import com.kh.prj.paging.PageMaker;
+import com.kh.prj.paging.PagingCriteria;
 
 @Controller
 @RequestMapping("/gong/*")
@@ -41,32 +48,27 @@ public class GongController {
     * @return
     * @throws Exception
     */
-   @ResponseBody
-   @RequestMapping(value="/insertGong", method= RequestMethod.POST, produces="application/json")
-   public int insertGong(@RequestBody HashMap<String, String> info, GongVO gongVO) throws Exception {
-      java.sql.Date applystart = java.sql.Date.valueOf(info.get("applystart"));
-    java.sql.Date applyend = java.sql.Date.valueOf(info.get("applyend"));
-    java.sql.Date startday = java.sql.Date.valueOf(info.get("startday"));
-    byte[] pic = info.get("pic").getBytes();
-    gongVO.setWriter(info.get("writer"));
-    gongVO.setCategory(info.get("category"));
-    gongVO.setTitle(info.get("title"));
-    gongVO.setApplystart(applystart);
-    gongVO.setApplyend(applyend);
-    gongVO.setStartday(startday);
-    gongVO.setHost(info.get("host"));
-    gongVO.setWay(info.get("way"));
-    gongVO.setHomepage(info.get("homepage"));
-    gongVO.setG_comment(info.get("g_comment"));
-    gongVO.setPic(pic);
-    gongVO.setApplymoney(info.get("applymoney"));
-    gongVO.setAward(info.get("award"));
-      return gongSVC.insertGong(gongVO);
+   @PostMapping("/insertGong")
+   public String insertGong(GongVO gongVO) throws Exception {
+	   String fileName=null;
+		MultipartFile uploadFile = gongVO.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+			UUID uuid = UUID.randomUUID();	//UUID 구하기
+			fileName=uuid+"."+ext;
+			uploadFile.transferTo(new File("D:\\file\\gong\\" + fileName));
+		}
+		gongVO.setFileName(fileName);
+        int result = gongSVC.insertGong(gongVO);
+		return "redirect:glist";
    }
    
    @RequestMapping("/glist")
-   public String glist(GongVO gongVO, Model model) {
-      List<GongVO> list = gongSVC.glist();
+   public String glist(GongVO gongVO,PagingCriteria cri, Model model) {
+      List<GongVO> list = gongSVC.glist(cri);
+      int total = gongSVC.getTotalCnt();
+      model.addAttribute("paging",new PageMaker(cri,total));
       model.addAttribute("list", list);
       return "gong/glist";
    }
@@ -91,27 +93,20 @@ public class GongController {
       return "gong/gongForm";
    }
    
-   @ResponseBody
-   @RequestMapping(value = "gongMod", method= RequestMethod.POST, produces="application/json")
-   public int gongMod(@RequestBody HashMap<String, String> info, GongVO gongVO) {
-    java.sql.Date applystart = java.sql.Date.valueOf(info.get("applystart"));
-    java.sql.Date applyend = java.sql.Date.valueOf(info.get("applyend"));
-    java.sql.Date startday = java.sql.Date.valueOf(info.get("startday"));
-    byte[] pic = info.get("pic").getBytes();
-    gongVO.setGno(Integer.parseInt(info.get("gno")));
-    gongVO.setCategory(info.get("category"));
-    gongVO.setTitle(info.get("title"));
-    gongVO.setApplystart(applystart);
-    gongVO.setApplyend(applyend);
-    gongVO.setStartday(startday);
-    gongVO.setHost(info.get("host"));
-    gongVO.setWay(info.get("way"));
-    gongVO.setHomepage(info.get("homepage"));
-    gongVO.setG_comment(info.get("g_comment"));
-    gongVO.setPic(pic);
-    gongVO.setApplymoney(info.get("applymoney"));
-    gongVO.setAward(info.get("award"));
-    return gongSVC.GongMod(gongVO);
+   @PostMapping("/gongMod")
+   public String gongMod(GongVO gongVO) throws Exception {
+	   String fileName=null;
+		MultipartFile uploadFile = gongVO.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+			UUID uuid = UUID.randomUUID();	//UUID 구하기
+			fileName=uuid+"."+ext;
+			uploadFile.transferTo(new File("D:\\file\\gong\\" + fileName));
+		}
+		gongVO.setFileName(fileName);
+		int cnt = gongSVC.GongMod(gongVO);
+		return "redirect:glist";
    }
    
 //   /*

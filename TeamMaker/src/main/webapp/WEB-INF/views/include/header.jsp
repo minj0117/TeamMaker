@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="http://localhost:8090/prj/css/include/main.css" />
 <!-- header -->
+     <!-- header -->
     <header>
       <div class="container">
         <div
@@ -20,29 +21,24 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="http://localhost:8090/prj/img/banner.jpg" class="d-block w-100" alt="..." />
+              <img src="${contextPath }/prj/img/banner1.jpg" class="d-block w-100" alt="..." />
               <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
+                <h5>TEAM MAKER</h5>
+                <p>TEAM MAKER와 함께 여러분의 Portfolio를 채워 보세요</p>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="http://localhost:8090/prj/img/banner.jpg" class="d-block w-100" alt="..." />
+              <img src="${contextPath }/prj/img/banner2.jpg" class="d-block w-100" alt="..." />
               <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h5>팀 매칭</h5>
+                <p>당신에게 맞는 팀원을 TEAM MAKER와 함께</p>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="http://localhost:8090/prj/img/banner.jpg" class="d-block w-100" alt="..." />
+              <img src="${contextPath }/prj/img/banner3.jpg" class="d-block w-100" alt="..." />
               <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
+                <h5>다양한 정보</h5>
+                <p>당신에게 필요한 정보를 쉽게 찾을 수 있습니다.</p>
               </div>
             </div>
           </div>

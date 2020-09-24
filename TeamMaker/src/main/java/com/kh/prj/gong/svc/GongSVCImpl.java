@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.prj.gong.dao.GongDAO;
 import com.kh.prj.gong.vo.GongVO;
+import com.kh.prj.paging.PagingCriteria;
 @Service
 public class GongSVCImpl implements GongSVC {
 	@Inject
@@ -22,9 +23,9 @@ public class GongSVCImpl implements GongSVC {
 	}
 
 	@Override
-	public List<GongVO> glist() {
+	public List<GongVO> glist(PagingCriteria paging) {
 
-		return gongDAO.glist();
+		return gongDAO.glist(paging);
 	}
 
 	@Override
@@ -43,5 +44,11 @@ public class GongSVCImpl implements GongSVC {
 	public int del(int gno) {
 
 		return gongDAO.del(gno);
+	}
+	
+	@Override
+	public int getTotalCnt() {
+		// TODO Auto-generated method stub
+		return gongDAO.getTotalCnt();
 	}
 }

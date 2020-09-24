@@ -67,7 +67,7 @@ main .paging li:hover {
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function submitFn(){
+/*	function submitFn(){
 		let writer = document.getElementById('writer').value;
 		//let category = document.getElementById('category').value;
 		let category = document.getElementById('category').value;
@@ -203,6 +203,7 @@ main .paging li:hover {
 			}
 		})
 	}
+*/
 </script>
 </head>
 <body>
@@ -217,6 +218,7 @@ main .paging li:hover {
 	  <c:if test="${toggle eq 1 }">
 		 <div class="container">
       <div>[대외활동 작성]</div>
+      <form action="${contextPath }/prj/dae/insertDae" enctype="multipart/form-data" method="post">
       <table>
         <thead>
           <tr>
@@ -286,19 +288,21 @@ main .paging li:hover {
           </tr>
           <tr>
             <td>사진</td>
-            <td><input type="file" id="pic" name="pic"/></td>
+            <td><input type="file" id="uploadFile" name="uploadFile"/></td>
           </tr>
+          <tr>
+ 	       <td><input type="submit" class="submitBtn" value="등록"> </td>
+ 	       </tr>
         </tbody>
+ 		
       </table>
-      <div class="btn2">
-        <button class="submitBtn" onClick="submitFn()">등록</button>
-        <button class="cancelBtn">취소</button>
-      </div>
+      </form>
     </div>
 	</c:if>
 	<c:if test="${toggle eq 2 }">
 			 <div class="container">
       <div>[대외활동 수정]</div>
+      <form action="${contextPath }/prj/dae/daeMod" enctype="multipart/form-data" method="post">
       <table>
         <thead>
           <tr>
@@ -368,16 +372,15 @@ main .paging li:hover {
           </tr>
           <tr>
             <td>사진</td>
-            <td><input type="file" id="pic" name="pic"/></td>
+            <td><input type="file" id="uploadFile" name="uploadFile"/></td>
           </tr>
+          <tr>
+ 	       <td><input type="submit" class="submitBtn" value="등록"> </td>
+ 	       </tr>
         </tbody>
       </table>
-      <input type="hidden" id="dno" name="dno" value="${daeVO.dno}"/>
-      <div class="btn2">
-        <button class="submitBtn" onClick="modFn()">수정</button>
-        <button class="cancelBtn">취소</button>
-      </div>
-    </div>
+	      <input type="hidden" id="dno" name="dno" value="${daeVO.dno}"/>
+      </form>  
 	</c:if>
 	</main>
 	<!-- footer -->

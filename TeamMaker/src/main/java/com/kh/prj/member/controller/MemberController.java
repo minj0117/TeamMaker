@@ -71,9 +71,10 @@ public class MemberController {
 	}*/
 	@ResponseBody
 	@RequestMapping(value = "/join", method = RequestMethod.POST, produces = "application/json")
-	public void join(@RequestParam HashMap<String, String> memberInfo, MemberVO memberVO) throws Exception {
+	public int join(@RequestBody HashMap<String, String> memberInfo, MemberVO memberVO) throws Exception {
 		memberVO.setId(memberInfo.get("id"));
 		String encrypw = memberInfo.get("pw");
+		System.out.println(encrypw);
 		String pw = pwdEncoder.encode(encrypw);
 		memberVO.setPw(pw);
 		memberVO.setName(memberInfo.get("name"));
@@ -82,7 +83,9 @@ public class MemberController {
 		memberVO.setGender(memberInfo.get("gender"));
 		memberVO.setPhone(memberInfo.get("phone"));
 		memberVO.setEmail(memberInfo.get("email"));
+		memberVO.setFree(memberInfo.get("free"));
 		System.out.println(memberVO.toString());
+		return memberSVC.joinMember(memberVO);
 	}
 
 	/*===================== 회원 조회 ===========================*/

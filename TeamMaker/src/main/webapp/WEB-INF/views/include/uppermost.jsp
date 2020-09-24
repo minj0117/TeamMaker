@@ -5,14 +5,14 @@
 <c:set var="url_logout" value="${contextPath }/logout" />
 <c:set var="url_myPage" value="${contextPath }/member/myPage" />    
 <!--  <link rel="stylesheet" href="http://localhost:8090/prj/css/include/main.css"> -->
-    
+<link rel="stylesheet" href="http://localhost:8090/prj/css/include/main.css" />
 <!-- uppermost -->
    <div class="uppermost">
      <div class="container">
        <!-- logo -->
        <div class="logo">
          <a href="/prj"><i class="fab fa-slack"></i></a>
-         <div>TEAM MAKER</div>
+         <div><a href="${contextPath }/prj">TEAM MAKER</a></div>
        </div>
 
        <!-- navbar -->

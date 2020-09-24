@@ -23,8 +23,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="http://localhost:8090/prj/css/include/signup.css" />
+<link rel="stylesheet" href="http://localhost:8090/prj/css/member/signup.css" />
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
@@ -41,61 +40,69 @@
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
 	rel="stylesheet" />
 <script type="text/javascript">
-	window.addEventListener("load",init);
-	function init(){
-		let joinBtn = document.getElementById('joinBtn');
-		joinBtn.addEventListener("click", joinFn);
-	}
-	function joinFn(e){
-		e.preventDefault();
-		console.log(e.target);
-		let joinForm = document.getElementById('joinForm');
-		let id = document.getElementById('id');
-		//let idcheck = $('#message').val();
-		let pw = document.getElementById('pw');
-		let pwcheck = document.getElementById('pwcheck');
-		let name = document.getElementById('name');
-		let birth = document.getElementById('birth');
-		let gender = document.querySelectorAll("input[name='gender']");
-		let phone = document.getElementById('phone');
-		let email = document.getElementById('email');
-		if(id.value.trim().length == 0){
+	function joinFn(){
+		let id = document.getElementById('id').value;
+		let pw = document.getElementById('pw').value;
+		let pwcheck = document.getElementById('pwcheck').value;
+		let name = document.getElementById('name').value;
+		let birth = document.getElementById('birth').value;
+		let gender = document.getElementById('gender').value;
+		let phone = document.getElementById('phone').value;
+		let email = document.getElementById('free').value;
+		let free = document.getElementById('free').value;
+		if(id.length == 0){
 			alert('아이디를 입력하세요');
 			return;
 		}if($('#message').val() != '사용할 수 있는 ID입니다.'){
 			console.log($('#message').val());
 			alert('아이디 중복체크를 확인해주세요');
 			return;
-		}if(pw.value.trim().length == 0){
+		}if(pw.length == 0){
 			alert('패스워드를 입력하세요');
 			return;
-		}if(pwcheck.value.trim().length == 0){
+		}if(pwcheck.length == 0){
 			alert('패스워드를 입력하세요');
 			return;
-		}if(pw.value.trim() != pwcheck.value.trim()){
+		}if(pw != pwcheck){
 			alert("비밀번호가 일치하지 않습니다.");
 			return;
-		}if(name.value.trim().length == 0){
+		}if(name.length == 0){
 			alert('이름을 입력하세요');
 			return;
-		}if(birth.value.trim().length == 0){
+		}if(birth.length == 0){
 			alert('생일을 입력하세요');
 			return;
 		}
-		let genderlist = Array.from(gender);
-		if(genderlist[0].checked != true && genderlist[1].checked != true){
-			alert('성별을 입력하세요');
-			genderlist[0].select();
+		if(gender.length == 0){
+			alert('성병을 선택하세요');
 			return;
-		}if(phone.value.trim().length == 0){
+		}if(phone.length == 0){
 			alert('전화번호를 입력하세요');
 			return;
-		}if(email.value.trim().length == 0){
+		}if(email.length == 0){
 			alert('메일 입력하세요');
 			return;
 		}
-		joinForm.method="post";
-		joinForm.submit();
+		const Info = JSON.stringify({id:id,pw:pw,name:name,birth:birth,gender:gender,phone:phone,email:email,free:free});
+		$.ajax({
+			data : Info,
+			url : "http://localhost:8090/prj/member/join",
+			type : "post",
+			dataType : "JSON",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				//var result = JSON.parse(data);
+				if(data > 0){
+					alert("가입되었습니다~~");
+					window.location="${contextPath}/prj/loginForm"
+				}else{
+					alert("다시 가입해주세요!!");			
+				}
+			},
+			error : function(data,textStatus){
+				alert("에러가 발생했습니다.");
+			}
+		})
 	}
 
 </script>
@@ -183,19 +190,11 @@
 						<li><label for="email">* 이메일</label> <input type="text"
 							id="email" name="email" /> <input type="button" value="코드 전송" />
 						</li>
-						<li class="picture"><label for="pic"><span>&nbsp;&nbsp;</span>사진</label>
-							<div>
-								<div id="image">
-									<img src="http://localhost:8090/prj/img/include/default.jpg" alt="" />
-								</div>
-								<label for="upload_pic">파일 선택</label> <input type="file"
-									id="upload_pic" />
-							</div></li>
 						<li><label for="free"><span>&nbsp;&nbsp;</span>자기소개서</label>
 							<textarea name="free" id="free" cols="10" rows="15"></textarea></li>
 					</ul>
 					<div class="btnGrp">
-						<input type="submit" id="joinBtn" value="가입하기" /> <input
+						<input type="button" id="joinBtn" value="가입하기" onClick="joinFn()" /> <input
 							type="reset" id="cancelBtn" value="취소" />
 					</div>
 				</fieldset>

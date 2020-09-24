@@ -67,7 +67,7 @@ main .paging li:hover {
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-   function submitFn(){
+ /*  function submitFn(){
       let writer = document.getElementById('writer').value;
       let category = document.getElementById('category').value;
       let title = document.getElementById('title').value;
@@ -202,7 +202,7 @@ main .paging li:hover {
                alert("에러발생")
             }
          })
-      }
+      }*/
 </script>
 </head>
 <body>
@@ -217,6 +217,7 @@ main .paging li:hover {
       <c:if test="${toggle eq 1 }">
       <div class="container">
       <div>[공모전 작성]</div>
+      <form action="${contextPath }/prj/gong/insertGong" enctype="multipart/form-data" method="post">
       <table>
         <thead>
           <tr>
@@ -238,20 +239,16 @@ main .paging li:hover {
             <td>
               <select id="category" name="category">
                 <option value="">==선택==</option>
-                <option value="논문/리포트">논문/리포트</option>
-                <option value="기획/아이디어">기획/아이디어</option>
-                <option value="네이밍/슬로건">네이밍/슬로건</option>
-                <option value="디자인">디자인</option>
                 <option value="광고/마케팅">광고/마케팅</option>
                 <option value="사진">사진</option>
                 <option value="UCC/영상">UCC/영상</option>
-                <option value="예체능">예체능</option>
+                <option value="예치능">예체능</option>
                 <option value="문학/수기">문학/수기</option>
                 <option value="캐릭터/만화">캐릭터/만화</option>
                 <option value="과학/공학">과학/공학</option>
                 <option value="게임/소프트웨어">게임/소프트웨어</option>
                 <option value="건축/건설">건축/건설</option>
-                <option value="기타">기타</option> 
+                <option value="기타">기타</option>
                </select>
             </td>
           </tr>
@@ -289,19 +286,20 @@ main .paging li:hover {
           </tr>
           <tr>
             <td>사진</td>
-            <td><input type="file" id="pic" name="pic"/></td>
+            <td><input type="file" id="uploadFile" name="uploadFile"/></td>
           </tr>
+          <tr>
+ 	       <td><input type="submit" class="submitBtn" value="등록"> </td>
+ 	      </tr>
         </tbody>
       </table>
-      <div class="btn2">
-        <button class="submitBtn" onClick="submitFn()">등록</button>
-        <button class="cancelBtn">취소</button>
-      </div>
+      </form>
     </div>
      </c:if> 
       <c:if test="${toggle eq 2 }">
       <div class="container">
       <div>[공모전 수정]</div>
+      <form action="${contextPath }/prj/gong/gongMod" enctype="multipart/form-data" method="post">
       <table>
         <thead>
           <tr>
@@ -323,20 +321,16 @@ main .paging li:hover {
             <td>           
                 <select id="category" name="category">
                 <option value="">==선택==</option>
-                <option value="논문/리포트">논문/리포트</option>
-                <option value="기획/아이디어">기획/아이디어</option>
-                <option value="네이밍/슬로건">네이밍/슬로건</option>
-                <option value="디자인">디자인</option>
                 <option value="광고/마케팅">광고/마케팅</option>
                 <option value="사진">사진</option>
                 <option value="UCC/영상">UCC/영상</option>
-                <option value="예체능">예체능</option>
+                <option value="예치능">예체능</option>
                 <option value="문학/수기">문학/수기</option>
                 <option value="캐릭터/만화">캐릭터/만화</option>
                 <option value="과학/공학">과학/공학</option>
                 <option value="게임/소프트웨어">게임/소프트웨어</option>
                 <option value="건축/건설">건축/건설</option>
-                <option value="기타">기타</option> 
+                <option value="기타">기타</option>
                </select>
             </td>
           </tr>
@@ -374,16 +368,15 @@ main .paging li:hover {
           </tr>
           <tr>
             <td>사진</td>
-            <td><input type="file" id="pic" name="pic" /></td>
-          </tr>         
+            <td><input type="file" id="uploadFile" name="uploadFile"/></td>
+          </tr>
+          <tr>
+ 	       <td><input type="submit" class="submitBtn" value="등록"> </td>
+ 	       </tr>         
         </tbody>
       </table>
-       <input type="hidden" id="gno" name="gno" value="${gongVO.gno }"/>
-      <div class="btn2">
-        <button class="submitBtn" onClick="modFn()">수정</button>
-        <button class="cancelBtn">취소</button>
-      </div>
-    </div>
+       	<input type="hidden" id="gno" name="gno" value="${gongVO.gno }"/>
+      </form>
   </c:if>   
   
   </main>

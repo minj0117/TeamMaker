@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.prj.dae.vo.DaeVO;
+import com.kh.prj.paging.PagingCriteria;
 
 @Repository
 public class DaeDAOImpl implements DaeDAO {
@@ -20,8 +21,8 @@ public class DaeDAOImpl implements DaeDAO {
 	}
 	
 	@Override
-	public List<DaeVO> dlist() {
-		return sqlSession.selectList("mappers.DaeDAO-mapper.dlist");
+	public List<DaeVO> dlist(PagingCriteria paging) {
+		return sqlSession.selectList("mappers.DaeDAO-mapper.dlist",paging);
 	}
 	
 	@Override
@@ -42,5 +43,10 @@ public class DaeDAOImpl implements DaeDAO {
 	@Override
 	public List<DaeVO> checklist(List<String> value) {
 		return sqlSession.selectList("mappers.DaeDAO-mapper.checklist",value);
+	}
+	
+	@Override
+	public int getTotalCnt() {
+		return sqlSession.selectOne("mappers.DaeDAO-mapper.getTotalCnt");
 	}
 }

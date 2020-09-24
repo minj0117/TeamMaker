@@ -140,72 +140,11 @@
 				</div>
               </div>
               <!-- 게시판 부분 -->
-              <div class="boardPart">
-                <div class="boardPart_up">
-                  <div><i class="fas fa-chalkboard"></i>게시판</div>
-                  <input type="button" class="boardBtn" value="글쓰기" onClick="location.href='${contextPath}/prj/tboard/boardForm?tno=${tno }'">
-                </div>
-                <div class="boardPart_down">
-                  <div class="boardPartTitle">
-                    <div>제목</div>
-                    <div>아이디</div>
-                    <div>작성일</div>
-                  </div>
-                  <div class="boardPartContent">
-                  <c:if test='${list ne null }'>
-                  	<c:forEach var="row" items="${list }">
-                    <!-- con1 -->
-                    <c:choose>
-                    <c:when test='${row.level > 1 }'>
-                    <div class="reply">
-                    <c:forEach begin="1" end="${row.level }" step="1">
-                    	<div class="test" style="padding-left:20px"></div>
-                    </c:forEach>
-                    	<div class="rtitle"><a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">${row.title }</a></div>
-                    </div>
-                    <!-- <div style="padding-left:40px" class="rtitle"><a href="">${row.title }</a></div> -->
-                    <div class="id"><a href="">${row.writer }</a></div>
-                    <div class="rdate">${row.cdate }</div>
-                    </c:when>
-                    <c:otherwise>
-                    <div class="rtitle"><a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">${row.title }</a></div>
-                    <div class="id"><a href="">${row.writer }</a></div>
-                    <div class="rdate">${row.cdate }</div>
-                    </c:otherwise>
-                    </c:choose>
-                    </c:forEach>
-                   </c:if>
-                  </div>
-                </div>
-                <!-- 페이징 -->
-                <ul class="paging">
-                  <li>
-                    <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fas fa-angle-left"></i></a>
-                  </li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">6</a></li>
-                  <li><a href="#">7</a></li>
-                  <li><a href="#">8</a></li>
-                  <li><a href="#">9</a></li>
-                  <li><a href="#">10</a></li>
-                  <li>
-                    <a href="#"><i class="fas fa-angle-right"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                  </li>
-                </ul>
-              </div>
+              
           </section>
         </div>
       </div>
+      <input type="button" onClick="location.href='${contextPath}/prj/tboard/talkList?tno=${tno }'" value="게시판이동">
       <div class="clearfix"></div>
     </main>
 	
@@ -224,20 +163,6 @@
 								pagingForm.submit();
 
 							});
-
-							//게시글에 pageNum넘기기
-							$('table a')
-									.click(
-											function(e) {
-												e.preventDefault();
-												var html = "<input type='hidden' name='idx' value='"
-														+ $(this).attr("href")
-														+ "'>";
-												$('#pagingFrm').append(html);
-												$('#pagingFrm').attr("action",
-														"getContent.do");
-												$('#pagingFrm').submit();
-											});
 						});
 	</script>
 </body>

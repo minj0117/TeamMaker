@@ -151,20 +151,6 @@ main .paging li:hover {
 								pagingForm.submit();
 
 							});
-
-							//게시글에 pageNum넘기기
-							$('table a')
-									.click(
-											function(e) {
-												e.preventDefault();
-												var html = "<input type='hidden' name='idx' value='"
-														+ $(this).attr("href")
-														+ "'>";
-												$('#pagingFrm').append(html);
-												$('#pagingFrm').attr("action",
-														"getContent.do");
-												$('#pagingFrm').submit();
-											});
 						});
 	</script>
 </body>

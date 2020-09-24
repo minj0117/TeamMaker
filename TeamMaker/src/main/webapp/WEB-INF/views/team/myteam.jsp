@@ -132,44 +132,13 @@
               <div class="belongTeam1">
                 <div class="belongTeam1_title"><span>팀 이름</span></div>
                 <div class="belongTeam1_list">
+                 <c:forEach var="row" items="${list2 }">
                   <div class="belongTeam1_list1">
                     <ul>
-                      <li>djblk123</li>
-                      <li>djblk123</li>
-                      <li>djblk123</li>
-                      <li>djblk123</li>
-                      <li>djblk123</li>
+                      <li><a href="${contextPath }/prj/tboard/boardList?tno=${row.tno}">${row.title }</a></li>
                     </ul>
                   </div>
-                  <div class="belongTeam1_list2">
-                    <ul>
-                      <li>
-                        <a href=""
-                          >관리<i class="fas fa-chevron-circle-right"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href=""
-                          >관리<i class="fas fa-chevron-circle-right"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href=""
-                          >관리<i class="fas fa-chevron-circle-right"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href=""
-                          >관리<i class="fas fa-chevron-circle-right"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href=""
-                          >관리<i class="fas fa-chevron-circle-right"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
+                  </c:forEach>
                 </div>
               </div>
             </div>

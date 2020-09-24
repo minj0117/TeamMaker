@@ -128,7 +128,7 @@ main .paging li:hover {
 
           <!-- 개요 부분 -->
           <div class="content_overview">
-            <div><img src="../img/pic.jpg" alt="" /></div>
+            <div><img src="${contextPath }/imgg/${gongVO.pic }" alt="" /></div>
             <table>
               <colgroup>
                 <col style="width: 150px" />

@@ -17,6 +17,8 @@
 	<resources mapping="/js/**" 			location="/WEB-INF/resources/js/" />
 	<resources mapping="/img/**" 			location="/WEB-INF/resources/img/" />
 	<resources mapping="/video/**" 		location="/WEB-INF/resources/video/" />
+	 <resources mapping="/imgs/**" location="D:\file\dae\" />
+	 <resources mapping="/imgg/**" location="D:\file\gong\" />
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
 

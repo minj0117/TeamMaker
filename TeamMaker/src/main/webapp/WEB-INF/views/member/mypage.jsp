@@ -77,7 +77,7 @@
                 <li class="astitle">나의 활동</li>
                 <ul>
                   <li><a href="#">1:1 문의 내역</a></li>
-                  <li><a href="#">나의 신청 내역</a></li>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
                   <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
@@ -120,7 +120,7 @@
                   <!-- con1 -->
                   <c:forEach var="row" items="${alist }">
                   <div class="rtitle">
-                    <a href="#">${row.title }</a>
+                    ${row.title }
                   </div>
                   </c:forEach>
                 </div>

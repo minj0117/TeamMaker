@@ -20,7 +20,8 @@
 	
 	<!-- 소속팀 보기 (tno) 가져오기 -->
 	<select id="affiliationTno" resultType="com.kh.prj.team.vo.TeammemberVO">
-		select tno from memberteam where userid = #{id} order by tno asc 
+		<!-- select tno from memberteam where userid = #{id} order by tno asc -->
+		select t1.title, t2.no, t2.tno, t2.userid from teamlist t1, memberteam t2 where t1.tno = t2.tno and t2.userid = #{id}
 	</select>
 	
 	<!-- 소속팀 보기 -->
@@ -30,7 +31,7 @@
 	
 	<!-- 내팀 지원자 보기 -->
 	<select id="myteam" resultType="com.kh.prj.apply.vo.ApplyVO">
-		select applyid from applylist where tno = #{tno}
+		select applyid,ano,tno from applylist where tno = #{tno}
 	</select>
 	
 	<!-- 팀원 추가 -->
@@ -60,4 +61,6 @@
 	<select id="checkowner" parameterType="int" resultType="String">
 		select owner from teamlist where tno = #{tno}
 	</select>
+	
+	
 </mapper>

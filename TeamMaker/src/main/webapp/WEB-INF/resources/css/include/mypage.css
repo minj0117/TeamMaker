@@ -274,6 +274,7 @@ main section .section1 .rtitle,
 main section .section2 .rtitle,
 main section .section3 .rtitle {
   padding: 0 5px;
+  display: flex;
 }
 
 main section .section1 .rdate,

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.prj.dae.dao.DaeDAO;
 import com.kh.prj.dae.vo.DaeVO;
+import com.kh.prj.paging.PagingCriteria;
 
 @Service
 public class DaeSVCImpl implements DaeSVC {
@@ -21,8 +22,8 @@ public class DaeSVCImpl implements DaeSVC {
 		return daeDAO.insertDae(daeVO);
 	}
 	@Override
-	public List<DaeVO> dlist() {
-		return daeDAO.dlist();
+	public List<DaeVO> dlist(PagingCriteria paging) {
+		return daeDAO.dlist(paging);
 	}
 	@Override
 	public DaeVO dview(int dno) {
@@ -40,5 +41,10 @@ public class DaeSVCImpl implements DaeSVC {
 	@Override
 	public List<DaeVO> checklist(List<String> value) {
 		return daeDAO.checklist(value);
+	}
+	
+	@Override
+	public int getTotalCnt() {
+		return daeDAO.getTotalCnt();
 	}
 }

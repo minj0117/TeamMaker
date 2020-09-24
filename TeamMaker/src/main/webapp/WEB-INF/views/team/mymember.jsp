@@ -51,27 +51,53 @@
       href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
       rel="stylesheet"
     />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+function addFn(){
+	let ano = document.getElementById('ano').value;
+	let tno = document.getElementById('tno').value;
+	let applyid = document.getElementById('applyid').innerHTML;
+	const Info = JSON.stringify({ano:ano,tno:tno,applyid:applyid});
+	$.ajax({
+		data : Info,
+		url : "${contextPath}/prj/addteamuser",
+		type : "post",
+		dataType : "text",
+		contentType : "application/json; charset=UTF-8",
+		success : function(data){
+			console.log(data);
+			if(data == 1){
+				alert("추가되었습니다.");
+				location.reload();
+			}else{
+				alert("다시시도해주세요.");
+			}
+		},
+		error : function(data,textStatus){
+			alert("에러가 발생했습니다.");
+		}
+	})
+}
+</script>
  </head>
 <body>
-   	<!-- uppermost -->
-    <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
-    <!-- nav -->
-    <%@ include file="/WEB-INF/views/include/nav.jsp" %>
-	<h1>팀 목록</h1>
-	${sessionScope.member.id}
-	<%
-		String id = (String) session.getAttribute("id");
-	%>
-		<h1><%=id %></h1>
-	<%
-		if(id != null ){
-	%>	
+	<!-- uppermost -->
+	<%@ include file="/WEB-INF/views/include/uppermost.jsp"%>
+	<!-- header -->
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
+
+	<!-- nav -->
+	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
+
+  
+    <h1>팀 목록</h1>
 	<table border="1" width="700">
 		<tr>
 			<th>팀번호</th>
 			<th>팀장</th>
 			<th>팀명</th>
 			<th>팀원</th>
+			<th>관리</th>
 		</tr>
 		<c:forEach var="row" items="${list }">
 		<tr>
@@ -79,17 +105,29 @@
 			<td>${row.owner }</td>
 			<td>${row.title }</td>
 			<td>${row.userid }</td>
+			<td><input type="button" onClick="delFn()" value="추방"></td>
 		</tr> 
 		</c:forEach>
 	</table>
 
-	<% 
-		}else{
-	%>
-		<h1>권한이 없습니다.</h1>
-	<%
-		}
-	%>
+     
+    <form id="frmApply" action="${contextPath }/prj/addteamuser" method="post">
+		<table border="1" width="700">
+			<tr>
+				<th>지원자</th>
+				<th>추가</th>
+			</tr>
+			<c:forEach var="row" items="${alist }">
+				<tr>
+					<td><a href="#" id="applyid">${row.applyid }</a></td>
+					<td><input type="button" onClick="addFn()"  value="팀원추가"></td>
+					<input type="hidden" id="ano" value="${row.ano }"/>
+					<input type="hidden" id="tno" value="${row.tno }"/></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</form>
+
 	
 	
     <!-- footer -->

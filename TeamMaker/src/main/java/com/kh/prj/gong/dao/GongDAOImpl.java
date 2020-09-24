@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.kh.prj.gong.vo.GongVO;
+import com.kh.prj.paging.PagingCriteria;
 @Repository
 public class GongDAOImpl implements GongDAO {
 	private static final Logger logger = LoggerFactory.getLogger(GongDAOImpl.class);
@@ -24,9 +25,9 @@ public class GongDAOImpl implements GongDAO {
 	}
 
 	@Override
-	public List<GongVO> glist() {
-
-		return sqlSession.selectList("mappers.GongDAO-mapper.glist");
+	public List<GongVO> glist(PagingCriteria paging) {
+		System.out.println(paging.getPageNum());
+		return sqlSession.selectList("mappers.GongDAO-mapper.glist",paging);
 	}
 
 	@Override
@@ -43,7 +44,12 @@ public class GongDAOImpl implements GongDAO {
 
 	@Override
 	public int del(int gno) {
-
+		
 		return sqlSession.delete("mappers.GongDAO-mapper.del", gno);
+	}
+	
+	@Override
+	public int getTotalCnt() {
+		return sqlSession.selectOne("mappers.GongDAO-mapper.getTotalCnt");
 	}
 }

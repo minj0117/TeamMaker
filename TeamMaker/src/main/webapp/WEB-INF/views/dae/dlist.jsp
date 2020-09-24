@@ -158,7 +158,7 @@ function checkbox(){
           	<c:forEach var="row" items="${list }">
             <li>
               <a href="${contextPath }/prj/dae/dview/${row.dno}">
-                <div class="gong_img"><img src="C:\img\'${row.pic }'" alt="" /></div>
+                <img src="${contextPath }/imgs/${row.pic }" alt="" />
                 <div class="title">${row.title }</div>
               </a>  
                 <div class="info">
@@ -171,33 +171,46 @@ function checkbox(){
         </div>
 
         <!-- 페이징 -->
-        <ul class="paging">
-          <li>
-            <a href="#"><i class="fas fa-angle-double-left"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-angle-left"></i></a>
-          </li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">6</a></li>
-          <li><a href="#">7</a></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><a href="#">10</a></li>
-          <li>
-            <a href="#"><i class="fas fa-angle-right"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-          </li>
-        </ul>
-      </div>
+        <div class="paging">
+					<div id="pagingDiv">
+						<c:if test="${paging.prev}">
+							<a href="${paging.startPage - 1 }">이전</a>
+						</c:if>
+						<c:forEach var="num" begin="${paging.startPage}"
+							end="${paging.endPage }">
+						&nbsp;<a href="${num }">${num }</a>&nbsp;
+					</c:forEach>
+						<c:if test="${paging.next}">
+							<a id="next" href="${paging.endPage + 1 }">다음</a>
+						</c:if>
+					</div>
+					<form id="pagingFrm" name="pagingForm" action="dlist"
+						method="get">
+						<input type="hidden" id="pageNum" name="pageNum"
+							value="${paging.cri.pageNum }"> <input type="hidden"
+							id="amount" name="amount" value="${paging.cri.amount }">
+					</form>
+				</div>
+				<c:if test="${sessionScope.member.id eq 'admin' }">
+				<input type="button" onClick="location.href='${contextPath}/prj/dae/daeForm'" value="글쓰기">
+				</c:if>
 	</main>
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+
+							//페이지 번호 이동
+							$('#pagingDiv a').click(function(e) {
+								e.preventDefault();
+								$('#pageNum').val($(this).attr("href"));
+								pagingForm.submit();
+
+							});
+						});
+	</script>
 </body>
 </html>

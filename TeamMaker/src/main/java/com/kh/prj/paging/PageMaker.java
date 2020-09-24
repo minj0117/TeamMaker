@@ -20,7 +20,6 @@ public class PageMaker {
 		
 		this.next = getEndPage() < realEnd;
 		this.prev = getStartPage()>1;
-		
 	}
 	
 	public PagingCriteria getCri() {

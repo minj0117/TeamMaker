@@ -26,8 +26,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="http://localhost:8090/prj/css/include/signin.css" />
+<link rel="stylesheet" href="http://localhost:8090/prj/css/member/signin.css" /> 
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
@@ -48,6 +47,14 @@
 	function fn_loginFn(){
 		let id = document.getElementById('id').value;
 		let pw = document.getElementById('pw').value;
+		if(id.length == 0){
+			alert("아이디를 입력해주세요.");
+			return;
+		}
+		if(pw.length == 0){
+			alert("패스워드를 입력해주세요.");
+			return;
+		}
 		const memberInfo = JSON.stringify({id:id,pw:pw});
 		$.ajax({
 			data : memberInfo,
@@ -99,11 +106,7 @@
 						<span class="errmsg" id="errmsg_pw"></span>
 					</div>
 					<div class="item">
-						<input type="button" onClick="fn_loginFn()" id="loginBtn" value="로그인"></button>
-					</div>
-					<div class="item check">
-						<input type="checkbox" name="login_chk" id="login_chk" /> <label
-							for="login_chk" id="login_chk">로그인 상태 유지</label>
+						<input type="button" onClick="fn_loginFn()" id="loginBtn" value="로그인" />
 					</div>
 					<div class="item find_info">
 						<a href="/prj/member/findIDForm" id="findID">아이디 찾기</a><span>|</span>
@@ -116,40 +119,6 @@
 	</main>
 
 	<!-- footer -->
-	<footer>
-		<div class="container">
-			<!-- footer_menu1 -->
-			<div class="footer_menu1">
-				<ul>
-					<li><a href="#">사이트 소개</a></li>
-					<li><a href="#">광고 안내</a></li>
-					<li><a href="#">이용약관</a></li>
-					<li><a href="#" id="policy">개인정보처리방침</a></li>
-					<li><a href="#">고객센터</a></li>
-				</ul>
-			</div>
-
-			<!-- footer_menu2 -->
-			<div class="footer_menu2">
-				<div class="left">
-					<a href="#"><img src="http://localhost:8090/prj/img/map.png"
-						alt="" /></a>
-				</div>
-
-				<div class="right">
-					<div class="right_up">
-						<div>TEAM MAKER</div>
-						<div>대표: 홍길동</div>
-						<div>E-mail: teammaker@gmail.com</div>
-					</div>
-
-					<div class="right_down">
-						<div>주소: (00000) 울산광역시 신정동 OOOOO OOO</div>
-						<div>Copyright 2020 TEAM MAKER Corp. All right reserved.</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

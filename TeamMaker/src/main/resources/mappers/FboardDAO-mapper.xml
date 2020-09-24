@@ -24,8 +24,8 @@
 		SELECT fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup
 			FROM	(SELECT /*+INDEX_DESC(fboard fboard_pk) */
 						rownum rn, fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup
-					from fboard where rownum <= #{pageNum} * #{amount})
-			where rn > (#{pageNum}-1) * #{amount} and parent = 0
+					from fboard where rownum <= #{pageNum} * #{amount} and parent = 0)
+			where rn > (#{pageNum}-1) * #{amount}
 			ORDER BY fno DESC
 	]]>
 	</select>

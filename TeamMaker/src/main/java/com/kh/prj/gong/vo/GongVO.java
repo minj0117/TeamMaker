@@ -2,8 +2,9 @@ package com.kh.prj.gong.vo;
 
 import java.sql.Date;
 
-public class GongVO {
+import org.springframework.web.multipart.MultipartFile;
 
+public class GongVO {
 	private int gno; // GNO NUMBER No 1 번호
 	private String writer; // WRITER VARCHAR2(40 BYTE) No 2 작성자
 	private String category; // CATEGORY VARCHAR2(20 BYTE) No 3 카테고리
@@ -17,9 +18,12 @@ public class GongVO {
 	private String homepage; // HOMEPAGE VARCHAR2(100 BYTE) Yes 11 홈페이지
 	private String g_comment; // G_COMMENT VARCHAR2(3000 BYTE) No 12 내용
 	private int cnt; // CNT NUMBER Yes "0" 13 조회수
-	private byte[] pic; // PIC BLOB Yes 14 첨부파일
+	private String pic;
 	private String applymoney; // APPLYMONEY VARCHAR2(20 BYTE) Yes 15 참가비
 	private String award; // AWARD VARCHAR2(20 BYTE) Yes 16 총 상금
+	private String fileName;
+	private MultipartFile uploadFile;
+	
 	public int getGno() {
 		return gno;
 	}
@@ -98,12 +102,6 @@ public class GongVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	public byte[] getPic() {
-		return pic;
-	}
-	public void setPic(byte[] pic) {
-		this.pic = pic;
-	}
 	public String getApplymoney() {
 		return applymoney;
 	}
@@ -115,6 +113,24 @@ public class GongVO {
 	}
 	public void setAward(String award) {
 		this.award = award;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
 	}
 	
 	

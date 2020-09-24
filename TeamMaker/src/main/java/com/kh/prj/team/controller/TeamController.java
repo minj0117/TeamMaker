@@ -1,5 +1,6 @@
 package com.kh.prj.team.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.apply.vo.ApplyVO;
 import com.kh.prj.team.svc.TeamSVC;
@@ -85,12 +90,12 @@ public class TeamController {
 		String id = (String)session.getAttribute("id");
 		System.out.println("controller id : " + id);
 		List<TeamVO> list = teamSVC.myList(id);
-		List<TeammemberVO> slist = teamSVC.affiliationTno(id);
-		List<TeamVO> list2 = null;
-		for(int i=0; i<slist.size(); i++) {
+		List<TeammemberVO> list2 = teamSVC.affiliationTno(id);
+		//List<TeamVO> list2 = null;
+		/*for(int i=0; i<slist.size(); i++) {
 			int tno = slist.get(i).getTno();
 			list2 = teamSVC.sosok(tno);
-		}	
+		}*/	
 		model.addAttribute("list2", list2); //속한팀
 		model.addAttribute("list", list); //만든팀
 		System.out.println("list : " + list.toString());
@@ -121,9 +126,6 @@ public class TeamController {
 	 */
 	@GetMapping("/myteam/{tno}")
 	public String myteam(ApplyVO applyVO, Model model) {
-		logger.info("들어옴");
-		logger.info("applyid : " + applyVO.getApplyid());
-		logger.info("tno : " + applyVO.getTno());
 		int tno = applyVO.getTno();
 		List<ApplyVO> list = teamSVC.myteam(tno);
 		model.addAttribute("list", list);
@@ -134,7 +136,7 @@ public class TeamController {
 	/**
 	 * 팀원 추가
 	 */
-	@PostMapping("/addteamuser")
+	/*@PostMapping("/addteamuser")
 	public String addteamuser(ApplyVO applyVO, HttpServletRequest request) {
 		boolean state = true; //한번이라도 실패하면 false
 		String[] id = request.getParameterValues("applycant");
@@ -160,7 +162,22 @@ public class TeamController {
 		}else {
 			return "err_page";
 		}
+	}*/
+	@ResponseBody
+	@RequestMapping(value="/addteamuser", method = RequestMethod.POST, produces = "application/json")
+	public int addteamuser(@RequestBody HashMap<String,String> info , TeammemberVO vo) {
+		int tno = Integer.parseInt(info.get("tno"));
+		String applyid = info.get("applyid");
+		vo.setTno(tno);
+		vo.setUserid(applyid);
+		int result = teamSVC.addmember(vo);
+		if(result == 1) {
+			teamSVC.delapply(tno);
+		}
+		return result;
 	}
+	
+	
 	
 	/**
 	 * 내 팀원 보기
@@ -172,9 +189,12 @@ public class TeamController {
 	@GetMapping("/mymember/{tno}")
 	public String myMember(TeammemberVO teammemberVO, Model model, HttpServletRequest request) {
 		int tno = Integer.parseInt(request.getParameter("tno"));
-		logger.info("tno : " + tno);
 		if(tno != 0) {
+			List<ApplyVO> alist = teamSVC.myteam(tno);
+			model.addAttribute("alist", alist);
+			logger.info("tno : " + tno);
 			List<TeammemberVO> list = teamSVC.mymember(tno);
+			model.addAttribute("tno", tno);
 			model.addAttribute("list",list);
 			return "team/mymember";
 		}else {

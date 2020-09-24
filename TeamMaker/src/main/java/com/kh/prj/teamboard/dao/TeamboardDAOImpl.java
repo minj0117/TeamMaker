@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.kh.prj.paging.PagingCriteria;
+import com.kh.prj.team.vo.TeammemberVO;
 import com.kh.prj.teamboard.vo.FileVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
@@ -18,8 +19,10 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	
 	
 	@Override
-	public List<TeamboardVO> boardList(int tno) {
-		return sqlSession.selectList("mappers.TeamboardDAO-mapper.boardList",tno);
+	public List<TeamboardVO> boardList(PagingCriteria paging) {
+		
+		System.out.println(paging.toString());
+		return sqlSession.selectList("mappers.TeamboardDAO-mapper.boardList",paging);
 	}
 	
 	@Override
@@ -29,10 +32,6 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	
 	@Override
 	public int boardWrite(TeamboardVO vo) {
-		System.out.println(vo.getB_comment());
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getWriter());
-		System.out.println(vo.getTno());
 		return sqlSession.insert("mappers.TeamboardDAO-mapper.boardWrite",vo);
 	}
 	
@@ -81,4 +80,11 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	public int totalCnt() {
 		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.getTotalCnt");
 	}
+	
+	@Override
+	public int totalCntboard() {
+		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.getTotalBoardCnt");
+	}
+	
+	
 }

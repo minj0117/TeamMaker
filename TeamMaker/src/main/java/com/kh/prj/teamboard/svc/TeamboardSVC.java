@@ -3,11 +3,12 @@ package com.kh.prj.teamboard.svc;
 import java.util.List;
 
 import com.kh.prj.paging.PagingCriteria;
+import com.kh.prj.team.vo.TeammemberVO;
 import com.kh.prj.teamboard.vo.FileVO;
 import com.kh.prj.teamboard.vo.TeamboardVO;
 
 public interface TeamboardSVC {
-	public List<TeamboardVO> boardList(int tno);
+	public List<TeamboardVO> boardList(PagingCriteria paging);
 	
 	public TeamboardVO boardView(int bno);
 	
@@ -30,4 +31,5 @@ public interface TeamboardSVC {
 	public int fileDelete(int bno);
 	
 	public int totalCnt();
+	public int totalCntboard();
 }

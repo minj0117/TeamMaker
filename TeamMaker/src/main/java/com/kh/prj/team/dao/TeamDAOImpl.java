@@ -34,7 +34,6 @@ public class TeamDAOImpl implements TeamDAO {
 	
 	@Override
 	public List<TeamVO> myList(String id) {
-		System.out.println("mylist id : " + id );
 		return sqlSession.selectList("mappers.TeamDAO-mapper.mylist",id);
 	}
 	

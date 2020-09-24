@@ -34,34 +34,21 @@
          #{way},
          #{homepage},
          #{g_comment},
-         #{pic},
+         #{fileName},
          #{applymoney},
          #{award}
          )   
    ]]>
 </insert>
 
-<select id="glist"
-            resultType="com.kh.prj.gong.vo.GongVO">
+<select id="glist" resultType="com.kh.prj.gong.vo.GongVO">
    <![CDATA[
-      select GNO,
-                WRITER,
-                CATEGORY,
-                CDATE,
-                TITLE,
-                APPLYSTART,
-                APPLYEND,
-                STARTDAY,
-                HOST,
-               WAY,
-                HOMEPAGE,
-                G_COMMENT,
-                CNT,
-                PIC,
-                APPLYMONEY,
-                AWARD
-        from gong
-     order by cdate desc           
+     SELECT gno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,g_comment,cnt,pic,applymoney,award
+			FROM	(SELECT /*+INDEX_DESC(gong gong_pk) */
+						rownum rn, gno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,g_comment,cnt,pic,applymoney,award
+					from gong where rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum}-1) * #{amount}
+			ORDER BY gno DESC
    ]]>
 </select>
 
@@ -103,7 +90,7 @@
              WAY = #{way},
              HOMEPAGE = #{homepage},
              G_COMMENT = #{g_comment},
-             PIC = #{pic},
+             PIC = #{fileName},
              APPLYMONEY = #{applymoney},
              AWARD = #{award}
     where gno = #{gno}          
@@ -119,4 +106,7 @@
    ]]>      
 </delete>
 
+<select id="getTotalCnt" resultType="int">
+		select count(*) from gong
+	</select>
 </mapper>

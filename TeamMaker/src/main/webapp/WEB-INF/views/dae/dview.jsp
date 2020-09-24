@@ -126,7 +126,7 @@ main .paging li:hover {
 
           <!-- 개요 부분 -->
           <div class="content_overview">
-            <div><img src="#" alt="" /></div>
+            <div><img src="http://localhost:8090/imgs/${daeVO.pic }" alt="" /></div>
             <table>
               <colgroup>
                 <col style="width: 150px" />

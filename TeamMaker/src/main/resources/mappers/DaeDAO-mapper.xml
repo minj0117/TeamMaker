@@ -33,13 +33,17 @@
 				#{award},
 				#{homepage},
 				#{d_comment},
-				#{pic})
+				#{fileName})
 		]]>
 	</insert>
 	<select id="dlist" resultType="com.kh.prj.dae.vo.DaeVO">
 		<![CDATA[
-			select dno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,d_comment,cnt,pic,applymoney,award 
-			from dae order by cdate desc
+			SELECT dno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,d_comment,cnt,pic,applymoney,award
+			FROM	(SELECT /*+INDEX_DESC(dae dae_pk) */
+						rownum rn, dno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,d_comment,cnt,pic,applymoney,award
+					from dae where rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum}-1) * #{amount}
+			ORDER BY dno DESC
 		]]>
 	</select>
 	<select id="dview" resultType="com.kh.prj.dae.vo.DaeVO">
@@ -62,7 +66,7 @@
 				way = #{way},
 				homepage = #{homepage},
 				d_comment = #{d_comment},
-				pic = #{pic},
+				pic = #{fileName},
 				applymoney = #{applymoney},
 				award = #{award}
 				where dno = #{dno}
@@ -81,5 +85,9 @@
 			<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
 				#{item}
 			</foreach>
+	</select>
+	
+	<select id="getTotalCnt" resultType="int">
+		select count(*) from dae
 	</select>
 </mapper>

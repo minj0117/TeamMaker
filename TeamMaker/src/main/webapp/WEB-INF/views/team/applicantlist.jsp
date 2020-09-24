@@ -13,6 +13,14 @@
 	}
 </script>
 <body>
+	<!-- uppermost -->
+	<%@ include file="/WEB-INF/views/include/uppermost.jsp"%>
+	<!-- header -->
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
+
+	<!-- nav -->
+	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
+	
 	<h1>팀 목록</h1>
 	${sessionScope.member.id}
 	<%
