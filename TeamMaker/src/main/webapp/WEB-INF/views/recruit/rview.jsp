@@ -43,26 +43,26 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	function report(){
-		let writer = document.getElementById('writer').value;
-		let pw = document.getElementById('pw').value;
-		let title = document.getElementById('title').value;
-		let f_comment = document.getElementById('f_comment').value;
+		let id = document.getElementById('rid').innerText;
+		let bno = document.getElementById('rno').value
+		let r_comment = document.getElementById('rcomment').innerText;
+		const Info = JSON.stringify({id:id, bno:bno, r_comment:r_comment});
 		$.ajax({
 			data : Info,
-			url : "${contextPath}/prj/fboard/write",
+			url : "${contextPath}/prj/member/rreportinsert",
 			type : "post",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
 			success : function(data){
+				console.log(data);
 				if(data == 1){
-					alert("등록성공");
-					window.location="${contextPath}/prj/fboard/fboardList"
+					alert("신고되었습니다.");
 				}else{
-					alert("등록실패");
+					alert("이미 신고되어 있는 게시글입니다.");
 				}
 			},
 			error : function(data){
-				alert("에러발생")
+				alert("에러발생");
 			}
 		})
 	}
@@ -89,6 +89,7 @@
 						<div class="articleTitle">
 							<div class="rcategory" id="rcategory">${recruitVO.rcategory }</div>
 							<div class="rtitle" id="rtitle">${recruitVO.rtitle }</div>
+							<input type="hidden" id="rno" value="${recruitVO.rno }">
 							<div class="writerInfo">
 								<div class="profile_area">
 									<div class="profile_info">
@@ -104,7 +105,7 @@
 					</div>
 					<!-- article content 부분 -->
 					<div class="article_content">
-						<div class="article_content1">${recruitVO.rcomment }</div>
+						<div class="article_content1" id="rcomment">${recruitVO.rcomment }</div>
 						<div class="article_content2">
 							<div class="apply">
 								<div class="apply_num">
@@ -113,7 +114,9 @@
 									<div class="applyNum">2명</div>
 								</div>
 							</div>
+							 <c:if test="${!empty sessionScope.member && vo.title ne '블라인드 처리' }">
 							<a href="#" class="report" id="report" onClick="report()">신고</a>
+							</c:if>
 						</div>
 					</div>
 				</div>

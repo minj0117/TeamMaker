@@ -167,7 +167,7 @@ main .paging li:hover {
 		const Info = JSON.stringify({id:id, bno:bno, r_comment:r_comment});
 		$.ajax({
 			data : Info,
-			url : "${contextPath}/prj/member/reportinsert",
+			url : "${contextPath}/prj/member/freportinsert",
 			type : "post",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
@@ -225,7 +225,7 @@ main .paging li:hover {
               </div>
             </div>
             <!-- 신고 버튼 부분 -->
-            <c:if test='${!empty sessionScope.member }'>
+            <c:if test="${!empty sessionScope.member && vo.title ne '블라인드 처리' }">
             <div class="comm_content2">
               <a href="#" class="report" id="report" onClick="report()">신고</a>
             </div>

@@ -285,27 +285,106 @@ public class MemberController {
 		return "member/profile";
 	}
 	
-	
-	/* 관리자 페이지 */
 	@RequestMapping("admin")
-	public String admin(Model model, PagingCriteria cri) {
-		List<ReportVO> list = memberSVC.reportlist(cri);
-		int total = memberSVC.getTotal();
-		model.addAttribute("list",list);
-		model.addAttribute("paging",new PageMaker(cri,total));
+	public String admin() {
 		return "member/admin";
 	}
 	
+	/* 자유게시판 신고 목록 페이지 */
+	@RequestMapping("freport")
+	public String freport(Model model, PagingCriteria cri) {
+		List<ReportVO> list = memberSVC.freportlist(cri);
+		int total = memberSVC.fgetTotal();
+		model.addAttribute("list",list);
+		model.addAttribute("paging",new PageMaker(cri,total));
+		return "member/freport";
+	}
 	
+	/**
+	 * 신고목록애 추가
+	 * @param info
+	 * @param vo
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping(value="/reportinsert", method = RequestMethod.POST, produces = "application/json") 
-	public int reportinsert(@RequestBody HashMap<String, String> info, ReportVO vo){
+	@RequestMapping(value="/freportinsert", method = RequestMethod.POST, produces = "application/json") 
+	public int freportinsert(@RequestBody HashMap<String, String> info, ReportVO vo){
 		vo.setBno(Integer.parseInt(info.get("bno")));
 		vo.setId(info.get("id"));
 		vo.setR_comment(info.get("r_comment"));
-		int result = memberSVC.checkreport(vo);
+		int result = memberSVC.fcheckreport(vo); //이미 신고되어있는지 확인
 		if( result == 0 ) {
-			return memberSVC.reportinsert(vo);
+			return memberSVC.freportinsert(vo);
+		}else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * 처리 승인
+	 * @param info
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/freportok", method = RequestMethod.PUT, produces = "application/json")
+	public int reportok(@RequestBody HashMap<String, String> info) {
+		String id = info.get("id");
+		int fno = Integer.parseInt(info.get("bno"));
+		memberSVC.fboardBlind(fno);
+		memberSVC.dancnt(id);
+		int check = memberSVC.getcnt(id);
+		if(check >= 3) {
+			memberSVC.addBlackList(id);
+			memberSVC.freportdel(Integer.parseInt(info.get("no")));
+			return 2;
+		}
+		return memberSVC.freportdel(Integer.parseInt(info.get("no")));
+	}
+	
+	/**
+	 * 처리 거절
+	 * @param info
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/freportno", method = RequestMethod.DELETE, produces = "application/json")
+	public int reportno(@RequestBody HashMap<String, String> info) {
+		return memberSVC.freportdel(Integer.parseInt(info.get("no")));
+	}
+	
+	
+	
+	/* 모집게시판 신고 목록 페이지 */
+	@RequestMapping("rreport")
+	public String rreport(Model model, PagingCriteria cri) {
+		List<ReportVO> list = memberSVC.rreportlist(cri);
+		int total = memberSVC.rgetTotal();
+		model.addAttribute("list",list);
+		model.addAttribute("paging",new PageMaker(cri,total));
+		return "member/rreport";
+	}
+	
+	/**
+	 * 신고목록애 추가
+	 * @param info
+	 * @param vo
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/rreportinsert", method = RequestMethod.POST, produces = "application/json") 
+	public int rreportinsert(@RequestBody HashMap<String, String> info, ReportVO vo){
+		vo.setBno(Integer.parseInt(info.get("bno")));
+		vo.setId(info.get("id"));
+		vo.setR_comment(info.get("r_comment"));
+		System.out.println(info.get("bno"));
+		System.out.println(info.get("id"));
+		System.out.println(info.get("r_comment"));
+		int result = memberSVC.rcheckreport(vo); //이미 신고되어있는지 확인
+		System.out.println(result);
+		if( result == 0 ) {
+			int cnt = memberSVC.rreportinsert(vo);
+			System.out.println("cnt : " + cnt);
+			return cnt;
 		}else {
 			return 0;
 		}

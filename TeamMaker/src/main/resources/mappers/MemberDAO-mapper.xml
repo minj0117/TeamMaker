@@ -89,30 +89,86 @@
 		delete member where id = #{id}
 	</delete>
 	
+	<!-- 자유게시판 신고 처리 시작 -->
+	
+	<!-- dancnt 추가 -->
+	<update id="danplus">
+		update member set  = dan+1 where id = #{id}
+	</update>
+	
 	<!-- 신고 목록에 있는 지확인 -->
-	<select id="checkreport" parameterType="com.kh.prj.member.vo.ReportVO" resultType="int">
-		select count(*) from report where id = #{id} and bno = #{bno}
+	<select id="fcheckreport" parameterType="com.kh.prj.member.vo.ReportVO" resultType="int">
+		select count(*) from freport where id = #{id} and bno = #{bno}
 	</select>
 	
 	
-	<!-- 신고 처리 -->
-	
 	<!-- 신고리스트 추가 -->
-	<insert id="reportinsert" parameterType="com.kh.prj.member.vo.ReportVO">		
-		insert into report values(report_seq.nextval,#{id},#{r_comment},#{bno})
+	<insert id="freportinsert" parameterType="com.kh.prj.member.vo.ReportVO">		
+		insert into freport values(report_seq.nextval,#{id},#{r_comment},#{bno})
 	</insert>
 	
-	<select id="reportlist" resultType="com.kh.prj.member.vo.ReportVO">
+	<select id="freportlist" resultType="com.kh.prj.member.vo.ReportVO">
 	<![CDATA[
 		SELECT no,id,r_comment,bno
 					FROM	(SELECT /*+INDEX_DESC(report report_pk) */
 								rownum rn, no,id,r_comment,bno
-							from report where rownum <= #{pageNum} * #{amount} )
+							from freport where rownum <= #{pageNum} * #{amount} )
 					where rn > (#{pageNum}-1) * #{amount}
-					ORDER BY no DESC
+					ORDER BY no ASC
 	]]>	
 	</select>
-	<select id="getTotal" resultType="int">
-		select count(*) from report
+	<select id="fgetTotal" resultType="int">
+		select count(*) from freport
 	</select>
+	
+	<update id="fboardBlind">
+		update fboard set title='블라인드 처리', f_comment = '부적절한 게시판임으로 블라인드 처리되었습니다.' where fno = #{fno}
+	</update>
+	
+	<delete id="freportdel">
+		delete freport where no = #{no}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 신고 목록에 있는 지확인 -->
+	<select id="rcheckreport" parameterType="com.kh.prj.member.vo.ReportVO" resultType="int">
+		select count(*) from rreport where id = #{id} and bno = #{bno}
+	</select>
+	
+	
+	<!-- 신고리스트 추가 -->
+	<insert id="rreportinsert" parameterType="com.kh.prj.member.vo.ReportVO">		
+		insert into rreport values(rreport_seq.nextval,#{id},#{r_comment},#{bno})
+	</insert>
+	
+	<select id="rreportlist" resultType="com.kh.prj.member.vo.ReportVO">
+	<![CDATA[
+		SELECT no,id,r_comment,bno
+					FROM	(SELECT /*+INDEX_DESC(rreport rreport_pk) */
+								rownum rn, no,id,r_comment,bno
+							from rreport where rownum <= #{pageNum} * #{amount} )
+					where rn > (#{pageNum}-1) * #{amount}
+					ORDER BY no ASC
+	]]>	
+	</select>
+	<select id="rgetTotal" resultType="int">
+		select count(*) from rreport
+	</select>
+	
+	
+	
+	<update id="rboardBlind">
+		update recruit set title='블라인드 처리', rcomment = '부적절한 게시판임으로 블라인드 처리되었습니다.' where rno = #{rno}
+	</update>
+	
+	<delete id="rreportdel">
+		delete rreport where no = #{no}
+	</delete>
+	
 </mapper>

@@ -43,15 +43,30 @@
 </head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function okFn(){
-		let id = document.getElementById('id').innerText;
-		let no = document.getElementById('no').innerText;
-		let r_comment = document.getElementById('r_comment').innerText;
-		let bno = document.getElementById('bno').innerText;
-		console.log(id);
-		console.log(no);
-		console.log(r_comment);
-		console.log(bno);
+	function okFn(num){
+		let id = document.getElementById('id'.concat(num)).innerText;
+		let no = document.getElementById('no'.concat(num)).innerText;
+		let r_comment = document.getElementById('r_comment'.concat(num)).innerText;
+		let bno = document.getElementById('bno'.concat(num)).innerText;
+		const Info = JSON.stringify({id:id,no:no,r_comment:r_comment,bno:bno});
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/member/reportok",
+			type : "put",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					alert("처리되었습니다.");
+				}else{
+					alert("다시시도해주세요.");
+				}
+			},
+			error : function(data,textStatus){
+				alert("에러가 발생했습니다.");
+			}
+		})
 	}
 </script>
 <body>
@@ -73,7 +88,7 @@
                 <li class="astitle">신고</li>
                 <ul>
                   <li><a href="${contextPath }/prj/member/rreport">팀원 모집 게시판 신고</a></li>
-                  <li><a href="#">자유 게시판 신고</a></li>
+                  <li><a href="${contextPath }/prj/member/freport">자유 게시판 신고</a></li>
                   <li><a href="#">경고 누적 아이디</a></li>
                   <li><a href="#">사용 중지 아이디</a></li>
                   <li><a href="#"></a></li>
@@ -108,13 +123,13 @@
                   </div>
                   <div class="section2_con down">
                     <!-- con1 -->
-                    <c:forEach var="row" items="${list }">
-                    <div class="no" id="no">${row.no }</div>
-                    <div class="r_comment" id="r_comment">${row.r_comment }</div>
-                    <div class="id" id="id"><a href="">${row.id }</a></div>
-                    <div class="bno" id="bno">${row.bno }</div>
+                    <c:forEach var="row" items="${list }" varStatus="status">
+                    <div class="no" id="no${status.index }">${row.no }</div>
+                    <div class="r_comment" id="r_comment${status.index }">${row.r_comment }</div>
+                    <div class="id" id="id${status.index }"><a href="">${row.id }</a></div>
+                    <div class="bno" id="bno${status.index }">${row.bno }</div>
                     <div class="opt">
-                    	<input type="button" value="승인" onClick="okFn()">
+                    	<input type="button" value="승인" onClick="okFn('${status.index}')">
                     	<input type="button" value="거절">
                     </div>
                     </c:forEach>

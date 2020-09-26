@@ -149,21 +149,53 @@ public class MemberSVCImpl implements MemberSVC {
 	}
 	
 	@Override
-	public int checkreport(ReportVO vo) {
-		return memberDAO.checkreport(vo);
+	public int danplus(String id) {
+		return memberDAO.dancnt(id);
 	}
 	
 	@Override
-	public int reportinsert(ReportVO vo) {
-		return memberDAO.reportinsert(vo);
+	public int fcheckreport(ReportVO vo) {
+		return memberDAO.fcheckreport(vo);
 	}
 	
 	@Override
-	public List<ReportVO> reportlist(PagingCriteria paging) {
-		return memberDAO.reportlist(paging);
+	public int freportinsert(ReportVO vo) {
+		return memberDAO.freportinsert(vo);
+	}
+	
+	@Override
+	public List<ReportVO> freportlist(PagingCriteria paging) {
+		return memberDAO.freportlist(paging);
 	}
 	@Override
-	public int getTotal() {
-		return memberDAO.getTotal();
+	public int fgetTotal() {
+		return memberDAO.fgetTotal();
+	}
+	@Override
+	public int fboardBlind(int fno) {
+		return memberDAO.fboardBlind(fno);
+	}	
+	@Override
+	public int freportdel(int no) {
+		return memberDAO.freportdel(no);
+	}
+	
+	
+	
+	@Override
+	public int rcheckreport(ReportVO vo) {
+		return memberDAO.rcheckreport(vo);
+	}
+	@Override
+	public int rreportinsert(ReportVO vo) {
+		return memberDAO.rreportinsert(vo);
+	}
+	@Override
+	public List<ReportVO> rreportlist(PagingCriteria paging) {
+		return memberDAO.rreportlist(paging);
+	}
+	@Override
+	public int rgetTotal() {
+		return memberDAO.rgetTotal();
 	}
 }

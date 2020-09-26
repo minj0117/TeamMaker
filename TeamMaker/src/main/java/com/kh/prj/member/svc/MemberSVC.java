@@ -88,9 +88,18 @@ public interface MemberSVC {
 	public MemberVO memberCheck(MemberVO memberVO);
 	public int changePw(MemberVO memberVO);
 
-
-	public int checkreport(ReportVO vo);
-	public int reportinsert(ReportVO vo);
-	public List<ReportVO> reportlist(PagingCriteria paging);
-	public int getTotal();
+	public int danplus(String id);
+	
+	public int fcheckreport(ReportVO vo);
+	public int freportinsert(ReportVO vo);
+	public List<ReportVO> freportlist(PagingCriteria paging);
+	public int fgetTotal();
+	public int fboardBlind(int fno);
+	public int freportdel(int no);
+	
+	
+	public int rcheckreport(ReportVO vo);
+	public int rreportinsert(ReportVO vo);
+	public List<ReportVO> rreportlist(PagingCriteria paging);
+	public int rgetTotal();
 }

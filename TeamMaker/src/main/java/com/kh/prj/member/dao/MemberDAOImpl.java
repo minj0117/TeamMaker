@@ -163,21 +163,56 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update("mappers.MemberDAO-mapper.changePw",memberVO);
 	}
 	
+	
 	@Override
-	public int checkreport(ReportVO vo) {
-		return sqlSession.selectOne("mappers.MemberDAO-mapper.checkreport", vo);
+	public int danplus(String id) {
+		return sqlSession.update("mappers.MemberDAO-mapper.danplus", id);
 	}
 	
 	@Override
-	public int reportinsert(ReportVO vo) {
-		return sqlSession.insert("mappers.MemberDAO-mapper.reportinsert",vo);
+	public int fcheckreport(ReportVO vo) {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.fcheckreport", vo);
+	}
+	
+	@Override
+	public int freportinsert(ReportVO vo) {
+		return sqlSession.insert("mappers.MemberDAO-mapper.freportinsert",vo);
 	}
 	@Override
-	public List<ReportVO> reportlist(PagingCriteria paging) {
-		return sqlSession.selectList("mappers.MemberDAO-mapper.reportlist",paging);
+	public List<ReportVO> freportlist(PagingCriteria paging) {
+		return sqlSession.selectList("mappers.MemberDAO-mapper.freportlist",paging);
 	}
 	@Override
-	public int getTotal() {
-		return sqlSession.selectOne("mappers.MemberDAO-mapper.getTotal");
+	public int fgetTotal() {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.fgetTotal");
+	}
+	@Override
+	public int fboardBlind(int fno) {
+		return sqlSession.update("mappers.MemberDAO-mapper.fboardBlind", fno);
+	}
+	@Override
+	public int freportdel(int no) {
+		return sqlSession.delete("mappers.MemberDAO-mapper.freportdel", no);
+	}
+	
+	
+	@Override
+	public int rcheckreport(ReportVO vo) {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.rcheckreport", vo);
+	}
+	@Override
+	public int rreportinsert(ReportVO vo) {
+		System.out.println("dao  id: " + vo.getId());
+		System.out.println("dao  com: " + vo.getR_comment());
+		System.out.println("dao  bno: " + vo.getBno());
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.rreportinsert",vo);
+	}
+	@Override
+	public List<ReportVO> rreportlist(PagingCriteria paging) {
+		return sqlSession.selectList("mappers.MemberDAO-mapper.rreportlist",paging);
+	}
+	@Override
+	public int rgetTotal() {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.rgetTotal");
 	}
 }

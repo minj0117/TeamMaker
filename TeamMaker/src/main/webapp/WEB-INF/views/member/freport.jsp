@@ -24,7 +24,7 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="http://localhost:8090/prj/css/member/rreport.css" />
+	href="http://localhost:8090/prj/css/member/admin.css" />
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
@@ -43,6 +43,60 @@
 </head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+	function okFn(num){
+		let id = document.getElementById('id'.concat(num)).innerText;
+		let no = document.getElementById('no'.concat(num)).innerText;
+		let r_comment = document.getElementById('r_comment'.concat(num)).innerText;
+		let bno = document.getElementById('bno'.concat(num)).innerText;
+		const Info = JSON.stringify({id:id,no:no,r_comment:r_comment,bno:bno});
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/member/freportok",
+			type : "put",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					alert("처리되었습니다.");
+					location.reload();
+				}else if(data == 2){
+					alert("해당유저가 신고횟수 3회이상으로 블랙처리 되었습니다.")
+					location.reload();
+				}else{
+					alert("다시시도해주세요.");
+				}
+			},
+			error : function(data,textStatus){
+				alert("에러가 발생했습니다.");
+			}
+		})
+	}
+
+	function noFn(num){
+		let no = document.getElementById('no'.concat(num)).innerText;
+		const Info = JSON.stringify({no:no});
+		console.log(no);
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/member/freportno",
+			type : "delete",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				console.log(data);
+				if(data == 1){
+					alert("처리되었습니다.");
+					location.reload();
+				}else{
+					alert("다시시도해주세요.");
+				}
+			},
+			error : function(data,textStatus){
+				alert("에러가 발생했습니다.");
+			}
+		})
+	}
 </script>
 <body>
 	<!-- uppermost -->
@@ -51,7 +105,7 @@
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 	
-	    <!-- main -->
+	 <!-- main -->
     <main>
       <div class="container">
         <div class="content">
@@ -60,39 +114,10 @@
             <div>
               <div class="atitle">관리자 페이지</div>
               <ul>
-                <li class="astitle">게시글</li>
-                <ul>
-                  <li>
-                    <a
-                      href="./gongPosting.html"
-                      target="_blank"
-                      onclick="window.open('./gongPosting.html','window','width=800,height=800,left=0, top=0, scrollbars=yes');return false"
-                      >공모전</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="./daePosting.html"
-                      target="_blank"
-                      onclick="window.open('./daePosting.html','window','width=800,height=800,left=0, top=0, scrollbars=yes');return false"
-                      >대외활동</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="./articlePosting.css"
-                      target="_blank"
-                      onclick="window.open('./articlePosting.html','window','width=800,height=800,left=0, top=0, scrollbars=yes');return false"
-                      >관련 기사</a
-                    >
-                  </li>
-                </ul>
-              </ul>
-              <ul>
                 <li class="astitle">신고</li>
                 <ul>
-                  <li><a href="#">팀원 모집 게시판 신고</a></li>
-                  <li><a href="#">자유 게시판 신고</a></li>
+                  <li><a href="${contextPath }/prj/member/rreport">팀원 모집 게시판 신고</a></li>
+                  <li><a href="${contextPath }/prj/member/freport">자유 게시판 신고</a></li>
                   <li><a href="#">경고 누적 아이디</a></li>
                   <li><a href="#">사용 중지 아이디</a></li>
                   <li><a href="#"></a></li>
@@ -110,34 +135,75 @@
           <!-- section -->
           <section>
             <div class="stitle"><span>관리자</span>님 반갑습니다</div>
-            <div class="mtbTitle">자유 게시판 신고</div>
-            <div class="mtbReport">
-              <!-- reportList 시작 -->
-              <div class="reportTitle">
-                <div>글번호</div>
-                <div>제목</div>
-                <div>아이디</div>
-                <div>작성일</div>
-                <div id="reportColor">신고 횟수</div>
-              </div>
-              <!-- reportList  -->
-              <div class="reportList">
-                <div class="rno">333</div>
-                <div class="rtitle">
-                  <a href=""
-                    >Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</a
-                  >
+            <div>
+              <!-- section1 -->
+              <div class="section2">
+                <div class="section2_title">
+                  <div>신고 목록</div>
+                  <div><a href="#">전체보기 ＞</a></div>
                 </div>
-                <div class="id"><a href="">akdjmk2309</a></div>
-                <div class="rdate">2020.09.09</div>
-                <div class="reportNum">10</div>
+                <div class="section2_con">
+                  <div class="section2_con up">
+                    <div>글번호</div>
+                    <div>내용</div>
+                    <div>아이디</div>
+                    <div>게시글 번호</div>
+                    <div>처리</div>
+                  </div>
+                  <div class="section2_con down">
+                    <!-- con1 -->
+                    <c:forEach var="row" items="${list }" varStatus="status">
+                    <div class="no" id="no${status.index }">${row.no }</div>
+                    <div class="r_comment" id="r_comment${status.index }">${row.r_comment }</div>
+                    <div class="id" id="id${status.index }"><a href="">${row.id }</a></div>
+                    <div class="bno" id="bno${status.index }">${row.bno }</div>
+                    <div class="opt">
+                    	<input type="button" value="승인" onClick="okFn('${status.index}')">
+                    	<input type="button" value="거절" onClick="noFn('${status.index}')">
+                    </div>
+                    </c:forEach>
+                  </div>
+                </div>
+                   <div class="paging">
+					<div id="pagingDiv">
+						<c:if test="${paging.prev}">
+							<a href="${paging.startPage - 1 }">이전</a>
+						</c:if>
+						<c:forEach var="num" begin="${paging.startPage}"
+							end="${paging.endPage }">
+						&nbsp;<a href="${num }">${num }</a>&nbsp;
+					</c:forEach>
+						<c:if test="${paging.next}">
+							<a id="next" href="${paging.endPage + 1 }">다음</a>
+						</c:if>
+					</div>
+					<form id="pagingFrm" name="pagingForm" action="freport"
+						method="get">
+						<input type="hidden" id="pageNum" name="pageNum"
+							value="${paging.cri.pageNum }"> <input type="hidden"
+							id="amount" name="amount" value="${paging.cri.amount }">
+					</form>
+				</div>
               </div>
-            </div>
           </section>
         </div>
       </div>
       <div class="clearfix"></div>
     </main>
     <%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+
+							//페이지 번호 이동
+							$('#pagingDiv a').click(function(e) {
+								e.preventDefault();
+								$('#pageNum').val($(this).attr("href"));
+								pagingForm.submit();
+
+							});
+						});
+	</script>
 </body>
 </html>
