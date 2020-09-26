@@ -24,7 +24,7 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="http://localhost:8090/prj/css/team/teamboard.css" />
+	href="http://localhost:8090/prj/css/team/teamfileList.css" />
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>

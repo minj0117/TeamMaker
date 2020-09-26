@@ -29,7 +29,7 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
-	    <link rel="stylesheet" href="http://localhost:8090/prj/css/team/teamboard.css" />
+	    <link rel="stylesheet" href="http://localhost:8090/prj/css/team/fileView.css" />
     <!-- font awesome -->
     <script
       src="https://kit.fontawesome.com/2d323a629b.js"
@@ -83,40 +83,101 @@
     <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
     <!-- nav -->
     <%@ include file="/WEB-INF/views/include/nav.jsp" %>
-	<main>
-		<h1>글 상세</h1>
-	<hr>
-		<input name="bno" type="hidden" id="bno" value="${fvo.bno}" />
-		<table border="1">
-			<tr>
-				<td bgcolor="orange" width="70">제목</td>
-				<td align="left"><div name="title">${fvo.title }</div></td>
-			</tr>
-			<tr>
-				<td bgcolor="orange">작성자</td>
-				<td align="left">${fvo.writer }</td>
-			</tr>
-			<tr>
-				<td bgcolor="orange">내용</td>
-				<td align="left"><div name="f_comment" cols="40" rows="10">${fvo.f_comment }</div></td>
-			</tr>
-			<tr>
-				<td bgcolor="orange">등록일</td>
-				<td align="left"><div type="text">${fvo.cdate }</div></td>
-			</tr>
-			
-			<c:if test="${fvo.name ne null}">
-			<tr>
-				<td bgcolor="orange">첨부파일</td>
-				<td align="left"><a href="${contextPath }/prj/fileDownload?name=${fvo.name}">${fvo.name }</a></td>
-			</tr>
-			</c:if>
-		</table>
-	<hr>
-	<input type="button" onClick="location.href='${contextPath}/prj/tboard/fileModForm?bno=${fvo.bno }'" value="수정">
-	<input type="button" onClick="delFn()" value="삭제">
-	<a href="#">글 목록</a>
-	</main>
+	<!-- main -->
+    <main>
+      <div class="container">
+        <div class="content">
+          <!-- aside -->
+          <aside>
+            <div>
+              <div class="atitle">마이페이지</div>
+              <ul>
+                <li class="astitle">나의 게시글</li>
+                <ul>
+                  <li><a href="#">팀원 모집</a></li>
+                  <li><a href="#">자유 게시판</a></li>
+                </ul>
+              </ul>
+              <ul>
+                <li class="astitle">나의 활동</li>
+                <ul>
+                  <li><a href="#">1:1 문의 내역</a></li>
+                  <li><a href="#">나의 신청 내역</a></li>
+                  <li><a href="#">지원자 보기</a></li>
+                  <li><a href="#">팀 게시판</a></li>
+                </ul>
+              </ul>
+              <ul>
+                <li class="astitle">나의 정보</li>
+                <ul>
+                  <li><a href="#">회원정보 수정</a></li>
+                  <li><a href="#">회원 탈퇴</a></li>
+                </ul>
+              </ul>
+            </div>
+          </aside>
+          <!-- section -->
+          <section>
+            <div class="atitle">
+              마이 페이지<span>&nbsp;</span>
+              <i class="fas fa-chevron-right"></i>
+              <span>&nbsp;</span>나의 활동
+            </div>
+            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
+            <form action="">
+              <div class="uploadTitle">파일 업로드</div>
+              <input name="bno" type="hidden" value="${fvo.bno}" />
+              <table border="1">
+                <tr>
+                  <td width="70">제목</td>
+                  <td>
+                    <input name="title" type="text" value="${fvo.title }" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>작성자</td>
+                  <td>${fvo.writer }</td>
+                </tr>
+                <tr>
+                  <td>내용</td>
+                  <td>
+                    <textarea name="f_comment">${fvo.f_comment }</textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td>등록일</td>
+                  <td>
+                    <input
+                      type="text"
+                      value="${fvo.cdate }"
+                      pattern="yyyy-MM-dd"
+                    />
+                  </td>
+                </tr>
+
+                <c:if test="${fvo.name ne null}">
+                  <tr>
+                    <td>첨부파일</td>
+                    <td>
+                      <a
+                        href="${contextPath }/prj/fileDownload?name=${fvo.name}"
+                        >${fvo.name }</a
+                      >
+                    </td>
+                  </tr>
+                </c:if>
+              </table>
+              <div class="btngrp">
+				<input type="button" onClick="location.href='${contextPath}/prj/tboard/fileModForm?bno=${fvo.bno }'" value="수정">
+				<input type="button" onClick="delFn()" value="삭제">
+				<a href="#">글 목록</a>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </main>
 	<!-- footer -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>

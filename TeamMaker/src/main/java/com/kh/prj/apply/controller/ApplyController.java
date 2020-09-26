@@ -30,7 +30,7 @@ public class ApplyController {
 		if(result == 0) {
 			int result2 = applySVC.addlist(applyVO);
 			if(result2 != 0) {
-				return "team/list";
+				return "redirect:rlist.do";
 			}else {
 				return "err_page";
 			}

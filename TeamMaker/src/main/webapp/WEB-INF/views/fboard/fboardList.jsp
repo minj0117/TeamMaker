@@ -105,11 +105,13 @@ main .paging li:hover {
 						</c:forEach>
 					</div>
 					<!-- 글쓰기 버튼 -->
+					<c:if test='${!empty sessionScope.member }'>
 					<div class="writeBtn">
 						<button onClick="location.href='${contextPath}/prj/fboard/fboardForm'">
 							<i class="fas fa-pen"></i>글쓰기</a>
 						</button>
 					</div>
+					</c:if>
 				</div>
 
 				<!-- 페이징 -->

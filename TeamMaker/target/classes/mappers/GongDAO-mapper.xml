@@ -3,8 +3,9 @@
 <mapper namespace="mappers.GongDAO-mapper">
 
 
-<!-- 게시글 작성 -->
-<insert id="insertGong" parameterType="com.kh.prj.gong.vo.GongVO">
+	<!-- 게시글 작성 -->
+	<insert id="insertGong"
+		parameterType="com.kh.prj.gong.vo.GongVO">
    <![CDATA[
       insert into gong(
          GNO,
@@ -39,9 +40,9 @@
          #{award}
          )   
    ]]>
-</insert>
+	</insert>
 
-<select id="glist" resultType="com.kh.prj.gong.vo.GongVO">
+	<select id="glist" resultType="com.kh.prj.gong.vo.GongVO">
    <![CDATA[
      SELECT gno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,g_comment,cnt,pic,applymoney,award
 			FROM	(SELECT /*+INDEX_DESC(gong gong_pk) */
@@ -50,10 +51,9 @@
 			where rn > (#{pageNum}-1) * #{amount}
 			ORDER BY gno DESC
    ]]>
-</select>
+	</select>
 
-<select id="gview"
-            resultType="com.kh.prj.gong.vo.GongVO">
+	<select id="gview" resultType="com.kh.prj.gong.vo.GongVO">
    <![CDATA[
    select     GNO,
                 WRITER,
@@ -74,11 +74,10 @@
         from gong      
        where gno = #{gno}      
       ]]>
-</select>
+	</select>
 
 
-<update id="gongMod"
-            parameterType="com.kh.prj.gong.vo.GongVO">
+	<update id="gongMod" parameterType="com.kh.prj.gong.vo.GongVO">
    <![CDATA[            
    update gong
       set CATEGORY = #{category},
@@ -96,17 +95,27 @@
     where gno = #{gno}          
                
                
-            ]]>   
-</update>
+            ]]>
+	</update>
 
 
-<delete id="del" parameterType="int">
+	<delete id="del" parameterType="int">
    <![CDATA[
       delete gong where gno = #{gno}      
-   ]]>      
-</delete>
+   ]]>
+	</delete>
 
-<select id="getTotalCnt" resultType="int">
+	<select id="checklist" resultType="com.kh.prj.gong.vo.GongVO">
+			select * from gong 
+			where category in
+			<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+				#{item}
+			</foreach>
+	</select>
+	
+	<select id="getTotalCnt" resultType="int">
 		select count(*) from gong
 	</select>
+
+
 </mapper>

@@ -107,6 +107,7 @@
 					</div>
 					<div class="item">
 						<input type="button" onClick="fn_loginFn()" id="loginBtn" value="로그인" />
+						<!-- <input type="submit" id="loginBtn" value="로그인" /> -->
 					</div>
 					<div class="item find_info">
 						<a href="/prj/member/findIDForm" id="findID">아이디 찾기</a><span>|</span>

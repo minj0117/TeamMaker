@@ -100,70 +100,25 @@
               <span>&nbsp;</span>나의 활동
             </div>
             <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
-            <div class="hiddenTitle">
-              모바일 버전에서는 팀 게시판 서비스를 지원하지 않습니다.
-            </div>
-              <!-- 문서 부분 -->
-              <div class="filePart">
-                <div class="filePart_up">
-                  <div><i class="far fa-folder-open"></i>문서</div>
-                  <input type="button" class="uploadBtn" onClick="location.href='${contextPath}/prj/tboard/fileuploadForm?tno=${tno }'" value="파일 업로드">
-                </div>
-                <div class="filePart_down">
-                  <!-- con1 -->
-                  <!-- con1 -->
-                 <c:forEach var="row" items='${flist }'>
-                  <div class="title"><a href="${contextPath }/prj/tboard/fileView?bno=${row.bno}">${row.title }</a></div>
-                  <div class="writer"><a href="">${row.writer }</a></div>
-                  <div class="cdate">${row.cdate }</div>
-                 </c:forEach>
-                </div>
-                <!-- 페이징 -->
-                <div class="paging">
-					<div id="pagingDiv">
-						<c:if test="${paging.prev}">
-							<a href="${paging.startPage - 1 }">이전</a>
-						</c:if>
-						<c:forEach var="num" begin="${paging.startPage}"
-							end="${paging.endPage }">
-						&nbsp;<a href="${num }">${num }</a>&nbsp;
-					</c:forEach>
-						<c:if test="${paging.next}">
-							<a id="next" href="${paging.endPage + 1 }">다음</a>
-						</c:if>
-					</div>
-					<form id="pagingFrm" name="pagingForm" action="${contextPath }/prj/tboard/boardList" method="get">
-						<input type="hidden" id="tno" name="tno" value="${tno }">
-						<input type="hidden" id="pageNum" name="pageNum" value="${paging.cri.pageNum }"> 
-						<input type="hidden" id="amount" name="amount" value="${paging.cri.amount }">
-					</form>
-				</div>
+            <div class="boardPartTitle">팀이름</div>
+            <div class="boardPart">
+              <div>
+                <i class="far fa-folder-open"></i>
+                <input type="button" value="문서 " id="b1" onClick="location.href='${contextPath}/prj/tboard/fileList?tno=${tno }'" />
               </div>
-              <!-- 게시판 부분 -->
-              
+              <div>
+                <i class="fas fa-chalkboard"></i>
+                <input type="button" value="게시판" id="b2" onClick="location.href='${contextPath}/prj/tboard/talkList?tno=${tno }'" />
+              </div>
+            </div>
           </section>
         </div>
       </div>
-      <input type="button" onClick="location.href='${contextPath}/prj/tboard/talkList?tno=${tno }'" value="게시판이동">
       <div class="clearfix"></div>
     </main>
 	
 	<!-- footer -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
-      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
 
-							//페이지 번호 이동
-							$('#pagingDiv a').click(function(e) {
-								e.preventDefault();
-								$('#pageNum').val($(this).attr("href"));
-								pagingForm.submit();
-
-							});
-						});
-	</script>
 </body>
 </html>

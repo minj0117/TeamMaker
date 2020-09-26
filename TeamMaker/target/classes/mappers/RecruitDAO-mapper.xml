@@ -21,8 +21,16 @@
 	
 	<!-- 게시글 작성 -->
 	<insert id="insertRboard" parameterType="com.kh.prj.recruit.vo.RecruitVO">
+		<choose>
+		<when test='rregion != null'>
 		insert into recruit (rno, id, rtitle, rpw, ronoff, rcategory, rcomment, rregion, rgroup, rstep, rindent,tno )
 		values(recruit_seq.nextval,#{id}, #{rtitle}, #{rpw}, #{ronoff}, #{rcategory}, #{rcomment}, #{rregion}, recruit_seq.currval,0,0,#{tno})
+		</when>
+		<otherwise>
+		insert into recruit (rno, id, rtitle, rpw, ronoff, rcategory, rcomment, rgroup, rstep, rindent,tno )
+		values(recruit_seq.nextval,#{id}, #{rtitle}, #{rpw}, #{ronoff}, #{rcategory}, #{rcomment}, recruit_seq.currval,0,0,#{tno})
+		</otherwise>
+		</choose>
 	</insert>
 	
 	<!-- 게시글 보기 -->

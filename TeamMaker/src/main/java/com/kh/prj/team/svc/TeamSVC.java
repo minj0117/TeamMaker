@@ -52,4 +52,5 @@ public interface TeamSVC {
 	 * @return
 	 */
 	public int delapply(int tno);
+	public int delMember(TeammemberVO vo);
 }

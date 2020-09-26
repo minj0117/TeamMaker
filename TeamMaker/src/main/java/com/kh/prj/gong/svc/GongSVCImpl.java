@@ -51,4 +51,13 @@ public class GongSVCImpl implements GongSVC {
 		// TODO Auto-generated method stub
 		return gongDAO.getTotalCnt();
 	}
+	
+	@Override
+	public List<GongVO> checklist(List<String> value) {
+		 List<GongVO> list = gongDAO.checklist(value);
+		 for(int i=0; i<list.size(); i++) {
+			 System.out.println(list.get(i).toString());
+		 }
+		 return list;
+	}
 }

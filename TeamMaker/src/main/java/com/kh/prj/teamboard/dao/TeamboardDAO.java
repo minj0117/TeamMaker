@@ -30,7 +30,7 @@ public interface TeamboardDAO {
 	
 	public int fileDelete(int bno);
 	
-	public int totalCnt();
-	public int totalCntboard();
+	public int totalCnt(int tno);
+	public int totalCntboard(int tno);
 
 }

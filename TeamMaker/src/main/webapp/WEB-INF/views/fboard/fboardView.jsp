@@ -65,6 +65,126 @@ main .paging li:hover {
   background-color: var(--linen-color);
 }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	function pwCheck(){
+		let pw = prompt("비밀번호를 입력하세요");
+		let fno = document.getElementById('fno').value;
+		const Info = JSON.stringify({fno:fno,pw:pw});
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/fboard/pwcheck",
+			type : "post",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				if(data == 1){
+					window.location="${contextPath}/prj/fboard/fboardModForm?fno="+fno;
+				}else{
+					alert("비밀번호가 틀렷습니다.");
+				}
+			},
+			error : function(data){
+				alert("에러발생")
+			}
+		})
+	}
+
+	function delFn(){
+		let pw = prompt("비밀번호를 입력하세요");
+		let fno = document.getElementById('fno').value;
+		const Info = JSON.stringify({fno:fno,pw:pw});
+		$.ajax({
+				data : Info,
+				url : "${contextPath}/prj/fboard/fboarddel",
+				type : "delete",
+				dataType : "text",
+				contentType : "application/json; charset=UTF-8",
+				success : function(data){
+					if(data == 1){
+						window.location="${contextPath}/prj/fboard/fboardList";
+					}else{
+						alert("비밀번호가 틀렷습니다.");
+					}
+				},
+				error : function(data){
+					alert("에러발생")
+				}
+			})
+	}
+
+	function replyFn(){
+		let f_comment = document.getElementById('f_comment').value;
+		let fno = document.getElementById('fno').value;
+		const Info = JSON.stringify({fno:fno,f_comment:f_comment});
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/fboard/replyinsert",
+			type : "post",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				if(data == 1){
+					alert("댓글등록 완료");
+					location.reload();
+				}else{
+					alert("댓글 등록에 실패했습니다.");
+				}
+			},
+			error : function(data){
+				alert("에러발생")
+			}
+		})
+	}
+
+	function replydel(num) {
+		let fno = document.getElementById('replyfno'.concat(num)).value;
+		const Info = JSON.stringify({fno:fno});
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/fboard/replydelete",
+			type : "delete",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				if(data == 1){
+					alert("댓글삭제 완료");
+					location.reload();
+				}else{
+					alert("댓글 삭제에 실패했습니다.");
+				}
+			},
+			error : function(data){
+				alert("에러발생")
+			}
+		})
+	}
+
+	function report(){
+		let id = document.getElementById('writer').innerText;
+		let bno = document.getElementById('fno').value;
+		let r_comment = document.getElementById('f_comment').innerText;
+		const Info = JSON.stringify({id:id, bno:bno, r_comment:r_comment});
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/member/reportinsert",
+			type : "post",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				if(data == 1){
+					alert("신고되었습니다.")
+				}else{
+					alert("이미 신고되어 있는 게시글입니다.");
+				}
+			},
+			error : function(data){
+				alert("에러발생")
+			}
+		})
+		
+	}
+</script>
 </head>
 <body>
 	<!-- uppermost -->
@@ -85,9 +205,6 @@ main .paging li:hover {
               <div class="commTitle">
                 <div class="title" id="title">${vo.title }</div>
                 <div class="writerInfo">
-                  <div class="image">
-                    <img src="../img/defaultImg.jpg" alt="" />
-                  </div>
                   <div class="profile_area">
                     <div class="profile_info">
                       <div class="rid" id="writer">${vo.writer }</div>
@@ -103,29 +220,43 @@ main .paging li:hover {
             </div>
             <!-- article content 부분 -->
             <div class="comm_content">
-              <div class="comm_content1">
+              <div class="comm_content1" id="f_comment">
               	${vo.f_comment }
               </div>
             </div>
             <!-- 신고 버튼 부분 -->
+            <c:if test='${!empty sessionScope.member }'>
             <div class="comm_content2">
-              <a href="./reportForm.html" class="report" id="report">신고</a>
+              <a href="#" class="report" id="report" onClick="report()">신고</a>
             </div>
+            </c:if>
           <!-- comm_btns 부분 -->
           <div class="comm_btns">
-            <button class="modifyBtn">수정</button>
-            <button class="deleteBtn">삭제</button>
+          	<c:if test='${sessionScope.member.id eq vo.writer }'>
+            <button class="modifyBtn" onClick="pwCheck()">수정</button>
+            <button class="deleteBtn" onClick="delFn()">삭제</button>
+            </c:if>
             <button class="replyBtn">답글</button>
             <button class="listBtn">목록</button>
           </div>
+          <input type="hidden" id="fno" value="${vo.fno }"> 
         </form>
         <div>
-        	<c:forEach var="row" items="${list }">
-        		<div><p>${row.title } | ${row.writer }</p></div>
+        	<c:forEach var="row" items="${list }" varStatus="status">
+        		<div>${row.f_comment } | ${row.writer }
+        		<c:if test='${row.writer == sessionScope.member.id }'>
+        		<input type="hidden" id="replyfno${status.index }" value="${row.fno }"/>
+        		<input type="button" onClick="replydel('${status.index }')" value="삭제">
+        		</c:if>
+        		</div>
         	</c:forEach>
         </div>
+        <c:if test='${!empty sessionScope.member }'>
+        <form>
         <textarea rows="5" cols="50" id="f_comment" name="f_comment"></textarea>
-        <input type="button" value="등록">
+        <input type="button" onClick="replyFn()" value="등록">
+        </form>
+        </c:if>
       </div>
     </main>
 	<!-- footer -->

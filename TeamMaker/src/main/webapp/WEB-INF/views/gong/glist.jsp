@@ -66,7 +66,25 @@ main .paging li:hover {
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
+function checkbox(){
+	  console.log("들어옴");
+	  var checkedValue = [];
+	  $("input[name='g1']:checked").each(function(index, item){
+			checkedValue.push($(item).val());
+	  });
+	  
+	  
+	  /*$.get("${contextPath}/prj/dae/checklist",
+	            {val:checkedValue},
+	             function(data){},
+	             "json"
+	   )*/
+	  if(eheckedValue.length > 0){
+		  location.href="${contextPath}/prj/dae/checklist";
+	  }else{
+	 	  location.href="${contextPath}/prj/dae/checklist?value=checkedValue";
+	  }
+}
 </script>
 </head>
 <body>
@@ -78,77 +96,78 @@ main .paging li:hover {
 
    <!-- main -->
    <main>
+  	 <form action="${contextPath }/prj/gong/checklist" method="get">
       <div class="container">
         <div id="main_title">공모전</div>
         <div class="menu">
         <ul class="gong_menu">
             <li>
-              <input type="checkbox" name="g1" id="g1" />
+              <input type="checkbox" name="g1" id="g1" value="논문/리포트"/>
               <label for="g1">논문/리포트</label>
             </li>
             <li>
-              <input type="checkbox" name="g2" id="g2" />
+              <input type="checkbox" name="g1" id="g2" value="기횐/아이디어" />
               <label for="g2">기획/아이디어</label>
             </li>
             <li>
-              <input type="checkbox" name="g3" id="g3" />
+              <input type="checkbox" name="g1" id="g3" value="네이밍/슬로건"/>
               <label for="g3">네이밍/슬로건</label>
             </li>
             <li>
-              <input type="checkbox" name="g4" id="g4" />
+              <input type="checkbox" name="g1" id="g4" value="디자인"/>
               <label for="g4">디자인</label>
             </li>
             <li>
-              <input type="checkbox" name="g5" id="g5" />
+              <input type="checkbox" name="g1" id="g5" value="관고/마케팅" />
               <label for="g5">광고/마케팅</label>
             </li>
             <li>
-              <input type="checkbox" name="g6" id="g6" />
+              <input type="checkbox" name="g1" id="g6" value="사진"/>
               <label for="g6">사진</label>
             </li>
             <li>
-              <input type="checkbox" name="g7" id="g7" />
+              <input type="checkbox" name="g1" id="g7" value="UCC/영상"/>
               <label for="g7">UCC/영상</label>
             </li>
             <li>
-              <input type="checkbox" name="g8" id="g8" />
+              <input type="checkbox" name="g1" id="g8" value="예체능"/>
               <label for="g8">예체능</label>
             </li>
             <li>
-              <input type="checkbox" name="g9" id="g9" />
+              <input type="checkbox" name="g1" id="g9" value="문학/수기"/>
               <label for="g9">문학/수기</label>
             </li>
             <li>
-              <input type="checkbox" name="g10" id="g10" />
+              <input type="checkbox" name="g1" id="g10" value="캐릭터/만화"/>
               <label for="g10">캐릭터/만화</label>
             </li>
             <li>
-              <input type="checkbox" name="g11" id="g11" />
+              <input type="checkbox" name="g1" id="g11" value="과학/공학"/>
               <label for="g11">과학/공학</label>
             </li>
             <li>
-              <input type="checkbox" name="g12" id="g12" />
+              <input type="checkbox" name="g1" id="g12" value="게임/소프트웨어"/>
               <label for="g12">게임/소프트웨어</label>
             </li>
             <li>
-              <input type="checkbox" name="g13" id="g13" />
+              <input type="checkbox" name="g1" id="g13" value="건축/건설"/>
               <label for="g13">건축/건설</label>
             </li>
             <li>
-              <input type="checkbox" name="g14" id="g14" />
+              <input type="checkbox" name="g1" id="g14" value="기타"/>
               <label for="g14">기타</label>
             </li>
           </ul>
           <ul class="menuBtn">
             <li>
-              <button class="findBtn"><i class="fas fa-search"></i>검색</button>
+              <button class="findBtn" onClick="checkbox()"><i class="fas fa-search"></i>검색</button>
               <button class="resetBtn">
                 <i class="fas fa-redo"></i>초기화
               </button>
             </li>
           </ul>
         </div>
-
+		</form>
         <!-- main : 내용 부분 -->
         <div class="content">
           <ul>

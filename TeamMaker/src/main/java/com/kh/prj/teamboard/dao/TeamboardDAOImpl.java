@@ -77,13 +77,13 @@ public class TeamboardDAOImpl implements TeamboardDAO {
 	}
 	
 	@Override
-	public int totalCnt() {
-		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.getTotalCnt");
+	public int totalCnt(int tno) {
+		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.getTotalCnt",tno);
 	}
 	
 	@Override
-	public int totalCntboard() {
-		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.getTotalBoardCnt");
+	public int totalCntboard(int tno) {
+		return sqlSession.selectOne("mappers.TeamboardDAO-mapper.getTotalBoardCnt",tno);
 	}
 	
 	

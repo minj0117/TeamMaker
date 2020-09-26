@@ -1,168 +1,3 @@
-:root {
-  --background-color: #ffcdd2;
-  --text-color: #263343;
-  --accent-color: #d49466;
-  --border-color: lightgray;
-  --whitesmoke-color: #f0f4f5;
-  --white-color: #fdffff;
-  --linen-color: linen;
-}
-
-.container {
-  all: initial;
-}
-
-* {
-  /* outline: 1px dotted red; */
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background-color: #fdffff;
-  font-family: "Gamja Flower";
-}
-
-a {
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-ul > li {
-  list-style: none;
-  font-family: "Gamja Flower";
-}
-
-/* uppermost */
-.uppermost .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px 20px;
-  background-color: var(--background-color);
-}
-
-.uppermost .logo {
-  display: flex;
-  flex-direction: row;
-  font-size: 28px;
-  color: var(--text-color);
-  font-family: "Kalam";
-}
-
-.uppermost .logo a {
-  text-decoration: none;
-  color: var(--text-color);
-}
-
-.uppermost .logo i {
-  color: var(--accent-color);
-  padding-right: 5px;
-}
-
-.uppermost .navbar_upper {
-  width: 50%;
-  padding-left: 0px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.uppermost .navbar_upper > li {
-  list-style: none;
-  font-size: 1.5em;
-}
-
-.uppermost .navbar_upper a:hover {
-  color: var(--white-color);
-  /* text-decoration: none; */
-}
-
-/* navbar_upper : comm_menu */
-.uppermost .navbar_upper li > .comm_menu > li:nth-child(1) {
-  margin-top: 8px;
-  padding: 10px 20px 8px 20px;
-}
-.uppermost .navbar_upper li > .comm_menu > li:nth-child(2) {
-  margin-bottom: 8px;
-  padding: 8px 20px 10px 20px;
-}
-
-.uppermost .navbar_upper li:hover .comm_menu {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0px;
-  border: 1px solid var(--border-color);
-  background-color: var(--white-color);
-  font-size: 20px;
-  position: absolute;
-  z-index: 100;
-}
-
-.uppermost .navbar_upper li:hover .comm_menu a {
-  color: var(--text-color);
-}
-
-.uppermost .navbar_upper .comm_menu {
-  display: none;
-}
-
-.uppermost .uplog_upper {
-  display: flex;
-  color: var(--text-color);
-  font-size: 20px;
-  padding-left: 0px;
-}
-
-.uppermost .uplog_upper > li {
-  margin: 0px 5px;
-}
-
-.uppermost .uplog_upper li a:hover {
-  text-decoration: none;
-  color: var(--text-color);
-}
-
-.uppermost .toggleBtn {
-  display: none;
-  position: absolute;
-  right: 15px;
-  font-size: 25px;
-  color: var(--accent-color);
-}
-
-/* header */
-header {
-  background-color: var(--background-color);
-}
-
-header .container .slide {
-  width: 75%;
-  margin: 0 auto;
-}
-
-header img {
-  height: 550px;
-  margin: 0px auto;
-  vertical-align: bottom;
-}
-
-/* nav */
-nav .navbar {
-  background-color: var(--background-color);
-  padding: 30px;
-}
-
-nav ul > li > a {
-  padding: 10px 20px;
-  font-size: 1.1em;
-}
-
-nav ul > li > a:hover {
-  color: #f0f4f5;
-  text-decoration: none;
-}
-
 /* main */
 main {
   width: 65%;
@@ -309,98 +144,47 @@ main li textarea {
   font-family: "Sunflower";
   font-size: 0.8em;
   letter-spacing: 0.1em;
-  padding: 50px 20px;
+  padding: 20px;
 }
 
-main .attached button {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  outline: none;
-  font-family: "Sunflower";
-  font-size: 0.8em;
-  padding: 8px 10px;
-  margin-right: 5px;
-}
-
-main .attached .msg {
-  font-family: "Sunflower";
-  font-size: 0.8em;
-  margin: 20px;
-}
-
-main .btnGrp {
-  text-align: right;
-  border-top: 1px solid var(--border-color);
-}
-
-main .btnGrp button {
-  background-color: var(--background-color);
-  border: none;
-  border-radius: 4px;
-  outline: none;
-  font-family: "Sunflower";
-  font-size: 0.8em;
-  padding: 10px 20px;
-  margin-top: 15px;
-}
-
-/* footer */
-footer .container {
-  font-family: "Gamja Flower";
-}
-/* footer : footer_menu1 */
-.footer_menu1 > ul {
-  list-style: none;
-  padding-left: 0px;
+/* 팀 선택  */
+main .attached ul {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  background-color: var(--background-color);
-  font-size: 20px;
+  flex-direction: column;
 }
 
-.footer_menu1 > ul > li {
-  padding: 20px 0px;
-}
-
-.footer_menu1 > ul > li > a {
-  text-decoration: none;
-  color: var(--text-color);
-}
-
-.footer_menu1 > ul > li > #policy {
-  color: var(--accent-color);
-}
-
-/* footer : footer_menu2 */
-.footer_menu2 {
-  width: 80%;
-  margin: 50px auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+main .attached ul li {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
+  font-family: "Sunflower";
+  font-size: 0.9em;
 }
 
-.footer_menu2 img {
-  width: 100%;
-  max-width: 300px;
-  vertical-align: bottom;
+main .attached input[type="radio"] {
+  width: 2%;
+  height: 15px;
+  margin-right: 10px;
 }
 
-.footer_menu2 .left {
-  margin: 0px auto;
+/* 버튼 */
+main .btnGrp {
+  display: flex;
+  justify-content: flex-end;
+  vertical-align: top;
 }
 
-.right .right_up,
-.right .right_down {
-  padding: 10px;
+main .btnGrp input {
+  width: 55px;
+  height: 35px;
+  background-color: var(--white-color);
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  margin-left: 10px;
+  font-size: 16px;
 }
 
-/*  */
-/*  */
+
+
 /* 모바일 */
 @media screen and (max-width: 320px) {
   /* uppermost */
@@ -440,7 +224,7 @@ footer .container {
   }
 
   .uppermost .navbar_upper {
-    border-bottom: 1px solid var(--accent-color);
+    border-bottom: 1px solid var(--white-color);
   }
 
   .uppermost .toggleBtn {
@@ -496,6 +280,13 @@ footer .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+  /* 팀 선택  */
+
+  main .attached input[type="radio"] {
+    width: 5%;
+    height: 15px;
+    margin-right: 10px;
+  }
 
   /* footer */
   .footer_menu1 > ul {
@@ -503,6 +294,7 @@ footer .container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    font-size: 1.1em;
   }
 
   .footer_menu1 > ul > li {
@@ -542,6 +334,11 @@ footer .container {
 
   nav .navbar > li {
     font-size: 20px;
+    padding: 15px 20px;
+  }
+
+  nav .navbar li a {
+    color: var(--white-color);
   }
 
   main {

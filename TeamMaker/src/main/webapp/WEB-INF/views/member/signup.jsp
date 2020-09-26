@@ -43,22 +43,21 @@
 	function joinFn(){
 		let id = document.getElementById('id').value;
 		let pw = document.getElementById('pw').value;
+		let pwReg = /^[A-Za-z0-9]{6,12}$/;
 		let pwcheck = document.getElementById('pwcheck').value;
 		let name = document.getElementById('name').value;
 		let birth = document.getElementById('birth').value;
 		let gender = document.getElementById('gender').value;
 		let phone = document.getElementById('phone').value;
 		let email = document.getElementById('free').value;
+		let emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		let free = document.getElementById('free').value;
-		if(id.length == 0){
-			alert('아이디를 입력하세요');
-			return;
-		}if($('#message').val() != '사용할 수 있는 ID입니다.'){
+		if($('#message').val() != '사용할 수 있는 ID입니다.'){
 			console.log($('#message').val());
 			alert('아이디 중복체크를 확인해주세요');
 			return;
-		}if(pw.length == 0){
-			alert('패스워드를 입력하세요');
+		}if(pwReg.test(pw) != true){
+			alert('숫자와 문자 포함 형태의 6~12자리로 작성해주세요');
 			return;
 		}if(pwcheck.length == 0){
 			alert('패스워드를 입력하세요');
@@ -80,7 +79,7 @@
 			alert('전화번호를 입력하세요');
 			return;
 		}if(email.length == 0){
-			alert('메일 입력하세요');
+			alert('이메일 형식으로 입력하세요');
 			return;
 		}
 		const Info = JSON.stringify({id:id,pw:pw,name:name,birth:birth,gender:gender,phone:phone,email:email,free:free});

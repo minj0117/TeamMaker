@@ -40,6 +40,33 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
 	rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	function report(){
+		let writer = document.getElementById('writer').value;
+		let pw = document.getElementById('pw').value;
+		let title = document.getElementById('title').value;
+		let f_comment = document.getElementById('f_comment').value;
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/fboard/write",
+			type : "post",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				if(data == 1){
+					alert("등록성공");
+					window.location="${contextPath}/prj/fboard/fboardList"
+				}else{
+					alert("등록실패");
+				}
+			},
+			error : function(data){
+				alert("에러발생")
+			}
+		})
+	}
+</script>
 </head>
 <body>
 	<%
@@ -63,9 +90,6 @@
 							<div class="rcategory" id="rcategory">${recruitVO.rcategory }</div>
 							<div class="rtitle" id="rtitle">${recruitVO.rtitle }</div>
 							<div class="writerInfo">
-								<div>
-									<img src="../img/defaultImg.jpg" alt="" />
-								</div>
 								<div class="profile_area">
 									<div class="profile_info">
 										<div class="rid" id="rid">${recruitVO.id }</div>
@@ -89,7 +113,7 @@
 									<div class="applyNum">2명</div>
 								</div>
 							</div>
-							<a href="./reportForm.html" class="report" id="report">신고</a>
+							<a href="#" class="report" id="report" onClick="report()">신고</a>
 						</div>
 					</div>
 				</div>
@@ -97,14 +121,15 @@
 					<c:when test="${recruitVO.id eq id}">
 						<!-- article_btns 부분 -->
 						<div class="article_btns">
-							<button class="modifyBtn">수정</button>
-							<button class="deleteBtn">삭제</button>
-							<button class="listBtn">목록</button>
+							<input type="button" class="modifyBtn" value="수정">
+							<input type="button" class="deleteBtn" value="삭제">
+							<input type="button" class="listBtn" value="목록">
 						</div>
 					</c:when>
 					<c:when test="${recruitVO.id ne id }">
 						<div class="article_btns">
-							<a href="#" onClick="location.href='http://localhost:8090/prj/addapply?applyid=<%=id%>&tno=${recruitVO.tno }'" class="applyBtn" >신청</a>
+							<input type="button" class="listBtn" value="목록">
+							<a href="#" onClick="location.href='http://localhost:8090/prj/addapply?applyid=<%=id%>&tno=${recruitVO.tno }'" class="submitBtn" >신청</a>
 						</div>
 					</c:when>
 				</c:choose>
@@ -112,7 +137,7 @@
 		</div>
 
 	</main>
-	<!-- footer -->
+	<!-- footer --> 
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

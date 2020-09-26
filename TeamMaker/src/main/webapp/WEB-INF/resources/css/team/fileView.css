@@ -1,0 +1,112 @@
+/* main */
+main {
+  width: 70%;
+  margin: 200px auto;
+}
+
+main .container,
+main .container aside ul li,
+main .container section ul li {
+  font-family: "Sunflower";
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main .container .content aside {
+  width: 20%;
+  float: left;
+}
+
+main .container .content section {
+  width: 80%;
+  float: left;
+}
+
+main .container .content aside a,
+main .container .content section a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* aside */
+main aside .atitle {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main aside .astitle {
+  font-weight: bold;
+  padding: 20px 0 5px;
+  margin-right: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main aside ul li {
+  padding: 10px 0 5px;
+}
+
+/* section */
+main section .atitle,
+main section .hiddenTitle {
+  display: none;
+}
+
+main section form {
+  margin: 20px;
+}
+
+main section .stitle {
+  padding: 10px 0;
+  background-color: var(--accent-color);
+  text-align: center;
+}
+
+main section .stitle span {
+  color: var(--white-color);
+}
+
+/* section - 파일 업로드 */
+
+main section .uploadTitle {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 20px 0;
+  padding: 5px 0;
+}
+
+main section table {
+  width: 100%;
+}
+
+main section tr td:nth-child(1) {
+  text-align: center;
+}
+
+main section tr td input[type="text"] {
+  width: 100%;
+  outline: none;
+}
+
+main section tr td textarea {
+  width: 100%;
+  height: 300px;
+  vertical-align: bottom;
+  outline: none;
+}
+
+main .btngrp {
+  margin-top: 10px;
+  text-align: right;
+}
+
+main .btngrp input[type="submit"],
+main .btngrp input[type="button"] {
+  padding: 5px 8px;
+  margin-left: 5px;
+  background-color: var(--white-color);
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+}

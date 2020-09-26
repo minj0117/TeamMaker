@@ -72,7 +72,7 @@ public class RecruitController {
 		List<RecruitVO> rlist = recruitSVC.BoardList(recruitVO);
 		logger.info(" : "+recruitVO);
 		model.addAttribute("rlist",rlist);
-		return "recruit/rlist";
+		return "redirect:rlist.do";
 		/*if(result == 1) {
 			int result2 = recruitSVC.addList(recruitVO);
 			if(result2 == 1) {

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.prj.member.dao.MemberDAO;
 import com.kh.prj.member.vo.MemberVO;
+import com.kh.prj.member.vo.ReportVO;
+import com.kh.prj.paging.PagingCriteria;
 
 @Service
 public class MemberSVCImpl implements MemberSVC {
@@ -144,5 +146,24 @@ public class MemberSVCImpl implements MemberSVC {
 	@Override
 	public int changePw(MemberVO memberVO) {
 		return memberDAO.changePw(memberVO);
+	}
+	
+	@Override
+	public int checkreport(ReportVO vo) {
+		return memberDAO.checkreport(vo);
+	}
+	
+	@Override
+	public int reportinsert(ReportVO vo) {
+		return memberDAO.reportinsert(vo);
+	}
+	
+	@Override
+	public List<ReportVO> reportlist(PagingCriteria paging) {
+		return memberDAO.reportlist(paging);
+	}
+	@Override
+	public int getTotal() {
+		return memberDAO.getTotal();
 	}
 }

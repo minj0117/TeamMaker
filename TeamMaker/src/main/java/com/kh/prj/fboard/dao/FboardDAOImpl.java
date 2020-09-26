@@ -35,10 +35,37 @@ public class FboardDAOImpl implements FboardDAO {
 		return sqlSession.selectOne("mappers.FboardDAO-mapper.view", fno);
 	}
 	
+	
 	@Override
-	public List<FboardVO> viewReply(int fgroup) {
-		System.out.println("fgroup : " + fgroup);
-		return sqlSession.selectList("mappers.FboardDAO-mapper.viewReply",fgroup);
+	public int pwCheck(FboardVO vo) {
+		return sqlSession.selectOne("mappers.FboardDAO-mapper.pwCheck",vo);
 	}
 	
+	@Override
+	public int fboardMod(FboardVO vo) {
+		return sqlSession.update("mappers.FboardDAO-mapper.fboardMod",vo);
+	}
+	
+	@Override
+	public int fboardDel(FboardVO vo) {
+		return sqlSession.delete("mappers.FboardDAO-mapper.fboardDel",vo);
+	}
+	
+	/**
+	 * 댓글 보기
+	 */
+	@Override
+	public List<FboardVO> viewReply(int fno) {
+		return sqlSession.selectList("mappers.FboardDAO-mapper.viewReply",fno);
+	}
+	
+	@Override
+	public int replyinsert(FboardVO vo) {
+		return sqlSession.insert("mappers.FboardDAO-mapper.replyinsert",vo);
+	}
+	
+	@Override
+	public int replydelete(int fno) {
+		return sqlSession.delete("mappers.FboardDAO-mapper.replydelete",fno);
+	}
 }

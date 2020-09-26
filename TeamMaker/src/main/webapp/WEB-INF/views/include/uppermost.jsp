@@ -30,15 +30,22 @@
           <li><a href="/prj/member/joinForm" class="uplog">회원가입</a></li>
         </ul>
 		</c:if>
-		<c:if test="${!empty sessionScope.member }">
+		<c:if test="${sessionScope.member.id eq 'admin' }">
+		<!-- 어드민 -->
+		<ul class="uplog_upper">
+          <li><a href="/prj/member/admin" class="uplog">관리자님</a></li>
+          <li><span> | </span></li>
+          <li><a href="/prj/logout" class="uplog">로그아웃</a></li>
+        </ul>
+		</c:if>
+		<c:if test="${!empty sessionScope.member && sessionScope.member.id ne 'admin' }">
 		<!-- 로그인 후-->
         <ul class="uplog_upper">
-          <li><a href="/prj/member/mypage" class="uplog">${sessionScope.member.name }님</a></li>
+          <li><a href="/prj/member/mypage" class="uplog">마이페이지</a></li>
           <li><span> | </span></li>
           <li><a href="/prj/logout" class="uplog">로그아웃</a></li>
         </ul>
         </c:if>
-		
        <!-- 토글 버튼 -->
        <a href="#" class="toggleBtn">
          <i class="fas fa-bars"></i>

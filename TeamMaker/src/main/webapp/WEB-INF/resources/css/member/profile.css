@@ -1,0 +1,122 @@
+:root {
+  --pink-color: #ffcdd2;
+  --background-color: #000051;
+  /* --background-color: #263343; */
+  --text-color: #263343;
+  --accent-color: #d49466;
+  --border-color: lightgray;
+  --whitesmoke-color: #f0f4f5;
+  --white-color: #fdffff;
+  --linen-color: linen;
+  --green-color: #d4e157;
+}
+
+body {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.profileForm {
+  font-family: "Sunflower";
+  padding: 20px;
+  width: 500px;
+}
+
+form ul li {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+}
+
+/* profileTitle */
+form .profileTitle {
+  background-color: var(--background-color);
+  color: var(--white-color);
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* 사진 첨부 */
+form .picture > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* form 내용 */
+form ul {
+  margin: 20px 10px;
+}
+
+form ul li {
+  padding: 10px 0;
+}
+
+form ul li label {
+  text-align: center;
+  margin-right: 10px;
+  flex-basis: 15%;
+}
+
+form .picture label:nth-child(2) {
+  background-color: var(--background-color);
+  padding: 4px 15px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  height: 30px;
+  width: 100px;
+}
+
+form .picture input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+form ul li #image {
+  width: 100%;
+  width: 180px;
+  height: 100%;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 25px;
+}
+
+form ul li #image img {
+  width: 100%;
+  width: 180px;
+  height: 100%;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 25px;
+}
+
+form textarea {
+  width: 100%;
+  width: 350px;
+  height: 300px;
+}
+
+form > div:last-child {
+  text-align: center;
+}
+
+form input {
+  font-family: "Sunflower";
+  font-size: 15px;
+  background-color: var(--white-color);
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  outline: none;
+  padding: 8px 15px;
+}

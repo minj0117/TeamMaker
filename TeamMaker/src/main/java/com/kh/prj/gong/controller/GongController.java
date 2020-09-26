@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.prj.dae.vo.DaeVO;
 import com.kh.prj.gong.svc.GongSVC;
 import com.kh.prj.gong.vo.GongVO;
 import com.kh.prj.paging.PageMaker;
@@ -120,5 +122,16 @@ public class GongController {
       int gno = Integer.parseInt(info.get("gno"));
       return gongSVC.del(gno);
    }
+   
+   
+   @RequestMapping(value = "/checklist", method = RequestMethod.GET)
+	public String checklist(@RequestParam("g1") List<String> value, Model model) {
+		List<GongVO> list = gongSVC.checklist(value);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getTitle().toString());
+		}
+		model.addAttribute("list", list);
+		return "gong/glist";
+	}
    
 }

@@ -2,6 +2,7 @@ package com.kh.prj.gong.svc;
 
 import java.util.List;
 
+import com.kh.prj.dae.vo.DaeVO;
 import com.kh.prj.gong.vo.GongVO;
 import com.kh.prj.paging.PagingCriteria;
 
@@ -13,7 +14,7 @@ public interface GongSVC {
 	public GongVO gview(int gno);
 
 	public int GongMod(GongVO gongVO);
-
+	public List<GongVO> checklist(List<String> value);
 	public int del(int gno);
 	
 	public int getTotalCnt();

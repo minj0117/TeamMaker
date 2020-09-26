@@ -53,10 +53,11 @@
     />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-function addFn(){
-	let ano = document.getElementById('ano').value;
-	let tno = document.getElementById('tno').value;
-	let applyid = document.getElementById('applyid').innerHTML;
+function addFn(num){
+	let ano = document.getElementById('ano'.concat(num)).value;
+	let tno = document.getElementById('tno'.concat(num)).value;
+	let applyid = document.getElementById('applyid'.concat(num)).innerHTML;
+	
 	const Info = JSON.stringify({ano:ano,tno:tno,applyid:applyid});
 	$.ajax({
 		data : Info,
@@ -77,6 +78,39 @@ function addFn(){
 			alert("에러가 발생했습니다.");
 		}
 	})
+}
+
+function delFn(){
+	let userid = document.getElementById('userid').innerText;
+	let tno = document.getElementById('tno').innerText;
+	const Info = JSON.stringify({userid:userid,tno:tno});
+	$.ajax({
+		data : Info,
+		url : "${contextPath}/prj/delMember",
+		type : "post",
+		dataType : "text",
+		contentType : "application/json; charset=UTF-8",
+		success : function(data){
+			console.log(data);
+			if(data == 1){
+				alert("추방되었습니다.");
+				location.reload();
+			}else{
+				alert("다시시도해주세요.");
+			}
+		},
+		error : function(data,textStatus){
+			alert("에러가 발생했습니다.");
+		}
+	})
+}
+
+function profile(num){
+	 let id = document.getElementById('applyid'.concat(num)).innerHTML;
+	 var url = "${contextPath}/prj/member/profile?id="+id;
+     var name = "popup test";
+     var option = "width = 550, height = 700, top = 100, left = 200, location = no";
+     window.open(url, name, option);
 }
 </script>
  </head>
@@ -101,10 +135,10 @@ function addFn(){
 		</tr>
 		<c:forEach var="row" items="${list }">
 		<tr>
-			<td>${row.tno }</td>
+			<td id='tno'>${row.tno }</td>
 			<td>${row.owner }</td>
 			<td>${row.title }</td>
-			<td>${row.userid }</td>
+			<td id="userid">${row.userid }</td>
 			<td><input type="button" onClick="delFn()" value="추방"></td>
 		</tr> 
 		</c:forEach>
@@ -117,17 +151,18 @@ function addFn(){
 				<th>지원자</th>
 				<th>추가</th>
 			</tr>
-			<c:forEach var="row" items="${alist }">
-				<tr>
-					<td><a href="#" id="applyid">${row.applyid }</a></td>
-					<td><input type="button" onClick="addFn()"  value="팀원추가"></td>
-					<input type="hidden" id="ano" value="${row.ano }"/>
-					<input type="hidden" id="tno" value="${row.tno }"/></td>
+			<c:forEach var="row" items="${alist }" varStatus="status">
+				<tr>				 	
+					<!--<td><a href="#" id="applyid${status.index }" onClick="window.open('${contextPath}/prj/member/profile?id=${row.applyid }'
+							,'User Profile','width = 550, height = 700, top = 100, left = 200, location = no');">${row.applyid }</a></td>-->
+					<td><a href="#" id="applyid${status.index }" onClick="profile('${status.index}')">${row.applyid }</a></td>
+					<td><input type="button" onClick="addFn('${status.index}')" value="팀원추가">
+					<input type="hidden" id="ano${status.index }" value="${row.ano }"/>
+					<input type="hidden" id="tno${status.index }" value="${row.tno }"/></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</form>
-
 	
 	
     <!-- footer -->

@@ -75,11 +75,11 @@
 	</delete>
 	<!-- 파일 업로드 총 갯수 -->
 	<select id="getTotalCnt" resultType="int">
-		select count(*) from teamboardfile
+		select count(*) from teamboardfile where tno = #{tno}
 	</select>
 	<!-- 게시판 총 갯수 -->
 	<select id="getTotalBoardCnt" resultType="int">
-		select count(*) from teamboard
+		select count(*) from teamboard where tno = ${tno}
 	</select>
 	
 </mapper>

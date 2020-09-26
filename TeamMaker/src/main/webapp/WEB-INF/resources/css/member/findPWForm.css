@@ -1,0 +1,260 @@
+/* main */
+main {
+  width: 80%;
+  margin: 250px auto;
+}
+
+main .container .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sunflower";
+}
+
+#findPWForm {
+  margin: 50px 0px;
+  border: 1px solid var(--border-color);
+  padding: 50px 50px 50px 60px;
+}
+
+#findPWForm * {
+  box-sizing: border-box;
+  padding: 10px 0px;
+}
+
+#findPWForm input {
+  width: 300px;
+  font-size: 15px;
+  font-family: "Sunflower";
+  letter-spacing: 0.1em;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#findPWForm #id {
+  margin-left: 30px;
+}
+
+#findPWForm #email {
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
+#findPWForm #submitBtn {
+  width: 150px;
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  color: var(--white-color);
+  padding: 12px;
+  border-radius: 4px;
+}
+
+#findPWForm #submitW {
+  margin-left: 77px;
+}
+
+#findPWForm #findPWBtn {
+  width: 300px;
+  margin-left: 78px;
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  color: var(--white-color);
+  padding: 12px;
+  font-size: 15px;
+  letter-spacing: 0.5em;
+  border-radius: 4px;
+}
+
+#findPWForm .pw_msg {
+  padding-left: 80px;
+}
+
+
+/* 모바일 */
+@media screen and (max-width: 320px) {
+  /* uppermost */
+  .uppermost .container {
+    padding-top: 40px;
+    padding-bottom: 0px;
+  }
+
+  .uppermost .logo {
+    font-size: 25px;
+    justify-content: flex-start;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog,
+  .uppermost span,
+  nav .navbar {
+    display: none;
+  }
+
+  /* 토글 버튼 적용 시 */
+  .uppermost > .container {
+    flex-direction: column;
+  }
+
+  .uppermost .navbar_upper > li > a {
+    font-size: 20px;
+  }
+
+  .uppermost .navbar_upper > li {
+    margin: 10px;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog_upper {
+    text-align: center;
+  }
+
+  .uppermost .navbar_upper {
+    border-bottom: 1px solid var(--white-color);
+  }
+
+  .uppermost .toggleBtn {
+    display: block;
+  }
+
+  .navbar_upper.active,
+  .uplog.active {
+    display: grid;
+  }
+
+  /* header */
+  header .container .slide {
+    width: 100%;
+  }
+
+  header img {
+    height: 200px;
+    padding-bottom: 30px;
+  }
+
+  /* main */
+  main {
+    width: 100%;
+    margin: 150px auto;
+  }
+
+  main h1 {
+    font-size: 24px;
+  }
+
+  #findPWForm {
+    margin: 0px 5px;
+    padding: 15px 0px;
+  }
+
+  #findPWForm * {
+    padding: 5px;
+  }
+
+  #findPWForm #id {
+    margin-left: 0px;
+  }
+
+  #findPWForm #email {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  #findPWForm #submitBtn {
+    width: 300px;
+    margin-top: 15px;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+  }
+
+  #findPWForm #submitW {
+    margin: 0px;
+  }
+
+  #findPWForm .pw_msg {
+    padding-left: 10px;
+  }
+
+  #findPWForm #findPWBtn {
+    margin-left: 0px;
+  }
+
+  /* footer */
+  .footer_menu1 > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 1.1em;
+  }
+
+  .footer_menu1 > ul > li {
+    padding: 10px 0px;
+  }
+
+  .footer_menu2 img {
+    width: 100%;
+    width: 200px;
+    vertical-align: bottom;
+    padding: 5px auto;
+  }
+
+  .footer_menu2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .footer_menu2 .right_up > div:nth-child(2),
+  .footer_menu2 .right_up > div:nth-child(3),
+  .footer_menu2 .right_down > div:nth-child(1) {
+    display: none;
+  }
+}
+
+/*  */
+/*  */
+/* Tablet */
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .uppermost .navbar_upper {
+    display: none;
+  }
+
+  header img {
+    height: 300px;
+  }
+
+  nav .navbar > li {
+    font-size: 20px;
+    padding: 15px 20px;
+  }
+
+  nav .navbar li a {
+    color: var(--white-color);
+  }
+
+  main {
+    width: 100%;
+    margin: 120px auto;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+  /* header */
+  header img {
+    padding-bottom: 40px;
+  }
+
+  /* nav */
+  nav li {
+    display: none;
+  }
+
+  nav .navbar {
+    display: none;
+  }
+}

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.kh.prj.dae.vo.DaeVO;
 import com.kh.prj.gong.vo.GongVO;
 import com.kh.prj.paging.PagingCriteria;
 @Repository
@@ -52,4 +53,13 @@ public class GongDAOImpl implements GongDAO {
 	public int getTotalCnt() {
 		return sqlSession.selectOne("mappers.GongDAO-mapper.getTotalCnt");
 	}
+	
+	@Override
+	public List<GongVO> checklist(List<String> value) {
+		for(int i=0; i<value.size(); i++) {
+			System.out.println(value.get(i).toString());
+		}
+		return sqlSession.selectList("mappers.DaeDAO-mapper.checklist",value);
+	}
+	
 }

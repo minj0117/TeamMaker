@@ -7,45 +7,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scalnume=1.0" />
     <title>main</title>
-    <link rel="stylesheet" href="http://localhost:8090/prj/css/member/findID.css" />
-    <!-- 폰트 -->
-    <!-- 폰트 : 로고 -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kalam&display=swap"
-      rel="stylesheet"
-    />
-    <!-- 폰트 : 메뉴 -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Hi+Melody&display=swap"
-      rel="stylesheet"
-    />
-    <!-- 폰트 : 메인 -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <!-- font awesome -->
-    <script
-      src="https://kit.fontawesome.com/2d323a629b.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- font awesome -->
-    <script
-      src="https://kit.fontawesome.com/2d323a629b.js"
-      crossorigin="anonymous"
-    ></script>
-    <script defer src="http://localhost:8090/prj/js/member/findID.js"></script>
-  </head>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
+<!-- bootstrap -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="http://localhost:8090/prj/css/member/findID.css" />
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<!-- 폰트 -->
+<!-- 폰트 : 로고 -->
+<link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap"
+	rel="stylesheet" />
+<!-- 폰트 : 메뉴 -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Hi+Melody&display=swap"
+	rel="stylesheet" />
+<!-- 폰트 : 메인 -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
+	rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script> 
 function fn_findid(){
-	var result = "";
 	var name = $('#name').val();
 	var email = $('#email').val();
-	console.log(name);
-	console.log(email);
+	if(name.length == 0 || email.length == 0){
+		alert("회원정보를 입력하세요.");
+		return;
+	}
 	const memberInfo = JSON.stringify({name:name,email:email});
-	console.log(memberInfo);
+
 	$.ajax({
 		data : memberInfo,
 		url : "http://localhost:8090/prj/member/findid",
@@ -71,31 +76,15 @@ function fn_findid(){
 	})
 }
 </script>
+</head>
   <body>
     <!-- uppermost -->
-    <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
+	<%@ include file="/WEB-INF/views/include/uppermost.jsp"%>
+	<!-- header -->
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-    <!-- header -->
-    <header>
-      <div class="container">
-        <div>
-          <a href="#"><img src="http://localhost:8090/prj/img/banner.jpg" alt="" /></a>
-        </div>
-      </div>
-    </header>
-
-    <!-- nav -->
-    <nav>
-      <div class="container">
-        <ul class="navbar">
-          <li><a href="">팀원 모집</a></li>
-          <li><a href="">공모전</a></li>
-          <li><a href="">대외활동</a></li>
-          <li><a href="">커뮤니티</a></li>
-        </ul>
-      </div>
-    </nav>
-
+	<!-- nav -->
+	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
     <!-- main -->
     <main>
       <div class="container">
@@ -110,10 +99,10 @@ function fn_findid(){
               <label for="email">이메일</label>
               <input type="text" name="email" id="email" />
               <input
-                type="submit"
+                type="button"
                 name="submitBtn"
                 id="submitBtn"
-                value="인증번호 받기"
+                value="이메일 중복확인"
               />
             </div>
             <div>
@@ -121,10 +110,10 @@ function fn_findid(){
                 type="text"
                 name="submitW"
                 id="submitW"
-                placeholder="인증번호 입력"
+                placeholder="이메일 검사"
               />              
             </div>
-            <div id="message"></div>
+            <div id="message" class="message"></div>
             
             <div>
               <input

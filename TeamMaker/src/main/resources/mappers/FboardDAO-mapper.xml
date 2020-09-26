@@ -4,26 +4,26 @@
 	<insert id="write" parameterType="com.kh.prj.fboard.vo.FboardVO">
 		<![CDATA[
 		insert into fboard
-			(fno,writer,title,f_comment,pw,fgroup) 
+			(fno,writer,title,f_comment,pw) 
 			values
-			(fboard_seq.nextval,#{writer},#{title},#{f_comment},#{pw},fboard_group_seq.nextval)
+			(fboard_seq.nextval,#{writer},#{title},#{f_comment},#{pw})
 		]]>
 	</insert>
 	
 	<insert id="writeReply" parameterType="com.kh.prj.fboard.vo.FboardVO">
 		<![CDATA[
 		insert into fboard 
-			(fno,writer,title,f_comment,pw,parent,fgroup) 
+			(fno,writer,title,f_comment,pw,parent) 
 			values
-			(fboard_seq.nextval,'sktior','답변','답변테스트','123123',#{fno},#{fgroup})
+			(fboard_seq.nextval,#{writer},#{title},#{f_comment},#{pw},#{fno})
 		]]>
 	</insert>
 	
 	<select id="fboardList" resultType="com.kh.prj.fboard.vo.FboardVO">
 	<![CDATA[
-		SELECT fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup
+		SELECT fno,writer,title,f_comment,cdate,cnt,pw,parent
 			FROM	(SELECT /*+INDEX_DESC(fboard fboard_pk) */
-						rownum rn, fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup
+						rownum rn, fno,writer,title,f_comment,cdate,cnt,pw,parent
 					from fboard where rownum <= #{pageNum} * #{amount} and parent = 0)
 			where rn > (#{pageNum}-1) * #{amount}
 			ORDER BY fno DESC
@@ -37,23 +37,33 @@
 	
 	<select id="view" resultType="com.kh.prj.fboard.vo.FboardVO">
 	<![CDATA[
-		select fno,writer,title,f_comment,cdate,cnt,pw,parent,fgroup from fboard where fno = #{fno}
+		select fno,writer,title,f_comment,cdate,cnt,pw,parent from fboard where fno = #{fno}
 	]]>	
 	</select>
 	
+	<select id="pwCheck" resultType="int" parameterType="com.kh.prj.fboard.vo.FboardVO">
+		select count(*) from fboard where fno = #{fno} and pw = #{pw}
+	</select>
+	
+	<update id="fboardMod" parameterType="com.kh.prj.fboard.vo.FboardVO">
+		update fboard set title = #{title} , pw = #{pw}, f_comment = #{f_comment} where fno = #{fno}
+	</update>
+	
+	<delete id="fboardDel" parameterType="com.kh.prj.fboard.vo.FboardVO">
+		delete fboard where fno = #{fno} and pw = #{pw}
+	</delete>
+	
 	<select id="viewReply" resultType="com.kh.prj.fboard.vo.FboardVO">
 	<![CDATA[
-		select LEVEL, 
-    		fno,parent,fgroup,writer,pw,
-    		LPAD(' ', 4*(LEVEL-1)) || title title,
-    		f_comment,
-    		cdate
-    		from fboard
-    		where fgroup = #{fgroup} and parent > 0
-    		START WITH parent=0
-    		CONNECT BY PRIOR fno=parent
-    		ORDER SIBLINGS BY fno desc
+		select fno,writer,f_comment,parent,cdate from fboard where parent <> 0 and parent = #{parent} order by fno desc
 	]]>
 	</select>
 	
+	<select id="replyinsert" parameterType="com.kh.prj.fboard.vo.FboardVO">
+		insert into fboard (fno,writer,f_comment,parent) values(fboard_seq.nextval,#{writer},#{f_comment},#{fno})
+	</select>
+	
+	<select id="replydelete">
+		delete fboard where fno = #{fno}
+	</select>
 </mapper>

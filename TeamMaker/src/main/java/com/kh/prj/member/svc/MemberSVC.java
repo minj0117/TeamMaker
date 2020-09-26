@@ -3,6 +3,8 @@ package com.kh.prj.member.svc;
 import java.util.List;
 
 import com.kh.prj.member.vo.MemberVO;
+import com.kh.prj.member.vo.ReportVO;
+import com.kh.prj.paging.PagingCriteria;
 
 public interface MemberSVC {
 	/**
@@ -85,4 +87,10 @@ public interface MemberSVC {
 	
 	public MemberVO memberCheck(MemberVO memberVO);
 	public int changePw(MemberVO memberVO);
+
+
+	public int checkreport(ReportVO vo);
+	public int reportinsert(ReportVO vo);
+	public List<ReportVO> reportlist(PagingCriteria paging);
+	public int getTotal();
 }

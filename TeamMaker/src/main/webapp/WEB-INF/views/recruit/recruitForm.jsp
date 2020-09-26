@@ -80,7 +80,6 @@ function writeFn(e){
 		alert("카테고리를 정해주세요.");
 		return;
 	}
-	
 	writeForm.method="post";
 	writeForm.submit();
 }
@@ -230,13 +229,14 @@ function writeFn(e){
                 ></textarea>
               </li>
               <li class="attached">
+              	<ul>
                 <c:forEach var="row" items="${list }">
-                	<input type="radio" name="tno" value="${row.tno }">${row.title }
+                	<li><input type="radio" name="tno" value="${row.tno }">${row.title }</li>
                 </c:forEach>
+                </ul>
               </li>
               <li class="btnGrp">
-                <button id="writeBtn" name="writeBtn" class="writeBtn" onClick="writeFn()">등록</button>
-                <button class="cancelBtn">취소</button>
+                <input type="button" id="writeBtn" name="writeBtn" class="writeBtn" onClick="writeFn()" value="등록">
               </li>
             </ul>
              <input type="hidden" id="id" name="id" value="${sessionScope.member.id }" />

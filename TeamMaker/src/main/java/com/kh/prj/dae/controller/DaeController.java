@@ -57,13 +57,13 @@ public class DaeController {
 	 */
 	@PostMapping("/insertDae")
 	public String insertDae(DaeVO daeVO) throws Exception {
-		String fileName=null;
+		String fileName = null;
 		MultipartFile uploadFile = daeVO.getUploadFile();
 		if (!uploadFile.isEmpty()) {
 			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
-			UUID uuid = UUID.randomUUID();	//UUID 구하기
-			fileName=uuid+"."+ext;
+			String ext = FilenameUtils.getExtension(originalFileName); // 확장자 구하기
+			UUID uuid = UUID.randomUUID(); // UUID 구하기
+			fileName = uuid + "." + ext;
 			uploadFile.transferTo(new File("D:\\file\\dae\\" + fileName));
 		}
 		daeVO.setFileName(fileName);
@@ -72,10 +72,10 @@ public class DaeController {
 	}
 
 	@RequestMapping("/dlist")
-	public String dlist(DaeVO daeVO,PagingCriteria cri, Model model) {
+	public String dlist(DaeVO daeVO, PagingCriteria cri, Model model) {
 		List<DaeVO> list = daeSVC.dlist(cri);
 		int total = daeSVC.getTotalCnt();
-		model.addAttribute("paging",new PageMaker(cri,total));
+		model.addAttribute("paging", new PageMaker(cri, total));
 		model.addAttribute("list", list);
 		return "dae/dlist";
 	}
@@ -103,13 +103,13 @@ public class DaeController {
 
 	@PostMapping("/daeMod")
 	public String daeMod(DaeVO daeVO) throws Exception {
-		String fileName=null;
+		String fileName = null;
 		MultipartFile uploadFile = daeVO.getUploadFile();
 		if (!uploadFile.isEmpty()) {
 			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
-			UUID uuid = UUID.randomUUID();	//UUID 구하기
-			fileName=uuid+"."+ext;
+			String ext = FilenameUtils.getExtension(originalFileName); // 확장자 구하기
+			UUID uuid = UUID.randomUUID(); // UUID 구하기
+			fileName = uuid + "." + ext;
 			uploadFile.transferTo(new File("D:\\file\\dae\\" + fileName));
 		}
 		daeVO.setFileName(fileName);

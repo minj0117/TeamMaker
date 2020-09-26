@@ -62,5 +62,8 @@
 		select owner from teamlist where tno = #{tno}
 	</select>
 	
-	
+	<!-- 추방 -->
+	<delete id="delMember" parameterType="com.kh.prj.team.vo.TeammemberVO">
+		delete memberteam where tno = #{tno} and userid=#{userid}
+	</delete>
 </mapper>

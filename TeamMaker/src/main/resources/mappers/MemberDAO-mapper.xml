@@ -9,14 +9,14 @@
 	
 	<!-- ID조회 -->
 	<select id="listId" resultType="com.kh.prj.member.vo.MemberVO">
-		select id, pw, name,birth,gender,phone,email, free,cdate 
+		select id, pw, name,birth,gender,phone,email, free,cdate ,dan
 		from member 
 		where id = #{id} 
 	</select>
 	
 	<!-- 회원 리스트 -->
 	<select id="memberList" resultType="com.kh.prj.member.vo.MemberVO">
-		select id, name, birth, gender, phone, email, free, dancntnumber
+		select id, name, birth, gender, phone, email, free, dancntnumber , dan
 		from member
 	</select>
 	
@@ -28,7 +28,6 @@
         	   email = #{email},
         	   free = #{free}
     	 where id = #{id}
-    	   and pw = #{pw}
 	</update>
 	
 	<select id="memberCheck" parameterType="com.kh.prj.member.vo.MemberVO" resultType="com.kh.prj.member.vo.MemberVO">
@@ -89,4 +88,31 @@
 	<delete id="delMember" parameterType="String">
 		delete member where id = #{id}
 	</delete>
+	
+	<!-- 신고 목록에 있는 지확인 -->
+	<select id="checkreport" parameterType="com.kh.prj.member.vo.ReportVO" resultType="int">
+		select count(*) from report where id = #{id} and bno = #{bno}
+	</select>
+	
+	
+	<!-- 신고 처리 -->
+	
+	<!-- 신고리스트 추가 -->
+	<insert id="reportinsert" parameterType="com.kh.prj.member.vo.ReportVO">		
+		insert into report values(report_seq.nextval,#{id},#{r_comment},#{bno})
+	</insert>
+	
+	<select id="reportlist" resultType="com.kh.prj.member.vo.ReportVO">
+	<![CDATA[
+		SELECT no,id,r_comment,bno
+					FROM	(SELECT /*+INDEX_DESC(report report_pk) */
+								rownum rn, no,id,r_comment,bno
+							from report where rownum <= #{pageNum} * #{amount} )
+					where rn > (#{pageNum}-1) * #{amount}
+					ORDER BY no DESC
+	]]>	
+	</select>
+	<select id="getTotal" resultType="int">
+		select count(*) from report
+	</select>
 </mapper>

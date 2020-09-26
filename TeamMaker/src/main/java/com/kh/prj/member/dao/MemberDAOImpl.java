@@ -9,6 +9,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.kh.prj.member.vo.MemberVO;
+import com.kh.prj.member.vo.ReportVO;
+import com.kh.prj.paging.PagingCriteria;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -159,5 +161,23 @@ public class MemberDAOImpl implements MemberDAO {
 	public int changePw(MemberVO memberVO) {
 		System.out.println("dao pw : " + memberVO.getPw());
 		return sqlSession.update("mappers.MemberDAO-mapper.changePw",memberVO);
+	}
+	
+	@Override
+	public int checkreport(ReportVO vo) {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.checkreport", vo);
+	}
+	
+	@Override
+	public int reportinsert(ReportVO vo) {
+		return sqlSession.insert("mappers.MemberDAO-mapper.reportinsert",vo);
+	}
+	@Override
+	public List<ReportVO> reportlist(PagingCriteria paging) {
+		return sqlSession.selectList("mappers.MemberDAO-mapper.reportlist",paging);
+	}
+	@Override
+	public int getTotal() {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.getTotal");
 	}
 }

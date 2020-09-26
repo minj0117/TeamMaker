@@ -73,11 +73,11 @@ public class TeamboardSVCImpl implements TeamboardSVC {
 	}
 	
 	@Override
-	public int totalCnt() {
-		return teamboardDAO.totalCnt();
+	public int totalCnt(int tno) {
+		return teamboardDAO.totalCnt(tno);
 	}
 	@Override
-	public int totalCntboard() {
-		return teamboardDAO.totalCntboard();
+	public int totalCntboard(int tno) {
+		return teamboardDAO.totalCntboard(tno);
 	}
 }

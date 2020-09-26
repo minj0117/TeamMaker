@@ -24,7 +24,7 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="http://localhost:8090/prj/css/include/rlist.css" />
+	href="http://localhost:8090/prj/css/recruit/rlist.css" />
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
@@ -147,14 +147,16 @@ main .paging li:hover {
 					</ul>
 
 					<!-- 버튼 -->
-					<div class="btnGrp">
-						<button class="findBtn">
-							<i class="fas fa-search"></i>검색
-						</button>
-						<button class="resetBtn">
-							<i class="fas fa-redo"></i>초기화
-						</button>
-					</div>
+            <div class="btnGrp">
+              <div>
+                <i class="fas fa-search"></i>
+                <input type="button" value="검색" />
+              </div>
+              <div>
+                <i class="fas fa-redo"></i>
+                <input type="button" value="초기화" />
+              </div>
+            </div>
 				</div>
 
 				<!-- 팀원모집 글보기 -->
@@ -180,11 +182,12 @@ main .paging li:hover {
 						</c:forEach>
 					</div>
 					<!-- 글쓰기 버튼 -->
+					<c:if test='${!empty sessionScope.member}'>
 					<div class="writeBtn">
-						<button onClick="location.href='${contextPath}/prj/recruitForm'">
-							<i class="fas fa-pen"></i>글쓰기</a>
-						</button>
+							<i class="fas fa-pen"></i>
+						<input type="button" value="글쓰기" onClick="location.href='${contextPath}/prj/recruitForm'">
 					</div>
+					</c:if>
 				</div>
 
 				<!-- 페이징 -->

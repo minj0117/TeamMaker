@@ -24,7 +24,7 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="http://localhost:8090/prj/css/include/signup.css" />
+	href="http://localhost:8090/prj/css/member/findPWForm.css" />
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
@@ -47,8 +47,10 @@ function fn_findpw(){
 	var result = "";
 	var id = $('#id').val();
 	var email = $('#email').val();
-	console.log(id);
-	console.log(email);
+	if(id.length == 0 || email.length == 0){
+		alert("회원정보를 입력하세요.");
+		return;
+	}
 	const memberInfo = JSON.stringify({id:id,email:email});
 	console.log(memberInfo);
 	$.ajax({
@@ -59,10 +61,10 @@ function fn_findpw(){
 		contentType : "application/json; charset=UTF-8",
 		success : function(data){
 			console.log(data);
-			if(data == null){
-				$('#message').text("잘못된 정보입니다.");
-			}else{
+			if(data != null){
 				$('#message').text("비밀번호: " + data);
+			}else{
+				$('#message').text("잘못된 정보입니다.");
 			}
 		},
 		error : function(data,textStatus){
@@ -110,7 +112,7 @@ function fn_findpw(){
             </div>
             <div class="pw_msg" id="message"></div>
             <div>
-              <input type="button" onClick="fn_findpw()" value="비밀번호 찾기">
+              <input type="button" id="findPWBtn" name="findPWBtn" onClick="fn_findpw()" value="비밀번호 찾기">
             </div>
           </form>
         </div>

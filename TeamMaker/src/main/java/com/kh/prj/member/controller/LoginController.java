@@ -77,18 +77,34 @@ public class LoginController {
 		}else {
 			session.setAttribute("member",result);
 			session.setAttribute("id",id);
-			System.out.println("세선 : " + session.getAttribute("member"));
+			
 			return 1;
 		}
 	}
+	/*
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String newMember(HttpServletRequest request, MemberVO memberVO, HttpSession session) throws Exception {
+		String referer = (String)request.getHeader("Referer");
+		String check = memberSVC.checkBlackList(memberVO.getId());
+		MemberVO result = memberSVC.memberCheck(memberVO);
+		boolean pwMatch = pwdEncoder.matches(memberVO.getPw(), result.getPw());
+		if(pwMatch == false) {
+			return "err_page";
+		}else {
+			session.setAttribute("member",result);
+			session.setAttribute("id",memberVO.getId());
+			request.getSession().setAttribute("redirectURI", referer);
+			return "redirect:"+referer;
+		}
+	}*/
 	
 	//로그아웃
 	@GetMapping("/logout")
-	public String logout(HttpSession session,Model model) {
+	public String logout(HttpSession session,Model model,RecruitVO vo) {
 		//세션 정보 제거
 		session.invalidate();
-		//List<RecruitVO> list = recruitSVC.rank();
-		//model.addAttribute("rank",list);
+		List<RecruitVO> list = recruitSVC.rank();
+		model.addAttribute("rank",list);
 		return "home";
 	}
 	

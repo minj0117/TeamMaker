@@ -100,7 +100,6 @@ main .paging li:hover {
 
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
-
 	  <!-- main -->
     <main>
       <div class="container">
@@ -136,7 +135,7 @@ main .paging li:hover {
         </div>
       </div>
     </main>
-
+	
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>

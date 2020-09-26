@@ -39,7 +39,31 @@ public class FboardSVCImpl implements FboardSVC {
 	}
 	
 	@Override
-	public List<FboardVO> viewReply(int fgroup) {
-		return fboardDAO.viewReply(fgroup);
+	public int pwCheck(FboardVO vo) {
+		return fboardDAO.pwCheck(vo);
+	}
+	
+	@Override
+	public int fboardMod(FboardVO vo) {
+		return fboardDAO.fboardMod(vo);
+	}
+	
+	@Override
+	public int fboardDel(FboardVO vo) {
+		return fboardDAO.fboardDel(vo);
+	}
+	
+	@Override
+	public List<FboardVO> viewReply(int fno) {
+		return fboardDAO.viewReply(fno);
+	}
+	
+	@Override
+	public int replyinsert(FboardVO vo) {
+		return fboardDAO.replyinsert(vo);
+	}
+	@Override
+	public int replydelete(int fno) {
+		return fboardDAO.replydelete(fno);
 	}
 }

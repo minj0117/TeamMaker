@@ -14,6 +14,7 @@ public class MemberVO {
 	private Timestamp cdate;			//USER_CDATE	TIMESTAMP(6)	Yes	"systimestamp"	8	생성일
 	private int dancntnumber;				//USER_DAN_CNT_NUMBER	NUMBER	Yes	"0"	9	신고받은 횟수
 	private String free;				//USER_FREE	VARCHAR2(3000 BYTE)	Yes		10	자유소개란
+	private int dan;
 	//private List<MultipartFile> files;	//USER_IMG	BLOB	Yes		11	사진란
 	public String getId() {
 		return id;
@@ -75,6 +76,14 @@ public class MemberVO {
 	public void setFree(String free) {
 		this.free = free;
 	}
+	
+	public int getDan() {
+		return dan;
+	}
+	public void setDan(int dan) {
+		this.dan = dan;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", birth=" + birth + ", gender=" + gender

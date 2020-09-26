@@ -1,0 +1,180 @@
+/* main */
+main {
+  width: 70%;
+  margin: 200px auto;
+}
+
+main .container,
+main .container aside ul li,
+main .container section ul li {
+  font-family: "Sunflower";
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main .container .content aside {
+  width: 20%;
+  float: left;
+}
+
+main .container .content section {
+  width: 80%;
+  float: left;
+}
+
+main .container .content aside a,
+main .container .content section a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* aside */
+main aside .atitle {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main aside .astitle {
+  font-weight: bold;
+  padding: 20px 0 5px;
+  margin-right: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main aside ul li {
+  padding: 10px 0 5px;
+}
+
+/* section */
+main section form {
+  margin: 20px;
+}
+
+main section .stitle {
+  padding: 10px 0;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  text-align: center;
+}
+
+main section .stitle span {
+  color: var(--background-color);
+  font-weight: bold;
+}
+
+/* section1 */
+main section .section1,
+main section .section2,
+main section .section3,
+main section .section4 {
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  margin: 50px 0;
+}
+
+main section .section1 .section1_title,
+main section .section2 .section2_title,
+main section .section3 .section3_title,
+main section .section4 .section4_title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main section .section1 .section1_title div:nth-child(1),
+main section .section2 .section2_title div:nth-child(1),
+main section .section3 .section3_title div:nth-child(1),
+main section .section4 .section4_title div:nth-child(1) {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* section1, section2 */
+main section .section1 .section1_con,
+main section .section2 .section2_con {
+  margin: 0 5px;
+}
+
+main section .section1 .section1_con.up,
+main section .section1 .section1_con.down,
+main section .section2 .section2_con.up,
+main section .section2 .section2_con.down {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}
+
+main section .section1 .section1_con.up div,
+main section .section2 .section2_con.up div {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+main section .section1 .section1_con.down div,
+main section .section2 .section2_con.down div {
+  margin: 10px 0;
+}
+
+main section .section1 .section1_con .rtitle,
+main section .section2 .section2_con .rtitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+main section .section1 .section1_con #reportColor,
+main section .section1 .section1_con .reportNum,
+main section .section2 .section2_con #reportColor,
+main section .section2 .section2_con .reportNum {
+  color: red;
+  font-weight: bold;
+}
+
+/* section3, section4 */
+main section .section3 .section3_con,
+main section .section4 .section4_con {
+  margin: 0 5px;
+}
+
+main section .section3 .section3_con.up,
+main section .section3 .section3_con.down,
+main section .section4 .section4_con.up,
+main section .section4 .section4_con.down {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+* {
+  /* outline: 1px dotted red; */
+}
+main section .section3 .section3_con.up div,
+main section .section4 .section4_con.up div {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+main section .section3 .section3_con.down div,
+main section .section4 .section4_con.down div {
+  margin: 10px 0;
+}
+
+main section .section3 .section3_con.up #warningColor,
+main section .section3 .section3_con.down .warningNum {
+  color: red;
+  font-weight: bold;
+}
+
+main section .section3 div span,
+main section .section4 div span {
+  color: red;
+}

@@ -52,4 +52,10 @@ public interface TeamDAO {
 	 * @return
 	 */
 	public int delapply(int tno);
+	/**
+	 * 추방
+	 * @param userid
+	 * @return
+	 */
+	public int delMember(TeammemberVO vo);
 }

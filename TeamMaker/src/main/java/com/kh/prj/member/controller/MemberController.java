@@ -1,7 +1,5 @@
 package com.kh.prj.member.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +25,9 @@ import com.kh.prj.apply.svc.ApplySVC;
 import com.kh.prj.apply.vo.MyApplyVO;
 import com.kh.prj.member.svc.MemberSVC;
 import com.kh.prj.member.vo.MemberVO;
+import com.kh.prj.member.vo.ReportVO;
+import com.kh.prj.paging.PageMaker;
+import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.recruit.svc.RecruitSVC;
 import com.kh.prj.recruit.vo.RecruitVO;
 import com.kh.prj.tmppw.GetRandomPw;
@@ -74,7 +75,6 @@ public class MemberController {
 	public int join(@RequestBody HashMap<String, String> memberInfo, MemberVO memberVO) throws Exception {
 		memberVO.setId(memberInfo.get("id"));
 		String encrypw = memberInfo.get("pw");
-		System.out.println(encrypw);
 		String pw = pwdEncoder.encode(encrypw);
 		memberVO.setPw(pw);
 		memberVO.setName(memberInfo.get("name"));
@@ -120,16 +120,17 @@ public class MemberController {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/modify")
-	public String modify(MemberVO memberVO, HttpSession session, Model model) {
-		int result = memberSVC.modifyMember(memberVO);
-		if(result == 1) {
-			String id = ((MemberVO) session.getAttribute("member")).getId();
-			session.setAttribute("member", memberSVC.listId(id));
-			return "member/modifyForm";
-		}else {
-			return "err_page";
-		}
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.PUT, produces = "application/json")
+	public int modify(@RequestBody HashMap<String, String> info ,MemberVO memberVO) {
+		String encrypw = info.get("pw");
+		String pw = pwdEncoder.encode(encrypw);
+		memberVO.setPw(pw);
+		memberVO.setFree(info.get("free"));
+		memberVO.setPhone(info.get("phone"));
+		memberVO.setEmail(info.get("email"));
+		memberVO.setId(info.get("id"));
+		return memberSVC.modifyMember(memberVO);
 	}
 	
 	/**
@@ -204,6 +205,7 @@ public class MemberController {
 		System.out.println("pw : " + pw);
 		memberVO.setPw(pw);
 		memberSVC.changePw(memberVO);
+		System.out.println(tmppw);
 		return tmppw;
 	}
 	
@@ -273,5 +275,39 @@ public class MemberController {
 		model.addAttribute("rlist",rlist);
 		model.addAttribute("alist",alist);
 		return "member/mypage";
+	}
+	
+	@RequestMapping("/profile")
+	public String profile(@RequestParam("id") String id , Model model, MemberVO vo) {
+		System.out.println("id : " + id);
+		vo = memberSVC.listId(id);
+		model.addAttribute("vo",vo);
+		return "member/profile";
+	}
+	
+	
+	/* 관리자 페이지 */
+	@RequestMapping("admin")
+	public String admin(Model model, PagingCriteria cri) {
+		List<ReportVO> list = memberSVC.reportlist(cri);
+		int total = memberSVC.getTotal();
+		model.addAttribute("list",list);
+		model.addAttribute("paging",new PageMaker(cri,total));
+		return "member/admin";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/reportinsert", method = RequestMethod.POST, produces = "application/json") 
+	public int reportinsert(@RequestBody HashMap<String, String> info, ReportVO vo){
+		vo.setBno(Integer.parseInt(info.get("bno")));
+		vo.setId(info.get("id"));
+		vo.setR_comment(info.get("r_comment"));
+		int result = memberSVC.checkreport(vo);
+		if( result == 0 ) {
+			return memberSVC.reportinsert(vo);
+		}else {
+			return 0;
+		}
 	}
 }

@@ -44,23 +44,31 @@ public class TeamboardController {
 	@GetMapping("/boardList")
 	public String boardList(@RequestParam("tno") int tno,Model model,  PagingCriteria cri){
 		cri.setTno(tno);
-		int total = teamboardSVC.totalCnt(); //첨부파일 토탈
-		List<FileVO> flist = teamboardSVC.fileList(cri);
-		model.addAttribute("paging",new PageMaker(cri,total));
-		model.addAttribute("flist",flist);
 		model.addAttribute("tno", tno);
 		return "team/teamboard";
 	}
 	@GetMapping("/talkList")
 	public String talkList(@RequestParam("tno") int tno, Model model, PagingCriteria cri) {
 		cri.setTno(tno);
-		int total = teamboardSVC.totalCntboard();
+		int total = teamboardSVC.totalCntboard(tno);
 		List<TeamboardVO> list = teamboardSVC.boardList(cri);
 		model.addAttribute("paging",new PageMaker(cri,total));
 		model.addAttribute("list", list);
 		model.addAttribute("tno", tno);
 		return "team/teamboardList";
 	}
+	
+	@GetMapping("/fileList")
+	public String fileList(@RequestParam("tno") int tno,Model model,  PagingCriteria cri){
+		cri.setTno(tno);
+		int total = teamboardSVC.totalCnt(tno); //첨부파일 토탈
+		List<FileVO> flist = teamboardSVC.fileList(cri);
+		model.addAttribute("paging",new PageMaker(cri,total));
+		model.addAttribute("flist",flist);
+		model.addAttribute("tno", tno);
+		return "team/teamfileList";
+	}
+	
 	/**
 	 * 글 상세보기
 	 * @param bno

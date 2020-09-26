@@ -72,13 +72,17 @@ function checkbox(){
 	  $("input[name='d1']:checked").each(function(index, item){
 			checkedValue.push($(item).val());
 	  });
+	  
 	  /*$.get("${contextPath}/prj/dae/checklist",
 	            {val:checkedValue},
 	             function(data){},
 	             "json"
 	   )*/
-	  location.href="${contextPath}/prj/dae/checklist?value=checkedValue";
-	
+	  if(eheckedValue.length > 0){
+		  location.href="${contextPath}/prj/dae/checklist";
+	  }else{
+	 	  location.href="${contextPath}/prj/dae/checklist?value=checkedValue";
+	  }
 }
 </script>
 </head>
@@ -122,7 +126,7 @@ function checkbox(){
             </li>
             <li>
               <input type="checkbox" name="d1" id="d7" value="강연"/>
-              <label for="d1">강연</label>
+              <label for="d7">강연</label>
             </li>
             <li>
               <input type="checkbox" name="d1" id="d8" value="마케터"/>
@@ -150,7 +154,7 @@ function checkbox(){
             </li>
           </ul>
         </div>
-          </form>
+       </form>
 
         <!-- main : 내용 부분 -->
         <div class="content">

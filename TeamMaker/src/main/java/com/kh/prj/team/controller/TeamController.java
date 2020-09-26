@@ -201,4 +201,12 @@ public class TeamController {
 			return "err_page";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/delMember", method = RequestMethod.POST, produces = "application/json")
+	public int delMember(@RequestBody HashMap<String, String> info, TeammemberVO vo) {
+		vo.setUserid(info.get("userid"));
+		vo.setTno(Integer.parseInt(info.get("tno")));
+		return teamSVC.delMember(vo);
+	}
 }

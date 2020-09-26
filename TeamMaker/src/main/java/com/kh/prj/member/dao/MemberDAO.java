@@ -2,9 +2,9 @@ package com.kh.prj.member.dao;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-
 import com.kh.prj.member.vo.MemberVO;
+import com.kh.prj.member.vo.ReportVO;
+import com.kh.prj.paging.PagingCriteria;
 
 public interface MemberDAO {
 	/**
@@ -87,4 +87,10 @@ public interface MemberDAO {
 	
 	public MemberVO memberCheck(MemberVO memberVO);
 	public int changePw(MemberVO memberVO);
+	
+	
+	public int checkreport(ReportVO vo);
+	public int reportinsert(ReportVO vo);
+	public List<ReportVO> reportlist(PagingCriteria paging);
+	public int getTotal();
 }

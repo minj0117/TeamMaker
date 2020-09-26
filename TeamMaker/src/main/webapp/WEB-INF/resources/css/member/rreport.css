@@ -1,0 +1,155 @@
+/* main */
+main {
+  width: 70%;
+  margin: 200px auto;
+}
+
+main .container,
+main .container aside ul li,
+main .container section ul li {
+  font-family: "Sunflower";
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main .container .content aside {
+  width: 20%;
+  float: left;
+}
+
+main .container .content section {
+  width: 80%;
+  float: left;
+}
+
+main .container .content aside a,
+main .container .content section a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* aside */
+main aside .atitle {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main aside .astitle {
+  font-weight: bold;
+  padding: 20px 0 5px;
+  margin-right: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main aside ul li {
+  padding: 10px 0 5px;
+}
+
+/* section */
+main section .stitle {
+  padding: 10px 0;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  text-align: center;
+}
+
+main section .stitle span {
+  color: var(--background-color);
+  font-weight: bold;
+}
+
+main section .mtbTitle {
+  margin: 30px 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+main section .mtbReport {
+  margin: 30px 20px;
+}
+
+main section .reportTitle {
+  font-weight: bold;
+  margin-top: 10px;
+  border-top: 2px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+}
+
+main section .reportTitle div {
+  padding: 20px 0;
+}
+
+main section .reportTitle,
+main section .reportList {
+  display: grid;
+  grid-template-columns: 10% 1fr 18% 12% 12%;
+  text-align: center;
+}
+main section .reportList {
+  border-bottom: 1px solid var(--border-color);
+}
+
+main section .reportList .rtitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-align: left;
+  padding: 0 10px;
+}
+
+main section .reportList div {
+  margin: 20px 0;
+}
+* {
+  /* outline: 1px dotted red; */
+}
+main section .reasonPart {
+  border-bottom: 1px solid var(--border-color);
+  padding: 30px 0;
+}
+
+main section .reasonPart_up,
+main section .reasonPart_down {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  text-align: center;
+}
+
+main section .reasonPart_up div,
+main section .reasonPart_down div {
+  margin: 15px 0;
+}
+
+main section .reasonPart_up div:nth-child(1),
+main section .reasonPart_down .reportID {
+  border-right: 1px solid var(--border-color);
+}
+
+main section .reasonPart_down .reasonCon {
+  text-align: left;
+  padding: 0 40px;
+}
+
+/* resonPart 화살표 클릭 시 */
+main section .reasonPart {
+  display: none;
+}
+
+main section .reportList .moreBtn {
+  background-color: var(--white-color);
+  border: none;
+  outline: none;
+  transition: transform 300ms ease-in-out;
+}
+
+main section .reportList .moreBtn.clicked {
+  transform: rotate(-180deg);
+}
+
+main section .reasonPart.active {
+  display: block;
+}
