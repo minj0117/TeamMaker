@@ -91,7 +91,7 @@
               <i class="fas fa-chevron-right"></i>
               <span>&nbsp;</span>나의 활동
             </div>
-            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
+            <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
             <div class="hiddenTitle">
               모바일 버전에서는 팀 게시판 서비스를 지원하지 않습니다.
             </div>

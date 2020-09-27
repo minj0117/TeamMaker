@@ -24,7 +24,7 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="http://localhost:8090/prj/css/member/admin.css" />
+	href="http://localhost:8090/prj/css/member/adminmain.css" />
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
@@ -76,12 +76,12 @@
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 	
-	 <!-- main -->
+	    <!-- main -->
     <main>
       <div class="container">
         <div class="content">
           <!-- aside -->
-          <aside>
+           <aside>
             <div>
               <div class="atitle">관리자 페이지</div>
               <ul>
@@ -103,83 +103,29 @@
           <!-- section -->
           <section>
             <div class="stitle"><span>관리자</span>님 반갑습니다</div>
-            <div>
-              <!-- section1 -->
-              <div class="section2">
-                <div class="section2_title">
-                  <div>신고 목록</div>
-                  <div><a href="#">전체보기 ＞</a></div>
+            <form action="">
+              <div class="formTitle">공지사항</div>
+              <div class="notice">
+                <div class="noticeTitle">
+                  <div>2020 추석연휴 고객센터 운영 안내</div>
+                  <div>2020.09.20</div>
                 </div>
-                <div class="section2_con">
-                  <div class="section2_con up">
-                    <div>글번호</div>
-                    <div>내용</div>
-                    <div>아이디</div>
-                    <div>게시글 번호</div>
-                    <div>처리</div>
-                  </div>
-                  <div class="section2_con down">
-                    <!-- con1 -->
-                    <c:forEach var="row" items="${list }" varStatus="status">
-                    <div class="no" id="no${status.index }">${row.no }</div>
-                    <div class="r_comment" id="r_comment${status.index }">${row.r_comment }</div>
-                    <div class="id" id="id${status.index }"><a href="">${row.id }</a></div>
-                    <div class="bno" id="bno${status.index }">${row.bno }</div>
-                    <div class="opt">
-                    	<input type="button" value="승인" onClick="okFn('${status.index}')">
-                    	<input type="button" value="거절">
-                    </div>
-                    </c:forEach>
-                  </div>
+                <div class="noticeTitle">
+                  <div>개인정보처리방침 개정 안내</div>
+                  <div>2020.09.15</div>
                 </div>
-                   <div class="paging">
-					<div id="pagingDiv">
-						<c:if test="${paging.prev}">
-							<a href="${paging.startPage - 1 }">이전</a>
-						</c:if>
-						<c:forEach var="num" begin="${paging.startPage}"
-							end="${paging.endPage }">
-						&nbsp;<a href="${num }">${num }</a>&nbsp;
-					</c:forEach>
-						<c:if test="${paging.next}">
-							<a id="next" href="${paging.endPage + 1 }">다음</a>
-						</c:if>
-					</div>
-					<form id="pagingFrm" name="pagingForm" action="admin"
-						method="get">
-						<input type="hidden" id="pageNum" name="pageNum"
-							value="${paging.cri.pageNum }"> <input type="hidden"
-							id="amount" name="amount" value="${paging.cri.amount }">
-					</form>
-				</div>
-              </div>
-              <!-- section4 -->
-              <!-- 
-              <div class="section4">
-                <div class="section4_title">
-                  <div><span>사용 중지</span> 아이디</div>
-                  <div><a href="#">전체보기 ＞</a></div>
+                <div class="noticeTitle">
+                  <div>회원이용약관 개정 안내</div>
+                  <div>2020.08.30</div>
                 </div>
-                <div class="section4_con">
-                  <div class="section4_con up">
-                    <div>아이디</div>
-                    <div>사용 중지일</div>
+                <div class="noticeTitle">
+                  <div>
+                    서비스 일시 점검 안내 (2020년 9월 01일 새벽 0시 ~ 7시)
                   </div>
-                  <div class="section4_con down">
-                    
-                    <div class="id"><a href="">akdjmk2309</a></div>
-                    <div class="sdate">2020.09.09</div>
-    
-                    <div class="id"><a href="">akdjmk2309</a></div>
-                    <div class="sdate">2020.09.09</div>
-                    
-                    <div class="id"><a href="">akdjmk2309</a></div>
-                    <div class="sdate">2020.09.09</div>
-                  </div>
+                  <div>2020.09.01</div>
                 </div>
               </div>
-            </div>
-            -->
+            </form>
           </section>
         </div>
       </div>

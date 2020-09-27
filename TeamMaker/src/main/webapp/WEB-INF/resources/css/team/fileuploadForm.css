@@ -1,11 +1,14 @@
 :root {
-  --background-color: #ffcdd2;
+  --pink-color: #ffcdd2;
+  --background-color: #000051;
+  /* --background-color: #263343; */
   --text-color: #263343;
   --accent-color: #d49466;
   --border-color: lightgray;
   --whitesmoke-color: #f0f4f5;
   --white-color: #fdffff;
   --linen-color: linen;
+  --green-color: #d4e157;
 }
 
 .container {
@@ -220,14 +223,16 @@ main section form {
 
 main section .stitle {
   padding: 10px 0;
-  background-color: var(--accent-color);
+  border: 2px solid var(--background-color);
+  background-color: white;
+  border-radius: 4px;
   text-align: center;
 }
 
 main section .stitle span {
-  color: var(--white-color);
+  color: var(--background-color);
+  font-weight: bold;
 }
-
 /* section - 파일 업로드 */
 main section .uploadTitle {
   font-weight: bold;

@@ -40,7 +40,8 @@ main .container form li label {
   margin: 0px;
 }
 
-main .container form li #message {
+main .container form li #message,
+main .container form li #message2  {
   width: 250px;
   margin-top: 10px;
   margin-left: 130px;

@@ -56,13 +56,17 @@ main section .hiddenTitle {
 
 main section .stitle {
   padding: 10px 0;
-  background-color: var(--accent-color);
+  border: 2px solid var(--background-color);
+  background-color: white;
+  border-radius: 4px;
   text-align: center;
 }
 
 main section .stitle span {
-  color: var(--white-color);
+  color: var(--background-color);
+  font-weight: bold;
 }
+
 
 /* section - 문서 부분, 게시판 부분 */
 main section .filePart {

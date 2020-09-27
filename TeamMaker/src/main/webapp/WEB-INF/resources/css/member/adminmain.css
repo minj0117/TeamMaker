@@ -1,0 +1,90 @@
+/* main */
+main {
+  width: 70%;
+  margin: 200px auto;
+}
+
+main .container,
+main .container aside ul li,
+main .container section ul li {
+  font-family: "Sunflower";
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main .container .content aside {
+  width: 20%;
+  float: left;
+}
+
+main .container .content section {
+  width: 80%;
+  float: left;
+}
+
+main .container .content aside a,
+main .container .content section a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* aside */
+main aside .atitle {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main aside .astitle {
+  font-weight: bold;
+  padding: 20px 0 5px;
+  margin-right: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main aside ul li {
+  padding: 10px 0 5px;
+}
+
+/* section */
+main section form {
+  margin: 20px;
+}
+
+main section .stitle {
+  padding: 10px 0;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  text-align: center;
+}
+
+main section .stitle span {
+  color: var(--background-color);
+  font-weight: bold;
+}
+
+/* section1 */
+main section .formTitle {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-bottom: 15px;
+}
+
+main .notice {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+main .notice .noticeTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main .notice .noticeTitle:last-child {
+  border-bottom: none;
+}

@@ -80,9 +80,11 @@ function addFn(num){
 	})
 }
 
-function delFn(){
-	let userid = document.getElementById('userid').innerText;
-	let tno = document.getElementById('tno').innerText;
+function delFn(num){
+	let userid = document.getElementById('userid'.concat(num)).innerText;
+	let tno = document.getElementById('tnod'.concat(num)).innerText;
+	console.log(userid);
+	console.log(tno);
 	const Info = JSON.stringify({userid:userid,tno:tno});
 	$.ajax({
 		data : Info,
@@ -164,17 +166,17 @@ function profile(num){
                   <th>팀원</th>
                   <th>관리</th>
                 </tr>
-                <c:forEach var="row" items="${list }">
+                <c:forEach var="row" items="${list }" varStatus="status">
                 <tr>
-                  <td id='tno'>${row.tno }</td>
+                  <td id='tnod${status.index }'>${row.tno }</td>
                   <td>${row.owner }</td>
                   <td>${row.title }</td>
-                  <td id="userid">
+                  <td id="userid${status.index }">
                     <div>${row.userid }</div>  
            
                   </td>
                   <td>
-                    <input type="button" onClick="delFn()" value="추방">
+                    <input type="button" onClick="delFn('${status.index}')" value="추방">
      
                   </td>
                 </tr> 
