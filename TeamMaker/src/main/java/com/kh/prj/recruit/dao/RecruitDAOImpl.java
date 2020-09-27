@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.prj.paging.PagingCriteria;
+import com.kh.prj.recruit.vo.CheckVO;
 import com.kh.prj.recruit.vo.RecruitVO;
 
 @Repository
@@ -63,5 +64,12 @@ public class RecruitDAOImpl implements RecruitDAO {
 	public List<RecruitVO> mypagerecruit(String id) {
 		return sqlSession.selectList("mappers.RecruitDAO-mapper.mypagerecruit",id);
 	}
-	
+	@Override
+	public List<RecruitVO> checklist(PagingCriteria paging) {
+		return sqlSession.selectList("mappers.RecruitDAO-mapper.checklist",paging);
+	}
+	@Override
+	public int selectTotalCnt(PagingCriteria paging) {
+		return sqlSession.selectOne("mappers.RecruitDAO-mapper.selectTotalCnt",paging);
+	}
 }

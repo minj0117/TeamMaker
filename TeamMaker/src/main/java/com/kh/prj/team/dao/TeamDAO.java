@@ -58,4 +58,6 @@ public interface TeamDAO {
 	 * @return
 	 */
 	public int delMember(TeammemberVO vo);
+	
+	public int checkmember(TeammemberVO vo);
 }

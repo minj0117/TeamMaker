@@ -61,8 +61,34 @@
 					alert("이미 신고되어 있는 게시글입니다.");
 				}
 			},
-			error : function(data){
-				alert("에러발생");
+			error : function(request,status,error){
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		})
+	}
+
+	function apply(){
+		let id = "<%=session.getAttribute("id") %>"
+		let tno = document.getElementById('tno').value;
+		const Info = JSON.stringify({id:id,tno:tno});
+		$.ajax({
+			data : Info,
+			url : "${contextPath}/prj/addapply",
+			type : "post",
+			dataType : "text",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				console.log(data);
+				if(data == -1){
+					alert("이미 팀에 신청하였습니다.");
+				}else if(data == -2){
+					alert("이미 소속되어 있는 팀입니다.");
+				}else{
+					alert("신청했습니다.");
+				}
+			},
+			error : function(request,status,error){
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
 		})
 	}
@@ -90,6 +116,7 @@
 							<div class="rcategory" id="rcategory">${recruitVO.rcategory }</div>
 							<div class="rtitle" id="rtitle">${recruitVO.rtitle }</div>
 							<input type="hidden" id="rno" value="${recruitVO.rno }">
+							<input type="hidden" id="tno" value="${recruitVO.tno }">
 							<div class="writerInfo">
 								<div class="profile_area">
 									<div class="profile_info">
@@ -107,13 +134,6 @@
 					<div class="article_content">
 						<div class="article_content1" id="rcomment">${recruitVO.rcomment }</div>
 						<div class="article_content2">
-							<div class="apply">
-								<div class="apply_num">
-									<div>현재 지원자 수</div>
-									<div>:</div>
-									<div class="applyNum">2명</div>
-								</div>
-							</div>
 							 <c:if test="${!empty sessionScope.member && vo.title ne '블라인드 처리' }">
 							<a href="#" class="report" id="report" onClick="report()">신고</a>
 							</c:if>
@@ -132,7 +152,8 @@
 					<c:when test="${recruitVO.id ne id }">
 						<div class="article_btns">
 							<input type="button" class="listBtn" value="목록">
-							<a href="#" onClick="location.href='http://localhost:8090/prj/addapply?applyid=<%=id%>&tno=${recruitVO.tno }'" class="submitBtn" >신청</a>
+							<!-- <a href="#" onClick="location.href='http://localhost:8090/prj/addapply?applyid=<%=id%>&tno=${recruitVO.tno }'" class="submitBtn" >신청</a>-->
+							<a href="#" onClick="apply()" class="submitBtn" >신청</a>
 						</div>
 					</c:when>
 				</c:choose>

@@ -60,9 +60,9 @@ function fn_findpw(){
 		dataType : "text",
 		contentType : "application/json; charset=UTF-8",
 		success : function(data){
-			console.log(data);
 			if(data != null){
-				$('#message').text("비밀번호: " + data);
+				//$('#message').text("비밀번호: " + data);
+				$('#message').text("메일로 임시비밀번호를 발송했습니다.");
 			}else{
 				$('#message').text("잘못된 정보입니다.");
 			}
@@ -95,20 +95,6 @@ function fn_findpw(){
             <div>
               <label for="useremail">이메일</label>
               <input type="text" name="email" id="email" />
-              <input
-                type="submit"
-                name="submitBtn"
-                id="submitBtn"
-                value="인증번호 받기"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="submitW"
-                id="submitW"
-                placeholder="인증번호 입력"
-              />
             </div>
             <div class="pw_msg" id="message"></div>
             <div>

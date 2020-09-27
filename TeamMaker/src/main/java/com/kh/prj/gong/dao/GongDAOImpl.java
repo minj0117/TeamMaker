@@ -56,10 +56,16 @@ public class GongDAOImpl implements GongDAO {
 	
 	@Override
 	public List<GongVO> checklist(List<String> value) {
-		for(int i=0; i<value.size(); i++) {
-			System.out.println(value.get(i).toString());
-		}
-		return sqlSession.selectList("mappers.DaeDAO-mapper.checklist",value);
+		return sqlSession.selectList("mappers.GongDAO-mapper.checklist",value);
 	}
 	
+	@Override
+	public int selectTotal(List<String> value) {
+		return sqlSession.selectOne("mappers.GongDAO-mapper.selectTotal",value);
+	}
+	
+	@Override
+	public List<GongVO> rank() {
+		return sqlSession.selectList("mappers.GongDAO-mapper.rank");
+	}
 }

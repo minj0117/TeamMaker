@@ -17,4 +17,6 @@ public interface GongDAO {
 	public List<GongVO> checklist(List<String> value);
 	public int del(int gno);
 	public int getTotalCnt();
+	public int selectTotal(List<String> value);
+	public List<GongVO> rank();
 }

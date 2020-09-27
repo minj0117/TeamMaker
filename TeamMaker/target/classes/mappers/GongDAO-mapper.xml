@@ -116,6 +116,11 @@
 	<select id="getTotalCnt" resultType="int">
 		select count(*) from gong
 	</select>
-
-
+	
+	<select id="rank" resultType="com.kh.prj.gong.vo.GongVO">
+		<![CDATA[
+		        select rownum, a.gno,a.writer,a.category,a.cdate,a.title,a.applystart,a.applyend,a.startday, a.host,a.way,a.homepage,a.g_comment,a.pic,a.applymoney,a.award
+        from ( select gno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,g_comment,pic,applymoney,award from gong order by cdate desc) A where rownum < 3
+		]]>
+	</select>
 </mapper>

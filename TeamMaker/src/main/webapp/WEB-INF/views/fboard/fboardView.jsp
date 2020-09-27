@@ -43,26 +43,26 @@
 <style type="text/css">
 /* main : 페이징 */
 main .paging {
-  padding-left: 0px;
-  display: flex;
-  justify-content: center;
-  font-size: 16px;
+	padding-left: 0px;
+	display: flex;
+	justify-content: center;
+	font-size: 16px;
 }
 
 main .paging li {
-  padding: 3px 8px;
-  border: 1px solid var(--border-color);
-  font-family: "Sunflower";
+	padding: 3px 8px;
+	border: 1px solid var(- -border-color);
+	font-family: "Sunflower";
 }
 
 main .paging li a {
-  font-family: "Sunflower";
-  text-decoration: none;
-  color: var(--text-color);
+	font-family: "Sunflower";
+	text-decoration: none;
+	color: var(- -text-color);
 }
 
 main .paging li:hover {
-  background-color: var(--linen-color);
+	background-color: var(- -linen-color);
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -114,7 +114,7 @@ main .paging li:hover {
 	}
 
 	function replyFn(){
-		let f_comment = document.getElementById('f_comment').value;
+		let f_comment = document.getElementById('replycomment').value;
 		let fno = document.getElementById('fno').value;
 		const Info = JSON.stringify({fno:fno,f_comment:f_comment});
 		$.ajax({
@@ -194,71 +194,73 @@ main .paging li:hover {
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
 	<!-- main -->
-	  <!-- main -->
-    <main>
-      <div class="container">
-        <form action="" id="commPostView">
-          <!-- 글 내용 -->
-          <div class="commContentBox">
-            <!-- article header 부분 -->
-            <div class="comm_header">
-              <div class="commTitle">
-                <div class="title" id="title">${vo.title }</div>
-                <div class="writerInfo">
-                  <div class="profile_area">
-                    <div class="profile_info">
-                      <div class="rid" id="writer">${vo.writer }</div>
-                    </div>
-                    <div class="comm_info">
-                      <span class="rdate" id="cdate">${vo.cdate }</span>
-                      <span>조회수</span>
-                      <span class="rcnt">${vo.cnt }</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- article content 부분 -->
-            <div class="comm_content">
-              <div class="comm_content1" id="f_comment">
-              	${vo.f_comment }
-              </div>
-            </div>
-            <!-- 신고 버튼 부분 -->
-            <c:if test="${!empty sessionScope.member && vo.title ne '블라인드 처리' }">
-            <div class="comm_content2">
-              <a href="#" class="report" id="report" onClick="report()">신고</a>
-            </div>
-            </c:if>
-          <!-- comm_btns 부분 -->
-          <div class="comm_btns">
-          	<c:if test='${sessionScope.member.id eq vo.writer }'>
-            <button class="modifyBtn" onClick="pwCheck()">수정</button>
-            <button class="deleteBtn" onClick="delFn()">삭제</button>
-            </c:if>
-            <button class="replyBtn">답글</button>
-            <button class="listBtn">목록</button>
-          </div>
-          <input type="hidden" id="fno" value="${vo.fno }"> 
-        </form>
-        <div>
-        	<c:forEach var="row" items="${list }" varStatus="status">
-        		<div>${row.f_comment } | ${row.writer }
-        		<c:if test='${row.writer == sessionScope.member.id }'>
-        		<input type="hidden" id="replyfno${status.index }" value="${row.fno }"/>
-        		<input type="button" onClick="replydel('${status.index }')" value="삭제">
-        		</c:if>
-        		</div>
-        	</c:forEach>
-        </div>
-        <c:if test='${!empty sessionScope.member }'>
-        <form>
-        <textarea rows="5" cols="50" id="f_comment" name="f_comment"></textarea>
-        <input type="button" onClick="replyFn()" value="등록">
-        </form>
-        </c:if>
-      </div>
-    </main>
+	<!-- main -->
+	<main>
+		<div class="container">
+			<form action="" id="commPostView">
+				<!-- 글 내용 -->
+				<div class="commContentBox">
+					<!-- article header 부분 -->
+					<div class="comm_header">
+						<div class="commTitle">
+							<div class="title" id="title">${vo.title }</div>
+							<div class="writerInfo">
+								<div class="profile_area">
+									<div class="profile_info">
+										<div class="rid" id="writer">${vo.writer }</div>
+									</div>
+									<div class="comm_info">
+										<span class="rdate" id="cdate">${vo.cdate }</span> <span>조회수</span>
+										<span class="rcnt">${vo.cnt }</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- article content 부분 -->
+					<div class="comm_content">
+						<div class="comm_content1" id="f_comment">${vo.f_comment }</div>
+					</div>
+					<!-- 신고 버튼 부분 -->
+					<c:if
+						test="${!empty sessionScope.member && vo.title ne '블라인드 처리' }">
+						<div class="comm_content2">
+							<a href="#" class="report" id="report" onClick="report()">신고</a>
+						</div>
+					</c:if>
+					<!-- comm_btns 부분 -->
+					<div class="comm_btns">
+						<c:if test='${sessionScope.member.id eq vo.writer }'>
+							<button class="modifyBtn" onClick="pwCheck()">수정</button>
+							<button class="deleteBtn" onClick="delFn()">삭제</button>
+						</c:if>
+						<input type="button" class="listBtn"
+							onClick="location.href='${contextPath}/prj/fboard/fboardList'"
+							value="목록">
+					</div>
+					<input type="hidden" id="fno" value="${vo.fno }">
+			</form>
+			<div>
+				<c:forEach var="row" items="${list }" varStatus="status">
+					<div>${row.f_comment }
+						| ${row.writer }
+						<c:if test='${row.writer == sessionScope.member.id }'>
+							<input type="hidden" id="replyfno${status.index }"
+								value="${row.fno }" />
+							<input type="button" onClick="replydel('${status.index }')"
+								value="삭제">
+						</c:if>
+					</div>
+				</c:forEach>
+			</div>
+			<c:if test='${!empty sessionScope.member }'>
+				<form>
+					<textarea rows="5" cols="50" id="replycomment" name="replycomment"></textarea>
+					<input type="button" onClick="replyFn()" value="등록">
+				</form>
+			</c:if>
+		</div>
+	</main>
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>

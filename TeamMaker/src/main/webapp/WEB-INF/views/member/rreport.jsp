@@ -48,10 +48,14 @@
 		let no = document.getElementById('no'.concat(num)).innerText;
 		let r_comment = document.getElementById('r_comment'.concat(num)).innerText;
 		let bno = document.getElementById('bno'.concat(num)).innerText;
+		console.log(id);
+		console.log(no);
+		console.log(r_comment);
+		console.log(bno);
 		const Info = JSON.stringify({id:id,no:no,r_comment:r_comment,bno:bno});
 		$.ajax({
 			data : Info,
-			url : "${contextPath}/prj/member/freportok",
+			url : "${contextPath}/prj/member/rreportok",
 			type : "put",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
@@ -79,7 +83,7 @@
 		console.log(no);
 		$.ajax({
 			data : Info,
-			url : "${contextPath}/prj/member/freportno",
+			url : "${contextPath}/prj/member/rreportno",
 			type : "delete",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
@@ -177,7 +181,7 @@
 							<a id="next" href="${paging.endPage + 1 }">다음</a>
 						</c:if>
 					</div>
-					<form id="pagingFrm" name="pagingForm" action="freport"
+					<form id="pagingFrm" name="pagingForm" action="rreport"
 						method="get">
 						<input type="hidden" id="pageNum" name="pageNum"
 							value="${paging.cri.pageNum }"> <input type="hidden"

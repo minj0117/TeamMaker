@@ -4,6 +4,10 @@ public class PagingCriteria {
 	private int pageNum=1;	//페이지 번호
 	private int amount=8;	//페이지당 데이터 갯수
 	private int tno;
+	private String onoff;
+	private String region;
+	private String category;
+	
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -22,6 +26,25 @@ public class PagingCriteria {
 	}
 	public void setTno(int tno) {
 		this.tno = tno;
+	}
+	
+	public String getOnoff() {
+		return onoff;
+	}
+	public void setOnoff(String onoff) {
+		this.onoff = onoff;
+	}
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	@Override
 	public String toString() {

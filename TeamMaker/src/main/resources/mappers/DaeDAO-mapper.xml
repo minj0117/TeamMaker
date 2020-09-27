@@ -90,4 +90,11 @@
 	<select id="getTotalCnt" resultType="int">
 		select count(*) from dae
 	</select>
+	
+	<select id="rank" resultType="com.kh.prj.dae.vo.DaeVO">
+	<![CDATA[
+		select rownum, a.dno,a.writer,a.category,a.cdate,a.title,a.applystart,a.applyend,a.startday, a.host,a.way,a.homepage,a.d_comment,a.pic,a.applymoney,a.award
+        from ( select dno,writer,category,cdate,title,applystart,applyend,startday,host,way,homepage,d_comment,pic,applymoney,award from dae order by cdate desc) A where rownum < 3
+    ]]>
+	</select>
 </mapper>

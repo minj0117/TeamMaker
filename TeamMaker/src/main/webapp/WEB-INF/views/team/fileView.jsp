@@ -126,7 +126,7 @@
             <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
             <form action="">
               <div class="uploadTitle">파일 업로드</div>
-              <input name="bno" type="hidden" value="${fvo.bno}" />
+              <input name="bno" id="bno" type="hidden" value="${fvo.bno}" />
               <table border="1">
                 <tr>
                   <td width="70">제목</td>

@@ -43,6 +43,13 @@ public interface MemberSVC {
 	public int idCheck(String id) throws Exception;
 	
 	/**
+	 * 메일 체크
+	 * @param email
+	 * @return
+	 */
+	public int emailCheck(String email);
+	
+	/**
 	 * 아이디 찾기
 	 * @param memberVO
 	 * @return
@@ -81,7 +88,7 @@ public interface MemberSVC {
 	 * @param id
 	 * @return
 	 */
-	public String checkBlackList(String id);
+	public int checkBlackList(String id);
 	
 	public int delMember(String id);
 	
@@ -102,4 +109,6 @@ public interface MemberSVC {
 	public int rreportinsert(ReportVO vo);
 	public List<ReportVO> rreportlist(PagingCriteria paging);
 	public int rgetTotal();
+	public int recruitBlind(int rno);
+	public int rreportdel(int no);
 }

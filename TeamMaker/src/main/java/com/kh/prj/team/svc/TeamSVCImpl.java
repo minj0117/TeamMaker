@@ -72,4 +72,9 @@ public class TeamSVCImpl implements TeamSVC {
 	public int delMember(TeammemberVO vo) {
 		return teamDAO.delMember(vo);
 	}
+	
+	@Override
+	public int checkmember(TeammemberVO vo) {
+		return teamDAO.checkmember(vo);
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.recruit.dao.RecruitDAO;
+import com.kh.prj.recruit.vo.CheckVO;
 import com.kh.prj.recruit.vo.RecruitVO;
 
 @Service
@@ -69,5 +70,13 @@ public class RecruitSVCImpl implements RecruitSVC {
 	@Override
 	public List<RecruitVO> mypagerecruit(String id) {
 		return recruitDAO.mypagerecruit(id);
+	}
+	@Override
+	public List<RecruitVO> checklist(PagingCriteria paging) {
+		return recruitDAO.checklist(paging);
+	}
+	@Override
+	public int selectTotalCnt(PagingCriteria paging) {
+		return recruitDAO.selectTotalCnt(paging);
 	}
 }

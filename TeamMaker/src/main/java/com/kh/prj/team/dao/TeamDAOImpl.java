@@ -78,5 +78,10 @@ public class TeamDAOImpl implements TeamDAO {
 		return sqlSession.delete("mappers.TeamDAO-mapper.delMember",vo);
 	}
 	
+	@Override
+	public int checkmember(TeammemberVO vo) {
+		return sqlSession.selectOne("mappers.TeamDAO-mapper.checkmember",vo);
+	}
+	
 	
 }

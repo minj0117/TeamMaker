@@ -71,13 +71,15 @@ public class MemberSVCImpl implements MemberSVC {
 	 */
 	@Override
 	public String findid(MemberVO memberVO) throws Exception {
-		System.out.println("svc name : " + memberVO.getName());
-		System.out.println("svc email : " + memberVO.getEmail());
 		String result = memberDAO.findid(memberVO);
-		System.out.println("svc result ; " + result);
 		return result;
 	}
-
+	
+	@Override
+	public int emailCheck(String email) {
+		return memberDAO.emailCheck(email);
+	}
+	
 	/**
 	 * 비밀번호 찾기
 	 */
@@ -124,11 +126,8 @@ public class MemberSVCImpl implements MemberSVC {
 	 * 블랙리스트 아이디 존재 여부 확인
 	 */
 	@Override
-	public String checkBlackList(String id) {
-		System.out.println("svc check id : " + id);
-		String result = memberDAO.checkBlackList(id);
-		System.out.println("svc check result : " + result);
-		return result;
+	public int checkBlackList(String id) {
+		return memberDAO.checkBlackList(id);
 	}
 	
 	@Override
@@ -197,5 +196,13 @@ public class MemberSVCImpl implements MemberSVC {
 	@Override
 	public int rgetTotal() {
 		return memberDAO.rgetTotal();
+	}
+	@Override
+	public int recruitBlind(int rno) {
+		return memberDAO.recruitBlind(rno);
+	}
+	@Override
+	public int rreportdel(int no) {
+		return memberDAO.rreportdel(no);
 	}
 }

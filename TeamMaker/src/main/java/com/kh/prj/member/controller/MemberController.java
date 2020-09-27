@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.prj.apply.svc.ApplySVC;
 import com.kh.prj.apply.vo.MyApplyVO;
+import com.kh.prj.common.mail.MailService;
 import com.kh.prj.member.svc.MemberSVC;
 import com.kh.prj.member.vo.MemberVO;
 import com.kh.prj.member.vo.ReportVO;
@@ -40,8 +43,12 @@ public class MemberController {
 	@Inject MemberSVC memberSVC;
 	@Inject RecruitSVC recruitSVC;
 	@Inject ApplySVC applySVC;
+	@Autowired
+	private MailService mailService;
 	@Inject
 	private SqlSession sqlSession;
+	
+	
 	@Inject
 	BCryptPasswordEncoder pwdEncoder;
 	
@@ -151,6 +158,13 @@ public class MemberController {
 		return map;
 	}	
 	
+	@ResponseBody
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST, produces = "application/json")
+	public int emailCheck(@RequestBody HashMap<String, String> info) throws Exception{
+		String email = info.get("email");
+		return memberSVC.emailCheck(email);
+	}
+	
 	/**
 	 * 아이디 찾기 페이지
 	 * @return
@@ -192,7 +206,7 @@ public class MemberController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/findpw", method = RequestMethod.POST, produces = "application/json" )
-	public String findpw(@RequestBody MemberVO memberVO ) throws Exception {
+	public int findpw(@RequestBody MemberVO memberVO ) throws Exception {
 		String tmppw = null;
 		logger.info(memberVO.toString());
 		String result = memberSVC.findpw(memberVO);
@@ -200,13 +214,12 @@ public class MemberController {
 			GetRandomPw tmp = new GetRandomPw();
 			tmppw = tmp.getRandomPassword(5);
 		}
+		mailService.sendMail(memberVO.getEmail(), "임시 비밀번호 입니다.", "회원님의 임시비밀번호 : " + tmppw);
 		String encrypw = tmppw;
 		String pw = pwdEncoder.encode(encrypw);
-		System.out.println("pw : " + pw);
 		memberVO.setPw(pw);
-		memberSVC.changePw(memberVO);
-		System.out.println(tmppw);
-		return tmppw;
+		return memberSVC.changePw(memberVO);
+		
 	}
 	
 	/**
@@ -218,22 +231,15 @@ public class MemberController {
 	public String dancnt(String id) {
 		System.out.println(id);
 		int result = memberSVC.dancnt(id);
-		System.out.println("controller result = " + result);
 		if(result == 0) {
-			System.out.println("실패");
 			return "err_page";
 		}else {
-			System.out.println("성공");
 			int getcnt = memberSVC.getcnt(id);
 			if(getcnt >= 3) { //신고횟수 3이상이면 블랙리스트 처리
-				System.out.println("여기까지는 들어옴");
 				int result2 = memberSVC.addBlackList(id);
-				System.out.println("result2 : " + result2);
 				if(result2 == 0 ) {
-					System.out.println("블랙리스트 추가 실패");
 					return "err_page";
 				}else {
-					System.out.println("블랙리스트 추가 성공");
 					return "member/success";
 				}
 			}
@@ -354,6 +360,9 @@ public class MemberController {
 	
 	
 	
+	
+	
+	
 	/* 모집게시판 신고 목록 페이지 */
 	@RequestMapping("rreport")
 	public String rreport(Model model, PagingCriteria cri) {
@@ -376,17 +385,46 @@ public class MemberController {
 		vo.setBno(Integer.parseInt(info.get("bno")));
 		vo.setId(info.get("id"));
 		vo.setR_comment(info.get("r_comment"));
-		System.out.println(info.get("bno"));
-		System.out.println(info.get("id"));
-		System.out.println(info.get("r_comment"));
+		
 		int result = memberSVC.rcheckreport(vo); //이미 신고되어있는지 확인
 		System.out.println(result);
 		if( result == 0 ) {
-			int cnt = memberSVC.rreportinsert(vo);
-			System.out.println("cnt : " + cnt);
-			return cnt;
+			return memberSVC.rreportinsert(vo);
 		}else {
 			return 0;
 		}
 	}
+	
+	/**
+	 * 처리 승인
+	 * @param info
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/rreportok", method = RequestMethod.PUT, produces = "application/json")
+	public int rreportok(@RequestBody HashMap<String, String> info) {
+		String id = info.get("id");
+		int rno = Integer.parseInt(info.get("bno"));
+		memberSVC.recruitBlind(rno);
+		memberSVC.dancnt(id);
+		int check = memberSVC.getcnt(id);
+		if(check >= 3) {
+			memberSVC.addBlackList(id);
+			memberSVC.rreportdel(Integer.parseInt(info.get("no")));
+			return 2;
+		}
+		return memberSVC.rreportdel(Integer.parseInt(info.get("no")));
+	}
+	
+	/**
+	 * 처리 거절
+	 * @param info
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/rreportno", method = RequestMethod.DELETE, produces = "application/json")
+	public int rreportno(@RequestBody HashMap<String, String> info) {
+		return memberSVC.rreportdel(Integer.parseInt(info.get("no")));
+	}
+	
 }

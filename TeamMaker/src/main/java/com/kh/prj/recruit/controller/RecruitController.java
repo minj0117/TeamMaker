@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.prj.paging.PageMaker;
 import com.kh.prj.paging.PagingCriteria;
 import com.kh.prj.recruit.svc.RecruitSVC;
+import com.kh.prj.recruit.vo.CheckVO;
 import com.kh.prj.recruit.vo.RecruitVO;
 import com.kh.prj.team.svc.TeamSVC;
 import com.kh.prj.team.vo.TeamVO;
@@ -41,9 +44,6 @@ public class RecruitController {
 		int total = recruitSVC.totalCnt();
 		model.addAttribute("rlist",rlist);
 		model.addAttribute("paging",new PageMaker(cri,total));
-		for(int i=0; i<rlist.size(); i++) {
-			System.out.println(rlist.get(i).getRtitle());
-		}
 		return "recruit/rlist";
 	}
 	
@@ -73,16 +73,6 @@ public class RecruitController {
 		logger.info(" : "+recruitVO);
 		model.addAttribute("rlist",rlist);
 		return "redirect:rlist.do";
-		/*if(result == 1) {
-			int result2 = recruitSVC.addList(recruitVO);
-			if(result2 == 1) {
-				return "recruit/rlist";
-			}else{
-				return "err_page";
-			}
-		}else {
-			return "err_page";
-		}*/
 	}
 	
 	/**
@@ -103,11 +93,15 @@ public class RecruitController {
 		}
 	}
 	
-	
-	@RequestMapping("/apply")
-	public String apply(String id) {
+	@RequestMapping(value = "/checklist", method = RequestMethod.GET)
+	public String checklist(PagingCriteria cri,Model model) {
 		
-		return null;
+		List<RecruitVO> rlist = recruitSVC.checklist(cri);
+		int total = recruitSVC.selectTotalCnt(cri);
+		System.out.println(total);
+		model.addAttribute("rlist", rlist);
+		model.addAttribute("paging",new PageMaker(cri,total));
+		return "recruit/rlist";
 	}
 	
 }

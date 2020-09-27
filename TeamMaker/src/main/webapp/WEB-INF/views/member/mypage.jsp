@@ -66,17 +66,10 @@
           <aside>
             <div>
               <div class="atitle">마이페이지</div>
-              <ul>
-                <li class="astitle">나의 게시글</li>
-                <ul>
-                  <li><a href="#">팀원 모집</a></li>
-                  <li><a href="#">자유 게시판</a></li>
-                </ul>
-              </ul>
+              
               <ul>
                 <li class="astitle">나의 활동</li>
                 <ul>
-                  <li><a href="#">1:1 문의 내역</a></li>
                   <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
                   <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
@@ -123,30 +116,6 @@
                     ${row.title }
                   </div>
                   </c:forEach>
-                </div>
-              </div>
-              <!-- section3 -->
-              <div class="section3">
-                <div class="section3_title">
-                  <div>1:1 문의 내역</div>
-                  <div><a href="#">전체보기 ＞</a></div>
-                </div>
-                <div class="section3_con">
-                  <!-- con1 -->
-                  <div class="rtitle">
-                    <a href="#"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Vel suscipit aspernatur veniam officiis perferendis earum
-                      iure tempore totam dolore praesentium.</a
-                    >
-                  </div>
-                  <div class="rdate">2020.08.09</div>
-                  <!-- con2 -->
-                  <div class="rtitle"><a href="#">제목</a></div>
-                  <div class="rdate">2020.08.09</div>
-                  <!-- con3 -->
-                  <div class="rtitle"><a href="#">제목</a></div>
-                  <div class="rdate">2020.08.09</div>
                 </div>
               </div>
             </form>

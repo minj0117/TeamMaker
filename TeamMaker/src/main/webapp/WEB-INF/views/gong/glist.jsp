@@ -79,11 +79,7 @@ function checkbox(){
 	             function(data){},
 	             "json"
 	   )*/
-	  if(eheckedValue.length > 0){
-		  location.href="${contextPath}/prj/dae/checklist";
-	  }else{
-	 	  location.href="${contextPath}/prj/dae/checklist?value=checkedValue";
-	  }
+	
 }
 </script>
 </head>

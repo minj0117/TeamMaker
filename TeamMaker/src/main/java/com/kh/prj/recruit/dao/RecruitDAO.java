@@ -3,6 +3,7 @@ package com.kh.prj.recruit.dao;
 import java.util.List;
 
 import com.kh.prj.paging.PagingCriteria;
+import com.kh.prj.recruit.vo.CheckVO;
 import com.kh.prj.recruit.vo.RecruitVO;
 
 public interface RecruitDAO {
@@ -24,4 +25,7 @@ public interface RecruitDAO {
 	//랭킹
 	public List<RecruitVO> rank();
 	public List<RecruitVO> mypagerecruit(String id);
+	
+	public List<RecruitVO> checklist(PagingCriteria paging);
+	public int selectTotalCnt(PagingCriteria paging);
 }

@@ -24,7 +24,7 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
-	href="http://localhost:8090/prj/css/team/teamfileList.css" />
+	href="http://localhost:8090/prj/css/team/teamboardList.css" />
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
@@ -52,129 +52,138 @@
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
-	<!-- main -->
-
-	<main>
-		<div class="container">
-			<div class="content">
-				<!-- aside -->
-				<aside>
-					<div>
-						<div class="atitle">마이페이지</div>
-						<ul>
-							<li class="astitle">나의 게시글</li>
-							<ul>
-								<li><a href="#">팀원 모집</a></li>
-								<li><a href="#">자유 게시판</a></li>
-							</ul>
-						</ul>
-						<ul>
-							<li class="astitle">나의 활동</li>
-							<ul>
-								<li><a href="#">1:1 문의 내역</a></li>
-								<li><a href="#">나의 신청 내역</a></li>
-								<li><a href="#">지원자 보기</a></li>
-								<li><a href="#">팀 게시판</a></li>
-							</ul>
-						</ul>
-						<ul>
-							<li class="astitle">나의 정보</li>
-							<ul>
-								<li><a href="#">회원정보 수정</a></li>
-								<li><a href="#">회원 탈퇴</a></li>
-							</ul>
-						</ul>
-					</div>
-				</aside>
-				<!-- section -->
-				<section>
-					<div class="atitle">
-						마이 페이지<span>&nbsp;</span> <i class="fas fa-chevron-right"></i> <span>&nbsp;</span>나의
-						활동
-					</div>
-					<div class="stitle">
-						<span>abcdefg</span>님 반갑습니다
-					</div>
-					<div class="hiddenTitle">모바일 버전에서는 팀 게시판 서비스를 지원하지 않습니다.</div>
-					<!-- 게시판 부분 -->
-					<div class="boardPart">
-						<div class="boardPart_up">
-							<div>
-								<i class="fas fa-chalkboard"></i>게시판
-							</div>
-							<input type="button" class="boardBtn" value="글쓰기"
-								onClick="location.href='${contextPath}/prj/tboard/boardForm?tno=${tno }'">
-						</div>
-						<div class="boardPart_down">
-							<div class="boardPartTitle">
-								<div>제목</div>
-								<div>아이디</div>
-								<div>작성일</div>
-							</div>
-							<div class="boardPartContent">
-								<c:if test='${list ne null }'>
-									<c:forEach var="row" items="${list }">
-										<!-- con1 -->
-										<c:choose>
-											<c:when test='${row.level > 1 }'>
-												<div class="reply">
-													<c:forEach begin="1" end="${row.level }" step="1">
-														<div class="test" style="padding-left: 20px"></div>
-													</c:forEach>
-													<div class="rtitle">
-														<a
-															href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">┗>${row.title }</a>
-													</div>
-												</div>
-												<!-- <div style="padding-left:40px" class="rtitle"><a href="">${row.title }</a></div> -->
-												<div class="id">
-													<a href="">${row.writer }</a>
-												</div>
-												<div class="rdate">${row.cdate }</div>
-											</c:when>
-											<c:otherwise>
-												<div class="rtitle">
-													<a
-														href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">${row.title }</a>
-												</div>
-												<div class="id">
-													<a href="">${row.writer }</a>
-												</div>
-												<div class="rdate">${row.cdate }</div>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</c:if>
-							</div>
-						</div>
-						<!-- 페이징 -->
-						<div class="paging">
-							<div id="pagingDiv">
-								<c:if test="${paging.prev}">
-									<a href="${paging.startPage - 1 }">이전</a>
-								</c:if>
-								<c:forEach var="num" begin="${paging.startPage}"
-									end="${paging.endPage }">
-						&nbsp;<a href="${num }">${num }</a>&nbsp;
-					</c:forEach>
-								<c:if test="${paging.next}">
-									<a id="next" href="${paging.endPage + 1 }">다음</a>
-								</c:if>
-							</div>
-							<form id="pagingFrm" name="pagingForm"
-								action="${contextPath }/prj/tboard/talkList" method="get">
-								<input type="hidden" id="tno" name="tno" value="${tno }">
-								<input type="hidden" id="pageNum" name="pageNum"
-									value="${paging.cri.pageNum }"> <input type="hidden"
-									id="amount" name="amount" value="${paging.cri.amount }">
-							</form>
-						</div>
-					</div>
-				</section>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</main>
+	    <!-- main -->
+    <main>
+      <div class="container">
+        <div class="content">
+          <!-- aside -->
+          <aside>
+            <div>
+              <div class="atitle">마이페이지</div>
+              <ul>
+                <li class="astitle">나의 게시글</li>
+                <ul>
+                  <li><a href="#">팀원 모집</a></li>
+                  <li><a href="#">자유 게시판</a></li>
+                </ul>
+              </ul>
+              <ul>
+                <li class="astitle">나의 활동</li>
+                <ul>
+                  <li><a href="#">1:1 문의 내역</a></li>
+                  <li><a href="#">팀 만들기</a></li>
+                  <li><a href="#">팀 게시판</a></li>
+                </ul>
+              </ul>
+              <ul>
+                <li class="astitle">나의 정보</li>
+                <ul>
+                  <li><a href="#">회원정보 수정</a></li>
+                  <li><a href="#">회원 탈퇴</a></li>
+                </ul>
+              </ul>
+            </div>
+          </aside>
+          <!-- section -->
+          <section>
+            <div class="atitle">
+              마이 페이지<span>&nbsp;</span>
+              <i class="fas fa-chevron-right"></i>
+              <span>&nbsp;</span>나의 활동
+            </div>
+            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
+            <div>
+              <!-- 게시판 부분 -->
+              <div class="boardPart">
+                <div class="boardPart_up">
+                  <div class="upTitle">
+                    <i class="fas fa-chalkboard"></i>게시판
+                  </div>
+                  <div class="writeBtn">
+                    <i class="fas fa-pen"></i>
+                    <input
+                      type="button"
+                      class="boardBtn"
+                      value="글쓰기"
+                      onClick="location.href='${contextPath}/prj/tboard/boardForm?tno=${tno }'"
+                    />
+                  </div>
+                </div>
+                <div class="boardPart_down">
+                  <div class="boardPartTitle">
+                    <div>제목</div>
+                    <div>아이디</div>
+                    <div>작성일</div>
+                  </div>
+                  <div class="boardPartContent">
+                    <c:if test="${list ne null }">
+                      <c:forEach var="row" items="${list }">
+                            <div class="original">
+                              <div class="rtitle">
+                              <c:choose>
+                              	<c:when test="${row.level > 1 }">
+                              	<c:forEach begin="1" end="${row.level }" step="1">
+									<div class="paddingarea" style="padding-left : 10px;"></div>
+                                </c:forEach>
+                                	<a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">┗> ${row.title }</a>
+								</c:when>
+								<c:otherwise>
+									<a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">${row.title }</a>
+								</c:otherwise>
+							  </c:choose>                                
+                              </div>
+                              <div class="id">${row.writer }</div>
+                              <div class="rdate">${row.cdate }</div>
+                            </div>
+                      </c:forEach>
+                    </c:if>
+                  </div>
+                </div>
+                <!-- 페이징 -->
+                <div class="paging">
+                  <div id="pagingDiv">
+                    <c:if test="${paging.prev}">
+                      <a href="${paging.startPage - 1 }">이전</a>
+                    </c:if>
+                    <c:forEach
+                      var="num"
+                      begin="${paging.startPage}"
+                      end="${paging.endPage }"
+                    >
+                      &nbsp;<a href="${num }">${num }</a>&nbsp;
+                    </c:forEach>
+                    <c:if test="${paging.next}">
+                      <a id="next" href="${paging.endPage + 1 }">다음</a>
+                    </c:if>
+                  </div>
+                  <form
+                    id="pagingFrm"
+                    name="pagingForm"
+                    action="${contextPath }/prj/tboard/talkList"
+                    method="get"
+                  >
+                    <input type="hidden" id="tno" name="tno" value="${tno }" />
+                    <input
+                      type="hidden"
+                      id="pageNum"
+                      name="pageNum"
+                      value="${paging.cri.pageNum }"
+                    />
+                    <input
+                      type="hidden"
+                      id="amount"
+                      name="amount"
+                      value="${paging.cri.amount }"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </main>
 
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

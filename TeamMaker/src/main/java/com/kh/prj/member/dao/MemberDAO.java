@@ -58,6 +58,8 @@ public interface MemberDAO {
 	 */
 	public String findpw(MemberVO memberVO) throws Exception;
 	
+	public int emailCheck(String email);
+	
 	/**
 	 * 신구횟수 추가
 	 * @param id
@@ -81,7 +83,7 @@ public interface MemberDAO {
 	 * @param id
 	 * @return
 	 */
-	public String checkBlackList(String id);
+	public int checkBlackList(String id);
 	
 	public int delMember(String id);
 	
@@ -102,4 +104,6 @@ public interface MemberDAO {
 	public int rreportinsert(ReportVO vo);
 	public List<ReportVO> rreportlist(PagingCriteria paging);
 	public int rgetTotal();
+	public int recruitBlind(int rno);
+	public int rreportdel(int no);
 }

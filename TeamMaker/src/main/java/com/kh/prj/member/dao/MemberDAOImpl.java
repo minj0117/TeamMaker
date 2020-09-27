@@ -59,7 +59,15 @@ public class MemberDAOImpl implements MemberDAO {
 		System.out.println("dao id : " + id);
 		return sqlSession.selectOne("mappers.MemberDAO-mapper.idCheck", id);
 	}
-
+	
+	
+	/**이메일 체크
+	 * Override
+	 */
+	public int emailCheck(String email) {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.emailCheck",email);
+	}
+	
 	/**
 	 * 아이디 찾기
 	 */
@@ -138,11 +146,8 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 블랙리스트 아이디 존재 여부 확인
 	 */
 	@Override
-	public String checkBlackList(String id) {
-		System.out.println("dao check id : " + id);
-		String result = sqlSession.selectOne("mappers.MemberDAO-mapper.checkBlackList", id);
-		System.out.println("dao check result : " + result);
-		return result;
+	public int checkBlackList(String id) {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.checkBlackList", id);
 	}
 
 	@Override
@@ -202,10 +207,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	@Override
 	public int rreportinsert(ReportVO vo) {
-		System.out.println("dao  id: " + vo.getId());
-		System.out.println("dao  com: " + vo.getR_comment());
-		System.out.println("dao  bno: " + vo.getBno());
-		return sqlSession.selectOne("mappers.MemberDAO-mapper.rreportinsert",vo);
+		return sqlSession.insert("mappers.MemberDAO-mapper.rreportinsert",vo);
 	}
 	@Override
 	public List<ReportVO> rreportlist(PagingCriteria paging) {
@@ -214,5 +216,13 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int rgetTotal() {
 		return sqlSession.selectOne("mappers.MemberDAO-mapper.rgetTotal");
+	}
+	@Override
+	public int recruitBlind(int rno) {
+		return sqlSession.update("mappers.MemberDAO-mapper.recruitBlind", rno);
+	}
+	@Override
+	public int rreportdel(int no) {
+		return sqlSession.delete("mappers.MemberDAO-mapper.rreportdel", no);
 	}
 }

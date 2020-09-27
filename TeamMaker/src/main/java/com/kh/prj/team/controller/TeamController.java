@@ -50,7 +50,7 @@ public class TeamController {
 	public String makeTeam(TeamVO teamVO) {
 		int result = teamSVC.makeTeam(teamVO);
 		if (result == 1) {
-			return "member/success";
+			return "redirect:member/mypage";
 		} else {
 			return "err_page";
 		}

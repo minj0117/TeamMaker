@@ -13,4 +13,6 @@ public interface DaeDAO {
 	public int del(int dno);
 	public List<DaeVO> checklist(List<String> value);
 	public int getTotalCnt();
+	
+	public List<DaeVO> rank();
 }

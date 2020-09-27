@@ -63,4 +63,17 @@
     	]]>
 	</select>
 	
+	<select id="checklist" resultType="com.kh.prj.recruit.vo.RecruitVO">
+	<![CDATA[
+		SELECT rno,id,rtitle,rcdate,rcnt,tno,rcategory
+			FROM	(SELECT /*+INDEX_DESC(recruit recruit_pk) */
+						rownum rn, rno, rtitle, id, rcdate, rcnt,tno,rcategory
+					from recruit where rownum <= #{pageNum} * 8 and rregion=#{region} and ronoff=#{onoff} and rcategory=#{category})
+			where rn > (#{pageNum}-1) * #{amount}
+			ORDER BY rno DESC
+	]]>
+	</select>
+	<select id="selectTotalCnt" resultType="int">
+		select count(*) from recruit where rregion=#{region} and ronoff=#{onoff} and rcategory=#{category}
+	</select>
 </mapper>

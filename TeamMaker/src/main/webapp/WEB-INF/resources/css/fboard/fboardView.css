@@ -46,6 +46,7 @@ main .comm_content .comm_content1 {
   min-height: 500px;
   line-height: 30px;
   word-break: break-all;
+  font-size: 17px;
 }
 
 main .commContentBox .comm_content2 {
@@ -70,8 +71,30 @@ main .comment {
   flex-direction: column;
 }
 
-main .comment_up p {
-  margin: 20px 0 5px;
+main .comment .commentTitle {
+  margin: 10px 0 20px;
+}
+
+main .comment .comment_up_id {
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+main .comment .comment_up_write {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+  align-items: flex-end;
+}
+
+main .comment .comment_up_write input {
+  background-color: var(--white-color);
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  padding: 4px 6px;
+  outline: none;
 }
 
 main .comment_down {
@@ -91,6 +114,7 @@ main .comment .comment_down input {
   height: 30px;
   margin-top: 92px;
   margin-left: 10px;
+  outline: none;
 }
 
 /* comm_btns 부분 */

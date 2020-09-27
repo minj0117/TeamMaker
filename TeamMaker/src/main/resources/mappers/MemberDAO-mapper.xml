@@ -43,6 +43,11 @@
 		where id = #{id}
 	</select>
 	
+	<!-- email 체크 -->
+	<select id="emailCheck" resultType="int">
+		select count(*) from member where email=#{email}
+	</select>
+	
 	<!-- 아이디 찾기 -->
 	<select id="findId" parameterType="com.kh.prj.member.vo.MemberVO" resultType="String">
 		select id 
@@ -80,8 +85,8 @@
 		insert into blacklist (id) values(#{id})
 	</insert>
 	
-	<select id="checkBlackList" parameterType="String" resultType="String">
-		select id from blacklist where id = #{id}
+	<select id="checkBlackList" parameterType="String" resultType="int">
+		select count(*) from blacklist where id = #{id}
 	</select>
 	
 	<!-- 회원삭제 -->
@@ -128,7 +133,7 @@
 	<delete id="freportdel">
 		delete freport where no = #{no}
 	</delete>
-	
+	<!-- 자유게시판 신고처리 끝 -->
 	
 	
 	
@@ -163,8 +168,8 @@
 	
 	
 	
-	<update id="rboardBlind">
-		update recruit set title='블라인드 처리', rcomment = '부적절한 게시판임으로 블라인드 처리되었습니다.' where rno = #{rno}
+	<update id="recruitBlind">
+		update recruit set rtitle='블라인드 처리', rcomment = '부적절한 게시판임으로 블라인드 처리되었습니다.' where rno = #{rno}
 	</update>
 	
 	<delete id="rreportdel">

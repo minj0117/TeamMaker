@@ -127,9 +127,6 @@ public class GongController {
    @RequestMapping(value = "/checklist", method = RequestMethod.GET)
 	public String checklist(@RequestParam("g1") List<String> value, Model model) {
 		List<GongVO> list = gongSVC.checklist(value);
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getTitle().toString());
-		}
 		model.addAttribute("list", list);
 		return "gong/glist";
 	}

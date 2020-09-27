@@ -54,5 +54,8 @@
 		  <constructor-arg ref="sqlSessionFactory"/>	  
 	</bean>
 	
+	<!-- 메일 -->
+	
+	
 
 </beans>

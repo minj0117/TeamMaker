@@ -47,4 +47,9 @@ public class DaeSVCImpl implements DaeSVC {
 	public int getTotalCnt() {
 		return daeDAO.getTotalCnt();
 	}
+	
+	@Override
+	public List<DaeVO> rank() {
+		return daeDAO.rank();
+	}
 }

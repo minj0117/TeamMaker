@@ -80,20 +80,15 @@
         <div class="gong">
           <div id="gong_title">공모전</div>
           <div class="gong_wrapper">
+           	<c:forEach var="row" items="${rankgong }">
             <div>
-              <a href="#"><img src="http://localhost:8090/prj/img/pic.jpg" alt="" /></a>
+              <a href="${contextPath }/prj/gong/gview/${row.gno}"><img src="${contextPath }/imgg/${row.pic }" alt="" /></a>
+            <div class="dae_text">
+              <div>${row.title }</div>
+              <div>기간 : ${row.applystart } - ${row.applyend }</div>
             </div>
-            <div>
-              <a href="#"><img src="http://localhost:8090/prj/img/pic.jpg" alt="" /></a>
             </div>
-            <div class="gong_text">
-              <div>공모전 제목1 Lorem ipsum dolor sit amet consectetur.</div>
-              <div>기간 : 2020.08.01 - 2020.09.30</div>
-            </div>
-            <div class="gong_text">
-              <div>공모전 제목2 Lorem ipsum dolor sit amet consectetur.</div>
-              <div>기간 : 2020.08.01 - 2020.09.30</div>
-            </div>
+          </c:forEach>
           </div>
         </div>
 
@@ -101,20 +96,15 @@
         <div class="dae">
           <div id="dae_title">대외활동</div>
           <div class="dae_wrapper">
+          <c:forEach var="row" items="${rankdae }">
             <div>
-              <a href="#"><img src="http://localhost:8090/prj/img/pic.jpg" alt="" /></a>
-            </div>
-            <div>
-              <a href="#"><img src="http://localhost:8090/prj/img/pic.jpg" alt="" /></a>
-            </div>
+              <a href="${contextPath }/prj/dae/dview/${row.dno}"><img src="${contextPath }/imgs/${row.pic }" alt="" /></a>
             <div class="dae_text">
-              <div>대외활동 제목1 Lorem ipsum dolor sit amet consectetur.</div>
-              <div>기간 : 2020.08.01 - 2020.09.30</div>
+              <div>${row.title }</div>
+              <div>기간 : ${row.applystart } - ${row.applyend }</div>
             </div>
-            <div class="dae_text">
-              <div>대외활동 제목2 Lorem ipsum dolor sit amet consectetur.</div>
-              <div>기간 : 2020.08.01 - 2020.09.30</div>
             </div>
+          </c:forEach>
           </div>
         </div>
 
@@ -127,14 +117,12 @@
             </div>
             <div>
               <a href="#"
-                >관련 기사1 Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Et, necessitatibus.</a
+                >공모전을 준비하는 이유는?!<br> 취준생들의 솔직한 답변을 취재 해보았습니다!!!</a
               >
             </div>
             <div id="arti_left">
               <a href="#"
-                >관련 기사2 Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Tenetur, reprehenderit.</a
+                >ICT, 미디어 , 디자인등 2020년 가장 핫한 공모전은 무었이었을까요?!</a
               >
             </div>
             <div id="arti_right"></div>
@@ -142,7 +130,7 @@
         </div>
       </div>
     </main>
-
+	<a href="${contextPath }/prj/sendMail.do">메일</a>
     <!-- footer -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>

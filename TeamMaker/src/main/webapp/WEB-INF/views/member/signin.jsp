@@ -67,8 +67,10 @@
 				if(data == 1){
 					alert("로그인 되었습니다.");
 					location.href="http://localhost:8090/prj";
-				}else{
+				}else if(data == -1){
 					alert("회원정보를 다시 확인해주세요.");
+				}else{
+					alert("회원님의 계정은 정지되었습니다.");
 				}
 			},
 			error : function(data){

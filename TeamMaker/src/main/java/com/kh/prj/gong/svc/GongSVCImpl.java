@@ -54,10 +54,16 @@ public class GongSVCImpl implements GongSVC {
 	
 	@Override
 	public List<GongVO> checklist(List<String> value) {
-		 List<GongVO> list = gongDAO.checklist(value);
-		 for(int i=0; i<list.size(); i++) {
-			 System.out.println(list.get(i).toString());
-		 }
-		 return list;
+		return gongDAO.checklist(value);
+	}
+	
+	@Override
+	public int selectTotal(List<String> value) {
+		return gongDAO.selectTotal(value);
+	}
+	
+	@Override
+	public List<GongVO> rank() {
+		return gongDAO.rank();
 	}
 }

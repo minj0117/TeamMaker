@@ -65,6 +65,10 @@ main .paging li:hover {
   background-color: var(--linen-color);
 }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+
+</script>
 </head>
 <body>
 	<!-- uppermost -->
@@ -79,56 +83,56 @@ main .paging li:hover {
 			<div class="mtitle">팀원모집 검색</div>
 			<div class="content">
 				<!-- 사용자 선택 -->
-				<div class="content content_up">
+				<form class="content content_up" action="${contextPath}/prj/checklist" method="get">
 					<!-- 유형 -->
 					<ul class="type">
 						<li class="type title">유형</li>
 						<ul class="type content">
-							<li><input type="checkbox" name="online" id="online"
-								value="online" /> <label for="online">온라인</label></li>
-							<li><input type="checkbox" name="offline" id="offline"
-								value="offline" /> <label for="offline">오프라인</label></li>
+							<li><input type="radio" name="onoff" id="online"
+								value="on" /> <label for="online">온라인</label></li>
+							<li><input type="radio" name="onoff" id="offline"
+								value="off" /> <label for="offline">오프라인</label></li>
 						</ul>
 					</ul>
 					<!-- 오프라인 클릭 시 지역 세분화 -->
 					<ul class="area">
 						<li class="area title">지역</li>
 						<ul class="area content">
-							<li><input type="checkbox" name="a1" id="a1" value="서울" />
+							<li><input type="radio" name="region" id="a1" value="서울" />
 								<label for="a1">서울</label></li>
-							<li><input type="checkbox" name="a2" id="a2" value="경기" />
+							<li><input type="radio" name="region" id="a2" value="경기" />
 								<label for="a2">경기</label></li>
-							<li><input type="checkbox" name="a3" id="a3" value="인천" />
+							<li><input type="radio" name="region" id="a3" value="인천" />
 								<label for="a3">인천</label></li>
-							<li><input type="checkbox" name="a4" id="a4" value="대전" />
+							<li><input type="radio" name="region" id="a4" value="대전" />
 								<label for="a4">대전</label></li>
-							<li><input type="checkbox" name="a5" id="a5" value="대구" />
+							<li><input type="radio" name="region" id="a5" value="대구" />
 								<label for="a5">대구</label></li>
-							<li><input type="checkbox" name="a6" id="a6" value="부산" />
+							<li><input type="radio" name="region" id="a6" value="부산" />
 								<label for="a6">부산</label></li>
-							<li><input type="checkbox" name="a7" id="a7" value="울산" />
+							<li><input type="radio" name="region" id="a7" value="울산" />
 								<label for="a7">울산</label></li>
-							<li><input type="checkbox" name="a8" id="a8" value="광주" />
+							<li><input type="radio" name="region" id="a8" value="광주" />
 								<label for="a8">광주</label></li>
-							<li><input type="checkbox" name="a9" id="a9" value="강원" />
+							<li><input type="radio" name="region" id="a9" value="강원" />
 								<label for="a9">강원</label></li>
-							<li><input type="checkbox" name="a10" id="a10" value="세종" />
+							<li><input type="radio" name="region" id="a10" value="세종" />
 								<label for="a10">세종</label></li>
-							<li><input type="checkbox" name="a11" id="a11" value="충북" />
+							<li><input type="radio" name="region" id="a11" value="충북" />
 								<label for="a11">충북</label></li>
-							<li><input type="checkbox" name="a12" id="a12" value="충남" />
+							<li><input type="radio" name="region" id="a12" value="충남" />
 								<label for="a12">충남</label></li>
-							<li><input type="checkbox" name="a13" id="a13" value="경북" />
+							<li><input type="radio" name="region" id="a13" value="경북" />
 								<label for="a13">경북</label></li>
-							<li><input type="checkbox" name="a14" id="a14" value="경남" />
+							<li><input type="radio" name="region" id="a14" value="경남" />
 								<label for="a14">경남</label></li>
-							<li><input type="checkbox" name="a15" id="a15" value="전북" />
+							<li><input type="radio" name="region" id="a15" value="전북" />
 								<label for="a15">전북</label></li>
-							<li><input type="checkbox" name="a16" id="a16" value="전남" />
+							<li><input type="radio" name="region" id="a16" value="전남" />
 								<label for="a16">전남</label></li>
-							<li><input type="checkbox" name="a17" id="a17" value="제주" />
+							<li><input type="radio" name="region" id="a17" value="제주" />
 								<label for="a17">제주</label></li>
-							<li><input type="checkbox" name="a18" id="a18" value="전국" />
+							<li><input type="radio" name="region" id="a18" value="전국" />
 								<label for="a18">전국</label></li>
 						</ul>
 					</ul>
@@ -137,11 +141,11 @@ main .paging li:hover {
 					<ul class="field">
 						<li class="field title">분야</li>
 						<ul class="field content">
-							<li><input type="checkbox" name="gong" id="gong" value="공모전" />
+							<li><input type="radio" name="category" id="gong" value="공모전" />
 								<label for="gong">공모전</label></li>
-							<li><input type="checkbox" name="dae" id="dae" value="대외활동" />
+							<li><input type="radio" name="category" id="dae" value="대외활동" />
 								<label for="dae">대외활동</label></li>
-							<li><input type="checkbox" name="study" id="study"
+							<li><input type="radio" name="category" id="study"
 								value="스터디" /> <label for="study">스터디</label></li>
 						</ul>
 					</ul>
@@ -149,15 +153,14 @@ main .paging li:hover {
 					<!-- 버튼 -->
             <div class="btnGrp">
               <div>
-                <i class="fas fa-search"></i>
-                <input type="button" value="검색" />
+                <button type="submit" ><i class="fas fa-search"></i>검색</button>
               </div>
               <div>
                 <i class="fas fa-redo"></i>
                 <input type="button" value="초기화" />
               </div>
             </div>
-				</div>
+				</form>
 
 				<!-- 팀원모집 글보기 -->
 				<div class="content content_down">
@@ -216,7 +219,6 @@ main .paging li:hover {
 	</main>
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 		$(document)
 				.ready(

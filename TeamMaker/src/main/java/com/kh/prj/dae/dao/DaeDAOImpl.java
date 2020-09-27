@@ -49,4 +49,9 @@ public class DaeDAOImpl implements DaeDAO {
 	public int getTotalCnt() {
 		return sqlSession.selectOne("mappers.DaeDAO-mapper.getTotalCnt");
 	}
+	
+	@Override
+	public List<DaeVO> rank() {
+		return sqlSession.selectList("mappers.DaeDAO-mapper.rank");
+	}
 }

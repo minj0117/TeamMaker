@@ -39,6 +39,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Sunflower:wght@300&display=swap"
 	rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function joinFn(){
 		let id = document.getElementById('id').value;
@@ -49,7 +50,7 @@
 		let birth = document.getElementById('birth').value;
 		let gender = document.getElementById('gender').value;
 		let phone = document.getElementById('phone').value;
-		let email = document.getElementById('free').value;
+		let email = document.getElementById('email').value;
 		let emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		let free = document.getElementById('free').value;
 		if($('#message').val() != '사용할 수 있는 ID입니다.'){
@@ -78,8 +79,9 @@
 		}if(phone.length == 0){
 			alert('전화번호를 입력하세요');
 			return;
-		}if(email.length == 0){
-			alert('이메일 형식으로 입력하세요');
+		}if($('#message2').val() != '사용 가능한 email입니다.'){
+			console.log($('#message').val());
+			alert('이메일 중복체크를 확인해주세요');
 			return;
 		}
 		const Info = JSON.stringify({id:id,pw:pw,name:name,birth:birth,gender:gender,phone:phone,email:email,free:free});
@@ -104,9 +106,7 @@
 		})
 	}
 
-</script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
+
 	function fn_idchk(){
 		var idCheck = 0;
 		var idPattern = /^[a-zA-Z0-9]{5,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
@@ -146,6 +146,41 @@
 		})
 	}
 	//var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	
+	function fn_emailchk(){
+		let email = document.getElementById('email').value;
+		let emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if(emailReg.test(email) != true){
+			alert('이메일 형식으로 입력하세요');
+			return;
+		}
+		const Email = JSON.stringify({email:email});
+		$.ajax({
+			data : Email,
+			url : "http://localhost:8090/prj/member/emailCheck",
+			type : "post",
+			dataType : "JSON",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				console.log(data);
+				//var result = JSON.parse(data);
+				if(data == 0){
+					$('#message2').val("사용 가능한 email입니다.");
+					$('#message2').text("사용 가능한 email입니다.");
+					$('#message2').css("color","green");	
+					$('#message2').css("font-weight","bold");				
+				}else{
+					$('#message2').val("이미 사용중인 이메일 입니다.");
+					$('#message2').text("이미 사용중인 이메일 입니다.");
+					$('#message2').css("color","red");
+					$('#message2').css("font-weight","bold");
+				}
+			},
+			error : function(data,textStatus){
+				alert("에러가 발생했습니다.");
+			}
+		})
+	}
 </script>
 </head>
 <body>
@@ -187,7 +222,8 @@
 						<li><label for="phone">* 휴대폰 번호</label> <input type="text"
 							id="phone" name="phone" /></li>
 						<li><label for="email">* 이메일</label> <input type="text"
-							id="email" name="email" /> <input type="button" value="코드 전송" />
+							id="email" name="email" /> <input type="button" value="코드 전송" onClick="fn_emailchk()" />
+							<div id="message2"></div></li>
 						</li>
 						<li><label for="free"><span>&nbsp;&nbsp;</span>자기소개서</label>
 							<textarea name="free" id="free" cols="10" rows="15"></textarea></li>

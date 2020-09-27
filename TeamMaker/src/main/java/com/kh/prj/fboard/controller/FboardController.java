@@ -104,9 +104,11 @@ public class FboardController {
 	@RequestMapping(value="/replyinsert", method=RequestMethod.POST, produces = "application/json")
 	public int replyinsert(@RequestBody HashMap<String, String> info, FboardVO vo, HttpSession session) {
 		String writer = ((MemberVO) session.getAttribute("member")).getId();
+		System.out.println(writer);
 		vo.setWriter(writer);
 		vo.setFno(Integer.parseInt(info.get("fno")));
 		vo.setF_comment(info.get("f_comment"));
+		System.out.println(vo.getF_comment());
 		return fboardSVC.replyinsert(vo);
 	}
 	

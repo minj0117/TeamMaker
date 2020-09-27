@@ -1,0 +1,300 @@
+/* main */
+main {
+  width: 70%;
+  margin: 200px auto;
+}
+
+main .container,
+main .container aside ul li,
+main .container section ul li {
+  font-family: "Sunflower";
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main .container .content aside {
+  width: 20%;
+  float: left;
+}
+
+main .container .content aside .stitle {
+  display: none;
+}
+
+main .container .content section {
+  width: 80%;
+  float: left;
+}
+
+main .container .content aside a,
+main .container .content section a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* aside */
+main .container .content aside .atitle {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main .container .content aside .astitle {
+  font-weight: bold;
+  padding: 20px 0 5px;
+  margin-right: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main .container .content aside ul li {
+  padding: 10px 0 5px;
+}
+
+main .container .content aside ul i {
+  display: none;
+}
+
+/* section */
+main .container .content section .atitle {
+  display: none;
+}
+
+main section form {
+  margin: 20px;
+}
+
+main section .stitle {
+  padding: 10px 0;
+  text-align: center;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+}
+
+main section .stitle span {
+  font-weight: bold;
+  color: var(--background-color);
+}
+
+main section form ul li {
+  display: flex;
+  margin: 10px 0;
+}
+
+main section form ul li label {
+  width: 80px;
+  letter-spacing: 0.5em;
+  margin: 0;
+}
+
+main section form input {
+  width: 100%;
+  outline: none;
+}
+
+main section form textarea {
+  width: 100%;
+  vertical-align: bottom;
+  height: 100%;
+  min-height: 300px;
+  outline: none;
+}
+
+main section form div {
+  text-align: right;
+}
+
+main section form div input {
+  width: 80px;
+  padding: 4px 0;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  background-color: var(--white-color);
+}
+
+
+
+/* 모바일 */
+@media screen and (max-width: 320px) {
+  /* uppermost */
+  .uppermost .container {
+    padding-top: 40px;
+    padding-bottom: 0px;
+  }
+
+  .uppermost .logo {
+    font-size: 25px;
+    justify-content: flex-start;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog,
+  .uppermost span,
+  nav .navbar {
+    display: none;
+  }
+
+  /* 토글 버튼 적용 시 */
+  .uppermost > .container {
+    flex-direction: column;
+  }
+
+  .uppermost .navbar_upper > li > a {
+    font-size: 20px;
+  }
+
+  .uppermost .navbar_upper > li {
+    margin: 10px;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog_upper {
+    text-align: center;
+  }
+
+  .uppermost .navbar_upper {
+    border-bottom: 1px solid var(--white-color);
+  }
+
+  .uppermost .toggleBtn {
+    display: block;
+  }
+
+  .navbar_upper.active,
+  .uplog.active {
+    display: grid;
+  }
+
+  /* header */
+  header .container .slide {
+    width: 100%;
+  }
+
+  header img {
+    height: 200px;
+    padding-bottom: 30px;
+  }
+
+  /* main */
+  main {
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  main .container .content aside {
+    display: none;
+  }
+
+  main .container .content section {
+    width: 97%;
+    float: none;
+    margin: auto;
+  }
+
+  /* section */
+  main .container .content section .atitle {
+    display: block;
+    text-align: center;
+    padding: 13px 0px 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  main section form {
+    margin: 20px 0px;
+  }
+
+  main section form ul li label {
+    width: 70px;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  /* footer */
+  .footer_menu1 > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 1.1em;
+  }
+
+  .footer_menu1 > ul > li {
+    padding: 10px 0px;
+  }
+
+  .footer_menu2 img {
+    width: 100%;
+    width: 200px;
+    vertical-align: bottom;
+    padding: 5px auto;
+  }
+
+  .footer_menu2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .footer_menu2 .right_up > div:nth-child(2),
+  .footer_menu2 .right_up > div:nth-child(3),
+  .footer_menu2 .right_down > div:nth-child(1) {
+    display: none;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .uppermost .navbar_upper {
+    display: none;
+  }
+
+  header img {
+    height: 300px;
+  }
+
+  nav .navbar > li {
+    font-size: 20px;
+    padding: 15px 20px;
+  }
+
+  nav .navbar li a {
+    color: var(--white-color);
+  }
+
+  /* main */
+  main {
+    width: 90%;
+    margin: 150px auto;
+  }
+
+  /* section */
+  main section form {
+    margin: 20px;
+  }
+
+  main section form ul li label {
+    letter-spacing: 0.4em;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+  /* header */
+  header img {
+    padding-bottom: 40px;
+  }
+
+  /* nav */
+  nav li {
+    display: none;
+  }
+
+  nav .navbar {
+    display: none;
+  }
+}
