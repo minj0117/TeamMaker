@@ -57,7 +57,7 @@ public interface MemberDAO {
 	 * @throws Exception
 	 */
 	public String findpw(MemberVO memberVO) throws Exception;
-	
+	public int delMember(String id);
 	public int emailCheck(String email);
 	
 	/**
@@ -85,7 +85,7 @@ public interface MemberDAO {
 	 */
 	public int checkBlackList(String id);
 	
-	public int delMember(String id);
+	public String checkpw(String id);
 	
 	public MemberVO memberCheck(MemberVO memberVO);
 	public int changePw(MemberVO memberVO);

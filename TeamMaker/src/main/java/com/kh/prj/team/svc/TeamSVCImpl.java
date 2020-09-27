@@ -38,6 +38,11 @@ public class TeamSVCImpl implements TeamSVC {
 	}
 	
 	@Override
+	public String checkowner(int tno) {
+		return teamDAO.checkowner(tno);
+	}
+	
+	@Override
 	public List<TeammemberVO> affiliationTno(String id) {
 		return teamDAO.affiliationTno(id);
 	}

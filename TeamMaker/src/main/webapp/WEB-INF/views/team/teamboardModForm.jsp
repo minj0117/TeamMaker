@@ -82,6 +82,11 @@
 	</script>
   </head>
 <body>
+	<!-- uppermost -->
+    <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
+    <!-- nav -->
+    <%@ include file="/WEB-INF/views/include/nav.jsp" %>
+	
 	    <!-- main -->
     <main>
       <div class="container">
@@ -90,27 +95,19 @@
           <aside>
             <div>
               <div class="atitle">마이페이지</div>
-              <ul>
-                <li class="astitle">나의 게시글</li>
-                <ul>
-                  <li><a href="#">팀원 모집</a></li>
-                  <li><a href="#">자유 게시판</a></li>
-                </ul>
-              </ul>
+              
               <ul>
                 <li class="astitle">나의 활동</li>
                 <ul>
-                  <li><a href="#">1:1 문의 내역</a></li>
-                  <li><a href="#">나의 신청 내역</a></li>
-                  <li><a href="#">지원자 보기</a></li>
-                  <li><a href="#">팀 게시판</a></li>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
               <ul>
                 <li class="astitle">나의 정보</li>
                 <ul>
-                  <li><a href="#">회원정보 수정</a></li>
-                  <li><a href="#">회원 탈퇴</a></li>
+                  <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
+                  <li><a href="${contextPath }/prj/member/delMemberForm">회원 탈퇴</a></li>
                 </ul>
               </ul>
             </div>
@@ -122,10 +119,7 @@
               <i class="fas fa-chevron-right"></i>
               <span>&nbsp;</span>나의 활동
             </div>
-            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
-            <div class="hiddenTitle">
-              모바일 버전에서는 팀 게시판 서비스를 지원하지 않습니다.
-            </div>
+            <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
             <form action="">
               <div>팀 게시판 글쓰기</div>
               <ul>
@@ -139,7 +133,6 @@
                   >${vo.b_comment }</textarea>
                 </li>
                 <li class="btngrp">
-                  <button class="cancelBtn">취소</button>
                   <input type="button" onClick="modFn()" class="submitBtn" value="수정완료"></button>
                 </li>
               </ul>
@@ -152,5 +145,8 @@
       </div>
       <div class="clearfix"></div>
     </main>
+    
+	<!-- footer -->
+    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>

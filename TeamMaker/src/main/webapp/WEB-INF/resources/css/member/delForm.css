@@ -1,0 +1,273 @@
+/* main */
+main {
+  width: 70%;
+  margin: 200px auto;
+}
+
+main .container,
+main .container aside ul li,
+main .container section ul li {
+  font-family: "Sunflower";
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main .container .content aside {
+  width: 20%;
+  float: left;
+}
+
+main .container .content section {
+  width: 80%;
+  float: left;
+}
+
+main .container .content aside a,
+main .container .content section a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* aside */
+main aside .atitle {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main aside .astitle {
+  font-weight: bold;
+  padding: 20px 0 5px;
+  margin-right: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main aside ul li {
+  padding: 10px 0 5px;
+}
+
+/* section */
+main .container .content section .atitle {
+  display: none;
+}
+
+main section form {
+  margin: 20px;
+}
+
+main section .stitle {
+  padding: 10px 0;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  text-align: center;
+}
+
+main section .stitle span {
+  color: var(--background-color);
+  font-weight: bold;
+}
+
+main section .pwchk1 {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main section .pwchk2 {
+  padding: 15px 0 30px;
+}
+
+main section .pwchk3 {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 0 10px 20px;
+  margin: 0 10px;
+}
+
+main section .pwchk3 label {
+  padding-right: 10px;
+}
+
+main section .pwchk4 {
+  text-align: right;
+  padding-top: 20px;
+}
+
+main section .pwchk4 input {
+  background-color: var(--white-color);
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  outline: none;
+  padding: 6px 12px;
+}
+
+
+/* 모바일 */
+@media screen and (max-width: 320px) {
+  /* uppermost */
+  .uppermost .container {
+    padding-top: 40px;
+    padding-bottom: 0px;
+  }
+
+  .uppermost .logo {
+    font-size: 25px;
+    justify-content: flex-start;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog,
+  .uppermost span,
+  nav .navbar {
+    display: none;
+  }
+
+  /* 토글 버튼 적용 시 */
+  .uppermost > .container {
+    flex-direction: column;
+  }
+
+  .uppermost .navbar_upper > li > a {
+    font-size: 20px;
+  }
+
+  .uppermost .navbar_upper > li {
+    margin: 10px;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog_upper {
+    text-align: center;
+  }
+
+  .uppermost .navbar_upper {
+    border-bottom: 1px solid var(--accent-color);
+  }
+
+  .uppermost .toggleBtn {
+    display: block;
+  }
+
+  .navbar_upper.active,
+  .uplog.active {
+    display: grid;
+  }
+
+  /* header */
+  header .container .slide {
+    width: 100%;
+  }
+
+  header img {
+    height: 200px;
+    padding-bottom: 30px;
+  }
+
+  /* main */
+  main {
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  main .container .content aside {
+    display: none;
+  }
+
+  main .container .content section {
+    width: 97%;
+    float: none;
+    margin: auto;
+  }
+
+  /* section */
+  main .container .content section .atitle {
+    display: block;
+    text-align: center;
+    padding: 15px 0px 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  main section form {
+    margin-left: 0px;
+  }
+
+  /* footer */
+  .footer_menu1 > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .footer_menu1 > ul > li {
+    padding: 10px 0px;
+  }
+
+  .footer_menu2 img {
+    width: 100%;
+    width: 200px;
+    vertical-align: bottom;
+    padding: 5px auto;
+  }
+
+  .footer_menu2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .footer_menu2 .right_up > div:nth-child(2),
+  .footer_menu2 .right_up > div:nth-child(3),
+  .footer_menu2 .right_down > div:nth-child(1) {
+    display: none;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .uppermost .navbar_upper {
+    display: none;
+  }
+
+  header img {
+    height: 300px;
+  }
+
+  nav .navbar > li {
+    font-size: 20px;
+    padding: 15px 20px;
+  }
+
+  nav .navbar li a {
+    color: var(--white-color);
+  }
+
+  main {
+    width: 90%;
+    margin: 150px auto;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+  /* header */
+  header img {
+    padding-bottom: 40px;
+  }
+
+  /* nav */
+  nav li {
+    display: none;
+  }
+
+  nav .navbar {
+    display: none;
+  }
+}

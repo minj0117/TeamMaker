@@ -122,9 +122,6 @@
                 <ul>
                   <li><a href="${contextPath }/prj/member/rreport">팀원 모집 게시판 신고</a></li>
                   <li><a href="${contextPath }/prj/member/freport">자유 게시판 신고</a></li>
-                  <li><a href="#">경고 누적 아이디</a></li>
-                  <li><a href="#">사용 중지 아이디</a></li>
-                  <li><a href="#"></a></li>
                 </ul>
               </ul>
               <ul>
@@ -143,7 +140,7 @@
               <!-- section1 -->
               <div class="section2">
                 <div class="section2_title">
-                  <div>신고 목록</div>
+                  <div>모집게시판 신고 목록</div>
                   <div><a href="#">전체보기 ＞</a></div>
                 </div>
                 <div class="section2_con">

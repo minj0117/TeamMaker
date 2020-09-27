@@ -43,26 +43,26 @@
 <style type="text/css">
 /* main : 페이징 */
 main .paging {
-  padding-left: 0px;
-  display: flex;
-  justify-content: center;
-  font-size: 16px;
+	padding-left: 0px;
+	display: flex;
+	justify-content: center;
+	font-size: 16px;
 }
 
 main .paging li {
-  padding: 3px 8px;
-  border: 1px solid var(--border-color);
-  font-family: "Sunflower";
+	padding: 3px 8px;
+	border: 1px solid var(- -border-color);
+	font-family: "Sunflower";
 }
 
 main .paging li a {
-  font-family: "Sunflower";
-  text-decoration: none;
-  color: var(--text-color);
+	font-family: "Sunflower";
+	text-decoration: none;
+	color: var(- -text-color);
 }
 
 main .paging li:hover {
-  background-color: var(--linen-color);
+	background-color: var(- -linen-color);
 }
 </style>
 </head>
@@ -76,11 +76,10 @@ main .paging li:hover {
 	<!-- main -->
 	<main>
 		<div class="container">
-			<div class="mtitle">자유게시판</div>
+			<div class="commTitle">자유게시판</div>
 			<div class="content">
 				<!-- 사용자 선택 -->
-				<div class="content content_up">		
-				</div>
+				<div class="content content_up"></div>
 
 				<!-- 팀원모집 글보기 -->
 				<div class="content content_down">
@@ -89,7 +88,6 @@ main .paging li:hover {
 						<div>제목</div>
 						<div>작성자</div>
 						<div>작성일</div>
-						<div>조회수</div>
 					</div>
 					<div class="content_down list">
 						<c:forEach var="row" items="${list }">
@@ -101,16 +99,16 @@ main .paging li:hover {
 							</div>
 							<div class="writer">${row.writer }</div>
 							<div class="cdate">${row.cdate }</div>
-							<div class="cnt">${row.cnt }</div>
 						</c:forEach>
 					</div>
 					<!-- 글쓰기 버튼 -->
 					<c:if test='${!empty sessionScope.member }'>
-					<div class="writeBtn">
-						<button onClick="location.href='${contextPath}/prj/fboard/fboardForm'">
-							<i class="fas fa-pen"></i>글쓰기</a>
-						</button>
-					</div>
+						<div class="writeBtn">
+							<button
+								onClick="location.href='${contextPath}/prj/fboard/fboardForm'">
+								<i class="fas fa-pen"></i>글쓰기</a>
+							</button>
+						</div>
 					</c:if>
 				</div>
 

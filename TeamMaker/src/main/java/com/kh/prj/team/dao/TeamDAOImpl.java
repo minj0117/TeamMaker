@@ -32,6 +32,14 @@ public class TeamDAOImpl implements TeamDAO {
 		return sqlSession.selectList("mappers.TeamDAO-mapper.teamlist");
 	}
 	
+	/**
+	 * 오너 확인
+	 */
+	@Override
+	public String checkowner(int tno) {
+		return sqlSession.selectOne("mappers.TeamDAO-mapper.checkowner",tno);
+	}
+	
 	@Override
 	public List<TeamVO> myList(String id) {
 		return sqlSession.selectList("mappers.TeamDAO-mapper.mylist",id);

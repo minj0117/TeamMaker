@@ -75,47 +75,19 @@
           <aside>
             <div>
               <div class="atitle">마이페이지</div>
-              <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
-              <ul>
-                <li class="astitle">나의 게시글</li>
-                <ul>
-                  <li>
-                    <a href="#"
-                      >팀원 모집<i class="fas fa-chevron-right"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >자유 게시판<i class="fas fa-chevron-right"></i
-                    ></a>
-                  </li>
-                </ul>
-              </ul>
+              
               <ul>
                 <li class="astitle">나의 활동</li>
                 <ul>
-                  <li>
-                    <a href="#"
-                      >1:1 문의 내역<i class="fas fa-chevron-right"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >팀 만들기<i class="fas fa-chevron-right"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      >팀 게시판<i class="fas fa-chevron-right"></i
-                    ></a>
-                  </li>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
               <ul>
                 <li class="astitle">나의 정보</li>
                 <ul>
-                  <li><a href="#">회원정보 수정</a></li>
-                  <li><a href="#">회원 탈퇴</a></li>
+                  <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
+                  <li><a href="${contextPath }/prj/member/delMemberForm">회원 탈퇴</a></li>
                 </ul>
               </ul>
             </div>
@@ -127,7 +99,7 @@
               <i class="fas fa-chevron-right"></i>
               <span>&nbsp;</span>나의 활동
             </div>
-            <div class="stitle"><span>${sessionSceope.member.id }</span>님 반갑습니다</div>
+            <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
             <form action="${contextPath }/prj/maketeam" id="createForm" name="createForm">
               <ul>
                 <li>

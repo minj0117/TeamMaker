@@ -162,7 +162,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>5.2.7.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
 		<dependency>
@@ -185,7 +185,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>5.2.7.RELEASE</version>
+			<version>${org.springframework-version}</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- 스프링 테스트 종료 -->

@@ -29,7 +29,7 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
-	    <link rel="stylesheet" href="http://localhost:8090/prj/css/include/mypage.css" />
+	    <link rel="stylesheet" href="${contextPath }/prj/css/include/mypage.css" />
     <!-- font awesome -->
     <script
       src="https://kit.fontawesome.com/2d323a629b.js"
@@ -78,14 +78,14 @@
                 <li class="astitle">나의 정보</li>
                 <ul>
                   <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
-                  <li><a href="#">회원 탈퇴</a></li>
+                  <li><a href="${contextPath }/prj/member/delMemberForm">회원 탈퇴</a></li>
                 </ul>
               </ul>
             </div>
           </aside>
           <!-- section -->
           <section>
-            <div class="stitle"><span>${sessionScope.member.name }</span>님 반갑습니다</div>
+            <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
             <form action="">
               <!-- section1 -->
               <div class="section1">

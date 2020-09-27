@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>에러</h1>
+	<h1>권환이 없습니다.</h1>
 </body>
 </html>

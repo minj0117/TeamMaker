@@ -29,6 +29,7 @@
 		select tno, owner, title, acomment from teamlist where tno = #{tno}
 	</select>
 	
+	
 	<!-- 내팀 지원자 보기 -->
 	<select id="myteam" resultType="com.kh.prj.apply.vo.ApplyVO">
 		select applyid,ano,tno from applylist where tno = #{tno}

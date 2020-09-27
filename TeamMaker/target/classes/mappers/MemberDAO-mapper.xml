@@ -73,6 +73,10 @@
 		update member set pw = #{pw} where id = #{id} and email = #{email}
 	</update>
 	
+	<select id="checkpw" resultType="String">
+		select pw from member where id=#{id}
+	</select>
+	
 	<!-- 신고횠수 가져오기 -->
 	<select id="getcnt" parameterType="String" resultType="int">
 		select dancntnumber 

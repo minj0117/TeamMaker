@@ -9,9 +9,15 @@ main .container {
   font-size: 1.2em;
 }
 
+main .container .formTitle {
+  padding-bottom: 10px;
+  font-size: 1em;
+  font-weight: bold;
+}
+
 main .commContentBox {
   border: 1px solid var(--border-color);
-  padding: 25px 50px;
+  padding: 25px;
 }
 
 /* comm_header */
@@ -20,7 +26,7 @@ main .comm_header .commTitle {
   padding-bottom: 20px;
 }
 
-main .comm_header .commTitle .rtitle {
+main .comm_header .commTitle .title {
   font-size: 25px;
   padding-bottom: 20px;
 }
@@ -72,55 +78,73 @@ main .comment {
 }
 
 main .comment .commentTitle {
-  margin: 10px 0 20px;
+  padding: 10px 0 15px;
 }
 
-main .comment .comment_up_id {
-  margin: 0 0 10px;
-  font-weight: bold;
-}
-
-main .comment .comment_up_write {
+main .comment .comment_info {
   display: flex;
-  justify-content: space-between;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
   border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
-main .comment .comment_up_write input {
+main .comment .comment_info > div > div:nth-child(1) {
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+main .comment .comment_info > div > div:nth-child(2) {
+  word-break: break-all;
+}
+
+main .comment .comment_info input.delbtn {
   background-color: var(--white-color);
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--background-color);
   border-radius: 4px;
   padding: 4px 6px;
-  outline: none;
 }
 
-main .comment_down {
+/* 댓글 작성 - 작성 부분 */
+main .commentWrite {
+  padding-top: 20px;
+  margin: 0;
   display: flex;
 }
 
-main .comment textarea {
+main .commentWrite textarea {
   outline: none;
   padding: 10px;
   width: 96%;
+  font-size: 16px;
 }
 
-main .comment .comment_down input {
+main .commentWrite input[type="button"] {
   background-color: var(--white-color);
   border: 1px solid var(--background-color);
   border-radius: 4px;
   height: 30px;
-  margin-top: 92px;
+  margin-top: 120px;
   margin-left: 10px;
   outline: none;
+  font-size: 0.8em;
 }
 
 /* comm_btns 부분 */
 main .comm_btns {
   text-align: end;
   margin-top: 25px;
+}
+
+main .comm_btns button {
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  outline: none;
+  background-color: var(--white-color);
+  padding: 4px 12px;
+  font-size: 16px;
+  font-family: "Sunflower";
+  margin-left: 3px;
 }
 
 main .comm_btns input {
@@ -132,4 +156,163 @@ main .comm_btns input {
   font-size: 16px;
   font-family: "Sunflower";
   margin-left: 3px;
+}
+
+
+/* 모바일 */
+@media screen and (max-width: 320px) {
+  /* uppermost */
+  .uppermost .container {
+    padding-top: 40px;
+    padding-bottom: 0px;
+  }
+
+  .uppermost .logo {
+    font-size: 25px;
+    justify-content: flex-start;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog,
+  .uppermost span,
+  nav .navbar {
+    display: none;
+  }
+
+  /* 토글 버튼 적용 시 */
+  .uppermost > .container {
+    flex-direction: column;
+  }
+
+  .uppermost .navbar_upper > li > a {
+    font-size: 20px;
+  }
+
+  .uppermost .navbar_upper > li {
+    margin: 10px;
+  }
+
+  .uppermost .navbar_upper,
+  .uppermost .uplog_upper {
+    text-align: center;
+  }
+
+  .uppermost .navbar_upper {
+    border-bottom: 1px solid var(--accent-color);
+  }
+
+  .uppermost .toggleBtn {
+    display: block;
+  }
+
+  .navbar_upper.active,
+  .uplog.active {
+    display: grid;
+  }
+
+  /* header */
+  header .container .slide {
+    width: 100%;
+  }
+
+  header img {
+    height: 200px;
+    padding-bottom: 30px;
+  }
+
+  /* main */
+  main {
+    width: 97%;
+    margin: 100px auto;
+  }
+
+  main .container {
+    font-family: "Sunflower";
+    font-size: 1.2em;
+  }
+
+  main .commContentBox {
+    border: 1px solid var(--border-color);
+    padding: 25px 10px;
+  }
+
+  /* 댓글 버튼 */
+
+  main .comment .moreBtn .hiddenMenu {
+    right: 10px;
+  }
+
+  /* footer */
+  .footer_menu1 > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .footer_menu1 > ul > li {
+    padding: 10px 0px;
+  }
+
+  .footer_menu2 img {
+    width: 100%;
+    width: 200px;
+    vertical-align: bottom;
+    padding: 5px auto;
+  }
+
+  .footer_menu2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px auto;
+  }
+
+  .footer_menu2 .right_up > div:nth-child(2),
+  .footer_menu2 .right_up > div:nth-child(3),
+  .footer_menu2 .right_down > div:nth-child(1) {
+    display: none;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 321px) and (max-width: 768px) {
+  .uppermost .navbar_upper {
+    display: none;
+  }
+
+  header img {
+    height: 300px;
+  }
+
+  main {
+    width: 90%;
+    margin: 120px auto;
+  }
+
+  nav .navbar > li {
+    font-size: 20px;
+    padding: 15px 20px;
+  }
+
+  nav .navbar li a {
+    color: var(--white-color);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+  /* header */
+  header img {
+    padding-bottom: 40px;
+  }
+
+  /* nav */
+  nav li {
+    display: none;
+  }
+
+  nav {
+    display: none;
+  }
 }

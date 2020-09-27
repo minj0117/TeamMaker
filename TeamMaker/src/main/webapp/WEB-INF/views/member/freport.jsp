@@ -104,93 +104,99 @@
 
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
-	
-	 <!-- main -->
-    <main>
-      <div class="container">
-        <div class="content">
-          <!-- aside -->
-          <aside>
-            <div>
-              <div class="atitle">관리자 페이지</div>
-              <ul>
-                <li class="astitle">신고</li>
-                <ul>
-                  <li><a href="${contextPath }/prj/member/rreport">팀원 모집 게시판 신고</a></li>
-                  <li><a href="${contextPath }/prj/member/freport">자유 게시판 신고</a></li>
-                  <li><a href="#">경고 누적 아이디</a></li>
-                  <li><a href="#">사용 중지 아이디</a></li>
-                  <li><a href="#"></a></li>
-                </ul>
-              </ul>
-              <ul>
-                <li class="astitle">고객센터</li>
-                <ul>
-                  <li><a href="#">1:1 문의</a></li>
-                  <li><a href="#">공지사항</a></li>
-                </ul>
-              </ul>
-            </div>
-          </aside>
-          <!-- section -->
-          <section>
-            <div class="stitle"><span>관리자</span>님 반갑습니다</div>
-            <div>
-              <!-- section1 -->
-              <div class="section2">
-                <div class="section2_title">
-                  <div>신고 목록</div>
-                  <div><a href="#">전체보기 ＞</a></div>
-                </div>
-                <div class="section2_con">
-                  <div class="section2_con up">
-                    <div>글번호</div>
-                    <div>내용</div>
-                    <div>아이디</div>
-                    <div>게시글 번호</div>
-                    <div>처리</div>
-                  </div>
-                  <div class="section2_con down">
-                    <!-- con1 -->
-                    <c:forEach var="row" items="${list }" varStatus="status">
-                    <div class="no" id="no${status.index }">${row.no }</div>
-                    <div class="r_comment" id="r_comment${status.index }">${row.r_comment }</div>
-                    <div class="id" id="id${status.index }"><a href="">${row.id }</a></div>
-                    <div class="bno" id="bno${status.index }">${row.bno }</div>
-                    <div class="opt">
-                    	<input type="button" value="승인" onClick="okFn('${status.index}')">
-                    	<input type="button" value="거절" onClick="noFn('${status.index}')">
-                    </div>
-                    </c:forEach>
-                  </div>
-                </div>
-                   <div class="paging">
-					<div id="pagingDiv">
-						<c:if test="${paging.prev}">
-							<a href="${paging.startPage - 1 }">이전</a>
-						</c:if>
-						<c:forEach var="num" begin="${paging.startPage}"
-							end="${paging.endPage }">
+
+	<!-- main -->
+	<main>
+		<div class="container">
+			<div class="content">
+				<!-- aside -->
+				<aside>
+					<div>
+						<div class="atitle">관리자 페이지</div>
+						<ul>
+							<li class="astitle">신고</li>
+							<ul>
+								<li><a href="${contextPath }/prj/member/rreport">팀원 모집
+										게시판 신고</a></li>
+								<li><a href="${contextPath }/prj/member/freport">자유 게시판
+										신고</a></li>
+							</ul>
+						</ul>
+						<ul>
+							<li class="astitle">고객센터</li>
+							<ul>
+								<li><a href="#">1:1 문의</a></li>
+								<li><a href="#">공지사항</a></li>
+							</ul>
+						</ul>
+					</div>
+				</aside>
+				<!-- section -->
+				<section>
+					<div class="stitle">
+						<span>관리자</span>님 반갑습니다
+					</div>
+					<div>
+						<!-- section1 -->
+						<div class="section2">
+							<div class="section2_title">
+								<div>자유게시판 신고 목록</div>
+								<div>
+									<a href="#">전체보기 ＞</a>
+								</div>
+							</div>
+							<div class="section2_con">
+								<div class="section2_con up">
+									<div>글번호</div>
+									<div>내용</div>
+									<div>아이디</div>
+									<div>게시글 번호</div>
+									<div>처리</div>
+								</div>
+								<div class="section2_con down">
+									<!-- con1 -->
+									<c:forEach var="row" items="${list }" varStatus="status">
+										<div class="no" id="no${status.index }">${row.no }</div>
+										<div class="r_comment" id="r_comment${status.index }">${row.r_comment }</div>
+										<div class="id" id="id${status.index }">
+											<a href="">${row.id }</a>
+										</div>
+										<div class="bno" id="bno${status.index }">${row.bno }</div>
+										<div class="opt">
+											<input type="button" value="승인"
+												onClick="okFn('${status.index}')"> <input
+												type="button" value="거절" onClick="noFn('${status.index}')">
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<div class="paging">
+								<div id="pagingDiv">
+									<c:if test="${paging.prev}">
+										<a href="${paging.startPage - 1 }">이전</a>
+									</c:if>
+									<c:forEach var="num" begin="${paging.startPage}"
+										end="${paging.endPage }">
 						&nbsp;<a href="${num }">${num }</a>&nbsp;
 					</c:forEach>
-						<c:if test="${paging.next}">
-							<a id="next" href="${paging.endPage + 1 }">다음</a>
-						</c:if>
-					</div>
-					<form id="pagingFrm" name="pagingForm" action="freport"
-						method="get">
-						<input type="hidden" id="pageNum" name="pageNum"
-							value="${paging.cri.pageNum }"> <input type="hidden"
-							id="amount" name="amount" value="${paging.cri.amount }">
-					</form>
-				</div>
-              </div>
-          </section>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </main>
-    <%@ include file="/WEB-INF/views/include/footer.jsp"%>
+									<c:if test="${paging.next}">
+										<a id="next" href="${paging.endPage + 1 }">다음</a>
+									</c:if>
+								</div>
+								<form id="pagingFrm" name="pagingForm" action="freport"
+									method="get">
+									<input type="hidden" id="pageNum" name="pageNum"
+										value="${paging.cri.pageNum }"> <input type="hidden"
+										id="amount" name="amount" value="${paging.cri.amount }">
+								</form>
+							</div>
+						</div>
+				</section>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</main>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 	<script type="text/javascript">
 		$(document)
 				.ready(

@@ -151,9 +151,11 @@
 					</c:when>
 					<c:when test="${recruitVO.id ne id }">
 						<div class="article_btns">
-							<input type="button" class="listBtn" value="목록">
+							<input type="button" class="listBtn" onClick="location.href='${contextPath}/prj/rlist.do'" value="목록">
 							<!-- <a href="#" onClick="location.href='http://localhost:8090/prj/addapply?applyid=<%=id%>&tno=${recruitVO.tno }'" class="submitBtn" >신청</a>-->
+							<c:if test='${!empty sessionScope.id }'>
 							<a href="#" onClick="apply()" class="submitBtn" >신청</a>
+							</c:if>
 						</div>
 					</c:when>
 				</c:choose>

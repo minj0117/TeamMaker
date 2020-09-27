@@ -24,14 +24,10 @@ main .container .content section {
   float: left;
 }
 
-main .container .content aside a {
-  text-decoration: none;
-  color: var(--text-color);
-}
-
+main .container .content aside a,
 main .container .content section a {
   text-decoration: none;
-  /* color: var(--text-color); */
+  color: var(--text-color);
 }
 
 /* aside */
@@ -53,7 +49,7 @@ main aside ul li {
 }
 
 /* section */
-main section .atitle {
+main .container .content section .atitle {
   display: none;
 }
 
@@ -69,49 +65,55 @@ main section .stitle span {
   font-weight: bold;
 }
 
-/* section - 글 내용*/
-main section .formTitle {
-  font-weight: bold;
-  margin: 25px;
-  font-size: 1.1em;
-}
-
-main section form {
-  margin: 25px;
+/* 내가 땡땡 팀 공통 */
+main section .team {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 50px 20px;
   border: 1px solid var(--border-color);
   padding: 20px;
 }
 
-main section form .writerInfo {
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 10px;
+main section .makeTeam .makeTeamTitle,
+main section .belongTeam .belongTeamTitle {
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
-main section form .rtitle {
-  font-size: 1.3em;
-  padding-bottom: 10px;
+/* 내가 만든 팀 */
+main section .makeTeam {
+  border-right: 1px solid var(--border-color);
 }
 
-main section form .comm_info {
-  color: gray;
+main section .makeTeam_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 20px;
 }
 
-main section form .comm_content1 {
-  padding: 20px;
-  height: 100%;
-  min-height: 500px;
-  border-bottom: 1px solid var(--border-color);
+main section .makeTeam_list ul {
+  margin: 0;
 }
 
-main section .comm_btns {
-  margin-top: 10px;
-  text-align: right;
+main section .makeTeam_list ul li {
+  padding: 10px 0;
+  text-align: center;
 }
 
-main section .comm_btns input {
-  border: 2px solid var(--background-color);
-  border-radius: 4px;
-  background-color: var(--white-color);
-  padding: 6px 10px;
-  margin-left: 5px;
+/* 내가 속한 팀 */
+main section .belongTeam {
+  margin-left: 30px;
+}
+
+main section .belongTeam_list {
+  padding-top: 20px;
+  text-align: center;
+}
+
+main section .belongTeam_list ul {
+  margin: 0;
+}
+
+main section .belongTeam_list ul li {
+  padding: 10px 0;
 }

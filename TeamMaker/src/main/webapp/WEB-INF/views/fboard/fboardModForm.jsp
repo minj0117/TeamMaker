@@ -43,26 +43,26 @@
 <style type="text/css">
 /* main : 페이징 */
 main .paging {
-  padding-left: 0px;
-  display: flex;
-  justify-content: center;
-  font-size: 16px;
+	padding-left: 0px;
+	display: flex;
+	justify-content: center;
+	font-size: 16px;
 }
 
 main .paging li {
-  padding: 3px 8px;
-  border: 1px solid var(--border-color);
-  font-family: "Sunflower";
+	padding: 3px 8px;
+	border: 1px solid var(- -border-color);
+	font-family: "Sunflower";
 }
 
 main .paging li a {
-  font-family: "Sunflower";
-  text-decoration: none;
-  color: var(--text-color);
+	font-family: "Sunflower";
+	text-decoration: none;
+	color: var(- -text-color);
 }
 
 main .paging li:hover {
-  background-color: var(--linen-color);
+	background-color: var(- -linen-color);
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -112,43 +112,36 @@ main .paging li:hover {
 
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
-	  <!-- main -->
-    <main>
-      <div class="container">
-        <div class="content">
-          <div action="#" id="writeForm">
-            <legend>자유 게시판 글쓰기</legend>
-            <ul>
-              <li>
-                <ul class="catePart">
-                  <li class="writePWC">
-                    <label for="writePW">비밀번호 설정</label>
-                    <input type="password" id="pw" name="pw" />
-                  </li>
-                </ul>
-              </li>
-              <li>
-              	<input type="hidden" id="writer" name="writer" value="${sessionScope.member.id}" readonly="readonly"/>
-                <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요." value="${vo.title }" />
-                <input type="hidden" id="fno" value="${vo.fno }"/>
-              </li>
-              <li>
-                <textarea
-                  name="f_comment"
-                  id="f_comment"
-                  placeholder="내용을 입력해 주세요."
-                >${vo.f_comment }</textarea>
-              </li>
-              <li class="btnGrp">
-                <button class="writeBtn" onClick="modFn()" >등록</button>
-                <button class="cancelBtn">취소</button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </main>
-	
+	<!-- main -->
+	<main>
+		<div class="container">
+			<div class="content">
+				<div action="#" id="writeForm">
+					<legend>자유 게시판 글쓰기</legend>
+					<ul>
+						<li>
+							<ul class="catePart">
+								<li class="writePWC"><label for="writePW">비밀번호 설정</label> <input
+									type="password" id="pw" name="pw" /></li>
+							</ul>
+						</li>
+						<li><input type="hidden" id="writer" name="writer"
+							value="${sessionScope.member.id}" readonly="readonly" /> <input
+							type="text" id="title" name="title" placeholder="제목을 입력해 주세요."
+							value="${vo.title }" /> <input type="hidden" id="fno"
+							value="${vo.fno }" /></li>
+						<li><textarea name="f_comment" id="f_comment"
+								placeholder="내용을 입력해 주세요.">${vo.f_comment }</textarea></li>
+						<li class="btnGrp">
+							<button class="writeBtn" onClick="modFn()">등록</button>
+							<button class="cancelBtn">취소</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</main>
+
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>

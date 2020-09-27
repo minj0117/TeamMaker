@@ -25,6 +25,8 @@ public interface TeamSVC {
 	 */
 	public List<TeamVO> myList(String id);
 	
+	public String checkowner(int tno);
+	
 	public List<TeammemberVO> affiliationTno(String id);
 	public List<TeamVO> sosok(int tno);
 	

@@ -89,9 +89,6 @@
                 <ul>
                   <li><a href="${contextPath }/prj/member/rreport">팀원 모집 게시판 신고</a></li>
                   <li><a href="${contextPath }/prj/member/freport">자유 게시판 신고</a></li>
-                  <li><a href="#">경고 누적 아이디</a></li>
-                  <li><a href="#">사용 중지 아이디</a></li>
-                  <li><a href="#"></a></li>
                 </ul>
               </ul>
               <ul>

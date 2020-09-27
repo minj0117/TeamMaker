@@ -1,0 +1,126 @@
+/* main */
+main {
+  width: 70%;
+  margin: 200px auto;
+}
+
+main .container,
+main .container aside ul li,
+main .container section ul li {
+  font-family: "Sunflower";
+}
+
+main ul {
+  padding-left: 0px;
+}
+
+main .container .content aside {
+  width: 20%;
+  float: left;
+}
+
+main .container .content aside .stitle {
+  display: none;
+}
+
+main .container .content section {
+  width: 80%;
+  float: left;
+}
+
+main .container .content aside a,
+main .container .content section a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* aside */
+main .container .content aside .atitle {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main .container .content aside .astitle {
+  font-weight: bold;
+  padding: 20px 0 5px;
+  margin-right: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main .container .content aside ul li {
+  padding: 10px 0 5px;
+}
+
+/* section */
+main .container .content section .atitle {
+  display: none;
+}
+
+main section form {
+  margin: 20px;
+}
+
+main section .stitle {
+  padding: 10px 0;
+  text-align: center;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+}
+
+main section .stitle span {
+  font-weight: bold;
+  color: var(--background-color);
+}
+
+main section .listTitle {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 25px;
+}
+
+main section > table {
+  margin: 0 25px 0;
+  width: 95%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+main section > table th,
+main section > table td {
+  padding: 8px 0;
+}
+
+main section > table td input {
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  background-color: var(--white-color);
+  font-weight: bold;
+  color: red;
+  padding: 5px 10px;
+}
+
+main section form#frmApply {
+  margin: 0;
+}
+
+main section form#frmApply table {
+  margin: 25px 25px 0;
+  width: 95%;
+  text-align: center;
+}
+
+main section form#frmApply table th,
+main section form#frmApply table td {
+  padding: 8px 0;
+}
+
+main section form#frmApply table td input {
+  background-color: var(--white-color);
+  border: 1px solid var(--text-color);
+  outline: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+

@@ -67,71 +67,82 @@ main .paging li:hover {
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function pwCheck(){
+	function pwCheck() {
 		let pw = prompt("비밀번호를 입력하세요");
 		let fno = document.getElementById('fno').value;
-		const Info = JSON.stringify({fno:fno,pw:pw});
+		const Info = JSON.stringify({
+			fno : fno,
+			pw : pw
+		});
+		$
+				.ajax({
+					data : Info,
+					url : "${contextPath}/prj/fboard/pwcheck",
+					type : "post",
+					dataType : "text",
+					contentType : "application/json; charset=UTF-8",
+					success : function(data) {
+						if (data == 1) {
+							window.location = "${contextPath}/prj/fboard/fboardModForm?fno="
+									+ fno;
+						} else {
+							alert("비밀번호가 틀렷습니다.");
+						}
+					},
+					error : function(data) {
+						alert("에러발생")
+					}
+				})
+	}
+
+	function delFn() {
+		let pw = prompt("비밀번호를 입력하세요");
+		let fno = document.getElementById('fno').value;
+		const Info = JSON.stringify({
+			fno : fno,
+			pw : pw
+		});
 		$.ajax({
 			data : Info,
-			url : "${contextPath}/prj/fboard/pwcheck",
-			type : "post",
+			url : "${contextPath}/prj/fboard/fboarddel",
+			type : "delete",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
-			success : function(data){
-				if(data == 1){
-					window.location="${contextPath}/prj/fboard/fboardModForm?fno="+fno;
-				}else{
+			success : function(data) {
+				if (data == 1) {
+					window.location = "${contextPath}/prj/fboard/fboardList";
+				} else {
 					alert("비밀번호가 틀렷습니다.");
 				}
 			},
-			error : function(data){
+			error : function(data) {
 				alert("에러발생")
 			}
 		})
 	}
 
-	function delFn(){
-		let pw = prompt("비밀번호를 입력하세요");
-		let fno = document.getElementById('fno').value;
-		const Info = JSON.stringify({fno:fno,pw:pw});
-		$.ajax({
-				data : Info,
-				url : "${contextPath}/prj/fboard/fboarddel",
-				type : "delete",
-				dataType : "text",
-				contentType : "application/json; charset=UTF-8",
-				success : function(data){
-					if(data == 1){
-						window.location="${contextPath}/prj/fboard/fboardList";
-					}else{
-						alert("비밀번호가 틀렷습니다.");
-					}
-				},
-				error : function(data){
-					alert("에러발생")
-				}
-			})
-	}
-
-	function replyFn(){
+	function replyFn() {
 		let f_comment = document.getElementById('replycomment').value;
 		let fno = document.getElementById('fno').value;
-		const Info = JSON.stringify({fno:fno,f_comment:f_comment});
+		const Info = JSON.stringify({
+			fno : fno,
+			f_comment : f_comment
+		});
 		$.ajax({
 			data : Info,
 			url : "${contextPath}/prj/fboard/replyinsert",
 			type : "post",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
-			success : function(data){
-				if(data == 1){
+			success : function(data) {
+				if (data == 1) {
 					alert("댓글등록 완료");
 					location.reload();
-				}else{
+				} else {
 					alert("댓글 등록에 실패했습니다.");
 				}
 			},
-			error : function(data){
+			error : function(data) {
 				alert("에러발생")
 			}
 		})
@@ -139,50 +150,56 @@ main .paging li:hover {
 
 	function replydel(num) {
 		let fno = document.getElementById('replyfno'.concat(num)).value;
-		const Info = JSON.stringify({fno:fno});
+		const Info = JSON.stringify({
+			fno : fno
+		});
 		$.ajax({
 			data : Info,
 			url : "${contextPath}/prj/fboard/replydelete",
 			type : "delete",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
-			success : function(data){
-				if(data == 1){
+			success : function(data) {
+				if (data == 1) {
 					alert("댓글삭제 완료");
 					location.reload();
-				}else{
+				} else {
 					alert("댓글 삭제에 실패했습니다.");
 				}
 			},
-			error : function(data){
+			error : function(data) {
 				alert("에러발생")
 			}
 		})
 	}
 
-	function report(){
+	function report() {
 		let id = document.getElementById('writer').innerText;
 		let bno = document.getElementById('fno').value;
 		let r_comment = document.getElementById('f_comment').innerText;
-		const Info = JSON.stringify({id:id, bno:bno, r_comment:r_comment});
+		const Info = JSON.stringify({
+			id : id,
+			bno : bno,
+			r_comment : r_comment
+		});
 		$.ajax({
 			data : Info,
 			url : "${contextPath}/prj/member/freportinsert",
 			type : "post",
 			dataType : "text",
 			contentType : "application/json; charset=UTF-8",
-			success : function(data){
-				if(data == 1){
+			success : function(data) {
+				if (data == 1) {
 					alert("신고되었습니다.")
-				}else{
+				} else {
 					alert("이미 신고되어 있는 게시글입니다.");
 				}
 			},
-			error : function(data){
+			error : function(data) {
 				alert("에러발생")
 			}
 		})
-		
+
 	}
 </script>
 </head>
@@ -197,6 +214,7 @@ main .paging li:hover {
 	<!-- main -->
 	<main>
 		<div class="container">
+			<div class="formTitle">자유게시판 글쓰기</div>
 			<form action="" id="commPostView">
 				<!-- 글 내용 -->
 				<div class="commContentBox">
@@ -210,8 +228,7 @@ main .paging li:hover {
 										<div class="rid" id="writer">${vo.writer }</div>
 									</div>
 									<div class="comm_info">
-										<span class="rdate" id="cdate">${vo.cdate }</span> <span>조회수</span>
-										<span class="rcnt">${vo.cnt }</span>
+										<span class="rdate" id="cdate">${vo.cdate }</span>
 									</div>
 								</div>
 							</div>
@@ -240,21 +257,25 @@ main .paging li:hover {
 					</div>
 					<input type="hidden" id="fno" value="${vo.fno }">
 			</form>
-			<div>
+			<div class="comment">
+				<div class="commentTitle">댓글 작성</div>
 				<c:forEach var="row" items="${list }" varStatus="status">
-					<div>${row.f_comment }
-						| ${row.writer }
+					<div class="comment_info">
+						<div>
+							<div>${row.writer }</div>
+							<div>${row.f_comment }</div>
+						</div>
 						<c:if test='${row.writer == sessionScope.member.id }'>
 							<input type="hidden" id="replyfno${status.index }"
 								value="${row.fno }" />
-							<input type="button" onClick="replydel('${status.index }')"
-								value="삭제">
+							<input class="delbtn" type="button"
+								onClick="replydel('${status.index }')" value="삭제">
 						</c:if>
 					</div>
 				</c:forEach>
 			</div>
 			<c:if test='${!empty sessionScope.member }'>
-				<form>
+				<form class="commentWrite">
 					<textarea rows="5" cols="50" id="replycomment" name="replycomment"></textarea>
 					<input type="button" onClick="replyFn()" value="등록">
 				</form>

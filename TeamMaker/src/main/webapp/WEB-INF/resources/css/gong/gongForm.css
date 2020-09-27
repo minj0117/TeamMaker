@@ -1,120 +1,52 @@
-:root {
-  --background-color: #ffcdd2;
-  --text-color: #263343;
-  --accent-color: #d49466;
-  --border-color: lightgray;
-  --whitesmoke-color: #f0f4f5;
-  --white-color: #fdffff;
-  --linen-color: linen;
+/* main */
+main {
+  width: 80%;
+  margin: 0px auto;
+  margin: 200px auto 150px;
 }
 
-body {
-  margin: 0 auto;
-  padding: 0;
-}
-
-.container {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
+main .container {
   font-family: "Sunflower";
+  font-size: 17px;
 }
 
-.container #title {
-  font-weight: bold;
+main .container .writeTitle {
+  margin: 30px 0;
   font-size: 20px;
-  margin-bottom: 20px;
-  text-align: center;
 }
 
-/* table, */
-table {
-  border-collapse: collapse;
-  padding: 0;
-  margin: 0;
-}
-
-thead th,
-thead td {
-  border-top: 2px solid var(--text-color);
-}
-
-th,
-td {
-  border-collapse: collapse;
-  height: 5vh;
-  margin: 0;
-  padding: 0;
-}
-
-th:nth-child(1),
-td:nth-child(1) {
-  width: 25%;
-  text-align: center;
-  border-right: 1px solid var(--text-color);
-  border-bottom: 1px solid var(--text-color);
-}
-
-input {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-height: 5vh;
-}
-
-input[type="file"] {
-  padding: 15px 0 0 15px;
-  font-family: "Sunflower";
-}
-
-ul {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-ul li {
-  display: flex;
-  align-items: center;
-}
-
-input[type="checkbox"] {
-  width: 6%;
-  height: 5px;
-}
-
-textarea {
-  height: 100%;
-  min-height: 200px;
+main .container form table {
   width: 100%;
 }
 
-/* 버튼 */
-.btn1 {
-  margin: 10px 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+main .container form table th,
+main .container form table td {
+  /*border: 1px solid;*/
 }
 
-.btn1 button {
-  background-color: var(--background-color);
-  border: none;
+main .container form table th,
+main .container form table tr td:nth-child(1) {
+  text-align: center;
+  padding: 10px 0;
+}
+
+main .container form table tr td input {
+  width: 100%;
+  padding: 10px;
+}
+
+main .container form table tr td input[type="file"] {
+  padding-left: 0;
+}
+
+main .container form table tr:last-child td {
+  text-align: end;
+}
+
+main .container form table tr td input[type="submit"] {
+  border: 2px solid var(--background-color);
   border-radius: 4px;
-  margin-left: 4px;
-  padding: 8px 15px;
-}
-
-.btn2 {
-  display: flex;
-  justify-content: center;
-}
-
-.btn2 button {
-  background-color: var(--background-color);
-  border: none;
-  border-radius: 4px;
-  margin: 50px 5px;
-  padding: 8px 15px;
-  font-family: "Sunflower";
-  font-size: 1em;
+  background-color: var(--white-color);
+  width: 5%;
+  padding: 3px;
 }

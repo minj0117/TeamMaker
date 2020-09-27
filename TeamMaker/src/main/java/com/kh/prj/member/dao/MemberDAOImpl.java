@@ -50,7 +50,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public int modifyMember(MemberVO memberVO) {
 		return sqlSession.update("mappers.MemberDAO-mapper.modifyMember", memberVO);
 	}
-
+	@Override
+	public String checkpw(String id) {
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.checkpw",id);
+	}
 	/**
 	 * 아이디 중복 체크
 	 */
@@ -73,14 +76,6 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	@Override
 	public String findid(MemberVO memberVO) throws Exception {
-		/*
-		 * MemberVO memberVO = new MemberVO(); memberVO.setName(name);
-		 * memberVO.setEmail(email); System.out.println("dao name : " + name);
-		 * System.out.println("dao email : " + email);
-		 * System.out.println("dao memberVO : " + memberVO.toString()); String result =
-		 * sqlSession.selectOne("mappers.MemberDAO-mapper.findId",memberVO);
-		 * System.out.println("dao result ; " + result);
-		 */
 		String result = sqlSession.selectOne("mappers.MemberDAO-mapper.findId", memberVO);
 		System.out.println("dao result ; " + result);
 		return result;
@@ -91,14 +86,6 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	@Override
 	public String findpw(MemberVO memberVO) throws Exception {
-		/*
-		 * MemberVO memberVO = new MemberVO(); memberVO.setName(name);
-		 * memberVO.setEmail(email); System.out.println("dao name : " + name);
-		 * System.out.println("dao email : " + email);
-		 * System.out.println("dao memberVO : " + memberVO.toString()); String result =
-		 * sqlSession.selectOne("mappers.MemberDAO-mapper.findId",memberVO);
-		 * System.out.println("dao result ; " + result);
-		 */
 		String result = sqlSession.selectOne("mappers.MemberDAO-mapper.findPw", memberVO);
 		System.out.println("dao result ; " + result);
 		return result;
@@ -109,13 +96,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	@Override
 	public int dancnt(String id) {
-		System.out.println("dao id : " + id);
-		/*
-		 * int result = sqlSession.selectOne("mappers.MemberDAO-mapper.dancnt", id);
-		 * System.out.println("dao result = " + result); return result;
-		 */
 		int result = sqlSession.update("mappers.MemberDAO-mapper.dancnt", id);
-		System.out.println("dao result = " + result);
 		return result;
 	}
 
@@ -124,9 +105,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	@Override
 	public int getcnt(String id) {
-		System.out.println("dao id : " + id);
 		int result = sqlSession.selectOne("mappers.MemberDAO-mapper.getcnt", id);
-		System.out.println("dao result = " + result);
 		return result;
 	}
 
@@ -136,7 +115,6 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int addBlackList(String id) {
 		System.out.println("dao add id : " + id);
-		// int result = sqlSession.insert("mappers.MemberDAO-mapper.addBlackList",id);
 		int result = sqlSession.insert("mappers.MemberDAO-mapper.addBlackList", id);
 		System.out.println("dao add result : " + result);
 		return result;

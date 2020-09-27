@@ -52,10 +52,9 @@ function fn_findpw(){
 		return;
 	}
 	const memberInfo = JSON.stringify({id:id,email:email});
-	console.log(memberInfo);
 	$.ajax({
 		data : memberInfo,
-		url : "http://localhost:8090/prj/member/findpw",
+		url : "${contextPath}/prj/member/findpw",
 		type : "post",
 		dataType : "text",
 		contentType : "application/json; charset=UTF-8",
@@ -81,29 +80,30 @@ function fn_findpw(){
 
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
-	
-	 <!-- main -->
-    <main>
-      <div class="container">
-        <div class="content">
-          <h4>비밀번호 찾기</h4>
-          <form action="" id="findPWForm">
-            <div>
-              <label for="userid">아이디</label>
-              <input type="text" name="id" id="id" />
-            </div>
-            <div>
-              <label for="useremail">이메일</label>
-              <input type="text" name="email" id="email" />
-            </div>
-            <div class="pw_msg" id="message"></div>
-            <div>
-              <input type="button" id="findPWBtn" name="findPWBtn" onClick="fn_findpw()" value="비밀번호 찾기">
-            </div>
-          </form>
-        </div>
-      </div>
-    </main>
-    <%@ include file="/WEB-INF/views/include/footer.jsp"%>
+
+	<!-- main -->
+	<main>
+		<div class="container">
+			<div class="content">
+				<h4>비밀번호 찾기</h4>
+				<form action="" id="findPWForm">
+					<div>
+						<label for="userid">아이디</label> <input type="text" name="id"
+							id="id" />
+					</div>
+					<div>
+						<label for="useremail">이메일</label> <input type="text" name="email"
+							id="email" />
+					</div>
+					<div class="pw_msg" id="message"></div>
+					<div>
+						<input type="button" id="findPWBtn" name="findPWBtn"
+							onClick="fn_findpw()" value="비밀번호 찾기">
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

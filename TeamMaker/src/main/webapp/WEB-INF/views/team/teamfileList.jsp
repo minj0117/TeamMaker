@@ -67,27 +67,19 @@
           <aside>
             <div>
               <div class="atitle">마이페이지</div>
-              <ul>
-                <li class="astitle">나의 게시글</li>
-                <ul>
-                  <li><a href="#">팀원 모집</a></li>
-                  <li><a href="#">자유 게시판</a></li>
-                </ul>
-              </ul>
+              
               <ul>
                 <li class="astitle">나의 활동</li>
                 <ul>
-                  <li><a href="#">1:1 문의 내역</a></li>
-                  <li><a href="#">나의 신청 내역</a></li>
-                  <li><a href="#">지원자 보기</a></li>
-                  <li><a href="#">팀 게시판</a></li>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
               <ul>
                 <li class="astitle">나의 정보</li>
                 <ul>
-                  <li><a href="#">회원정보 수정</a></li>
-                  <li><a href="#">회원 탈퇴</a></li>
+                  <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
+                  <li><a href="${contextPath }/prj/member/delMemberForm">회원 탈퇴</a></li>
                 </ul>
               </ul>
             </div>
@@ -113,7 +105,7 @@
                   <!-- con1 -->
                   <!-- con1 -->
                  <c:forEach var="row" items='${flist }'>
-                  <div class="title"><a href="${contextPath }/prj/tboard/fileView?bno=${row.bno}">${row.title }</a></div>
+                  <div class="title"><a href="${contextPath }/prj/tboard/fileView?bno=${row.bno}&tno=${tno}">${row.title }</a></div>
                   <div class="writer"><a href="">${row.writer }</a></div>
                   <div class="cdate">${row.cdate }</div>
                  </c:forEach>

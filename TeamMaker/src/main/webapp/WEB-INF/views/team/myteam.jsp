@@ -66,27 +66,27 @@
           <aside>
             <div>
               <div class="atitle">마이페이지</div>
-              <ul>
-                <li class="astitle">나의 게시글</li>
-                <ul>
-                  <li><a href="#">팀원 모집</a></li>
-                  <li><a href="#">자유 게시판</a></li>
-                </ul>
-              </ul>
+
               <ul>
                 <li class="astitle">나의 활동</li>
                 <ul>
-                  <li><a href="#">1:1 문의 내역</a></li>
-                  <li><a href="#">나의 신청 내역</a></li>
-                  <li><a href="#">지원자 보기</a></li>
-                  <li><a href="#">팀 게시판</a></li>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
               <ul>
                 <li class="astitle">나의 정보</li>
                 <ul>
-                  <li><a href="#">회원정보 수정</a></li>
-                  <li><a href="#">회원 탈퇴</a></li>
+                  <li>
+                    <a href="${contextPath }/prj/member/modifyForm"
+                      >회원정보 수정</a
+                    >
+                  </li>
+                  <li>
+                    <a href="${contextPath }/prj/member/delMemberForm"
+                      >회원 탈퇴</a
+                    >
+                  </li>
                 </ul>
               </ul>
             </div>
@@ -98,47 +98,60 @@
               <i class="fas fa-chevron-right"></i>
               <span>&nbsp;</span>나의 활동
             </div>
-            <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
-            <!-- 내가 만든 팀 -->
-            <div class="makeTeam">
-              <div class="makeTeamTitle">내가 만든 팀</div>
-              <div class="makeTeam1">
-                <div class="makeTeam1_title">
-                  <span>팀 이름</span>
-                </div>
-                <div class="makeTeam1_list">
-                  <c:forEach var="row" items="${list }">
-                  <div class="makeTeam1_list1">
-                    <ul>
-                      <li><a href="${contextPath }/prj/tboard/boardList?tno=${row.tno}">${row.title }</a></li>
-                    </ul>
-                  </div>
-                  <div class="makeTeam1_list2">
-                    <ul>
-                      <li>
-                        <a href="${contextPath }/prj/mymember/${row.tno}?tno=${row.tno}"
-                          >관리<i class="fas fa-chevron-circle-right"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
+            <div class="stitle">
+              <span>${sessionScope.member.id }</span>님 반갑습니다
+            </div>
+            <div class="team">
+              <!-- 내가 만든 팀 -->
+              <div class="makeTeam">
+                <div class="makeTeamTitle">내가 만든 팀</div>
+                <div class="makeTeam1">
+                  <div class="makeTeam1_list">
+                    <c:forEach var="row" items="${list }">
+                    <div class="for">
+                      <div class="makeTeam1_list1">
+                        <ul>
+                          <li>
+                            <a
+                              href="${contextPath }/prj/tboard/boardList?tno=${row.tno}"
+                              >${row.title }</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="makeTeam1_list2">
+                        <ul>
+                          <li>
+                            <a
+                              href="${contextPath }/prj/mymember/${row.tno}?tno=${row.tno}"
+                              >관리<i class="fas fa-chevron-circle-right"></i
+                            ></a>
+                          </li>
+                        </ul>
+                      </div>
+                      </div>
                     </c:forEach>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 내가 속한 팀 -->
-            <div class="belongTeam">
-              <div class="belongTeamTitle">내가 속한 팀</div>
-              <div class="belongTeam1">
-                <div class="belongTeam1_title"><span>팀 이름</span></div>
-                <div class="belongTeam1_list">
-                 <c:forEach var="row" items="${list2 }">
-                  <div class="belongTeam1_list1">
-                    <ul>
-                      <li><a href="${contextPath }/prj/tboard/boardList?tno=${row.tno}">${row.title }</a></li>
-                    </ul>
+              <!-- 내가 속한 팀 -->
+              <div class="belongTeam">
+                <div class="belongTeamTitle">내가 속한 팀</div>
+                <div class="belongTeam1">
+                  <div class="belongTeam1_list">
+                    <c:forEach var="row" items="${list2 }">
+                      <div class="belongTeam1_list1">
+                        <ul>
+                          <li>
+                            <a
+                              href="${contextPath }/prj/tboard/boardList?tno=${row.tno}"
+                              >${row.title }</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </c:forEach>
                   </div>
-                  </c:forEach>
                 </div>
               </div>
             </div>
@@ -147,7 +160,6 @@
       </div>
       <div class="clearfix"></div>
     </main>
-    
 
     <!-- footer -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

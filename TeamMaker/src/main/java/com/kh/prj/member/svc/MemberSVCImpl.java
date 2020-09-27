@@ -65,7 +65,12 @@ public class MemberSVCImpl implements MemberSVC {
 		System.out.println("svc id : " + id);
 		return memberDAO.idCheck(id);
 	}
-
+	
+	@Override
+	public String checkpw(String id) {
+		return memberDAO.checkpw(id);
+	}
+	
 	/**
 	 * 아이디 찾기
 	 */

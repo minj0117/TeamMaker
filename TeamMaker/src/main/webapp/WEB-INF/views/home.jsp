@@ -130,7 +130,6 @@
         </div>
       </div>
     </main>
-	<a href="${contextPath }/prj/sendMail.do">메일</a>
     <!-- footer -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
   </body>

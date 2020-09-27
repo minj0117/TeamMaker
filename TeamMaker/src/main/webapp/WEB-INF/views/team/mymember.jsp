@@ -29,7 +29,7 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
-	    <link rel="stylesheet" href="http://localhost:8090/prj/css/team/myteam.css" />
+	    <link rel="stylesheet" href="http://localhost:8090/prj/css/team/mymember.css" />
     <!-- font awesome -->
     <script
       src="https://kit.fontawesome.com/2d323a629b.js"
@@ -122,49 +122,87 @@ function profile(num){
 
 	<!-- nav -->
 	<%@ include file="/WEB-INF/views/include/nav.jsp"%>
-
-  
-    <h1>팀 목록</h1>
-	<table border="1" width="700">
-		<tr>
-			<th>팀번호</th>
-			<th>팀장</th>
-			<th>팀명</th>
-			<th>팀원</th>
-			<th>관리</th>
-		</tr>
-		<c:forEach var="row" items="${list }">
-		<tr>
-			<td id='tno'>${row.tno }</td>
-			<td>${row.owner }</td>
-			<td>${row.title }</td>
-			<td id="userid">${row.userid }</td>
-			<td><input type="button" onClick="delFn()" value="추방"></td>
-		</tr> 
-		</c:forEach>
-	</table>
-
+	    <!-- main -->
+    <main>
+      <div class="container">
+        <div class="content">
+          <!-- aside -->
+          <aside>
+            <div>
+              <div class="atitle">마이페이지</div>
+              
+              <ul>
+                <li class="astitle">나의 활동</li>
+                <ul>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
+                </ul>
+              </ul>
+              <ul>
+                <li class="astitle">나의 정보</li>
+                <ul>
+                  <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
+                  <li><a href="${contextPath }/prj/member/delMemberForm">회원 탈퇴</a></li>
+                </ul>
+              </ul>
+            </div>
+          </aside>
+          <!-- section -->
+          <section>
+            <div class="atitle">
+              마이 페이지<span>&nbsp;</span>
+              <i class="fas fa-chevron-right"></i>
+              <span>&nbsp;</span>나의 활동
+            </div>
+            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
+            <div class="listTitle">팀 목록</div>
+            <table border="1" width="700">
+                <tr>
+                  <th>팀번호</th>
+                  <th>팀장</th>
+                  <th>팀명</th>
+                  <th>팀원</th>
+                  <th>관리</th>
+                </tr>
+                <c:forEach var="row" items="${list }">
+                <tr>
+                  <td id='tno'>${row.tno }</td>
+                  <td>${row.owner }</td>
+                  <td>${row.title }</td>
+                  <td id="userid">
+                    <div>${row.userid }</div>  
+           
+                  </td>
+                  <td>
+                    <input type="button" onClick="delFn()" value="추방">
      
-    <form id="frmApply" action="${contextPath }/prj/addteamuser" method="post">
-		<table border="1" width="700">
-			<tr>
-				<th>지원자</th>
-				<th>추가</th>
-			</tr>
-			<c:forEach var="row" items="${alist }" varStatus="status">
-				<tr>				 	
-					<!--<td><a href="#" id="applyid${status.index }" onClick="window.open('${contextPath}/prj/member/profile?id=${row.applyid }'
-							,'User Profile','width = 550, height = 700, top = 100, left = 200, location = no');">${row.applyid }</a></td>-->
-					<td><a href="#" id="applyid${status.index }" onClick="profile('${status.index}')">${row.applyid }</a></td>
-					<td><input type="button" onClick="addFn('${status.index}')" value="팀원추가">
-					<input type="hidden" id="ano${status.index }" value="${row.ano }"/>
-					<input type="hidden" id="tno${status.index }" value="${row.tno }"/></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</form>
-	
-	
+                  </td>
+                </tr> 
+                </c:forEach>
+            </table>
+            <form id="frmApply" action="${contextPath }/prj/addteamuser" method="post">
+              <table border="1" width="700">
+                <tr>
+                    <th>지원자</th>
+                    <th>추가</th>
+                </tr>
+                <c:forEach var="row" items="${alist }" varStatus="status">
+                    <tr>                
+                      <!--<td><a href="#" id="applyid${status.index }" onClick="window.open('${contextPath}/prj/member/profile?id=${row.applyid }'
+                            ,'User Profile','width = 550, height = 700, top = 100, left = 200, location = no');">${row.applyid }</a></td>-->
+                      <td><a href="#" id="applyid${status.index }" onClick="profile('${status.index}')">${row.applyid }</a></td>
+                      <td><input type="button" onClick="addFn('${status.index}')" value="팀원추가">
+                      <input type="hidden" id="ano${status.index }" value="${row.ano }"/>
+                      <input type="hidden" id="tno${status.index }" value="${row.tno }"/></td>
+                    </tr>
+                </c:forEach>
+              </table>
+            </form>    
+          </section>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </main>
     <!-- footer -->
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>

@@ -248,17 +248,20 @@ main li textarea {
 }
 
 main .btnGrp {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  vertical-align: top;
 }
 
 main .btnGrp button {
-  background-color: var(--background-color);
-  border: none;
-  border-radius: 4px;
-  outline: none;
   font-family: "Sunflower";
-  font-size: 0.8em;
-  padding: 10px 20px;
+  width: 55px;
+  height: 35px;
+  background-color: var(--white-color);
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
+  margin-left: 10px;
+  font-size: 16px;
 }
 
 /* footer */

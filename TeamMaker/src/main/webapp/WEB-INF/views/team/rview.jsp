@@ -83,7 +83,12 @@
 	
 </script>
 <body>
+<!-- uppermost -->
+    <%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
+    <!-- nav -->
+    <%@ include file="/WEB-INF/views/include/nav.jsp" %>
 	 <!-- main -->
+    <!-- main -->
     <main>
       <div class="container">
         <div class="content">
@@ -91,92 +96,79 @@
           <aside>
             <div>
               <div class="atitle">마이페이지</div>
-              <ul>
-                <li class="astitle">나의 게시글</li>
-                <ul>
-                  <li><a href="#">팀원 모집</a></li>
-                  <li><a href="#">자유 게시판</a></li>
-                </ul>
-              </ul>
+              
               <ul>
                 <li class="astitle">나의 활동</li>
                 <ul>
-                  <li><a href="#">1:1 문의 내역</a></li>
-                  <li><a href="#">나의 신청 내역</a></li>
-                  <li><a href="#">지원자 보기</a></li>
-                  <li><a href="#">팀 게시판</a></li>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
               <ul>
                 <li class="astitle">나의 정보</li>
                 <ul>
-                  <li><a href="#">회원정보 수정</a></li>
-                  <li><a href="#">회원 탈퇴</a></li>
+                  <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
+                  <li><a href="${contextPath }/prj/member/delMemberForm">회원 탈퇴</a></li>
                 </ul>
               </ul>
             </div>
           </aside>
-          <!-- section -->
-          <section>
-            <div class="atitle">
-              마이 페이지<span>&nbsp;</span>
-              <i class="fas fa-chevron-right"></i>
-              <span>&nbsp;</span>나의 활동
-            </div>
-            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
-            <div class="hiddenTitle">
-              모바일 버전에서는 팀 게시판 서비스를 지원하지 않습니다.
-            </div>
-            <form action="" id="myTeamBoardPostView">
-              <div class="formTitle">팀 게시글</div>
-              <!-- 글 내용 -->
-              <div class="commContentBox">
-                <!-- article header 부분 -->
-                <div class="comm_header">
-                  <div class="commTitle">
-                    <input type="hidden" id="bno" name="bno" value="${vo.bno }">
-                    <div class="rtitle" id="rtitle">${vo.title }</div>
-                    <div class="writerInfo">
-                      <div class="image">
-                        <img src="../img/defaultImg.jpg" alt="" />
-                      </div>
-                      <div class="profile_area">
-                        <div class="profile_info">
-                          <div class="rid" id="rid">${vo.writer }</div>
-                        </div>
-                        <div class="comm_info">
-                          <span class="rdate" id="rdate"
-                            >2020.08.24. 08:40</span
-                          >
-                          <span>조회수</span>
-                          <span class="rcnt">${vo.cnt }</span>
+              <!-- section -->
+              <section>
+                <div class="atitle">
+                  마이 페이지<span>&nbsp;</span>
+                  <i class="fas fa-chevron-right"></i>
+                  <span>&nbsp;</span>나의 활동
+                </div>
+                <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
+                <div class="formTitle">팀 게시글</div>
+                <form action="" id="myTeamBoardPostView">
+                  <!-- 글 내용 -->
+                  <div class="commContentBox">
+                    <!-- article header 부분 -->
+                    <div class="comm_header">
+                      <div class="commTitle">
+                        <input type="hidden" id="bno" name="bno" value="${vo.bno }">
+                        <div class="rtitle" id="rtitle">${vo.title }</div>
+                        <div class="writerInfo">
+                          <div class="profile_area">
+                            <div class="profile_info">
+                              <div class="rid" id="rid">${vo.writer }</div>
+                            </div>
+                            <div class="comm_info">
+                              <span class="rdate" id="rdate"
+                                >2020.08.24. 08:40</span
+                              >
+                              <span>조회수</span>
+                              <span class="rcnt">${vo.cnt }</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <!-- article content 부분 -->
+                    <div class="comm_content">
+                      <div class="comm_content1">
+                        ${vo.b_comment }
+                      </div>   
+                  <!-- comm_btns 부분 -->                  
+                  <div class="comm_btns">
+                  <c:if test="${sessionScope.member.id eq vo.writer }">
+                    <input type="button" class="modifyBtn" onClick="location.href='${contextPath }/prj/tboard/boardModForm?bno=${vo.bno }'" value="수정">
+                    <input type="button" class="deleteBtn" onClick="deleteFn()" value="삭제">
+                    </c:if>
+                    <input type="button" class="replyBtn" onClick="location.href='${contextPath}/prj/tboard/boardReplyForm?bno=${vo.bno }&tno=${vo.tno }'" value="답글">
+                    <input type="button" class="listBtn" onClick="location.href='${contextPath}/prj/tboard/boardList?tno=${vo.tno }'" value="목록">
                   </div>
-                </div>
-                <!-- article content 부분 -->
-                <div class="comm_content">
-                  <div class="comm_content1">
-                    ${vo.b_comment }
-                  </div>
-              	
-
-              <!-- comm_btns 부분 -->
-              
-              <div class="comm_btns">
-              <c:if test="${sessionScope.member.id eq vo.writer }">
-                <input type="button" class="modifyBtn" onClick="location.href='${contextPath }/prj/tboard/boardModForm?bno=${vo.bno }'" value="수정">
-                <input type="button" class="deleteBtn" onClick="deleteFn()" value="삭제">
-                </c:if>
-                <input type="button" class="replyBtn" onClick="location.href='${contextPath}/prj/tboard/boardReplyForm?bno=${vo.bno }&tno=${vo.tno }'" value="답글">
-                <input type="button" class="listBtn" onClick="location.href='${contextPath}/prj/tboard/boardList?tno=${vo.tno }'" value="목록">
-              </div>
-            </form>
-          </section>
+                </form>
+              </section>
+    
         </div>
       </div>
       <div class="clearfix"></div>
     </main>
+    
+	<!-- footer -->
+    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>

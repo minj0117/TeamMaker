@@ -1,11 +1,14 @@
 :root {
-  --background-color: #ffcdd2;
+  --pink-color: #ffcdd2;
+  --background-color: #000051;
+  /* --background-color: #263343; */
   --text-color: #263343;
   --accent-color: #d49466;
   --border-color: lightgray;
   --whitesmoke-color: #f0f4f5;
   --white-color: #fdffff;
   --linen-color: linen;
+  --green-color: #d4e157;
 }
 
 .container {
@@ -46,13 +49,12 @@ ul > li {
   display: flex;
   flex-direction: row;
   font-size: 28px;
-  color: var(--text-color);
   font-family: "Kalam";
 }
 
 .uppermost .logo a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--accent-color);
 }
 
 .uppermost .logo i {
@@ -73,9 +75,13 @@ ul > li {
   font-size: 1.5em;
 }
 
+.uppermost .navbar_upper li a {
+  color: var(--white-color);
+}
+
 .uppermost .navbar_upper a:hover {
   color: var(--white-color);
-  /* text-decoration: none; */
+  text-decoration: none;
 }
 
 /* navbar_upper : comm_menu */
@@ -83,6 +89,7 @@ ul > li {
   margin-top: 8px;
   padding: 10px 20px 8px 20px;
 }
+
 .uppermost .navbar_upper li > .comm_menu > li:nth-child(2) {
   margin-bottom: 8px;
   padding: 8px 20px 10px 20px;
@@ -109,7 +116,7 @@ ul > li {
 
 .uppermost .uplog_upper {
   display: flex;
-  color: var(--text-color);
+  color: var(--white-color);
   font-size: 20px;
   padding-left: 0px;
 }
@@ -118,9 +125,12 @@ ul > li {
   margin: 0px 5px;
 }
 
+.uppermost .uplog_upper > li a {
+  color: var(--white-color);
+}
+
 .uppermost .uplog_upper li a:hover {
   text-decoration: none;
-  color: var(--text-color);
 }
 
 .uppermost .toggleBtn {
@@ -137,20 +147,29 @@ header {
 }
 
 header .container .slide {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
 }
 
 header img {
-  height: 550px;
+  height: 600px;
   margin: 0px auto;
   vertical-align: bottom;
+}
+
+header ol li {
+  margin: 0;
+  padding: 0;
+}
+
+header .carousel-inner {
+  font-family: "Sunflower";
 }
 
 /* nav */
 nav .navbar {
   background-color: var(--background-color);
-  padding: 30px;
+  padding: 0px;
 }
 
 nav ul > li > a {
@@ -184,6 +203,10 @@ main .container .content aside {
   float: left;
 }
 
+main .container .content aside .stitle {
+  display: none;
+}
+
 main .container .content section {
   width: 80%;
   float: left;
@@ -196,20 +219,20 @@ main .container .content section a {
 }
 
 /* aside */
-main aside .atitle {
+main .container .content aside .atitle {
   font-weight: bold;
   font-size: 25px;
   padding-bottom: 20px;
 }
 
-main aside .astitle {
+main .container .content aside .astitle {
   font-weight: bold;
   padding: 20px 0 5px;
   margin-right: 20px;
   border-bottom: 1px solid var(--border-color);
 }
 
-main aside ul li {
+main .container .content aside ul li {
   padding: 10px 0 5px;
 }
 
@@ -220,19 +243,20 @@ main section form {
 
 main section .stitle {
   padding: 10px 0;
-  background-color: var(--accent-color);
   text-align: center;
+  border: 2px solid var(--background-color);
+  border-radius: 4px;
 }
 
 main section .stitle span {
-  color: var(--white-color);
+  font-weight: bold;
+  color: var(--background-color);
 }
 
 /* section1 */
 main section .section1,
 main section .section2,
-main section .section3,
-main section .section4 {
+main section .section3 {
   border: 1px solid var(--border-color);
   padding: 30px;
   margin: 50px 0;
@@ -240,8 +264,7 @@ main section .section4 {
 
 main section .section1 .section1_title,
 main section .section2 .section2_title,
-main section .section3 .section3_title,
-main section .section4 .section4_title {
+main section .section3 .section3_title {
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
@@ -251,8 +274,7 @@ main section .section4 .section4_title {
 
 main section .section1 .section1_title div:nth-child(1),
 main section .section2 .section2_title div:nth-child(1),
-main section .section3 .section3_title div:nth-child(1),
-main section .section4 .section4_title div:nth-child(1) {
+main section .section3 .section3_title div:nth-child(1) {
   font-size: 18px;
   font-weight: bold;
 }
@@ -274,22 +296,12 @@ main section .section1 .rtitle,
 main section .section2 .rtitle,
 main section .section3 .rtitle {
   padding: 0 5px;
-  display: flex;
 }
 
 main section .section1 .rdate,
 main section .section2 .rdate,
 main section .section3 .rdate {
   text-align: center;
-}
-
-/* section4 */
-main section .section4_con div {
-  padding: 20px 0;
-}
-
-main section .section4_con i {
-  padding-right: 10px;
 }
 
 /* footer */
@@ -314,7 +326,7 @@ footer .container {
 
 .footer_menu1 > ul > li > a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--white-color);
 }
 
 .footer_menu1 > ul > li > #policy {
@@ -388,7 +400,7 @@ footer .container {
   }
 
   .uppermost .navbar_upper {
-    border-bottom: 1px solid var(--accent-color);
+    border-bottom: 1px solid var(--white-color);
   }
 
   .uppermost .toggleBtn {
@@ -411,6 +423,55 @@ footer .container {
   }
 
   /* main */
+  main {
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  /* aside */
+  main .container .content aside {
+    width: 97%;
+    float: none;
+    margin: 0px auto;
+  }
+
+  main .container .content aside .atitle {
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 5px;
+  }
+
+  main .container .content aside .astitle {
+    margin-right: 0px;
+  }
+
+  main .container .content aside .stitle {
+    display: block;
+    text-align: center;
+    border: 2px solid var(--background-color);
+    border-radius: 4px;
+    padding: 10px 0;
+  }
+
+  main .container .content aside .stitle span {
+    font-weight: bold;
+    color: var(--background-color);
+  }
+
+  main .container .content aside div > ul {
+    margin: 0px 10px;
+  }
+
+  main .container .content aside ul li a {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  main .container .content section {
+    display: none;
+    width: 0;
+    float: none;
+  }
 
   /* footer */
   .footer_menu1 > ul {
@@ -418,6 +479,7 @@ footer .container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    font-size: 1.1em;
   }
 
   .footer_menu1 > ul > li {
@@ -457,6 +519,17 @@ footer .container {
 
   nav .navbar > li {
     font-size: 20px;
+    padding: 15px 20px;
+  }
+
+  nav .navbar li a {
+    color: var(--white-color);
+  }
+
+  /* main */
+  main {
+    width: 90%;
+    margin: 150px auto;
   }
 }
 

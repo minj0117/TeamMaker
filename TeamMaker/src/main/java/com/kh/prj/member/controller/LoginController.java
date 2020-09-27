@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.prj.dae.svc.DaeSVC;
+import com.kh.prj.dae.vo.DaeVO;
+import com.kh.prj.gong.svc.GongSVC;
+import com.kh.prj.gong.vo.GongVO;
 import com.kh.prj.member.svc.MemberSVC;
 import com.kh.prj.member.vo.MemberVO;
 import com.kh.prj.recruit.svc.RecruitSVC;
@@ -26,6 +30,10 @@ public class LoginController {
 	MemberSVC memberSVC;
 	@Inject
 	RecruitSVC recruitSVC;
+	@Inject
+	DaeSVC daeSVC;
+	@Inject
+	GongSVC gongSVC;
 
 	@Inject
 	BCryptPasswordEncoder pwdEncoder;
@@ -92,10 +100,14 @@ public class LoginController {
 		// 세션 정보 제거
 		session.invalidate();
 		List<RecruitVO> list = recruitSVC.rank();
+		List<DaeVO> listdae = daeSVC.rank();
+		List<GongVO> listgong = gongSVC.rank();
 		model.addAttribute("rank", list);
+		model.addAttribute("rankdae", listdae);
+		model.addAttribute("rankgong", listgong);
 		return "home";
 	}
-
+	
 	// 테스트
 	@GetMapping("/test")
 	public String test(HttpSession session, Model model) {

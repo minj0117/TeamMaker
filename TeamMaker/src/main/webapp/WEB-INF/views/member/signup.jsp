@@ -222,7 +222,7 @@
 						<li><label for="phone">* 휴대폰 번호</label> <input type="text"
 							id="phone" name="phone" /></li>
 						<li><label for="email">* 이메일</label> <input type="text"
-							id="email" name="email" /> <input type="button" value="코드 전송" onClick="fn_emailchk()" />
+							id="email" name="email" /> <input type="button" value="중복확인" onClick="fn_emailchk()" />
 							<div id="message2"></div></li>
 						</li>
 						<li><label for="free"><span>&nbsp;&nbsp;</span>자기소개서</label>

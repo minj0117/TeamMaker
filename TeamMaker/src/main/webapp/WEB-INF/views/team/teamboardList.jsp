@@ -60,26 +60,19 @@
           <aside>
             <div>
               <div class="atitle">마이페이지</div>
-              <ul>
-                <li class="astitle">나의 게시글</li>
-                <ul>
-                  <li><a href="#">팀원 모집</a></li>
-                  <li><a href="#">자유 게시판</a></li>
-                </ul>
-              </ul>
+              
               <ul>
                 <li class="astitle">나의 활동</li>
                 <ul>
-                  <li><a href="#">1:1 문의 내역</a></li>
-                  <li><a href="#">팀 만들기</a></li>
-                  <li><a href="#">팀 게시판</a></li>
+                  <li><a href="${contextPath }/prj/teamForm">팀 만들기</a></li>
+                  <li><a href="${contextPath }/prj/mylist">팀 게시판</a></li>
                 </ul>
               </ul>
               <ul>
                 <li class="astitle">나의 정보</li>
                 <ul>
-                  <li><a href="#">회원정보 수정</a></li>
-                  <li><a href="#">회원 탈퇴</a></li>
+                  <li><a href="${contextPath }/prj/member/modifyForm">회원정보 수정</a></li>
+                  <li><a href="${contextPath }/prj/member/delMemberForm">회원 탈퇴</a></li>
                 </ul>
               </ul>
             </div>
@@ -91,7 +84,7 @@
               <i class="fas fa-chevron-right"></i>
               <span>&nbsp;</span>나의 활동
             </div>
-            <div class="stitle"><span>abcdefg</span>님 반갑습니다</div>
+            <div class="stitle"><span>${sessionScope.member.id }</span>님 반갑습니다</div>
             <div>
               <!-- 게시판 부분 -->
               <div class="boardPart">
@@ -125,10 +118,10 @@
                               	<c:forEach begin="1" end="${row.level }" step="1">
 									<div class="paddingarea" style="padding-left : 10px;"></div>
                                 </c:forEach>
-                                	<a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">┗> ${row.title }</a>
+                                	<a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}&tno=${tno}">┗> ${row.title }</a>
 								</c:when>
 								<c:otherwise>
-									<a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}">${row.title }</a>
+									<a href="${contextPath }/prj/tboard/boardView/${row.bno }?bno=${row.bno}&tno=${tno}">${row.title }</a>
 								</c:otherwise>
 							  </c:choose>                                
                               </div>
