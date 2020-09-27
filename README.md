@@ -21,3 +21,6 @@ Tomcat을 통해 서버를 구현하였고 bootstrap4와 Ajax,Restful API 이용
   -Bootstrap 4
   -JQuery 3
   -Ajax
+  
+  - 경량 컨테이너로서 자바 객체를 직접 관리
+	  - 각각의 객체 생성, 소멸과 같은 라이플 사이클을 관리하며 스프링으로부터 필요한 객체를 얻어올 수 있다.
