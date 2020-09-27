@@ -4,9 +4,9 @@ Spring Framework,spring security로 웹페이지를 구현하였습니다.
 Tomcat을 통해 서버를 구현하였고 bootstrap4와 Ajax,Restful API 이용하여 전체적인 UI,UX를 만들었습니다.
 
 # 개발인원
-  - 안명성
+  - 안명성 (back-end)
   - 변준호 (중탈)
-  - 변민정
+  - 변민정 (front-end)
   - 박주헌 (중탈)
   - 이승엽 (중탈)
 
