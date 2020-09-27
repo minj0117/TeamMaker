@@ -42,3 +42,6 @@ Tomcat을 통해 서버를 구현하였고 bootstrap4와 Ajax,Restful API 이용
 # Demo
 
 # 보완계획
+  - 인터셉터 공부 이후 적용
+  - 전반적인 코드 개편
+  - 웹소켓을 이용한 팀원끼리 대화 기능
