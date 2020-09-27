@@ -40,6 +40,7 @@ Tomcat을 통해 서버를 구현하였고 bootstrap4와 Ajax,Restful API 이용
  - 신고시스템 (신고 3회 -> 블랙리스트)
 
 # Demo
+https://www.youtube.com/watch?v=UslgPlhMsA0
 
 # 보완계획
   - 인터셉터 공부 이후 적용
