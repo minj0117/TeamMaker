@@ -1,7 +1,7 @@
 # TeamMaker
 ![main](https://user-images.githubusercontent.com/42050824/94374238-cb4b1a00-0145-11eb-869f-2292256c9545.png)
-Spring Framework,spring security로 웹페이지를 구현하였습니다.
-Tomcat을 통해 서버를 구현하였고 bootstrap4와 Ajax,Restful API 이용하여 전체적인 UI,UX를 만들었습니다.
+Spring Framework, Spring Security로 웹페이지를 구현하였습니다.
+Tomcat9을 통해 서버를 구현하였고 bootstrap4와 Ajax, Restful API 이용하여 전체적인 UI,UX를 만들었습니다.
 
 # 개발인원
   - 안명성 (back-end)
