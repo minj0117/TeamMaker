@@ -32,7 +32,7 @@ Tomcat9을 통해 서버를 구현하였고 bootstrap4와 Ajax, Restful API 이�
 # 기능설명
  - 회원가입
  - 로그인,로그아웃
- - spring security이용한 비밀번호 암호화
+ - Spring Security를 이용한 비밀번호 암호화
  - ID,PW 찾기
  - 팀매칭
  - 팀게시판 (자유게시판, 첨부파일게시판)
