@@ -43,7 +43,7 @@ Tomcat9을 통해 서버를 구현하였고 bootstrap4와 Ajax, Restful API 이�
 https://www.youtube.com/watch?v=UslgPlhMsA0
 
 # PDF
-#git add<수료 프로젝트>
+#git add<https://github.com/minj0117/TeamMaker/blob/master/Document_pdf/%EC%88%98%EB%A3%8C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%B0%9C%ED%91%9C.pdf>
 
 
 # 보완계획
