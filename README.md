@@ -7,7 +7,7 @@ Tomcat9을 통해 서버를 구현하였고 bootstrap4와 Ajax, Restful API 이�
   - 안명성 (back-end)
   - 변준오 (중도 탈락)
   - 변민정 (front-end)
-  - 박주헌 (중도 탈락)
+  - 박주헌 (중도 포기)
   - 이승엽 (중도 탈락)
 
 # 동기
